@@ -1,0 +1,4 @@
+a : c, a:-c, b:(-d&a), b:-d & ((a&c) &b)
+
+
+fredrik:teacher&supervisor, tjeerd:student, graham:teacher&(supervisor&headofresearch), tjeerd:student&employee
