@@ -1,36 +1,4 @@
-from lark import Tree,Token,Lark, Transformer,Visitor, v_args
-import pyactr as actr
-
-aBoxCon = actr.ACTRModel(
-    automatic_visual_search=False,
-    motor_prepared=True,
- #   subsymbolic=True,
-    utility_noise=0.2,
-    partial_matching=False,
- #   utility_learning=True,
- #   production_compilation=True,
-    activation_trace=True,
-    retrieval_threshold=0,
-    decay=0
-)
-
-aBoxCon.goals = {}
-aBoxCon.set_goal("g")
-aBoxCon.set_goal("imaginal")
-aBoxCon.set_goal("imaginal_action")
-
-actr.chunktype("goal", "state")
-actr.chunktype("proposition", "thing, form, element, mainconnective, relation, subformula1, inferred1, subformula2, inferred2, derived")
-actr.chunktype("checklist", "thing, form, element, mainconnective, relation, subformula1, subformula2, form2, form3, form4, form5, form6, form7, form8")
-actr.chunktype("storelist", "thing, form, element, mainconnective, relation, subformula1, subformula2, derived, inferred1, inferred2, form2, form3, form4, form5, form6, form7, form8, form9, form10, form11, form12, form13, form14, form15")
-
-dm = aBoxCon.decmem
-goal = aBoxCon.goals["g"]
-imaginal = aBoxCon.goals["imaginal"]
-imaginal_action = aBoxCon.goals["imaginal_action"]
-retrieval = aBoxCon.retrieval
-production = aBoxCon.productions
-
+from lark import Lark, Transformer, Visitor, v_args
 
 form_grammar = """
 
@@ -110,17 +78,22 @@ class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to 
 form_parser = Lark(form_grammar, parser='lalr')
 parser = form_parser.parse
 
-## Test of reading ABoxes from file:
+def AddAboxFromFile(filename):
+    with open(filename, 'r') as file:
+        data = file.read().replace('\n', ',') 
+    abox = parser(data)
+    if abox.data == "con_ass":
+        aboxlst = [abox]
+    else:
+        aboxlst=abox.children
+    for form in aboxlst:
+        AddFormToAbox().visit_topdown(form) # Need to visit the tree top down to get the element first.
+    
+if __name__ == "__main__":
+    import pyactr as actr
+    aBoxCon = actr.ACTRModel()
+    actr.chunktype("proposition", "thing, form, element, mainconnective, relation, subformula1, inferred1, subformula2, inferred2, derived")
+    dm = aBoxCon.decmem
+    AddAboxFromFile("abox.txt")
+    print(dm)
 
-with open('abox.txt', 'r') as file:
-    data = file.read().replace('\n', ',') 
-abox = parser(data)
-if abox.data == "con_ass":
-    aboxlst = [abox]
-else:
-    aboxlst=abox.children
-for form in aboxlst:
-    AddFormToAbox().visit_topdown(form) # Need to visit the tree top down to get the element first.
-    print(ToString().transform(form))
-
-print(dm)
