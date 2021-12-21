@@ -4,7 +4,7 @@ import pyactr as actr
 
 form_grammar = """
 
-    ?start: assertion (","+ assertion)*
+    ?start: assertion (","+ assertion)* 
 
     ?assertion: element ":" out_concept             -> con_ass
         | "(" element "," element ")" ":" role  -> role_ass
@@ -122,7 +122,7 @@ parser = form_parser.parse
 
 def AddAboxFromFile(filename,addtodm):
     with open(filename, 'r') as file:
-        data = file.read().replace('\n', ',') 
+        data = file.read().replace('\n', ' ') 
     abox = parser(data)
     if abox.data in ["con_ass","role_ass"]:
         aboxlst = [abox]
