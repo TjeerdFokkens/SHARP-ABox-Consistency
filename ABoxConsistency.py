@@ -54,7 +54,7 @@ def trace(sim, buffer, action=''):
             break
     return sim.current_event.time
 
-def plot_list(it):
+def plot_list(it, abox):
     sim_time_list = []
     for i in range(it):
         aBoxCon = initial(True)
@@ -65,7 +65,7 @@ def plot_list(it):
         prls.module3(aBoxCon)
         prls.module4(aBoxCon)
 
-        par.AddAboxFromFile("abox.txt",dm.add)
+        par.AddAboxFromFile(abox,dm.add)
 
         aBoxCon_sim = aBoxCon.simulation(realtime=False,gui=False)
 
@@ -76,12 +76,12 @@ def plot_list(it):
         sim_time_list.append(outp)
     return sim_time_list
 
-def simulation_plot(iterations):
-    data = plot_list(iterations)
+def simulation_plot(iterations, abox):
+    data = plot_list(iterations, abox)
     fig, ax = plt.subplots(tight_layout=True)
     hist = ax.hist(data)
 
 
-simulation_plot(2)
+simulation_plot(2, "abox.txt")
 
 plt.show()

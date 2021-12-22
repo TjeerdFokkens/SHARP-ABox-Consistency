@@ -1,5 +1,9 @@
+#Production rules that always follow each other form a unit.
+#A unit can consist of only one production rule, or several, indicated by 'Step n', with n a natural number.
+#When several different production rules can fire after given one, they form new units, each labelled by a, b, etc.
+
 def module1(aBoxCon): #This module looks for concept assignments and negated concept assignments and tries to find a clash. If there is no clash, some new formula needs to be derived.
-    aBoxCon.productionstring(name="Module 1, Unit 1: find first formula, Step 1", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 1: find first formula, concept or negation, Step 1", string="""
         =g>
         isa     goal
         state   start
@@ -23,7 +27,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         mainconnective ~universal
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 2a: skip and derive first formula, Step 1", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 2a: skip and derive new formula, Step 1", string="""
         =g>
         isa     goal
         state   store
@@ -35,7 +39,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         ==>
         =g>
         isa      goal
-        state    module2
+        state    derive_next
         ~retrieval>
     """)
 
@@ -53,6 +57,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         element  =X
         mainconnective =Y
         subformula1 =Z
+        derived yes
         ==>
         =g>
         isa     goal
@@ -75,7 +80,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form8   none
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 3a: find clash to concept, Step 1", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 3a: find clash to a concept, Step 1", string="""
         =g>
         isa     goal
         state   find_clash
@@ -122,7 +127,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         derived  yes
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 4a: show clash, Step 1", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 4a: show clash to a concept, Step 1", string="""
         =g>
         isa     goal
         state   signal_clash
@@ -148,6 +153,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         element  =X
         mainconnective negation
         subformula1 =Y
+        derived yes
         ?manual>
         state   free
         ==>
@@ -160,7 +166,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         key     C
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 4b: no clash, Step 1", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 4b: no clash to a concept, Step 1", string="""
         =g>
         isa     goal
         state   signal_clash
@@ -205,7 +211,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         ~retrieval>
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 3b: find clash to negation, Step 1", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 3b: find clash to a negation, Step 1", string="""
         =g>
         isa     goal
         state   find_clash
@@ -252,7 +258,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         derived  yes
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 7a: show clash, Step 1", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 7a: show clash to a negation, Step 1", string="""
         =g>
         isa     goal
         state   signal_clash
@@ -278,6 +284,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         element  =X
         mainconnective concept
         subformula1 =Y
+        derived yes
         ?manual>
         state   free
         ==>
@@ -290,7 +297,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         key     C
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 7b: no clash, Step 1", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 7b: no clash to a negation, Step 1", string="""
         =g>
         isa     goal
         state   signal_clash
@@ -335,7 +342,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         ~retrieval>
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 5: find next formula, Step 1", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 5: find next concept or negation, Step 1", string="""
         =g>
         isa     goal
         state   find_next_formula
@@ -407,6 +414,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         subformula1 =Z
         form    =U
         thing   proposition
+        derived yes
         =imaginal>
         isa     checklist
         thing   checklist
@@ -456,15 +464,15 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         ==>
         =g>
         isa     goal
-        state   module2
+        state   derive_next
         ~retrieval>
     """)
 
-def module2(aBoxCon): #This module applies when a conjunction is found. It derives a conjunct that has not been derived yet.
-    aBoxCon.productionstring(name="Module 2, Unit 1: find formula to apply rule to, Step 1", string="""
+def module2(aBoxCon): #This module applies when a conjunction is found. It derives a conjunct (right or left) that has not been derived yet.
+    aBoxCon.productionstring(name="Module 2, Unit 1: find conjunction to apply derivation to, Step 1", string="""
         =g>
         isa      goal
-        state    module2
+        state    derive_next
         ?retrieval>
         state   free
         ==>
@@ -476,7 +484,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         thing   proposition
         mainconnective  conjunction
         derived  yes
-    """)
+    """) #Move this rule to module 1 in the future. Adjust 'mainconnective' to also allow for 'existential'.
 
     aBoxCon.productionstring(name="Module 2, Unit 2a: conjunction found, first conjunct inferred, Step 1", string="""
         =g>
@@ -540,6 +548,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =X
         mainconnective conjunction
         inferred1 yes
+        derived  yes
         =imaginal>
         isa      proposition
         thing    proposition
@@ -652,7 +661,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         inferred2 none
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 3b: second conjunct inferred after first, Step 1", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 3b: check if second conjunct inferred after first, Step 1", string="""
         =g>
         isa      goal
         state    first_conjunct_inferred2
@@ -670,7 +679,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         inferred1 yes
         subformula2 =V
         inferred2 =W
-        derived   =Z
+        derived   yes
         relation none
         ?imaginal>
         state    free
@@ -700,12 +709,12 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         inferred1 yes
         subformula2 =V
         inferred2 =W
-        derived   =Z
+        derived   yes
         relation  none
         ~retrieval>
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 3b: second conjunct inferred after first, Step 2", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 3b: check if second conjunct inferred after first, Step 2", string="""
         =g>
         isa      goal
         state    pre_infer_second_conjunct_after_first
@@ -719,7 +728,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         inferred1 yes
         subformula2 =V
         inferred2 =W
-        derived   =Z
+        derived   yes
         relation none
         ?retrieval>
         state    free
@@ -737,7 +746,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         inferred1 yes
         subformula2 =V
         inferred2 yes
-        derived   =Z
+        derived   yes
         =imaginal>
         isa      proposition
         thing    proposition
@@ -748,11 +757,11 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         inferred1 yes
         subformula2 =V
         inferred2 =W
-        derived   =Z
+        derived   yes
         relation  none
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 4a: store in list, Step 1", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 4a: store in list of used formulas, Step 1", string="""
         =g>
         isa      goal
         state    infer_second_conjunct_after_first
@@ -767,6 +776,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula2 =W
         inferred1 yes
         inferred2 yes
+        derived   yes
         ?retrieval>
         state    free
         ==>
@@ -782,7 +792,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         relation =U
         subformula1 =V
         subformula2 =W
-        derived  none
+        derived  yes
         inferred1 none
         inferred2 none
         form2    none
@@ -817,7 +827,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula2  =Z
         derived  yes
         relation none
-        inferred1 =S1
+        inferred1 yes
         inferred2 =S2
         ==>
         =g>
@@ -897,6 +907,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         relation  =S
         inferred1  =S1
         inferred2  =S2
+        derived   no
         ?imaginal>
         state    free
         ==>
@@ -983,6 +994,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =X
         mainconnective conjunction
         inferred2 yes
+        derived  yes
         =imaginal>
         isa      proposition
         thing    proposition
@@ -1094,7 +1106,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         inferred2 none
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 5b: first conjunct inferred after second, Step 1", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 5b: check if first conjunct inferred after second, Step 1", string="""
         =g>
         isa      goal
         state    second_conjunct_inferred2
@@ -1112,7 +1124,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         inferred1 =W
         subformula2 =V
         inferred2 yes
-        derived   =Z
+        derived   yes
         relation none
         ?imaginal>
         state    free
@@ -1142,12 +1154,12 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         inferred1 =W
         subformula2 =V
         inferred2 yes
-        derived   =Z
+        derived   yes
         relation  none
         ~retrieval>
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 5b: first conjunct inferred after second, Step 2", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 5b: check if first conjunct inferred after second, Step 2", string="""
         =g>
         isa      goal
         state    pre_infer_first_conjunct_after_second
@@ -1161,7 +1173,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         inferred1 =W
         subformula2 =V
         inferred2 yes
-        derived   =Z
+        derived   yes
         relation  none
         ?retrieval>
         state    free
@@ -1179,7 +1191,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         inferred1 yes
         subformula2 =V
         inferred2 yes
-        derived   =Z
+        derived   yes
         =imaginal>
         isa      proposition
         thing    proposition
@@ -1190,11 +1202,11 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         inferred1 =W
         subformula2 =V
         inferred2 yes
-        derived   =Z
+        derived   yes
         relation  none
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 6a: store in list, Step 1", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 6a: store in list of used formulas, Step 1", string="""
         =g>
         isa      goal
         state    infer_first_conjunct_after_second
@@ -1209,6 +1221,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula2 =W
         inferred1 yes
         inferred2 yes
+        derived   yes
         ?retrieval>
         state    free
         ==>
@@ -1224,7 +1237,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         relation =U
         subformula1 =V
         subformula2 =W
-        derived  none
+        derived  yes
         inferred1  none
         inferred2  none
         form2    none
@@ -1339,6 +1352,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         relation  =S
         inferred1  =S1
         inferred2  =S2
+        derived  no
         ?imaginal>
         state    free
         ==>
@@ -1359,7 +1373,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         inferred2  =S2
     """)
 
-def module3(aBoxCon): #This module decides if it's worth to look for a clash. If not, it demands some new formula needs to be derived.
+def module3(aBoxCon): #This module decides if it's worth to look for a clash. If not, it demands some new formula to be derived.
     aBoxCon.productionstring(name="Module 3, Unit 1: do we need to check for a clash? concept found, Step 1", string="""
         =g>
         isa      goal
@@ -1430,7 +1444,7 @@ def module3(aBoxCon): #This module decides if it's worth to look for a clash. If
         ~retrieval>
     """)
 
-    aBoxCon.productionstring(name="Module 3, Unit 3: do we need to derive something new, Step 1", string="""
+    aBoxCon.productionstring(name="Module 3, Unit 3: check if we need to derive something new, Step 1", string="""
         =g>
         isa      goal
         state    module3
@@ -1440,18 +1454,19 @@ def module3(aBoxCon): #This module decides if it's worth to look for a clash. If
         element  =X
         subformula1 =Y
         form     =Z
+        derived  yes
         mainconnective ~concept
         mainconnective ~negation
         ==>
         =g>
         isa      goal
-        state    module2
+        state    derive_next
         ~imaginal>
         ~retrieval>
     """)
 
 def module4(aBoxCon): #This module makes a list of all formulas that are already used. It then chooses a new formula not in the list. If there is no such formula, it confirms consistency.
-    aBoxCon.productionstring(name="Module 4, Unit 1: retrieve the next proposition to store in the list, Step 1", string="""
+    aBoxCon.productionstring(name="Module 4, Unit 1: check if there is a formula to store in the list of used formulas, Step 1", string="""
         =g>
         isa      goal
         state    store_in_list
@@ -1510,7 +1525,7 @@ def module4(aBoxCon): #This module makes a list of all formulas that are already
         inferred2 yes
     """)
 
-    aBoxCon.productionstring(name="Module 4 Unit 2a: store the next proposition in the list, Step 1", string="""
+    aBoxCon.productionstring(name="Module 4 Unit 2a: store formula in the list of used formulas and repeat, Step 1", string="""
         =g>
         isa      goal
         state    store_in_list2
@@ -1586,7 +1601,7 @@ def module4(aBoxCon): #This module makes a list of all formulas that are already
         inferred2 yes
     """)
 
-    aBoxCon.productionstring(name="Module 4, Unit 2b: use the list to select the next formula, Step 1", string="""
+    aBoxCon.productionstring(name="Module 4, Unit 2b: no formula to store, use the list to select the next formula, Step 1", string="""
         =g>
         isa      goal
         state    store_in_list2
@@ -1644,7 +1659,7 @@ def module4(aBoxCon): #This module makes a list of all formulas that are already
         derived  yes
     """)
 
-    aBoxCon.productionstring(name="Module 4, Unit 3: confirm consistency, Step 1", string="""
+    aBoxCon.productionstring(name="Module 4, Unit 3: all formulas used, confirm consistency, Step 1", string="""
         =g>
         isa      goal
         state    find_rule
