@@ -20,7 +20,7 @@ def initial(learning=False):
         partial_matching=False,
         utility_learning=learning,
         production_compilation=learning,
-        activation_trace=False,
+        activation_trace=True,
         retrieval_threshold=0,
         decay=0)
 
@@ -82,40 +82,6 @@ def simulation_plot(iterations):
     hist = ax.hist(data)
 
 
-#simulation_plot(10)
+simulation_plot(2)
 
-#plt.show()
-
-aBoxCon = initial(True)
-dm = aBoxCon.decmem
-
-module1(aBoxCon)
-module2(aBoxCon)
-module3(aBoxCon)
-module4(aBoxCon)
-
-parser.AddAboxFromFile("abox.txt",dm.add)
-
-sim = aBoxCon.simulation(realtime=False,gui=False,trace=False)
-lastfocusedform = None
-
-while True:
-    try:
-        sim.step()
-    except simpy.core.EmptySchedule:
-        break
-   # print("*" + str(sim.current_event.action))
-    if re.match("^RULE FIRED:.*derived",sim.current_event.action):
-        for x in aBoxCon.retrieval:
-            print(str(round(sim.current_event.time,2)).ljust(7)[:7] + "DERIVED: *" + str(x.form))
-    elif re.match("^RULE FIRED:.*found",sim.current_event.action):
-        #print(sim.current_event.action)
-        for x in aBoxCon.goals["imaginal"]:
-            if (x.form != lastfocusedform) & (str(x.form) != "none"):
-                print(str(round(sim.current_event.time,2)).ljust(7)[:7] +"FOCUS:   "+ str(x.form))
-                lastfocusedform = x.form
-
-
-print("DONE")
-
-
+plt.show()
