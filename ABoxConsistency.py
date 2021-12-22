@@ -5,6 +5,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import colors
 from matplotlib.ticker import PercentFormatter
+import simpy
+import re
+import parser
 
 def initial(learning=False):
     aBoxCon = actr.ACTRModel(
@@ -15,7 +18,7 @@ def initial(learning=False):
         partial_matching=False,
         utility_learning=learning,
         production_compilation=learning,
-        activation_trace=True,
+        activation_trace=False,
         retrieval_threshold=0,
         decay=0)
 
@@ -1749,23 +1752,27 @@ module2(aBoxCon)
 module3(aBoxCon)
 module4(aBoxCon)
 
-dm.add(actr.makechunk(typename="proposition", thing="proposition", form="a:A&/Es.F", element="a", mainconnective="conjunction", subformula1="a:A", subformula2="a:/Es.F", derived="yes", inferred1="no", inferred2="no"))
-dm.add(actr.makechunk(typename="proposition", thing="proposition", form="a:/As.(nF%nB)", element="a", mainconnective="universal", relation="s", subformula1="b:nF%nB", derived="yes"))
-dm.add(actr.makechunk(typename="proposition", thing="proposition", form="b:B", element="b", mainconnective="concept", subformula1="B", derived="yes"))
-dm.add(actr.makechunk(typename="proposition", thing="proposition", form="(a,b):s", mainconnective="relation", relation="s", subformula1="a", subformula2="b", derived="yes"))
-dm.add(actr.makechunk(typename="proposition", thing="proposition", form="(a,c):r", mainconnective="relation", relation="r", subformula1="a", subformula2="c", derived="yes"))
-dm.add(actr.makechunk(typename="proposition", thing="proposition", form="c:C&/Es.D", element="c", mainconnective="conjunction", subformula1="c:C", subformula2="c:/Es.D", derived="yes", inferred1="no", inferred2="no"))
+parser.AddAboxFromFile("abox.txt",dm.add)
 
-dm.add(actr.makechunk(typename="proposition", thing="proposition", form="a:A", element="a", mainconnective="concept", subformula1="A", derived="no"))
-dm.add(actr.makechunk(typename="proposition", thing="proposition", form="b:nF%nB", element="b", mainconnective="disjunction", subformula1="b:nF", subformula2="b:nB", derived="no"))
-dm.add(actr.makechunk(typename="proposition", thing="proposition", form="b:nF", element="b", mainconnective="negation", subformula1="F", derived="no"))
-dm.add(actr.makechunk(typename="proposition", thing="proposition", form="a:/Es.F", element="a", mainconnective="existential", relation="s", subformula1="x:F", derived="no"))
-dm.add(actr.makechunk(typename="proposition", thing="proposition", form="(a,x):s", mainconnective="relation", relation="s", subformula1="a", subformula2="x", derived="no"))
-dm.add(actr.makechunk(typename="proposition", thing="proposition", form="x:nF%nB", element="x", mainconnective="disjunction", subformula1="x:nF", subformula2="x:nB", derived="no"))
-dm.add(actr.makechunk(typename="proposition", thing="proposition", form="x:nB", element="x", mainconnective="negation", subformula1="B", derived="no"))
-dm.add(actr.makechunk(typename="proposition", thing="proposition", form="x:nF", element="x", mainconnective="negation", subformula1="F", derived="no"))
-dm.add(actr.makechunk(typename="proposition", thing="proposition", form="c:C", element="c", mainconnective="concept", subformula1="C", derived="no"))
-dm.add(actr.makechunk(typename="proposition", thing="proposition", form="c:/Es.D", element="c", mainconnective="existential", relation="s", subformula1="y:D", derived="no"))
-dm.add(actr.makechunk(typename="proposition", thing="proposition", form="y:D", element="y", mainconnective="concept", subformula1="D", derived="no"))
+sim = aBoxCon.simulation(realtime=False,gui=False,trace=False)
+lastfocusedform = None
 
-trace(aBoxCon, 'retrieval')
+while True:
+    try:
+        sim.step()
+    except simpy.core.EmptySchedule:
+        break
+   # print("*" + str(sim.current_event.action))
+    if re.match("^RULE FIRED:.*derived",sim.current_event.action):
+        for x in aBoxCon.retrieval:
+            print(str(round(sim.current_event.time,2)).ljust(7)[:7] + "DERIVED: *" + str(x.form))
+    elif re.match("^RULE FIRED:.*found",sim.current_event.action):
+        #print(sim.current_event.action)
+        for x in aBoxCon.goals["imaginal"]:
+            if (x.form != lastfocusedform) & (str(x.form) != "none"):
+                print(str(round(sim.current_event.time,2)).ljust(7)[:7] +"FOCUS:   "+ str(x.form))
+                lastfocusedform = x.form
+
+
+print("DONE")
+
