@@ -79,7 +79,7 @@ def plot_list(it, abox):
 def simulation_plot(iterations, abox):
     data = plot_list(iterations, abox)
     fig, ax = plt.subplots(tight_layout=True)
-    hist = ax.hist(data)
+    hist = ax.hist(data, bins='sqrt', color='forestgreen', label='time')
 
 
 simulation_plot(2, "abox.txt")
