@@ -43,7 +43,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         ~retrieval>
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 2b: store first formula, Step 1", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 2b: store first formula and find corresponding clash, Step 1", string="""
         =g>
         isa     goal
         state   store
@@ -80,7 +80,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form8   none
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 3: find clash to a concept, Step 1", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 2b: store first formula and find corresponding clash, Step 2", string="""
         =g>
         isa     goal
         state   find_clash
@@ -135,7 +135,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         derived  yes
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 4a: show clash to a concept, Step 1", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 3a: show clash, Step 1", string="""
         =g>
         isa     goal
         state   signal_clash
@@ -182,7 +182,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         key     C
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 4b: no clash to a concept, Step 1", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 3b: no clash, so find next concept or negation, Step 1", string="""
         =g>
         isa     goal
         state   signal_clash
@@ -231,7 +231,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         ~retrieval>
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 4b: no clash to a concept, Step 2", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 3b: no clash, so find next concept or negation, Step 2", string="""
         =g>
         isa     goal
         state   find_next_formula
@@ -292,7 +292,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form8   =U6
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 6a: repeat, Step 1", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 4a: repeat, Step 1", string="""
         =g>
         isa     goal
         state   decide
@@ -344,7 +344,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         ~retrieval>
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 6b: move on, Step 1", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 4b: move on to next module, Step 1", string="""
         =g>
         isa     goal
         state   decide
