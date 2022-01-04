@@ -79,6 +79,8 @@ def plot_list(it, abox):
 def simulation_plot(iterations, abox):
     data = plot_list(iterations, abox)
     fig, ax = plt.subplots(tight_layout=True)
+    ax.grid(visible=None, axis='x')
+    ax.grid(linestyle=':', axis='y')
     hist = ax.hist(data, bins='sqrt', color='forestgreen', label='time')
 
 

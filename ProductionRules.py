@@ -43,7 +43,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         ~retrieval>
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 2b: store first formula, Step 1", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 2b: store first formula and find corresponding clash, Step 1", string="""
         =g>
         isa     goal
         state   store
@@ -80,7 +80,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form8   none
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 3a: find clash to a concept, Step 1", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 2b: store first formula and find corresponding clash, Step 2", string="""
         =g>
         isa     goal
         state   find_clash
@@ -88,7 +88,11 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa     checklist
         thing   checklist
         element =X
-        mainconnective concept
+        mainconnective ~universal
+        mainconnective ~existential
+        mainconnective ~conjunction
+        mainconnective ~disjunction
+        mainconnective =V
         relation =G
         subformula1 =Y
         form    =Z
@@ -108,7 +112,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa     checklist
         thing   checklist
         element =X
-        mainconnective concept
+        mainconnective =V
         subformula1 =Y
         relation =G
         form    =Z
@@ -122,12 +126,16 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa     proposition
         thing   proposition
         element  =X
-        mainconnective negation
+        mainconnective ~universal
+        mainconnective ~existential
+        mainconnective ~conjunction
+        mainconnective ~disjunction
+        mainconnective ~=V
         subformula1 =Y
         derived  yes
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 4a: show clash to a concept, Step 1", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 3a: show clash, Step 1", string="""
         =g>
         isa     goal
         state   signal_clash
@@ -136,7 +144,11 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         thing   checklist
         element =X
         form    =X1
-        mainconnective concept
+        mainconnective ~conjunction
+        mainconnective ~disjunction
+        mainconnective ~universal
+        mainconnective ~existential
+        mainconnective =V
         subformula1 =Y
         relation =Z1
         subformula2 =Z2
@@ -151,7 +163,11 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa     proposition
         thing   proposition
         element  =X
-        mainconnective negation
+        mainconnective ~conjunction
+        mainconnective ~disjunction
+        mainconnective ~universal
+        mainconnective ~existential
+        mainconnective ~=V
         subformula1 =Y
         derived yes
         ?manual>
@@ -166,7 +182,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         key     C
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 4b: no clash to a concept, Step 1", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 3b: no clash, so find next concept or negation, Step 1", string="""
         =g>
         isa     goal
         state   signal_clash
@@ -175,7 +191,11 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         thing   checklist
         form    =Z
         element =X
-        mainconnective concept
+        mainconnective ~universal
+        mainconnective ~existential
+        mainconnective ~conjunction
+        mainconnective ~disjunction
+        mainconnective =V
         subformula1 =Y
         form2   =A
         form3   =B
@@ -211,138 +231,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         ~retrieval>
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 3b: find clash to a negation, Step 1", string="""
-        =g>
-        isa     goal
-        state   find_clash
-        =imaginal>
-        isa     checklist
-        thing   checklist
-        element =X
-        mainconnective negation
-        subformula1 =Y
-        relation =G
-        form    =Z
-        form2   =A
-        form3   =B
-        form4   =C
-        form5   =D
-        form6   =E
-        form7   =F
-        ?retrieval>
-        state   free
-        ==>
-        =g>
-        isa     goal
-        state   signal_clash
-        +imaginal>
-        isa     checklist
-        thing   checklist
-        element =X
-        mainconnective negation
-        subformula1 =Y
-        relation =G
-        form    =Z
-        form2   =A
-        form3   =B
-        form4   =C
-        form5   =D
-        form6   =E
-        form7   =F
-        +retrieval>
-        isa     proposition
-        thing   proposition
-        element  =X
-        mainconnective concept
-        subformula1 =Y
-        derived  yes
-    """)
-
-    aBoxCon.productionstring(name="Module 1, Unit 7a: show clash to a negation, Step 1", string="""
-        =g>
-        isa     goal
-        state   signal_clash
-        =imaginal>
-        isa     checklist
-        thing   checklist
-        element =X
-        form    =X1
-        mainconnective negation
-        subformula1 =Y
-        relation =Z1
-        subformula2 =Z2
-        form2  =Z3
-        form3  =Z4
-        form4  =Z5
-        form5  =Z6
-        form6  =Z7
-        form7  =Z8
-        form8  =Z9
-        =retrieval>
-        isa     proposition
-        thing   proposition
-        element  =X
-        mainconnective concept
-        subformula1 =Y
-        derived yes
-        ?manual>
-        state   free
-        ==>
-        =g>
-        isa     goal
-        state   stop
-        +manual>
-        isa     _manual
-        cmd     press_key
-        key     C
-    """)
-
-    aBoxCon.productionstring(name="Module 1, Unit 7b: no clash to a negation, Step 1", string="""
-        =g>
-        isa     goal
-        state   signal_clash
-        =imaginal>
-        isa     checklist
-        thing   checklist
-        form    =Z
-        element =X
-        mainconnective negation
-        subformula1 =Y
-        form2   =A
-        form3   =B
-        form4   =C
-        form5   =D
-        form6   =E
-        form7   =F
-        form8   =G
-        relation =Z1
-        subformula2 =Z2
-        ?retrieval>
-        state   error
-        ==>
-        =g>
-        isa     goal
-        state   find_next_formula
-        +imaginal>
-        isa     checklist
-        thing   checklist
-        form    none
-        element none
-        mainconnective none
-        subformula1 none
-        subformula2 none
-        relation none
-        form2   =Z
-        form3   =A
-        form4   =B
-        form5   =C
-        form6   =D
-        form7   =E
-        form8   =F
-        ~retrieval>
-    """)
-
-    aBoxCon.productionstring(name="Module 1, Unit 5: find next concept or negation, Step 1", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 3b: no clash, so find next concept or negation, Step 2", string="""
         =g>
         isa     goal
         state   find_next_formula
@@ -403,7 +292,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form8   =U6
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 6a: repeat, Step 1", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 4a: repeat, Step 1", string="""
         =g>
         isa     goal
         state   decide
@@ -455,7 +344,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         ~retrieval>
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 6b: move on, Step 1", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 4b: move on to next module, Step 1", string="""
         =g>
         isa     goal
         state   decide
