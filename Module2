@@ -1,0 +1,343 @@
+def module2(aBoxCon): #This module applies when a conjunction is found. It derives a conjunct (right or left) that has not been derived yet.
+    aBoxCon.productionstring(name="Module 2, Unit 1: find conjunction to apply derivation to, Step 1", string="""
+        =g>
+        isa      goal
+        state    derive_next
+        ?retrieval>
+        state   free
+        ==>
+        =g>
+        isa     goal
+        state   find_rule
+        +retrieval>
+        isa     proposition
+        thing   proposition
+        mainconnective  conjunction
+        derived yes
+        used    ~yes
+    """) #Move this rule to module 1 in the future. Adjust 'mainconnective' to also allow for 'existential'.
+
+    aBoxCon.productionstring(name="Module 2, Unit 2a: conjunction found, first conjunct inferred, Step 2", string="""
+        =g>
+        isa      goal
+        state    find_rule
+        ?retrieval>
+        state    free
+        =retrieval>
+        isa      proposition
+        thing    proposition
+        form     =X
+        element  =U
+        mainconnective conjunction
+        subformula1  =Y
+        subformula2  =Z
+        derived  yes
+        relation =V
+        ?imaginal>
+        state    free
+        ==>
+        =g>
+        isa      goal
+        state    infer_conjuncts
+        +imaginal>
+        isa      proposition
+        thing    proposition
+        form     =X
+        element  =U
+        mainconnective conjunction
+        subformula1  =Y
+        subformula2  =Z
+        relation =V
+        derived  yes
+        used     yes
+    """)
+
+    aBoxCon.productionstring(name="Module 2, Unit 2a: conjunction found, first conjunct inferred, Step 2", string="""
+        =g>
+        isa      goal
+        state    infer_rule
+        ?retrieval>
+        state    free
+        =imaginal>
+        isa      proposition
+        thing    proposition
+        form     =X
+        element  =U
+        mainconnective conjunction
+        subformula1  =Y
+        subformula2  =Z
+        derived  yes
+        ?imaginal>
+        state    free
+        ==>
+        =g>
+        isa      goal
+        state    label_conjuncts
+        +imaginal>
+        isa      proposition
+        thing    proposition
+        form     =Y
+        element  =U
+        mainconnective none
+        relation none
+        subformula1 none
+        subformula2 none
+        derived  none
+        +imaginal_action>
+        isa      proposition
+        thing    proposition
+        form     =Z
+        element  =U
+        mainconnective none
+        relation none
+        subformula1 none
+        subformula2 none
+        derived  none
+    """)
+
+    aBoxCon.productionstring(name="Module 2, Unit 3a: label first conjunct as inferred and derived, Step 1", string="""
+        =g>
+        isa      goal
+        state    label_conjuncts
+        =imaginal>
+        isa      proposition
+        thing    proposition
+        form     =X
+        element  =U
+        mainconnective =A
+        relation =B
+        subformula1 =C
+        subformula2 =D
+        derived  ~yes
+        =imaginal_action>
+        isa      proposition
+        thing    proposition
+        form     =Z
+        element  =U
+        mainconnective =E
+        relation =F
+        subformula1 =G
+        subformula2 =H
+        derived  =I
+        ?retrieval>
+        state    free
+        ==>
+        =g>
+        isa      goal
+        state    label_conjuncts2
+        +retrieval>
+        isa      proposition
+        thing    proposition
+        form     =X
+        element  =U
+        mainconnective =A
+        relation =B
+        subformula1 =C
+        subformula2 =D
+        derived  ~yes
+        =imaginal_action>
+        isa      proposition
+        thing    proposition
+        form     =Z
+        element  =U
+        mainconnective =E
+        relation =F
+        subformula1 =G
+        subformula2 =H
+        derived  =I
+        ~imaginal>
+    """)
+
+    aBoxCon.productionstring(name="Module 2, Unit 3a: label first conjunct as inferred and derived, Step 1", string="""
+        =g>
+        isa      goal
+        state    label_conjuncts
+        =imaginal>
+        isa      proposition
+        thing    proposition
+        form     =X
+        element  =U
+        mainconnective =A
+        relation =B
+        subformula1 =C
+        subformula2 =D
+        derived  =I
+        =imaginal_action>
+        isa      proposition
+        thing    proposition
+        form     =Z
+        element  =U
+        mainconnective =E
+        relation =F
+        subformula1 =G
+        subformula2 =H
+        derived  ~yes
+        ?retrieval>
+        state    free
+        ==>
+        =g>
+        isa      goal
+        state    label_conjuncts2
+        +retrieval>
+        isa      proposition
+        thing    proposition
+        form     =Z
+        element  =U
+        mainconnective =E
+        relation =F
+        subformula1 =G
+        subformula2 =H
+        derived  ~yes
+        =imaginal>
+        isa      proposition
+        thing    proposition
+        form     =X
+        element  =U
+        mainconnective =A
+        relation =B
+        subformula1 =C
+        subformula2 =D
+        derived  =I
+        ~imaginal_action>
+    """)
+
+    aBoxCon.productionstring(name="Module 2, Unit 3a: label first conjunct as inferred and derived, Step 2", string="""
+        =g>
+        isa      goal
+        state    label_conjuncts2
+        =retrieval>
+        isa      proposition
+        thing    proposition
+        form     =X
+        element  =U
+        mainconnective =V
+        subformula1  =C
+        subformula2  =B
+        relation   =A
+        derived  ~yes
+        =imaginal_action>
+        isa      proposition
+        thing    proposition
+        form     =Z
+        element  =U
+        mainconnective =E
+        relation =F
+        subformula1 =G
+        subformula2 =H
+        derived  =I
+        ?imaginal>
+        state    empty
+        ==>
+        =g>
+        isa      goal
+        state    label_conjuncts
+        +imaginal>
+        isa      proposition
+        thing    proposition
+        form     =X
+        element  =U
+        mainconnective =V
+        subformula1  =C
+        subformula2  =B
+        relation   =A
+        derived  yes
+        =imaginal_action>
+        isa      proposition
+        thing    proposition
+        form     =Z
+        element  =U
+        mainconnective =E
+        relation =F
+        subformula1 =G
+        subformula2 =H
+        derived  =I
+        ~retrieval>
+    """)
+
+    aBoxCon.productionstring(name="Module 2, Unit 3a: label first conjunct as inferred and derived, Step 2", string="""
+        =g>
+        isa      goal
+        state    label_conjuncts2
+        =retrieval>
+        isa      proposition
+        thing    proposition
+        form     =X
+        element  =U
+        mainconnective =V
+        subformula1  =C
+        subformula2  =B
+        relation   =A
+        derived  ~yes
+        =imaginal>
+        isa      proposition
+        thing    proposition
+        form     =Z
+        element  =U
+        mainconnective =E
+        relation =F
+        subformula1 =G
+        subformula2 =H
+        derived  =I
+        ?imaginal_action>
+        state    empty
+        ==>
+        =g>
+        isa      goal
+        state    label_conjuncts
+        +imaginal_action>
+        isa      proposition
+        thing    proposition
+        form     =X
+        element  =U
+        mainconnective =V
+        subformula1  =C
+        subformula2  =B
+        relation   =A
+        derived  yes
+        =imaginal>
+        isa      proposition
+        thing    proposition
+        form     =Z
+        element  =U
+        mainconnective =E
+        relation =F
+        subformula1 =G
+        subformula2 =H
+        derived  =I
+        ~retrieval>
+    """)
+
+    aBoxCon.productionstring(name="Module 2, Unit 3a: label first conjunct as inferred and derived, Step 3", string="""
+        =g>
+        isa      goal
+        state    label_conjuncts
+        ?retrieval>
+        state    free
+        =imaginal>
+        isa      proposition
+        thing    proposition
+        form     =X
+        element  =U
+        mainconnective =V
+        subformula1  =C
+        subformula2  =B
+        relation   =A
+        derived  yes
+        =imaginal_action>
+        isa      proposition
+        thing    proposition
+        form     =Y
+        element  =U
+        mainconnective =Z
+        subformula1  =D
+        subformula2  =E
+        relation   =F
+        derived  yes
+        ==>
+        =g>
+        isa      goal
+        state    derive_new
+        ~imaginal_action>
+        ~imaginal>
+        ~retrieval>
+    """)
