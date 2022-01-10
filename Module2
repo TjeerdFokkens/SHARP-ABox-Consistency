@@ -1,26 +1,30 @@
-def module2(aBoxCon): #This module applies when a conjunction is found. It derives a conjunct (right or left) that has not been derived yet.
     aBoxCon.productionstring(name="Module 2, Unit 1: find conjunction to apply derivation to, Step 1", string="""
         =g>
         isa      goal
         state    derive_next
+        form     =P
         ?retrieval>
         state   free
         ==>
         =g>
         isa     goal
-        state   find_rule
+        state   module2
+        form     =P
         +retrieval>
         isa     proposition
         thing   proposition
         mainconnective  conjunction
         derived yes
-        used    ~yes
-    """) #Move this rule to module 1 in the future. Adjust 'mainconnective' to also allow for 'existential'.
+    """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 2a: conjunction found, first conjunct inferred, Step 2", string="""
+
+def module2(aBoxCon): #This module applies when a conjunction is found. It derives a conjunct (right or left) that has not been derived yet.
+
+    aBoxCon.productionstring(name="Module 2, Unit 1: conjunction found, move to imaginal, Step 2", string="""
         =g>
         isa      goal
-        state    find_rule
+        state    module2
+        form     =P
         ?retrieval>
         state    free
         =retrieval>
@@ -38,7 +42,8 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         ==>
         =g>
         isa      goal
-        state    infer_conjuncts
+        state    label_used
+        form     =P
         +imaginal>
         isa      proposition
         thing    proposition
@@ -49,15 +54,41 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula2  =Z
         relation =V
         derived  yes
-        used     yes
+        +retrieval>
+        isa      storelist
+        thing    storelist
+        form     =P
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 2a: conjunction found, first conjunct inferred, Step 2", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 1: label conjunction as used, Step 3", string="""
         =g>
         isa      goal
-        state    infer_rule
-        ?retrieval>
-        state    free
+        state    label_used
+        form     =P
+        =retrieval>
+        isa      storelist
+        thing    storelist
+        form     =P
+        element  =A
+        mainconnective =B
+        relation =C
+        subformula1 =D
+        subformula2 =E
+        form2    =T1
+        form3    =T2
+        form4    =T3
+        form5    =T4
+        form6    =T5
+        form7    =T6
+        form8    =T7
+        form9    =T8
+        form10   =T9
+        form11   =T10
+        form12   =T11
+        form13   =T12
+        form14   =T13
+        form15   =T14
+        derived  yes
         =imaginal>
         isa      proposition
         thing    proposition
@@ -67,12 +98,76 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula1  =Y
         subformula2  =Z
         derived  yes
-        ?imaginal>
+        relation =V
+        ?imaginal_action>
         state    free
         ==>
         =g>
         isa      goal
+        state    infer_rule
+        form     =X
+        +imaginal>
+        isa      storelist
+        thing    storelist
+        form     =X
+        element  =U
+        mainconnective conjunction
+        relation =V
+        subformula1 =Y
+        subformula2 =Z
+        form2    =P
+        form3    =T1
+        form4    =T2
+        form5    =T3
+        form6    =T4
+        form7    =T5
+        form8    =T6
+        form9    =T7
+        form10   =T8
+        form11   =T9
+        form12   =T10
+        form13   =T11
+        form14   =T12
+        form15   =T13
+        derived  yes
+    """)
+
+    aBoxCon.productionstring(name="Module 2, Unit 1: derive conjuncts, Step 3", string="""
+        =g>
+        isa      goal
+        state    infer_rule
+        form     =P
+        ?retrieval>
+        state    free
+        =imaginal>
+        isa      storelist
+        thing    storelist
+        form     =X
+        element  =U
+        mainconnective conjunction
+        relation =V
+        subformula1 =Y
+        subformula2 =Z
+        form2    =P
+        form3    =T1
+        form4    =T2
+        form5    =T3
+        form6    =T4
+        form7    =T5
+        form8    =T6
+        form9    =T7
+        form10   =T8
+        form11   =T9
+        form12   =T10
+        form13   =T11
+        form14   =T12
+        form15   =T13
+        derived  yes
+        ==>
+        =g>
+        isa      goal
         state    label_conjuncts
+        form     =P
         +imaginal>
         isa      proposition
         thing    proposition
@@ -95,10 +190,11 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         derived  none
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 3a: label first conjunct as inferred and derived, Step 1", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 2a: retrieve first conjunct, Step 1", string="""
         =g>
         isa      goal
         state    label_conjuncts
+        form     =P
         =imaginal>
         isa      proposition
         thing    proposition
@@ -108,7 +204,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         relation =B
         subformula1 =C
         subformula2 =D
-        derived  ~yes
+        derived  =D1
         =imaginal_action>
         isa      proposition
         thing    proposition
@@ -125,16 +221,12 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    label_conjuncts2
+        form     =P
         +retrieval>
         isa      proposition
         thing    proposition
         form     =X
         element  =U
-        mainconnective =A
-        relation =B
-        subformula1 =C
-        subformula2 =D
-        derived  ~yes
         =imaginal_action>
         isa      proposition
         thing    proposition
@@ -148,10 +240,11 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         ~imaginal>
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 3a: label first conjunct as inferred and derived, Step 1", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 2b: retrieve second conjunct, Step 1", string="""
         =g>
         isa      goal
         state    label_conjuncts
+        form     =P
         =imaginal>
         isa      proposition
         thing    proposition
@@ -171,23 +264,19 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         relation =F
         subformula1 =G
         subformula2 =H
-        derived  ~yes
+        derived  =J
         ?retrieval>
         state    free
         ==>
         =g>
         isa      goal
         state    label_conjuncts2
+        form     =P
         +retrieval>
         isa      proposition
         thing    proposition
         form     =Z
         element  =U
-        mainconnective =E
-        relation =F
-        subformula1 =G
-        subformula2 =H
-        derived  ~yes
         =imaginal>
         isa      proposition
         thing    proposition
@@ -201,20 +290,21 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         ~imaginal_action>
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 3a: label first conjunct as inferred and derived, Step 2", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 2a: label first conjunct, Step 2", string="""
         =g>
         isa      goal
         state    label_conjuncts2
+        form     =P
         =retrieval>
         isa      proposition
         thing    proposition
         form     =X
         element  =U
-        mainconnective =V
-        subformula1  =C
-        subformula2  =B
-        relation   =A
-        derived  ~yes
+        mainconnective =A
+        relation =B
+        subformula1 =C
+        subformula2 =D
+        derived  =J
         =imaginal_action>
         isa      proposition
         thing    proposition
@@ -231,15 +321,16 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    label_conjuncts
+        form     =P
         +imaginal>
         isa      proposition
         thing    proposition
         form     =X
         element  =U
-        mainconnective =V
-        subformula1  =C
-        subformula2  =B
-        relation   =A
+        mainconnective =A
+        relation =B
+        subformula1 =C
+        subformula2 =D
         derived  yes
         =imaginal_action>
         isa      proposition
@@ -254,10 +345,11 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         ~retrieval>
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 3a: label first conjunct as inferred and derived, Step 2", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 2b: label second conjunct, Step 2", string="""
         =g>
         isa      goal
         state    label_conjuncts2
+        form     =P
         =retrieval>
         isa      proposition
         thing    proposition
@@ -267,7 +359,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula1  =C
         subformula2  =B
         relation   =A
-        derived  ~yes
+        derived  =J
         =imaginal>
         isa      proposition
         thing    proposition
@@ -284,6 +376,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    label_conjuncts
+        form     =P
         +imaginal_action>
         isa      proposition
         thing    proposition
@@ -307,10 +400,11 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         ~retrieval>
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 3a: label first conjunct as inferred and derived, Step 3", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 3: finalise inference and move on to find a clash, Step 1", string="""
         =g>
         isa      goal
         state    label_conjuncts
+        form     =P
         ?retrieval>
         state    free
         =imaginal>
@@ -336,7 +430,8 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         ==>
         =g>
         isa      goal
-        state    derive_new
+        state    find_clash
+        form     =P
         ~imaginal_action>
         ~imaginal>
         ~retrieval>

@@ -3,53 +3,290 @@
 #When several different production rules can fire after given one, they form new units, each labelled by a, b, etc.
 
 def module1(aBoxCon): #This module looks for concept assignments and negated concept assignments and tries to find a clash. If there is no clash, some new formula needs to be derived.
-    aBoxCon.productionstring(name="Module 1, Unit 1: find first formula, concept or negation, Step 1", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 1: find first concept or negation, Step 1", string="""
         =g>
         isa     goal
-        state   start
+        state   find_clash
+        form    =P
         =imaginal>
         isa     checklist
         thing   checklist
+        form    =A1
+        element =A2
+        mainconnective =A3
+        relation =A4
+        subformula1 =A5
+        subformula2 =A6
+        form2    =A7
+        form3    =A8
+        form4    =A9
+        form5    =A10
+        form6    =A11
+        form7    =A12
+        form8    =A13
         ?retrieval>
         state   free
         ==>
         =g>
         isa     goal
-        state   store
+        state   next_concept_negation
+        form    =P
+        +retrieval>
+        isa     proposition
+        thing   proposition
+        element =A2
+        derived yes
+        mainconnective ~disjunction
+        mainconnective ~conjunction
+        mainconnective ~existential
+        mainconnective ~universal
+        mainconnective ~=A3
+        form    ~=A1
+        form    ~=A7
+        form    ~=A8
+        form    ~=A9
+        form    ~=A10
+        form    ~=A11
+        form    ~=A12
+        form    ~=A13
+    """)
+
+    aBoxCon.productionstring(name="Module 1, Unit 2a: skip and derive new formula, Step 1", string="""
+        =g>
+        isa     goal
+        state   next_concept_negation
+        form    =P
+        =imaginal>
+        isa     checklist
+        thing   checklist
+        form    =A1
+        element =A2
+        mainconnective =A3
+        relation =A4
+        subformula1 =A5
+        subformula2 =A6
+        form2    =A7
+        form3    =A8
+        form4    =A9
+        form5    =A10
+        form6    =A11
+        form7    =A12
+        form8    =A13
+        ?retrieval>
+        state   error
+        ==>
+        =g>
+        isa      goal
+        state    find_clash
+        form     =P
+        =imaginal>
+        isa     checklist
+        thing   checklist
+        form    =A1
+        element =A2
+        mainconnective =A3
+        relation =A4
+        subformula1 =A5
+        subformula2 =A6
+        form2    =A7
+        form3    =A8
+        form4    =A9
+        form5    =A10
+        form6    =A11
+        form7    =A12
+        form8    =A13
         +retrieval>
         isa     proposition
         thing   proposition
         derived yes
         mainconnective ~disjunction
         mainconnective ~conjunction
-        mainconnective ~relation
         mainconnective ~existential
         mainconnective ~universal
+        form    ~=A1
+        form    ~=A7
+        form    ~=A8
+        form    ~=A9
+        form    ~=A10
+        form    ~=A11
+        form    ~=A12
+        form    ~=A13
     """)
 
     aBoxCon.productionstring(name="Module 1, Unit 2a: skip and derive new formula, Step 1", string="""
         =g>
         isa     goal
-        state   store
+        state   next_concept_negation
+        form    =P
         =imaginal>
         isa     checklist
         thing   checklist
+        form    =A1
+        element =A2
+        mainconnective =A3
+        relation =A4
+        subformula1 =A5
+        subformula2 =A6
+        form2    =A7
+        form3    =A8
+        form4    =A9
+        form5    =A10
+        form6    =A11
+        form7    =A12
+        form8    =A13
+        =retrieval>
+        isa     proposition
+        thing   proposition
+        element  =A2
+        mainconnective ~conjunction
+        mainconnective ~disjunction
+        mainconnective ~universal
+        mainconnective ~existential
+        mainconnective ~=A3
+        subformula1 =Y
+        derived yes
+        ?manual>
+        state   free
+        ==>
+        =g>
+        isa     goal
+        state   stop
+        form    =P
+        +manual>
+        isa     _manual
+        cmd     press_key
+        key     C
+    """)
+
+    aBoxCon.productionstring(name="Module 1, Unit 2a: skip and derive new formula, Step 1", string="""
+        =g>
+        isa     goal
+        state   find_clash
+        form    =P
+        =imaginal>
+        isa     checklist
+        thing   checklist
+        form    =A1
+        element =A2
+        mainconnective =A3
+        relation =A4
+        subformula1 =A5
+        subformula2 =A6
+        form2    =A7
+        form3    =A8
+        form4    =A9
+        form5    =A10
+        form6    =A11
+        form7    =A12
+        form8    =A13
         ?retrieval>
         state   error
         ==>
         =g>
         isa      goal
         state    derive_next
-        ~retrieval>
+        form     =P
+        =imaginal>
+        isa     checklist
+        thing   checklist
+        form    =A1
+        element =A2
+        mainconnective =A3
+        relation =A4
+        subformula1 =A5
+        subformula2 =A6
+        form2    =A7
+        form3    =A8
+        form4    =A9
+        form5    =A10
+        form6    =A11
+        form7    =A12
+        form8    =A13
+        =retrieval>
+        isa     proposition
+        thing   proposition
+        derived yes
+        mainconnective ~disjunction
+        mainconnective ~conjunction
+        mainconnective ~existential
+        mainconnective ~universal
+        form    ~=A1
+        form    ~=A7
+        form    ~=A8
+        form    ~=A9
+        form    ~=A10
+        form    ~=A11
+        form    ~=A12
+        form    ~=A13
+    """)
+----------------------------
+    aBoxCon.productionstring(name="Module 1, Unit 2a: skip and derive new formula, Step 1", string="""
+        =g>
+        isa     goal
+        state   derive_next
+        form    =P
+        =imaginal>
+        isa     checklist
+        thing   checklist
+        form    =A1
+        element =A2
+        mainconnective =A3
+        relation =A4
+        subformula1 =A5
+        subformula2 =A6
+        form2    =A7
+        form3    =A8
+        form4    =A9
+        form5    =A10
+        form6    =A11
+        form7    =A12
+        form8    =A13
+        ?retrieval>
+        state   error
+        ==>
+        =g>
+        isa      goal
+        state    derive_next
+        form     =P
+        +retrieval>
+        isa     proposition
+        thing   proposition
+        derived yes
+        mainconnective ~disjunction
+        mainconnective ~conjunction
+        mainconnective ~existential
+        mainconnective ~universal
+        form    ~=A1
+        form    ~=A7
+        form    ~=A8
+        form    ~=A9
+        form    ~=A10
+        form    ~=A11
+        form    ~=A12
+        form    ~=A13
     """)
 
     aBoxCon.productionstring(name="Module 1, Unit 2b: store first formula and find corresponding clash, Step 1", string="""
         =g>
         isa     goal
         state   store
+        form    =P
         =imaginal>
         isa     checklist
         thing   checklist
+        form    =A1
+        element =A2
+        mainconnective =A3
+        relation =A4
+        subformula1 =A5
+        subformula2 =A6
+        form2    =A7
+        form3    =A8
+        form4    =A9
+        form5    =A10
+        form6    =A11
+        form7    =A12
+        form8    =A13
         =retrieval>
         isa     proposition
         thing   proposition
@@ -62,6 +299,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         =g>
         isa     goal
         state   find_clash
+        form    =P
         +imaginal>
         isa     checklist
         thing   checklist
@@ -71,27 +309,24 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         subformula1 =Z
         relation none
         subformula2 none
-        form2   none
-        form3   none
-        form4   none
-        form5   none
-        form6   none
-        form7   none
-        form8   none
+        form2   =A1
+        form3   =A7
+        form4   =A8
+        form5   =A9
+        form6   =A10
+        form7   =A11
+        form8   =A12
     """)
 
     aBoxCon.productionstring(name="Module 1, Unit 2b: store first formula and find corresponding clash, Step 2", string="""
         =g>
         isa     goal
         state   find_clash
+        form    =P
         =imaginal>
         isa     checklist
         thing   checklist
         element =X
-        mainconnective ~universal
-        mainconnective ~existential
-        mainconnective ~conjunction
-        mainconnective ~disjunction
         mainconnective =V
         relation =G
         subformula1 =Y
@@ -108,6 +343,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         =g>
         isa     goal
         state   signal_clash
+        form    =P
         +imaginal>
         isa     checklist
         thing   checklist
@@ -139,6 +375,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         =g>
         isa     goal
         state   signal_clash
+        form    =P
         =imaginal>
         isa     checklist
         thing   checklist
@@ -176,6 +413,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         =g>
         isa     goal
         state   stop
+        form    =P
         +manual>
         isa     _manual
         cmd     press_key
@@ -186,6 +424,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         =g>
         isa     goal
         state   signal_clash
+        form    =P
         =imaginal>
         isa     checklist
         thing   checklist
@@ -212,22 +451,23 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         =g>
         isa     goal
         state   find_next_formula
+        form    =P
         +imaginal>
         isa     checklist
         thing   checklist
-        form    none
-        element none
-        mainconnective none
-        subformula1 none
-        subformula2 none
-        relation none
-        form2   =Z
-        form3   =A
-        form4   =B
-        form5   =C
-        form6   =D
-        form7   =E
-        form8   =F
+        form    =Z
+        element =X
+        mainconnective =V
+        subformula1 =Y
+        form2   =A
+        form3   =B
+        form4   =C
+        form5   =D
+        form6   =E
+        form7   =F
+        form8   =G
+        relation =Z1
+        subformula2 =Z2
         ~retrieval>
     """)
 
@@ -235,6 +475,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         =g>
         isa     goal
         state   find_next_formula
+        form    =P
         =imaginal>
         isa     checklist
         thing   checklist
@@ -257,6 +498,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         =g>
         isa     goal
         state   decide
+        form    =P
         +retrieval>
         isa     proposition
         thing   proposition
@@ -271,7 +513,6 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form    ~=U6
         mainconnective ~disjunction
         mainconnective ~conjunction
-        mainconnective ~relation
         mainconnective ~existential
         mainconnective ~universal
         =imaginal>
@@ -296,6 +537,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         =g>
         isa     goal
         state   decide
+        form    =P
         =retrieval>
         isa     proposition
         element =X
@@ -324,6 +566,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         =g>
         isa     goal
         state   find_clash
+        form    =P
         +imaginal>
         isa     checklist
         thing   checklist
@@ -348,12 +591,14 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         =g>
         isa     goal
         state   decide
+        form    =P
         ?retrieval>
         state   error
         ==>
         =g>
         isa     goal
         state   derive_next
+        form    =P
         ~retrieval>
     """)
 
@@ -362,12 +607,14 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    derive_next
+        form    =P
         ?retrieval>
         state   free
         ==>
         =g>
         isa     goal
         state   find_rule
+        form    =P
         +retrieval>
         isa     proposition
         thing   proposition
@@ -379,6 +626,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    find_rule
+        form    =P
         ?retrieval>
         state    free
         =retrieval>
@@ -394,6 +642,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    first_conjunct_inferred1
+        form    =P
         +imaginal>
         isa      proposition
         thing    proposition
@@ -413,6 +662,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    first_conjunct_inferred1
+        form    =P
         =imaginal>
         isa      proposition
         thing    proposition
@@ -431,6 +681,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    first_conjunct_inferred2
+        form    =P
         +retrieval>
         isa      proposition
         thing    proposition
@@ -456,6 +707,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    first_conjunct_inferred2
+        form    =P
         ?retrieval>
         state    error
         =imaginal>
@@ -474,6 +726,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    retrieve_first_conjunct
+        form    =P
         +imaginal>
         isa      proposition
         thing    proposition
@@ -493,6 +746,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    retrieve_first_conjunct
+        form     =P
         =imaginal>
         isa      proposition
         thing    proposition
@@ -511,6 +765,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    label_first_conjunct
+        form     =P
         +retrieval>
         isa      proposition
         thing    proposition
@@ -522,6 +777,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    label_first_conjunct
+        form     =P
         =retrieval>
         isa      proposition
         thing    proposition
@@ -536,6 +792,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    module3
+        form     =P
         +imaginal>
         isa      proposition
         thing    proposition
@@ -554,6 +811,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    first_conjunct_inferred2
+        form     =P
         ?retrieval>
         buffer   full
         ?retrieval>
@@ -588,6 +846,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    pre_infer_second_conjunct_after_first
+        form     =P
         +imaginal>
         isa      proposition
         thing    proposition
@@ -607,6 +866,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    pre_infer_second_conjunct_after_first
+        form     =P
         =imaginal>
         isa      proposition
         thing    proposition
@@ -625,6 +885,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    infer_second_conjunct_after_first
+        form     =P
         +retrieval>
         isa      proposition
         thing    proposition
@@ -654,6 +915,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    infer_second_conjunct_after_first
+        form     =P
         =retrieval>
         isa      proposition
         thing    proposition
@@ -672,6 +934,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    store_in_list
+        form     =P
         +imaginal>
         isa      storelist
         thing    storelist
@@ -704,6 +967,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    infer_second_conjunct_after_first
+        form     =P
         ?retrieval>
         state    error
         =imaginal>
@@ -722,6 +986,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    retrieve_second_conjunct_after_first
+        form     =P
         +imaginal>
         isa      proposition
         thing    proposition
@@ -741,6 +1006,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    retrieve_second_conjunct_after_first
+        form     =P
         =imaginal>
         isa      proposition
         thing    proposition
@@ -759,6 +1025,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    label_second_conjunct_after_first
+        form     =P
         +retrieval>
         isa      proposition
         thing    proposition
@@ -783,6 +1050,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    label_second_conjunct_after_first
+        form     =P
         ?retrieval>
         state    free
         =retrieval>
@@ -803,6 +1071,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    module3
+        form     =P
         +imaginal>
         isa      proposition
         thing    proposition
@@ -825,6 +1094,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    find_rule
+        form     =P
         ?retrieval>
         state    free
         =retrieval>
@@ -840,6 +1110,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    second_conjunct_inferred1
+        form     =P
         +imaginal>
         isa      proposition
         thing    proposition
@@ -859,6 +1130,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    second_conjunct_inferred1
+        form     =P
         =imaginal>
         isa      proposition
         thing    proposition
@@ -877,6 +1149,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    second_conjunct_inferred2
+        form     =P
         +retrieval>
         isa      proposition
         thing    proposition
@@ -902,6 +1175,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    second_conjunct_inferred2
+        form     =P
         ?retrieval>
         state    error
         =imaginal>
@@ -920,6 +1194,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    retrieve_second_conjunct
+        form     =P
         +imaginal>
         isa      proposition
         thing    proposition
@@ -939,6 +1214,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    retrieve_second_conjunct
+        form     =P
         =imaginal>
         isa      proposition
         thing    proposition
@@ -957,6 +1233,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    label_second_conjunct
+        form     =P
         +retrieval>
         isa      proposition
         thing    proposition
@@ -967,6 +1244,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    label_second_conjunct
+        form     =P
         =retrieval>
         isa      proposition
         thing    proposition
@@ -981,6 +1259,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    module3
+        form     =P
         +imaginal>
         isa      proposition
         thing    proposition
@@ -999,6 +1278,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    second_conjunct_inferred2
+        form     =P
         ?retrieval>
         buffer   full
         ?retrieval>
@@ -1033,6 +1313,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    pre_infer_first_conjunct_after_second
+        form     =P
         +imaginal>
         isa      proposition
         thing    proposition
@@ -1052,6 +1333,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    pre_infer_first_conjunct_after_second
+        form     =P
         =imaginal>
         isa      proposition
         thing    proposition
@@ -1070,6 +1352,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    infer_first_conjunct_after_second
+        form     =P
         +retrieval>
         isa      proposition
         thing    proposition
@@ -1099,6 +1382,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    infer_first_conjunct_after_second
+        form     =P
         =retrieval>
         isa      proposition
         thing    proposition
@@ -1117,6 +1401,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    store_in_list
+        form     =P
         +imaginal>
         isa      storelist
         thing    storelist
@@ -1149,6 +1434,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    infer_first_conjunct_after_second
+        form     =P
         ?retrieval>
         state    error
         =imaginal>
@@ -1167,6 +1453,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    retrieve_first_conjunct_after_second
+        form     =P
         +imaginal>
         isa      proposition
         thing    proposition
@@ -1186,6 +1473,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    retrieve_first_conjunct_after_second
+        form     =P
         =imaginal>
         isa      proposition
         thing    proposition
@@ -1204,6 +1492,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    label_first_conjunct_after_second
+        form     =P
         +retrieval>
         isa      proposition
         thing    proposition
@@ -1228,6 +1517,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    label_first_conjunct_after_second
+        form     =P
         ?retrieval>
         state    free
         =retrieval>
@@ -1248,6 +1538,7 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
         =g>
         isa      goal
         state    module3
+        form     =P
         +imaginal>
         isa      proposition
         thing    proposition
@@ -1263,27 +1554,83 @@ def module2(aBoxCon): #This module applies when a conjunction is found. It deriv
     """)
 
 def module3(aBoxCon): #This module decides if it's worth to look for a clash. If not, it demands some new formula to be derived.
+    aBoxCon.productionstring(name="Module 3, Unit 1: check for a clash, find concept, Step 1", string="""
+        =g>
+        isa      goal
+        state    module3
+        form     =P
+        ?retrieval>
+        state    empty
+        ?imaginal>
+        state    empty
+        ==>
+        =g>
+        isa      goal
+        state    prepare1
+        form     =P
+        +retrieval>
+        isa      proposition
+        thing    proposition
+        mainconnective ~conjunction
+        mainconnective ~disjunction
+        mainconnective ~existential
+        mainconnective ~universal
+        derived  yes
+    """)
+
+    aBoxCon.productionstring(name="Module 3, Unit 1: check for a clash, find concept, Step 1", string="""
+        =g>
+        isa      goal
+        state    prepare1
+        form     =P
+        =retrieval>
+        isa      proposition
+        thing    proposition
+        form     =X
+        element  =U
+        mainconnective =Z
+        subformula1  =Y
+        derived  yes
+        ?imaginal>
+        state    empty
+        ==>
+        =g>
+        isa      goal
+        state    prepare2
+        form     =P
+        +imaginal>
+        isa      proposition
+        thing    proposition
+        form     =X
+        element  =U
+        mainconnective =Z
+        subformula1  =Y
+        derived  yes
+    """)
+
     aBoxCon.productionstring(name="Module 3, Unit 1: do we need to check for a clash? concept found, Step 1", string="""
         =g>
         isa      goal
-        state    module3
+        state    prepare2
+        form     =P
         =imaginal>
         isa      proposition
         thing    proposition
         form     =X
         element  =U
-        mainconnective concept
+        mainconnective =Z
         subformula1  =Y
         derived  yes
         ==>
         =g>
         isa      goal
         state    find_clash
+        form     =P
         +imaginal>
         isa      checklist
         thing    checklist
         form     =X
-        mainconnective concept
+        mainconnective =Z
         element  =U
         subformula1 =Y
         relation none
@@ -1298,67 +1645,13 @@ def module3(aBoxCon): #This module decides if it's worth to look for a clash. If
         ~retrieval>
     """)
 
-    aBoxCon.productionstring(name="Module 3, Unit 2: do we need to check for a clash? negation found, Step 1", string="""
-        =g>
-        isa      goal
-        state    module3
-        =imaginal>
-        isa      proposition
-        thing    proposition
-        form     =X
-        element  =U
-        mainconnective negation
-        subformula1  =Y
-        derived  yes
-        ==>
-        =g>
-        isa      goal
-        state    find_clash
-        +imaginal>
-        isa      checklist
-        thing    checklist
-        mainconnective negation
-        element  =U
-        subformula1 =Y
-        form     =X
-        relation none
-        subformula2 none
-        form2    none
-        form3    none
-        form4    none
-        form5    none
-        form6    none
-        form7    none
-        form8    none
-        ~retrieval>
-    """)
 
-    aBoxCon.productionstring(name="Module 3, Unit 3: check if we need to derive something new, Step 1", string="""
-        =g>
-        isa      goal
-        state    module3
-        =imaginal>
-        isa      proposition
-        thing    proposition
-        element  =X
-        subformula1 =Y
-        form     =Z
-        derived  yes
-        mainconnective ~concept
-        mainconnective ~negation
-        ==>
-        =g>
-        isa      goal
-        state    derive_next
-        ~imaginal>
-        ~retrieval>
-    """)
-
-def module4(aBoxCon): #This module makes a list of all formulas that are already used. It then chooses a new formula not in the list. If there is no such formula, it confirms consistency.
+def module4(aBoxCon): #This module retrievs the list of all formulas that are already used. It then chooses a new formula not in the list. If there is no such formula, it confirms consistency.
     aBoxCon.productionstring(name="Module 4, Unit 1: check if there is a formula to store in the list of used formulas, Step 1", string="""
         =g>
         isa      goal
         state    store_in_list
+        form     =P
         =imaginal>
         isa      storelist
         thing    storelist
@@ -1391,6 +1684,7 @@ def module4(aBoxCon): #This module makes a list of all formulas that are already
         =g>
         isa      goal
         state    store_in_list2
+        form     =P
         +retrieval>
         isa      proposition
         thing    proposition
@@ -1418,6 +1712,7 @@ def module4(aBoxCon): #This module makes a list of all formulas that are already
         =g>
         isa      goal
         state    store_in_list2
+        form     =P
         =imaginal>
         isa      storelist
         thing    storelist
@@ -1462,6 +1757,7 @@ def module4(aBoxCon): #This module makes a list of all formulas that are already
         =g>
         isa      goal
         state    store_in_list
+        form     =P
         +imaginal>
         isa      storelist
         thing    storelist
@@ -1494,6 +1790,7 @@ def module4(aBoxCon): #This module makes a list of all formulas that are already
         =g>
         isa      goal
         state    store_in_list2
+        form     =P
         =imaginal>
         isa      storelist
         thing    storelist
@@ -1526,6 +1823,7 @@ def module4(aBoxCon): #This module makes a list of all formulas that are already
         =g>
         isa     goal
         state   find_rule
+        form     =P
         +retrieval>
         isa     proposition
         thing   proposition
@@ -1552,12 +1850,14 @@ def module4(aBoxCon): #This module makes a list of all formulas that are already
         =g>
         isa      goal
         state    find_rule
+        form     =P
         ?retrieval>
         state    error
         ==>
         =g>
         isa     goal
         state   stop
+        form     =P
         +manual>
         isa     _manual
         cmd     press_key
