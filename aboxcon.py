@@ -49,6 +49,8 @@ while True:
         sim.step()
     except simpy.core.EmptySchedule:
         break
+    #if re.match("^RULE FIRED:",sim.current_event.action):
+        #print(sim.current_event.action)
     if re.match("^RULE FIRED:.*derived",sim.current_event.action):
         for x in aBoxCon.retrieval:
             print(str(round(sim.current_event.time,2)).ljust(7)[:7] + "DERIVED: *" + str(x.form))
@@ -57,6 +59,10 @@ while True:
             if (x.form != lastfocusedform) & (str(x.form) != "none"):
                 print(str(round(sim.current_event.time,2)).ljust(7)[:7] +"FOCUS:   "+ str(x.form))
                 lastfocusedform = x.form
+    elif re.match("^KEY PRESSED: C",sim.current_event.action):
+        print(str(round(sim.current_event.time,2)).ljust(7)[:7] +"INCONSISTENT")
+    elif re.match("^KEY PRESSED: N",sim.current_event.action):
+        print(str(round(sim.current_event.time,2)).ljust(7)[:7] +"CONSISTENT")    
 
 
 print("DONE")
