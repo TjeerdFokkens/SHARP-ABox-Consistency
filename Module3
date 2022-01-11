@@ -1,0 +1,121 @@
+def module3(aBoxCon):
+    aBoxCon.productionstring(name="Module 3, Unit 1, Step 1: store list of used formulas in imaginal buffer", string="""
+        =g>
+        isa     goal
+        state   derive_next_formulas
+        form    =P
+        =retrieval>
+        isa     storelist
+        thing   storelist
+        form    =P
+        element =A2
+        mainconnective =A3
+        relation =A4
+        subformula1 =A5
+        subformula2 =A6
+        derived  =A7
+        form2    =A8
+        form3    =A9
+        form4    =A10
+        form5    =A11
+        form6    =A12
+        form7    =A13
+        form8    =A14
+        form9    =A15
+        form10   =A16
+        form11   =A17
+        form12   =A18
+        form13   =A19
+        form14   =A20
+        form15   =A21
+        ==>
+        =g>
+        isa      goal
+        state    find_formula_not_in_list
+        form     =P
+        =imaginal>
+        isa     storelist
+        thing   storelist
+        form    =P
+        element =A2
+        mainconnective =A3
+        relation =A4
+        subformula1 =A5
+        subformula2 =A6
+        derived  =A7
+        form2    =A8
+        form3    =A9
+        form4    =A10
+        form5    =A11
+        form6    =A12
+        form7    =A13
+        form8    =A14
+        form9    =A15
+        form10   =A16
+        form11   =A17
+        form12   =A18
+        form13   =A19
+        form14   =A20
+        form15   =A21
+        ~retrieval>
+    """)
+
+    aBoxCon.productionstring(name="Module 3, Unit 1, Step 1: retrieve list of used formulas", string="""
+        =g>
+        isa     goal
+        state   find_formula_not_in_list
+        form    =P
+        =imaginal>
+        isa     storelist
+        thing   storelist
+        form    =P
+        element =A2
+        mainconnective =A3
+        relation =A4
+        subformula1 =A5
+        subformula2 =A6
+        derived  =A7
+        form2    =A8
+        form3    =A9
+        form4    =A10
+        form5    =A11
+        form6    =A12
+        form7    =A13
+        form8    =A14
+        form9    =A15
+        form10   =A16
+        form11   =A17
+        form12   =A18
+        form13   =A19
+        form14   =A20
+        form15   =A21
+        ==>
+        =g>
+        isa      goal
+        state    next_module
+        form     =P
+        =retrieval>
+        isa      proposition
+        thing    proposition
+        form     ~=P
+        form     ~=A8
+        form     ~=A9
+        form     ~=A10
+        form     ~=A11
+        form     ~=A12
+        form     ~=A13
+        form     ~=A14
+        form     ~=A15
+        form     ~=A16
+        form     ~=A17
+        form     ~=A18
+        form     ~=A19
+        form     ~=A20
+        form     ~=A21
+        mainconnective ~negation
+        mainconnective ~concept
+        mainconnective ~universal
+        mainconnective ~existential
+        mainconnective ~disjunction
+        ~imaginal>
+    """)
