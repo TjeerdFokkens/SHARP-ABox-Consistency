@@ -1,438 +1,251 @@
-    aBoxCon.productionstring(name="Module 2, Unit 1: find conjunction to apply derivation to, Step 1", string="""
-        =g>
-        isa      goal
-        state    derive_next
-        form     =P
-        ?retrieval>
-        state   free
-        ==>
+def module2(aBoxCon): #This module retrieves the list of used formulas and finds one not in the list.
+    aBoxCon.productionstring(name="Module 2, Unit 1, Step 1: put storelist of used formulas in imaginal buffer", string="""
         =g>
         isa     goal
-        state   module2
-        form     =P
-        +retrieval>
-        isa     proposition
-        thing   proposition
-        mainconnective  conjunction
-        derived yes
-    """)
-
-
-def module2(aBoxCon): #This module applies when a conjunction is found. It derives a conjunct (right or left) that has not been derived yet.
-
-    aBoxCon.productionstring(name="Module 2, Unit 1: conjunction found, move to imaginal, Step 2", string="""
-        =g>
-        isa      goal
-        state    module2
-        form     =P
-        ?retrieval>
-        state    free
+        state   derive_next_formulas
+        form    =P
         =retrieval>
-        isa      proposition
-        thing    proposition
-        form     =X
-        element  =U
-        mainconnective conjunction
-        subformula1  =Y
-        subformula2  =Z
-        derived  yes
-        relation =V
+        isa     storelist
+        thing   storelist
+        form    =P
+        form2    =A8
+        form3    =A9
+        form4    =A10
+        form5    =A11
+        form6    =A12
+        form7    =A13
+        form8    =A14
+        form9    =A15
+        form10   =A16
+        form11   =A17
+        form12   =A18
+        form13   =A19
+        form14   =A20
+        form15   =A21
         ?imaginal>
         state    free
         ==>
         =g>
         isa      goal
-        state    label_used
+        state    find_formula_not_in_list
         form     =P
-        +imaginal>
-        isa      proposition
-        thing    proposition
-        form     =X
-        element  =U
-        mainconnective conjunction
-        subformula1  =Y
-        subformula2  =Z
-        relation =V
-        derived  yes
-        +retrieval>
-        isa      storelist
-        thing    storelist
-        form     =P
-    """)
-
-    aBoxCon.productionstring(name="Module 2, Unit 1: label conjunction as used, Step 3", string="""
-        =g>
-        isa      goal
-        state    label_used
-        form     =P
-        =retrieval>
-        isa      storelist
-        thing    storelist
-        form     =P
-        element  =A
-        mainconnective =B
-        relation =C
-        subformula1 =D
-        subformula2 =E
-        form2    =T1
-        form3    =T2
-        form4    =T3
-        form5    =T4
-        form6    =T5
-        form7    =T6
-        form8    =T7
-        form9    =T8
-        form10   =T9
-        form11   =T10
-        form12   =T11
-        form13   =T12
-        form14   =T13
-        form15   =T14
-        derived  yes
         =imaginal>
-        isa      proposition
-        thing    proposition
-        form     =X
-        element  =U
-        mainconnective conjunction
-        subformula1  =Y
-        subformula2  =Z
-        derived  yes
-        relation =V
-        ?imaginal_action>
-        state    free
-        ==>
-        =g>
-        isa      goal
-        state    infer_rule
-        form     =X
-        +imaginal>
-        isa      storelist
-        thing    storelist
-        form     =X
-        element  =U
-        mainconnective conjunction
-        relation =V
-        subformula1 =Y
-        subformula2 =Z
-        form2    =P
-        form3    =T1
-        form4    =T2
-        form5    =T3
-        form6    =T4
-        form7    =T5
-        form8    =T6
-        form9    =T7
-        form10   =T8
-        form11   =T9
-        form12   =T10
-        form13   =T11
-        form14   =T12
-        form15   =T13
-        derived  yes
+        isa     storelist
+        thing   storelist
+        form    =P
+        form2    =A8
+        form3    =A9
+        form4    =A10
+        form5    =A11
+        form6    =A12
+        form7    =A13
+        form8    =A14
+        form9    =A15
+        form10   =A16
+        form11   =A17
+        form12   =A18
+        form13   =A19
+        form14   =A20
+        form15   =A21
+        ~retrieval>
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 1: derive conjuncts, Step 3", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 2, Step 1: create storelist in imaginal buffer and put first used formula in it", string="""
         =g>
-        isa      goal
-        state    infer_rule
-        form     =P
+        isa     goal
+        state   derive_next_formulas
+        form    =P
         ?retrieval>
-        state    free
-        =imaginal>
-        isa      storelist
-        thing    storelist
-        form     =X
-        element  =U
-        mainconnective conjunction
-        relation =V
-        subformula1 =Y
-        subformula2 =Z
-        form2    =P
-        form3    =T1
-        form4    =T2
-        form5    =T3
-        form6    =T4
-        form7    =T5
-        form8    =T6
-        form9    =T7
-        form10   =T8
-        form11   =T9
-        form12   =T10
-        form13   =T11
-        form14   =T12
-        form15   =T13
-        derived  yes
-        ==>
-        =g>
-        isa      goal
-        state    label_conjuncts
-        form     =P
-        +imaginal>
-        isa      proposition
-        thing    proposition
-        form     =Y
-        element  =U
-        mainconnective none
-        relation none
-        subformula1 none
-        subformula2 none
-        derived  none
-        +imaginal_action>
-        isa      proposition
-        thing    proposition
-        form     =Z
-        element  =U
-        mainconnective none
-        relation none
-        subformula1 none
-        subformula2 none
-        derived  none
-    """)
-
-    aBoxCon.productionstring(name="Module 2, Unit 2a: retrieve first conjunct, Step 1", string="""
-        =g>
-        isa      goal
-        state    label_conjuncts
-        form     =P
-        =imaginal>
-        isa      proposition
-        thing    proposition
-        form     =X
-        element  =U
-        mainconnective =A
-        relation =B
-        subformula1 =C
-        subformula2 =D
-        derived  =D1
-        =imaginal_action>
-        isa      proposition
-        thing    proposition
-        form     =Z
-        element  =U
-        mainconnective =E
-        relation =F
-        subformula1 =G
-        subformula2 =H
-        derived  =I
-        ?retrieval>
-        state    free
-        ==>
-        =g>
-        isa      goal
-        state    label_conjuncts2
-        form     =P
-        +retrieval>
-        isa      proposition
-        thing    proposition
-        form     =X
-        element  =U
-        =imaginal_action>
-        isa      proposition
-        thing    proposition
-        form     =Z
-        element  =U
-        mainconnective =E
-        relation =F
-        subformula1 =G
-        subformula2 =H
-        derived  =I
-        ~imaginal>
-    """)
-
-    aBoxCon.productionstring(name="Module 2, Unit 2b: retrieve second conjunct, Step 1", string="""
-        =g>
-        isa      goal
-        state    label_conjuncts
-        form     =P
-        =imaginal>
-        isa      proposition
-        thing    proposition
-        form     =X
-        element  =U
-        mainconnective =A
-        relation =B
-        subformula1 =C
-        subformula2 =D
-        derived  =I
-        =imaginal_action>
-        isa      proposition
-        thing    proposition
-        form     =Z
-        element  =U
-        mainconnective =E
-        relation =F
-        subformula1 =G
-        subformula2 =H
-        derived  =J
-        ?retrieval>
-        state    free
-        ==>
-        =g>
-        isa      goal
-        state    label_conjuncts2
-        form     =P
-        +retrieval>
-        isa      proposition
-        thing    proposition
-        form     =Z
-        element  =U
-        =imaginal>
-        isa      proposition
-        thing    proposition
-        form     =X
-        element  =U
-        mainconnective =A
-        relation =B
-        subformula1 =C
-        subformula2 =D
-        derived  =I
-        ~imaginal_action>
-    """)
-
-    aBoxCon.productionstring(name="Module 2, Unit 2a: label first conjunct, Step 2", string="""
-        =g>
-        isa      goal
-        state    label_conjuncts2
-        form     =P
-        =retrieval>
-        isa      proposition
-        thing    proposition
-        form     =X
-        element  =U
-        mainconnective =A
-        relation =B
-        subformula1 =C
-        subformula2 =D
-        derived  =J
-        =imaginal_action>
-        isa      proposition
-        thing    proposition
-        form     =Z
-        element  =U
-        mainconnective =E
-        relation =F
-        subformula1 =G
-        subformula2 =H
-        derived  =I
+        state    error
         ?imaginal>
-        state    empty
+        state    free
         ==>
         =g>
         isa      goal
-        state    label_conjuncts
+        state    find_formula_not_in_list
         form     =P
-        +imaginal>
-        isa      proposition
-        thing    proposition
-        form     =X
-        element  =U
-        mainconnective =A
-        relation =B
-        subformula1 =C
-        subformula2 =D
-        derived  yes
-        =imaginal_action>
-        isa      proposition
-        thing    proposition
-        form     =Z
-        element  =U
-        mainconnective =E
-        relation =F
-        subformula1 =G
-        subformula2 =H
-        derived  =I
+        =imaginal>
+        isa      storelist
+        thing    storelist
+        form     =P
+        form2    none
+        form3    none
+        form4    none
+        form5    none
+        form6    none
+        form7    none
+        form8    none
+        form9    none
+        form10   none
+        form11   none
+        form12   none
+        form13   none
+        form14   none
+        form15   none
         ~retrieval>
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 2b: label second conjunct, Step 2", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 3, Step 1: retrieve unused formula", string="""
+        =g>
+        isa     goal
+        state   find_formula_not_in_list
+        form    =P
+        =imaginal>
+        isa      storelist
+        thing    storelist
+        form     =P
+        form2    =A8
+        form3    =A9
+        form4    =A10
+        form5    =A11
+        form6    =A12
+        form7    =A13
+        form8    =A14
+        form9    =A15
+        form10   =A16
+        form11   =A17
+        form12   =A18
+        form13   =A19
+        form14   =A20
+        form15   =A21
+        ?retrieval>
+        state    free
+        ==>
         =g>
         isa      goal
-        state    label_conjuncts2
+        state    update_storelist
+        form     =P
+        +retrieval>
+        isa      proposition
+        thing    proposition
+        form     ~=P
+        form     ~=A8
+        form     ~=A9
+        form     ~=A10
+        form     ~=A11
+        form     ~=A12
+        form     ~=A13
+        form     ~=A14
+        form     ~=A15
+        form     ~=A16
+        form     ~=A17
+        form     ~=A18
+        form     ~=A19
+        form     ~=A20
+        form     ~=A21
+        mainconnective ~negation
+        mainconnective ~concept
+        mainconnective ~universal
+        mainconnective ~existential
+        mainconnective ~disjunction
+        derived  yes
+        =imaginal>
+        isa      storelist
+        thing    storelist
+        form     =P
+        form2    =A8
+        form3    =A9
+        form4    =A10
+        form5    =A11
+        form6    =A12
+        form7    =A13
+        form8    =A14
+        form9    =A15
+        form10   =A16
+        form11   =A17
+        form12   =A18
+        form13   =A19
+        form14   =A20
+        form15   =A21
+    """)
+
+    aBoxCon.productionstring(name="Module 2, Unit 5, Step 1: update list of used formulas", string="""
+        =g>
+        isa      goal
+        state    update_storelist
         form     =P
         =retrieval>
         isa      proposition
         thing    proposition
         form     =X
-        element  =U
-        mainconnective =V
-        subformula1  =C
-        subformula2  =B
-        relation   =A
-        derived  =J
+        element  =X1
+        mainconnective  =X2
+        relation  =X3
+        subformula1  =X4
+        subformula2  =X5
+        derived  yes
         =imaginal>
-        isa      proposition
-        thing    proposition
-        form     =Z
-        element  =U
-        mainconnective =E
-        relation =F
-        subformula1 =G
-        subformula2 =H
-        derived  =I
+        isa      storelist
+        thing    storelist
+        form     =P
+        form2    =A8
+        form3    =A9
+        form4    =A10
+        form5    =A11
+        form6    =A12
+        form7    =A13
+        form8    =A14
+        form9    =A15
+        form10   =A16
+        form11   =A17
+        form12   =A18
+        form13   =A19
+        form14   =A20
+        form15   =A21
         ?imaginal_action>
-        state    empty
+        state    free
         ==>
         =g>
         isa      goal
-        state    label_conjuncts
+        state    module3
         form     =P
-        +imaginal_action>
-        isa      proposition
-        thing    proposition
-        form     =X
-        element  =U
-        mainconnective =V
-        subformula1  =C
-        subformula2  =B
-        relation   =A
-        derived  yes
         =imaginal>
         isa      proposition
         thing    proposition
-        form     =Z
-        element  =U
-        mainconnective =E
-        relation =F
-        subformula1 =G
-        subformula2 =H
-        derived  =I
+        form     =X
+        element  =X1
+        mainconnective  =X2
+        relation  =X3
+        subformula1  =X4
+        subformula2  =X5
+        derived  yes
+        +imaginal_action>
+        isa      storelist
+        thing    storelist
+        form     =X
+        form2    =P
+        form3    =A8
+        form4    =A9
+        form5    =A10
+        form6    =A11
+        form7    =A12
+        form8    =A13
+        form9    =A14
+        form10   =A15
+        form11   =A16
+        form12   =A17
+        form13   =A18
+        form14   =A19
+        form15   =A20
         ~retrieval>
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 3: finalise inference and move on to find a clash, Step 1", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 4, Step 1: no formula found, signal consistency", string="""
         =g>
         isa      goal
-        state    label_conjuncts
+        state    update_storelist
         form     =P
         ?retrieval>
+        state    error
+        ?manual>
         state    free
-        =imaginal>
-        isa      proposition
-        thing    proposition
-        form     =X
-        element  =U
-        mainconnective =V
-        subformula1  =C
-        subformula2  =B
-        relation   =A
-        derived  yes
-        =imaginal_action>
-        isa      proposition
-        thing    proposition
-        form     =Y
-        element  =U
-        mainconnective =Z
-        subformula1  =D
-        subformula2  =E
-        relation   =F
-        derived  yes
         ==>
         =g>
         isa      goal
-        state    find_clash
+        state    stop
         form     =P
-        ~imaginal_action>
-        ~imaginal>
-        ~retrieval>
+        +manual>
+        isa     _manual
+        cmd     press_key
+        key     N
     """)

@@ -1,0 +1,60 @@
+def module4(aBoxCon): #This module applies when a n existential restriction is found. It derives the relation and concept assignment.
+    aBoxCon.productionstring(name="Module 4, Unit 1, Step 1: existential found, derive relation and concept", string="""
+        =g>
+        isa      goal
+        state    module4
+        form     =P
+        =imaginal>
+        isa      proposition
+        thing    proposition
+        form     =X
+        element  =U
+        mainconnective existential
+        subformula1  =Y
+        subformula2  =Z
+        derived  yes
+        relation =V
+        =imaginal_action>
+        isa      storelist
+        thing    storelist
+        form     =P
+        form2    =A8
+        form3    =A9
+        form4    =A10
+        form5    =A11
+        form6    =A12
+        form7    =A13
+        form8    =A14
+        form9    =A15
+        form10   =A16
+        form11   =A17
+        form12   =A18
+        form13   =A19
+        form14   =A20
+        form15   =A21
+        ==>
+        =g>
+        isa      goal
+        state    derive_next_formulas
+        form     =P
+        +imaginal>
+        isa      proposition
+        thing    proposition
+        form     =Y
+        element  =U
+        mainconnective none
+        relation none
+        subformula1 none
+        subformula2 none
+        derived  none
+        +imaginal_action>
+        isa      proposition
+        thing    proposition
+        form     =Y
+        element  none
+        mainconnective relation
+        relation none?
+        subformula1 none
+        subformula2 none
+        derived  none
+    """)#Needs more work
