@@ -325,7 +325,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         ~imaginal_action>
     """)
 
-    aBoxCon.productionstring(name="Module 3, Unit 3b, Step 1: finalise inference and move on to find a clash", string="""
+    aBoxCon.productionstring(name="Module 3, Unit 3b, Step 1: finalise inference and move on to find a clash on second conjunct", string="""
         =g>
         isa      goal
         state    label_conjuncts
