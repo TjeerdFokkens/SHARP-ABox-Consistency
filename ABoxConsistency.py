@@ -3,13 +3,16 @@ import sys
 import os
 import matplotlib.pyplot as plt
 import numpy as np
-import ProductionRules as prls
+#import ProductionRules as prls
+import Module1 as md1
+import Module2 as md2
+import Module3 as md3
+import Module4 as md4
 import parser as par
 from matplotlib import colors
 from matplotlib.ticker import PercentFormatter
 import simpy
 import re
-import parser
 
 def initial(learning=False):
     aBoxCon = actr.ACTRModel(
@@ -60,10 +63,10 @@ def plot_list(it, abox):
         aBoxCon = initial(True)
         dm = aBoxCon.decmem
 
-        prls.module1(aBoxCon)
-        prls.module2(aBoxCon)
-        prls.module3(aBoxCon)
-        prls.module4(aBoxCon)
+        md1.module1(aBoxCon)
+        md2.module2(aBoxCon)
+        md3.module3(aBoxCon)
+        md4.module4(aBoxCon)
 
         par.AddAboxFromFile(abox,dm.add)
 
@@ -84,6 +87,6 @@ def simulation_plot(iterations, abox):
     hist = ax.hist(data, bins='sqrt', color='forestgreen', label='time')
 
 
-simulation_plot(2, "abox.txt")
+simulation_plot(10, "abox.txt")
 
 plt.show()

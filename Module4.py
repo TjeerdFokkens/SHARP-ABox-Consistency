@@ -83,7 +83,9 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         relation  =Z3
         subformula1  =Z4
         subformula2  =Z5
-        derived  =Z6
+        derived  ~yes
+        ?retrieval>
+        state    free
         ==>
         =g>
         isa      goal
@@ -120,7 +122,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         relation  =Y3
         subformula1  =Y4
         subformula2  =Y5
-        derived  =Y6
+        derived  ~yes
         =imaginal_action>
         isa      proposition
         thing    proposition
@@ -131,6 +133,8 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         subformula1  =Z4
         subformula2  =Z5
         derived  =Z6
+        ?retrieval>
+        state    free
         ==>
         =g>
         isa      goal
@@ -185,7 +189,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         isa      goal
         state    label_formulas
         form     =P
-        +imaginal_actional>
+        +imaginal_action>
         isa      proposition
         thing    proposition
         form     =Z
@@ -194,7 +198,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         relation  =Z3
         subformula1  =Z4
         subformula2  =Z5
-        derived  =Z6
+        derived  yes
         =imaginal>
         isa      proposition
         thing    proposition
@@ -259,7 +263,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         relation  =Z3
         subformula1  =Z4
         subformula2  =Z5
-        derived  =Z6
+        derived  yes
         ~retrieval>
     """)
 

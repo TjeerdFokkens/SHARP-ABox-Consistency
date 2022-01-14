@@ -73,7 +73,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         relation =B
         subformula1 =C
         subformula2 =D
-        derived  =D1
+        derived  ~yes
         =imaginal_action>
         isa      proposition
         thing    proposition
@@ -133,7 +133,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         relation =F
         subformula1 =G
         subformula2 =H
-        derived  =J
+        derived  ~yes
         ?retrieval>
         state    free
         ==>
@@ -185,7 +185,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula2 =H
         derived  =I
         ?imaginal>
-        state    empty
+        state    free
         ==>
         =g>
         isa      goal
@@ -240,7 +240,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula2 =H
         derived  =I
         ?imaginal_action>
-        state    empty
+        state    free
         ==>
         =g>
         isa      goal
