@@ -11,7 +11,6 @@ import Module4 as md4
 import parser as par
 from matplotlib import colors
 from matplotlib.ticker import PercentFormatter
-import simpy
 import re
 
 def initial(learning=False):
