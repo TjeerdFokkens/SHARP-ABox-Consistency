@@ -7,7 +7,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         =imaginal>
         isa      proposition
         thing    proposition
-        form     =X
+        form     =P
         element  =U
         mainconnective conjunction
         subformula1  =Y
@@ -96,7 +96,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         thing    proposition
         form     =X
         element  =U
-        =imaginal_action>
+        +imaginal_action>
         isa      proposition
         thing    proposition
         form     =Z
@@ -146,7 +146,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         thing    proposition
         form     =Z
         element  =U
-        =imaginal>
+        +imaginal>
         isa      proposition
         thing    proposition
         form     =X
@@ -201,7 +201,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula1 =C
         subformula2 =D
         derived  yes
-        =imaginal_action>
+        +imaginal_action>
         isa      proposition
         thing    proposition
         form     =Z
@@ -256,7 +256,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula2  =B
         relation   =A
         derived  yes
-        =imaginal>
+        +imaginal>
         isa      proposition
         thing    proposition
         form     =Z

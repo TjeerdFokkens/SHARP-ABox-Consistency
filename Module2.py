@@ -29,7 +29,7 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         isa      goal
         state    find_formula_not_in_list
         form     =P
-        =imaginal>
+        +imaginal>
         isa     storelist
         thing   storelist
         form    =P
@@ -52,9 +52,9 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
 
     aBoxCon.productionstring(name="Module 2, Unit 2, Step 1: create storelist in imaginal buffer and put first used formula in it", string="""
         =g>
-        isa     goal
-        state   derive_next_formulas
-        form    =P
+        isa      goal
+        state    derive_next_formulas
+        form     =P
         ?retrieval>
         state    error
         ?imaginal>
@@ -64,7 +64,7 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         isa      goal
         state    find_formula_not_in_list
         form     =P
-        =imaginal>
+        +imaginal>
         isa      storelist
         thing    storelist
         form     =P
@@ -139,7 +139,7 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         mainconnective ~existential
         mainconnective ~disjunction
         derived  yes
-        =imaginal>
+        +imaginal>
         isa      storelist
         thing    storelist
         form     =P
@@ -198,8 +198,8 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         =g>
         isa      goal
         state    module3
-        form     =P
-        =imaginal>
+        form     =X
+        +imaginal>
         isa      proposition
         thing    proposition
         form     =X

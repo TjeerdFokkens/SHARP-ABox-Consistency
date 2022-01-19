@@ -27,7 +27,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa     goal
         state   find_formula_not_in_list
         form    =P
-        =imaginal>
+        +imaginal>
         isa     checklist
         thing   checklist
         form    =A1
@@ -53,6 +53,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         mainconnective ~existential
         mainconnective ~universal
         mainconnective ~=A3
+        mainconnective ~none
         form    ~=A1
         form    ~=A7
         form    ~=A8
@@ -91,7 +92,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa      goal
         state    add_formula_to_list
         form     =P
-        =imaginal>
+        +imaginal>
         isa     checklist
         thing   checklist
         form    =A1
@@ -155,6 +156,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         mainconnective ~universal
         mainconnective ~existential
         mainconnective ~=A3
+        mainconnective ~none
         subformula1 =Y
         derived yes
         ?manual>
@@ -241,7 +243,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa      goal
         state    find_clash_to_head
         form     =P
-        =imaginal>
+        +imaginal>
         isa     checklist
         thing   checklist
         form    =X1

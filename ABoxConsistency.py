@@ -36,7 +36,7 @@ def initial(learning=False):
     actr.chunktype("checklist", "thing, form, element, mainconnective, relation, subformula1, subformula2, form2, form3, form4, form5, form6, form7, form8")
     actr.chunktype("storelist", "thing, form, form2, form3, form4, form5, form6, form7, form8, form9, form10, form11, form12, form13, form14, form15")
 
-    aBoxCon.goals["g"].add(actr.makechunk(typename="goal", state="start", form='none'))
+    aBoxCon.goals["g"].add(actr.makechunk(typename="goal", state="find_clash_to_head", form='none'))
     aBoxCon.goals["imaginal"].add(actr.makechunk(typename="checklist", thing="checklist", form="none", element="none", mainconnective="none", relation="none", subformula1="none", subformula2="none", form2="none", form3="none", form4="none", form5="none", form6="none", form7="none", form8="none"))
     return aBoxCon
 
@@ -86,6 +86,17 @@ def simulation_plot(iterations, abox):
     hist = ax.hist(data, bins='sqrt', color='forestgreen', label='time')
 
 
-simulation_plot(10, "abox.txt")
+#simulation_plot(100, "abox.txt")
 
-plt.show()
+#plt.show()
+
+aBoxCon = initial(True)
+dm = aBoxCon.decmem
+md1.module1(aBoxCon)
+md2.module2(aBoxCon)
+md3.module3(aBoxCon)
+md4.module4(aBoxCon)
+
+par.AddAboxFromFile("abox.txt",dm.add)
+aBoxCon_sim = aBoxCon.simulation(realtime=False,gui=False)
+trace(aBoxCon_sim, 'PROCEDURAL')

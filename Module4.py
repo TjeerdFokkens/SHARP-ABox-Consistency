@@ -95,7 +95,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         isa      proposition
         thing    proposition
         form     =Z
-        =imaginal>
+        +imaginal>
         isa      proposition
         thing    proposition
         form     =Y
@@ -144,7 +144,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         isa      proposition
         thing    proposition
         form     =Y
-        =imaginal_action>
+        +imaginal_action>
         isa      proposition
         thing    proposition
         form     =Z
@@ -199,7 +199,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         subformula1  =Z4
         subformula2  =Z5
         derived  yes
-        =imaginal>
+        +imaginal>
         isa      proposition
         thing    proposition
         form     =Y
@@ -254,7 +254,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         subformula1  =Y4
         subformula2  =Y5
         derived  =Y6
-        =imaginal>
+        +imaginal>
         isa      proposition
         thing    proposition
         form     =Z
