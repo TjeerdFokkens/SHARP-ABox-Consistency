@@ -138,6 +138,7 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         mainconnective ~universal
         mainconnective ~existential
         mainconnective ~disjunction
+        mainconnective ~none
         derived  yes
         +imaginal>
         isa      storelist

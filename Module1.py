@@ -62,6 +62,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form    ~=A11
         form    ~=A12
         form    ~=A13
+        subformula1 =A5
     """)
 
     aBoxCon.productionstring(name="Module 1, Unit 2a, Step 1: find concept of negation not in the list", string="""
@@ -157,7 +158,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         mainconnective ~existential
         mainconnective ~=A3
         mainconnective ~none
-        subformula1 =Y
+        subformula1 =A5
         derived yes
         ?manual>
         state   free

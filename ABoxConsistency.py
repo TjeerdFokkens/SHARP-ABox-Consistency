@@ -83,13 +83,24 @@ def simulation_plot(iterations, abox):
     fig, ax = plt.subplots(tight_layout=True)
     ax.grid(visible=None, axis='x')
     ax.grid(linestyle=':', axis='y')
-    hist = ax.hist(data, bins='sqrt', color='forestgreen', label='time')
+    bins = compute_histogram_bins(plot_list(iterations, abox),0.1)
+    hist = ax.hist(data, bins=bins, color='forestgreen', label='time')
+
+def compute_histogram_bins(data, desired_bin_size):
+    min_val = np.min(data)
+    max_val = np.max(data)
+    min_boundary = -1.0 * (min_val % desired_bin_size - min_val)
+    max_boundary = max_val - max_val % desired_bin_size + desired_bin_size
+    n_bins = int((max_boundary - min_boundary) / desired_bin_size) + 1
+    bins = np.linspace(min_boundary, max_boundary, n_bins)
+    return bins
 
 
-#simulation_plot(100, "abox.txt")
+simulation_plot(50, "abox.txt")
 
-#plt.show()
+plt.show()
 
+'''
 aBoxCon = initial(True)
 dm = aBoxCon.decmem
 md1.module1(aBoxCon)
@@ -98,5 +109,7 @@ md3.module3(aBoxCon)
 md4.module4(aBoxCon)
 
 par.AddAboxFromFile("abox.txt",dm.add)
+
 aBoxCon_sim = aBoxCon.simulation(realtime=False,gui=False)
 trace(aBoxCon_sim, 'PROCEDURAL')
+'''
