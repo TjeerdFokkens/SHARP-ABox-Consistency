@@ -96,11 +96,11 @@ def compute_histogram_bins(data, desired_bin_size):
     return bins
 
 
-simulation_plot(50, "abox.txt")
+#simulation_plot(50, "abox.txt")
 
-plt.show()
+#plt.show()
 
-'''
+
 aBoxCon = initial(True)
 dm = aBoxCon.decmem
 md1.module1(aBoxCon)
@@ -112,4 +112,3 @@ par.AddAboxFromFile("abox.txt",dm.add)
 
 aBoxCon_sim = aBoxCon.simulation(realtime=False,gui=False)
 trace(aBoxCon_sim, 'PROCEDURAL')
-'''

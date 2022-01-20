@@ -2,7 +2,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
     aBoxCon.productionstring(name="Module 3, Unit 1, Step 1: conjunction found, put conjunct labels in imaginal and imaginal_action buffers", string="""
         =g>
         isa      goal
-        state    module3
+        state    inference_step
         form     =P
         =imaginal>
         isa      proposition

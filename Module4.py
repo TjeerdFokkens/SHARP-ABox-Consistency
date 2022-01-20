@@ -2,7 +2,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
     aBoxCon.productionstring(name="Module 4, Unit 1, Step 1: existential found, derive relation and concept", string="""
         =g>
         isa      goal
-        state    module4
+        state    inference_step
         form     =P
         =imaginal>
         isa      proposition

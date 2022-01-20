@@ -136,7 +136,6 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         mainconnective ~negation
         mainconnective ~concept
         mainconnective ~universal
-        mainconnective ~existential
         mainconnective ~disjunction
         mainconnective ~none
         derived  yes
@@ -198,7 +197,7 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         ==>
         =g>
         isa      goal
-        state    module3
+        state    inference_step
         form     =X
         +imaginal>
         isa      proposition
