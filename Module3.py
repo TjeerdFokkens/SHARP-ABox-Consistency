@@ -1,5 +1,5 @@
 def module3(aBoxCon): #This module applies when a conjunction is found. It derives both conjuncts.
-    aBoxCon.productionstring(name="Module 3, Unit 1, Step 1: conjunction found, put conjunct labels in imaginal and imaginal_action buffers", string="""
+    aBoxCon.productionstring(name="Module 3, Unit 1: conjunction found, put conjunct labels in imaginal and imaginal_action buffers", string="""
         =g>
         isa      goal
         state    inference_step
@@ -269,7 +269,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         ~retrieval>
     """)
 
-    aBoxCon.productionstring(name="Module 3, Unit 3a, Step 1: finalise inference and move on to find a clash on first conjunct", string="""
+    aBoxCon.productionstring(name="Module 3, Unit 3a: finalise inference and move on to find a clash on first conjunct", string="""
         =g>
         isa      goal
         state    label_conjuncts
@@ -325,7 +325,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         ~imaginal_action>
     """)
 
-    aBoxCon.productionstring(name="Module 3, Unit 3b, Step 1: finalise inference and move on to find a clash on second conjunct", string="""
+    aBoxCon.productionstring(name="Module 3, Unit 3b: finalise inference and move on to find a clash on second conjunct", string="""
         =g>
         isa      goal
         state    label_conjuncts
@@ -381,7 +381,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         ~imaginal_action>
     """)
 
-    aBoxCon.productionstring(name="Module 3, Unit 3c, Step 1: no concept or negation derived, so move on to derive new formula", string="""
+    aBoxCon.productionstring(name="Module 3, Unit 3c: no concept or negation derived, so move on to derive new formula", string="""
         =g>
         isa      goal
         state    label_conjuncts

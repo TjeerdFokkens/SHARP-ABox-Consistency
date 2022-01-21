@@ -1,5 +1,5 @@
 def module2(aBoxCon): #This module retrieves the list of used formulas and finds one not in the list.
-    aBoxCon.productionstring(name="Module 2, Unit 1, Step 1: put storelist of used formulas in imaginal buffer", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 1: put storelist of used formulas in imaginal buffer", string="""
         =g>
         isa     goal
         state   derive_next_formulas
@@ -50,7 +50,7 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         ~retrieval>
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 2, Step 1: create storelist in imaginal buffer and put first used formula in it", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 2: create storelist in imaginal buffer and put first used formula in it", string="""
         =g>
         isa      goal
         state    derive_next_formulas
@@ -85,7 +85,7 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         ~retrieval>
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 3, Step 1: retrieve unused formula", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 3: retrieve unused formula", string="""
         =g>
         isa     goal
         state   find_formula_not_in_list
@@ -137,6 +137,7 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         mainconnective ~concept
         mainconnective ~universal
         mainconnective ~disjunction
+        mainconnective ~relation
         mainconnective ~none
         derived  yes
         +imaginal>
@@ -159,7 +160,7 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         form15   =A21
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 4a, Step 1: update list of used formulas", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 4a: update list of used formulas", string="""
         =g>
         isa      goal
         state    update_storelist
@@ -230,7 +231,7 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         ~retrieval>
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 4b, Step 1: no formula found, signal consistency", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 4b: no formula found, signal consistency", string="""
         =g>
         isa      goal
         state    update_storelist

@@ -1,5 +1,5 @@
 def module1(aBoxCon): #This module looks for concept assignments and negated concept assignments and tries to find a clash. If there is no clash, some new formula needs to be derived.
-    aBoxCon.productionstring(name="Module 1, Unit 1, Step 1: find clash to concept or negation in head of list", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 1: find clash to concept or negation in head of list", string="""
         =g>
         isa     goal
         state   find_clash_to_head
@@ -65,7 +65,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         subformula1 =A5
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 2a, Step 1: find concept of negation not in the list", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 2a: find concept or negation not in the list", string="""
         =g>
         isa     goal
         state   find_formula_not_in_list
@@ -127,7 +127,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form    ~=A13
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 2b, Step 1: signal a clash", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 2b: signal a clash", string="""
         =g>
         isa     goal
         state   find_formula_not_in_list
@@ -173,7 +173,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         key     C
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 3a, Step 1: no formula found, need to derive new ones", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 3a: no formula found, need to derive new ones", string="""
         =g>
         isa     goal
         state   add_formula_to_list
@@ -208,7 +208,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         ~imaginal>
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 3b, Step 1: add formula to list and find a clash", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 3b: add formula to list and find a clash", string="""
         =g>
         isa     goal
         state   add_formula_to_list

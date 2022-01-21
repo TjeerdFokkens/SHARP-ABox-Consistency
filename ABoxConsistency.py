@@ -101,7 +101,7 @@ def compute_histogram_bins(data, desired_bin_size):
 #plt.show()
 
 
-aBoxCon = initial(True)
+aBoxCon = initial()
 dm = aBoxCon.decmem
 md1.module1(aBoxCon)
 md2.module2(aBoxCon)
@@ -109,6 +109,11 @@ md3.module3(aBoxCon)
 md4.module4(aBoxCon)
 
 par.AddAboxFromFile("abox.txt",dm.add)
-
+print(dm)
 aBoxCon_sim = aBoxCon.simulation(realtime=False,gui=False)
-trace(aBoxCon_sim, 'PROCEDURAL')
+trace(aBoxCon_sim, 'PROCEDURAL',action='RULE FIRED')
+print(aBoxCon.goals["g"])
+print(aBoxCon.goals["imaginal"])
+print(aBoxCon.goals["imaginal_action"])
+print(aBoxCon.retrieval)
+print(dm)
