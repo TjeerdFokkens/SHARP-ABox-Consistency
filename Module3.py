@@ -96,6 +96,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         thing    proposition
         form     =X
         element  =U
+        mainconnective ~none
         +imaginal_action>
         isa      proposition
         thing    proposition
@@ -146,6 +147,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         thing    proposition
         form     =Z
         element  =U
+        mainconnective ~none
         +imaginal>
         isa      proposition
         thing    proposition

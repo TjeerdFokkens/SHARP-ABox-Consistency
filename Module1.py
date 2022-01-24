@@ -52,6 +52,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         mainconnective ~conjunction
         mainconnective ~existential
         mainconnective ~universal
+        mainconnective ~relation
         mainconnective ~=A3
         mainconnective ~none
         form    ~=A1
@@ -117,6 +118,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         mainconnective ~conjunction
         mainconnective ~existential
         mainconnective ~universal
+        mainconnective ~relation
+        mainconnective ~none
         form    ~=A1
         form    ~=A7
         form    ~=A8
@@ -156,6 +159,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         mainconnective ~disjunction
         mainconnective ~universal
         mainconnective ~existential
+        mainconnective ~relation
         mainconnective ~=A3
         mainconnective ~none
         subformula1 =A5
