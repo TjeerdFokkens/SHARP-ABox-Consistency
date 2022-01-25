@@ -1,5 +1,8 @@
 import pyactr as actr
-import ProductionRules as prls
+import Module1 as md1
+import Module2 as md2
+import Module3 as md3
+import Module4 as md4
 import simpy
 import re
 import parser
@@ -34,10 +37,10 @@ def initial(learning=False):
 aBoxCon = initial(False)
 dm = aBoxCon.decmem
 
-prls.module1(aBoxCon)
-prls.module2(aBoxCon)
-prls.module3(aBoxCon)
-prls.module4(aBoxCon)
+md1.module1(aBoxCon)
+md2.module2(aBoxCon)
+md3.module3(aBoxCon)
+md4.module4(aBoxCon)
 
 parser.AddAboxFromFile("abox.txt",dm.add)
 
@@ -50,7 +53,7 @@ while True:
     except simpy.core.EmptySchedule:
         break
     #if re.match("^RULE FIRED:",sim.current_event.action):
-        #print(sim.current_event.action)
+    #print(sim.current_event.action)
     if re.match("^RULE FIRED:.*derived",sim.current_event.action):
         for x in aBoxCon.retrieval:
             print(str(round(sim.current_event.time,2)).ljust(7)[:7] + "DERIVED: *" + str(x.form))
