@@ -1,5 +1,5 @@
 def module1(aBoxCon): #This module looks for concept assignments and negated concept assignments and tries to find a clash. If there is no clash, some new formula needs to be derived.
-    aBoxCon.productionstring(name="Module 1, Unit 1, Step 1: find clash to concept or negation in head of list", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 1: find clash to concept or negation in head of list", string="""
         =g>
         isa     goal
         state   find_clash_to_head
@@ -27,7 +27,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa     goal
         state   find_formula_not_in_list
         form    =P
-        =imaginal>
+        +imaginal>
         isa     checklist
         thing   checklist
         form    =A1
@@ -52,7 +52,9 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         mainconnective ~conjunction
         mainconnective ~existential
         mainconnective ~universal
+        mainconnective ~relation
         mainconnective ~=A3
+        mainconnective ~none
         form    ~=A1
         form    ~=A7
         form    ~=A8
@@ -61,9 +63,10 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form    ~=A11
         form    ~=A12
         form    ~=A13
+        subformula1 =A5
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 2a, Step 1: find concept of negation not in the list", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 2a: find concept or negation not in the list", string="""
         =g>
         isa     goal
         state   find_formula_not_in_list
@@ -91,7 +94,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa      goal
         state    add_formula_to_list
         form     =P
-        =imaginal>
+        +imaginal>
         isa     checklist
         thing   checklist
         form    =A1
@@ -115,6 +118,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         mainconnective ~conjunction
         mainconnective ~existential
         mainconnective ~universal
+        mainconnective ~relation
+        mainconnective ~none
         form    ~=A1
         form    ~=A7
         form    ~=A8
@@ -125,7 +130,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form    ~=A13
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 2b, Step 1: signal a clash", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 2b: signal a clash", string="""
         =g>
         isa     goal
         state   find_formula_not_in_list
@@ -154,8 +159,10 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         mainconnective ~disjunction
         mainconnective ~universal
         mainconnective ~existential
+        mainconnective ~relation
         mainconnective ~=A3
-        subformula1 =Y
+        mainconnective ~none
+        subformula1 =A5
         derived yes
         ?manual>
         state   free
@@ -170,7 +177,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         key     C
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 3a, Step 1: no formula found, need to derive new ones", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 3a: no formula found, need to derive new ones", string="""
         =g>
         isa     goal
         state   add_formula_to_list
@@ -205,7 +212,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         ~imaginal>
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 3b, Step 1: add formula to list and find a clash", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 3b: add formula to list and find a clash", string="""
         =g>
         isa     goal
         state   add_formula_to_list
@@ -241,7 +248,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa      goal
         state    find_clash_to_head
         form     =P
-        =imaginal>
+        +imaginal>
         isa     checklist
         thing   checklist
         form    =X1

@@ -36,7 +36,7 @@ def initial(learning=False):
     actr.chunktype("checklist", "thing, form, element, mainconnective, relation, subformula1, subformula2, form2, form3, form4, form5, form6, form7, form8")
     actr.chunktype("storelist", "thing, form, form2, form3, form4, form5, form6, form7, form8, form9, form10, form11, form12, form13, form14, form15")
 
-    aBoxCon.goals["g"].add(actr.makechunk(typename="goal", state="start", form='none'))
+    aBoxCon.goals["g"].add(actr.makechunk(typename="goal", state="find_clash_to_head", form='none'))
     aBoxCon.goals["imaginal"].add(actr.makechunk(typename="checklist", thing="checklist", form="none", element="none", mainconnective="none", relation="none", subformula1="none", subformula2="none", form2="none", form3="none", form4="none", form5="none", form6="none", form7="none", form8="none"))
     return aBoxCon
 
@@ -83,9 +83,38 @@ def simulation_plot(iterations, abox):
     fig, ax = plt.subplots(tight_layout=True)
     ax.grid(visible=None, axis='x')
     ax.grid(linestyle=':', axis='y')
-    hist = ax.hist(data, bins='sqrt', color='forestgreen', label='time')
+    bins = compute_histogram_bins(plot_list(iterations, abox),0.1)
+    hist = ax.hist(data, bins=bins, color='forestgreen', label='time')
+
+def compute_histogram_bins(data, desired_bin_size):
+    min_val = np.min(data)
+    max_val = np.max(data)
+    min_boundary = -1.0 * (min_val % desired_bin_size - min_val)
+    max_boundary = max_val - max_val % desired_bin_size + desired_bin_size
+    n_bins = int((max_boundary - min_boundary) / desired_bin_size) + 1
+    bins = np.linspace(min_boundary, max_boundary, n_bins)
+    return bins
 
 
-simulation_plot(10, "abox.txt")
+simulation_plot(50, "abox.txt")
 
 plt.show()
+
+'''
+aBoxCon = initial(learning=True)
+dm = aBoxCon.decmem
+md1.module1(aBoxCon)
+md2.module2(aBoxCon)
+md3.module3(aBoxCon)
+md4.module4(aBoxCon)
+
+par.AddAboxFromFile("abox.txt",dm.add)
+print(dm)
+aBoxCon_sim = aBoxCon.simulation(realtime=False,gui=False)
+trace(aBoxCon_sim, 'PROCEDURAL',action='RULE RECREATED')
+print(aBoxCon.goals["g"])
+print(aBoxCon.goals["imaginal"])
+print(aBoxCon.goals["imaginal_action"])
+print(aBoxCon.retrieval)
+print(dm)
+'''

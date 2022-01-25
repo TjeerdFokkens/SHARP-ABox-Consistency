@@ -1,13 +1,13 @@
 def module3(aBoxCon): #This module applies when a conjunction is found. It derives both conjuncts.
-    aBoxCon.productionstring(name="Module 3, Unit 1, Step 1: conjunction found, put conjunct labels in imaginal and imaginal_action buffers", string="""
+    aBoxCon.productionstring(name="Module 3, Unit 1: conjunction found, put conjunct labels in imaginal and imaginal_action buffers", string="""
         =g>
         isa      goal
-        state    module3
+        state    inference_step
         form     =P
         =imaginal>
         isa      proposition
         thing    proposition
-        form     =X
+        form     =P
         element  =U
         mainconnective conjunction
         subformula1  =Y
@@ -96,7 +96,8 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         thing    proposition
         form     =X
         element  =U
-        =imaginal_action>
+        mainconnective ~none
+        +imaginal_action>
         isa      proposition
         thing    proposition
         form     =Z
@@ -146,7 +147,8 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         thing    proposition
         form     =Z
         element  =U
-        =imaginal>
+        mainconnective ~none
+        +imaginal>
         isa      proposition
         thing    proposition
         form     =X
@@ -201,7 +203,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula1 =C
         subformula2 =D
         derived  yes
-        =imaginal_action>
+        +imaginal_action>
         isa      proposition
         thing    proposition
         form     =Z
@@ -256,7 +258,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula2  =B
         relation   =A
         derived  yes
-        =imaginal>
+        +imaginal>
         isa      proposition
         thing    proposition
         form     =Z
@@ -269,7 +271,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         ~retrieval>
     """)
 
-    aBoxCon.productionstring(name="Module 3, Unit 3a, Step 1: finalise inference and move on to find a clash on first conjunct", string="""
+    aBoxCon.productionstring(name="Module 3, Unit 3a: finalise inference and move on to find a clash on first conjunct", string="""
         =g>
         isa      goal
         state    label_conjuncts
@@ -325,7 +327,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         ~imaginal_action>
     """)
 
-    aBoxCon.productionstring(name="Module 3, Unit 3b, Step 1: finalise inference and move on to find a clash on second conjunct", string="""
+    aBoxCon.productionstring(name="Module 3, Unit 3b: finalise inference and move on to find a clash on second conjunct", string="""
         =g>
         isa      goal
         state    label_conjuncts
@@ -381,7 +383,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         ~imaginal_action>
     """)
 
-    aBoxCon.productionstring(name="Module 3, Unit 3c, Step 1: no concept or negation derived, so move on to derive new formula", string="""
+    aBoxCon.productionstring(name="Module 3, Unit 3c: no concept or negation derived, so move on to derive new formula", string="""
         =g>
         isa      goal
         state    label_conjuncts
@@ -395,6 +397,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         element  =U
         mainconnective  ~concept
         mainconnective  ~negation
+        mainconnective  ~none
         mainconnective =V
         subformula1  =C
         subformula2  =B
@@ -407,6 +410,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         element  =U
         mainconnective  ~concept
         mainconnective  ~negation
+        mainconnective  ~none
         mainconnective =Z
         subformula1  =D
         subformula2  =E

@@ -38,7 +38,7 @@ class ToString(Transformer): # Transforms a tree recursively to a string
     atom = str
     conj = lambda self,ch1,ch2: "(" + ch1 + "&" + ch2 + ")"
     dis = lambda self,ch1,ch2: "(" + ch1 + "%" + ch2 + ")"
-    exists = lambda self,role,con: "/E " + role + "." + con
+    exists = lambda self,role,con: "/E" + role + "." + con
     con_ass = lambda self,el,con: el + ":" + con
     role_ass = lambda self,elL,elR,role: "(" + elL + "," + elR + "):" + role
     neg = lambda self,con : "-" + con
