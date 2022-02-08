@@ -7,19 +7,21 @@ form_grammar = """
     ?start: assertion (","+ assertion)*
 
     ?assertion: element ":" out_concept             -> con_ass
-        | "(" element "," element ")" ":" role  -> role_ass
+        | "(" element "," element ")" ":" role      -> role_ass
 
     ?out_concept: atom
         | "-" atom                          -> neg
         | ["("] concept "&" concept [")"]   -> conj
         | ["("] concept "%" concept [")"]   -> dis
         | "/E" role "." concept             -> exists
+        | "/A" role "." concept             -> universal
 
     ?concept: atom
         | "-" atom                      -> neg
         | "(" concept "&" concept ")"   -> conj
         | "(" concept "%" concept ")"   -> dis
         | "/E" role "." concept         -> exists
+        | "/A" role "." concept         -> universal
 
     ?role: NAME                         -> role
     ?element : NAME                     -> element
@@ -42,6 +44,7 @@ class ToString(Transformer): # Transforms a tree recursively to a string
     con_ass = lambda self,el,con: el + ":" + con
     role_ass = lambda self,elL,elR,role: "(" + elL + "," + elR + "):" + role
     neg = lambda self,con : "-" + con
+    universal = lambda self,role,con: "/A" + role + "." + con
 
 class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to the DM.
 
@@ -100,6 +103,16 @@ class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to 
             mainconnective="relation", subformula1=self.el, subformula2=witness,
             derived=self.derived))
         self.el = witness
+
+    def universal(self,tree): #This function needs to be updated.
+        formstr = self.el + ":" + ToString().transform(tree)
+        subform = self.el + ":" + ToString().transform(tree.children[1])
+        role = ToString().transform(tree.children[0])
+        self.addtodm(actr.makechunk(typename="proposition", thing="proposition",
+            form=formstr, element=self.el, mainconnective="universal",
+            subformula1=subform, subformula2="("+self.el +","+witness+"):"+role,
+            derived=self.derived))
+        self.derived="no"
 
     def neg(self,tree):
         formstr = self.el + ":" + ToString().transform(tree)

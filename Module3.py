@@ -4,6 +4,8 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         isa      goal
         state    inference_step
         form     =P
+        count   =Q
+        mainconnective none
         =imaginal>
         isa      proposition
         thing    proposition
@@ -37,6 +39,8 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         isa      goal
         state    label_conjuncts
         form     =P
+        count   =Q
+        mainconnective none
         +imaginal>
         isa      proposition
         thing    proposition
@@ -64,6 +68,8 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         isa      goal
         state    label_conjuncts
         form     =P
+        count   =Q
+        mainconnective none
         =imaginal>
         isa      proposition
         thing    proposition
@@ -91,6 +97,8 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         isa      goal
         state    label_conjuncts2
         form     =P
+        count   =Q
+        mainconnective none
         +retrieval>
         isa      proposition
         thing    proposition
@@ -115,6 +123,8 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         isa      goal
         state    label_conjuncts
         form     =P
+        count   =Q
+        mainconnective none
         =imaginal>
         isa      proposition
         thing    proposition
@@ -142,6 +152,8 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         isa      goal
         state    label_conjuncts2
         form     =P
+        count   =Q
+        mainconnective none
         +retrieval>
         isa      proposition
         thing    proposition
@@ -166,6 +178,8 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         isa      goal
         state    label_conjuncts2
         form     =P
+        count   =Q
+        mainconnective none
         =retrieval>
         isa      proposition
         thing    proposition
@@ -193,6 +207,8 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         isa      goal
         state    label_conjuncts
         form     =P
+        count   =Q
+        mainconnective none
         +imaginal>
         isa      proposition
         thing    proposition
@@ -221,6 +237,8 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         isa      goal
         state    label_conjuncts2
         form     =P
+        count   =Q
+        mainconnective none
         =retrieval>
         isa      proposition
         thing    proposition
@@ -248,6 +266,8 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         isa      goal
         state    label_conjuncts
         form     =P
+        count   =Q
+        mainconnective none
         +imaginal_action>
         isa      proposition
         thing    proposition
@@ -276,6 +296,8 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         isa      goal
         state    label_conjuncts
         form     =P
+        count   =Q
+        mainconnective none
         ?retrieval>
         state    free
         =imaginal>
@@ -307,6 +329,8 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         isa      goal
         state    find_clash_to_head
         form     =P
+        count   =Q
+        mainconnective none
         +imaginal>
         isa     checklist
         thing   checklist
@@ -332,6 +356,8 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         isa      goal
         state    label_conjuncts
         form     =P
+        count   =Q
+        mainconnective none
         ?retrieval>
         state    free
         =imaginal>
@@ -363,6 +389,8 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         isa      goal
         state    find_clash_to_head
         form     =P
+        count   =Q
+        mainconnective none
         +imaginal>
         isa     checklist
         thing   checklist
@@ -388,6 +416,8 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         isa      goal
         state    label_conjuncts
         form     =P
+        count   =Q
+        mainconnective none
         ?retrieval>
         state    free
         =imaginal>
@@ -421,6 +451,8 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         isa      goal
         state    derive_next_formulas
         form     =P
+        count   =Q
+        mainconnective none
         +retrieval>
         isa      storelist
         thing    storelist
