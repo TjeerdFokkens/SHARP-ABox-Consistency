@@ -4,6 +4,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa     goal
         state   find_clash_to_head
         form    =P
+        count   =Q
+        mainconnective none
         =imaginal>
         isa     checklist
         thing   checklist
@@ -27,6 +29,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa     goal
         state   find_formula_not_in_list
         form    =P
+        count   =Q
+        mainconnective none
         +imaginal>
         isa     checklist
         thing   checklist
@@ -71,6 +75,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa     goal
         state   find_formula_not_in_list
         form    =P
+        count   =Q
+        mainconnective none
         =imaginal>
         isa     checklist
         thing   checklist
@@ -94,6 +100,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa      goal
         state    add_formula_to_list
         form     =P
+        count   =Q
+        mainconnective none
         +imaginal>
         isa     checklist
         thing   checklist
@@ -135,6 +143,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa     goal
         state   find_formula_not_in_list
         form    =P
+        count   =Q
+        mainconnective none
         =imaginal>
         isa     checklist
         thing   checklist
@@ -171,6 +181,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa     goal
         state   stop
         form    =P
+        count   =Q
+        mainconnective none
         +manual>
         isa     _manual
         cmd     press_key
@@ -182,6 +194,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa     goal
         state   add_formula_to_list
         form    =P
+        count   =Q
+        mainconnective none
         =imaginal>
         isa     checklist
         thing   checklist
@@ -205,6 +219,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa      goal
         state    derive_next_formulas
         form     =P
+        count   =Q
+        mainconnective none
         +retrieval>
         isa     storelist
         thing   storelist
@@ -217,6 +233,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa     goal
         state   add_formula_to_list
         form    =P
+        count   =Q
+        mainconnective none
         =imaginal>
         isa     checklist
         thing   checklist
@@ -248,6 +266,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa      goal
         state    find_clash_to_head
         form     =P
+        count   =Q
+        mainconnective none
         +imaginal>
         isa     checklist
         thing   checklist

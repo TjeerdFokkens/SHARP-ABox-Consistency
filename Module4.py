@@ -4,6 +4,8 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         isa      goal
         state    inference_step
         form     =P
+        count   =Q
+        mainconnective none
         =imaginal>
         isa      proposition
         thing    proposition
@@ -37,6 +39,8 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         isa      goal
         state    label_formulas
         form     =P
+        count   =Q
+        mainconnective none
         +imaginal>
         isa      proposition
         thing    proposition
@@ -64,6 +68,8 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         isa      goal
         state    label_formulas
         form     =P
+        count   =Q
+        mainconnective none
         =imaginal>
         isa      proposition
         thing    proposition
@@ -91,6 +97,8 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         isa      goal
         state    label_formulas2
         form     =P
+        count   =Q
+        mainconnective none
         +retrieval>
         isa      proposition
         thing    proposition
@@ -123,6 +131,8 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         isa      goal
         state    label_formulas
         form     =P
+        count   =Q
+        mainconnective none
         =imaginal>
         isa      proposition
         thing    proposition
@@ -150,6 +160,8 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         isa      goal
         state    label_formulas2
         form     =P
+        count   =Q
+        mainconnective none
         +retrieval>
         isa      proposition
         thing    proposition
@@ -182,6 +194,8 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         isa      goal
         state    label_formulas2
         form     =P
+        count   =Q
+        mainconnective none
         =retrieval>
         isa      proposition
         thing    proposition
@@ -216,6 +230,8 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         isa      goal
         state    label_formulas
         form     =P
+        count   =Q
+        mainconnective none
         ~retrieval>
         +imaginal>
         isa      proposition
@@ -244,6 +260,8 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         isa      goal
         state    label_formulas2
         form     =P
+        count   =Q
+        mainconnective none
         =retrieval>
         isa      proposition
         thing    proposition
@@ -281,6 +299,8 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         isa      goal
         state    label_formulas
         form     =P
+        count   =Q
+        mainconnective none
         ~retrieval>
         +imaginal>
         isa      proposition
@@ -309,6 +329,8 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         isa      goal
         state    label_formulas
         form     =P
+        count   =Q
+        mainconnective none
         ?retrieval>
         state    free
         =imaginal>
@@ -337,6 +359,8 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         isa      goal
         state    derive_next_formulas
         form     =P
+        count   =Q
+        mainconnective none
         +retrieval>
         isa      storelist
         thing    storelist

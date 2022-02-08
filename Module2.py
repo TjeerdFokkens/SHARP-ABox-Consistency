@@ -4,6 +4,8 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         isa     goal
         state   derive_next_formulas
         form    =P
+        count   =Q
+        mainconnective none
         =retrieval>
         isa     storelist
         thing   storelist
@@ -29,6 +31,8 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         isa      goal
         state    find_formula_not_in_list
         form     =P
+        count   =Q
+        mainconnective none
         +imaginal>
         isa     storelist
         thing   storelist
@@ -55,6 +59,8 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         isa      goal
         state    derive_next_formulas
         form     =P
+        count   =Q
+        mainconnective none
         ?retrieval>
         state    error
         ?imaginal>
@@ -64,6 +70,8 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         isa      goal
         state    find_formula_not_in_list
         form     =P
+        count   =Q
+        mainconnective none
         +imaginal>
         isa      storelist
         thing    storelist
@@ -90,6 +98,8 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         isa     goal
         state   find_formula_not_in_list
         form    =P
+        count   =Q
+        mainconnective none
         =imaginal>
         isa      storelist
         thing    storelist
@@ -115,6 +125,8 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         isa      goal
         state    update_storelist
         form     =P
+        count   =Q
+        mainconnective none
         +retrieval>
         isa      proposition
         thing    proposition
@@ -165,6 +177,8 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         isa      goal
         state    update_storelist
         form     =P
+        count   =Q
+        mainconnective none
         =retrieval>
         isa      proposition
         thing    proposition
@@ -200,6 +214,8 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         isa      goal
         state    inference_step
         form     =X
+        count   =Q
+        mainconnective none
         +imaginal>
         isa      proposition
         thing    proposition
@@ -236,6 +252,8 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         isa      goal
         state    update_storelist
         form     =P
+        count   =Q
+        mainconnective none
         ?retrieval>
         state    error
         ?manual>
