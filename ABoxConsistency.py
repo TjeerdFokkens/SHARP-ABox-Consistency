@@ -31,13 +31,18 @@ def initial(learning=False):
     aBoxCon.set_goal("imaginal")
     aBoxCon.set_goal("imaginal_action")
 
-    actr.chunktype("goal", "state, form")
+    actr.chunktype("goal", "state, form, count, mainconnective")
     actr.chunktype("proposition", "thing, form, element, mainconnective, relation, subformula1, subformula2, derived")
     actr.chunktype("checklist", "thing, form, element, mainconnective, relation, subformula1, subformula2, form2, form3, form4, form5, form6, form7, form8")
     actr.chunktype("storelist", "thing, form, form2, form3, form4, form5, form6, form7, form8, form9, form10, form11, form12, form13, form14, form15")
+    actr.chunktype("universal_list", "thing, form, form2, form3, form4, form5, form6, form7, form8, form9")
+    actr.chunktype("count_order","number, successor")
 
     aBoxCon.goals["g"].add(actr.makechunk(typename="goal", state="find_clash_to_head", form='none'))
     aBoxCon.goals["imaginal"].add(actr.makechunk(typename="checklist", thing="checklist", form="none", element="none", mainconnective="none", relation="none", subformula1="none", subformula2="none", form2="none", form3="none", form4="none", form5="none", form6="none", form7="none", form8="none"))
+
+    for i in range(n):
+        aBoxCon.addtodm(actr.makechunk(typename="count_order", thing="count_order",number=str(i), successor=str(i+1)))
     return aBoxCon
 
 def trace(sim, buffer, action=''):
@@ -78,25 +83,37 @@ def plot_list(it, abox):
         sim_time_list.append(outp)
     return sim_time_list
 
-def simulation_plot(iterations, abox):
+def simulation_plot(iterations, abox, desired_bin_size):
     data = plot_list(iterations, abox)
-    fig, ax = plt.subplots(tight_layout=True)
-    ax.grid(visible=None, axis='x')
-    ax.grid(linestyle=':', axis='y')
-    bins = compute_histogram_bins(plot_list(iterations, abox),0.1)
-    hist = ax.hist(data, bins=bins, color='forestgreen', label='time')
+    bins = compute_histogram_bins(data, desired_bin_size)
+    min_val = bins[0]
+    max_val = bins[-1]
+
+    fig, (ax1, ax2) = plt.subplots(2, 1, gridspec_kw={'height_ratios': [3, 1]}, tight_layout=True, sharex=True)
+
+    ax1.grid(visible=None, axis='x')
+    ax1.grid(linestyle=':', axis='y')
+    ax1.set(xticks=np.arange(min_val-desired_bin_size, max_val+2*desired_bin_size, desired_bin_size))
+    ax1.set_title('Simulated time of inference')
+    ax1.hist(data, bins=bins, color='forestgreen', linewidth=0.5, edgecolor="white")
+
+    ax2.eventplot(data, orientation="horizontal", linewidth=1, color='forestgreen')
+    ax2.get_yaxis().set_visible(False)
+    ax2.grid(linestyle=':', axis='x')
+    ax2.set_xlabel('time (s)')
 
 def compute_histogram_bins(data, desired_bin_size):
-    min_val = np.min(data)
-    max_val = np.max(data)
-    min_boundary = -1.0 * (min_val % desired_bin_size - min_val)
-    max_boundary = max_val - max_val % desired_bin_size + desired_bin_size
-    n_bins = int((max_boundary - min_boundary) / desired_bin_size) + 1
-    bins = np.linspace(min_boundary, max_boundary, n_bins)
+    print(data)
+    min_val = min(data)
+    max_val = max(data)
+    min_boundary = np.round(np.floor(min_val/desired_bin_size)*desired_bin_size,1)
+    max_boundary = np.round(np.ceil(max_val/desired_bin_size)*desired_bin_size,1)
+    n_bins = int(round((max_boundary - min_boundary) / desired_bin_size,0))
+    bins = np.linspace(min_boundary, max_boundary, n_bins+1)
     return bins
 
 
-simulation_plot(50, "abox.txt")
+simulation_plot(30, "abox.txt", 0.1)
 
 plt.show()
 
