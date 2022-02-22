@@ -11,6 +11,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         thing   checklist
         form    =A1
         element =A2
+        concept  =X7
         mainconnective =A3
         relation =A4
         subformula1 =A5
@@ -36,6 +37,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         thing   checklist
         form    =A1
         element =A2
+        concept  =X7
         mainconnective =A3
         relation =A4
         subformula1 =A5
@@ -82,6 +84,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         thing   checklist
         form    =A1
         element =A2
+        concept  =X7
         mainconnective =A3
         relation =A4
         subformula1 =A5
@@ -107,6 +110,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         thing   checklist
         form    =A1
         element =A2
+        concept  =X7
         mainconnective =A3
         relation =A4
         subformula1 =A5
@@ -150,6 +154,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         thing   checklist
         form    =A1
         element =A2
+        concept  =X7
         mainconnective =A3
         relation =A4
         subformula1 =A5
@@ -200,6 +205,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa     checklist
         thing   checklist
         form    =A1
+        concept  =X7
         element =A2
         mainconnective =A3
         relation =A4
@@ -240,6 +246,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         thing   checklist
         form    =A1
         element =A2
+        concept  =B
         mainconnective =A3
         relation =A4
         subformula1 =A5
@@ -261,6 +268,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         relation =X4
         subformula1 =X5
         subformula2 =X6
+        concept  =X7
         ==>
         =g>
         isa      goal
@@ -277,6 +285,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         relation =X4
         subformula1 =X5
         subformula2 =X6
+        concept  =X7
         form2    =A1
         form3    =A7
         form4    =A8

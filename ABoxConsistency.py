@@ -12,6 +12,7 @@ import parser as par
 from matplotlib import colors
 from matplotlib.ticker import PercentFormatter
 import re
+from matplotlib.ticker import MaxNLocator
 
 def initial(learning=False):
     aBoxCon = actr.ACTRModel(
@@ -32,24 +33,28 @@ def initial(learning=False):
     aBoxCon.set_goal("imaginal_action")
 
     actr.chunktype("goal", "state, form, count, mainconnective")
-    actr.chunktype("proposition", "thing, form, element, mainconnective, relation, subformula1, subformula2, derived")
-    actr.chunktype("checklist", "thing, form, element, mainconnective, relation, subformula1, subformula2, form2, form3, form4, form5, form6, form7, form8")
+    actr.chunktype("proposition", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, derived")
+    actr.chunktype("checklist", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, form2, form3, form4, form5, form6, form7, form8")
     actr.chunktype("storelist", "thing, form, form2, form3, form4, form5, form6, form7, form8, form9, form10, form11, form12, form13, form14, form15")
     actr.chunktype("universal_list", "thing, form, form2, form3, form4, form5, form6, form7, form8, form9")
-    actr.chunktype("count_order","number, successor")
+    actr.chunktype("count_order","number, successor, thing")
 
-    aBoxCon.goals["g"].add(actr.makechunk(typename="goal", state="find_clash_to_head", form='none'))
+    aBoxCon.goals["g"].add(actr.makechunk(typename="goal", state="find_clash_to_head", form='none', count='0', mainconnective='none'))
     aBoxCon.goals["imaginal"].add(actr.makechunk(typename="checklist", thing="checklist", form="none", element="none", mainconnective="none", relation="none", subformula1="none", subformula2="none", form2="none", form3="none", form4="none", form5="none", form6="none", form7="none", form8="none"))
 
-    for i in range(n):
-        aBoxCon.addtodm(actr.makechunk(typename="count_order", thing="count_order",number=str(i), successor=str(i+1)))
+    for i in range(10):
+        aBoxCon.decmem.add(actr.makechunk(typename="count_order", thing="count_order",number=str(i), successor=str(i+1)))
     return aBoxCon
 
-def trace(sim, buffer, action=''):
+def trace(mod, buffer, action=''):
+    #Takes a simulation, a buffer and possibly an action.
+    #Returns the latest event time, i.e. the simulation time.
+    sim = mod.simulation(realtime=False,gui=False)
     sim.step()
     while True:
         if sim.current_event.proc==buffer and sim.current_event.action.startswith(action):
             print(sim.current_event)
+            #mod.decmem.add(actr.makechunk(typename="test", thing="test")) Here some arbitrary chunks can be added to the dm.
         try:
             old_stdout = sys.stdout
             sys.stdout = open(os.devnull, "w")
@@ -62,8 +67,11 @@ def trace(sim, buffer, action=''):
     return sim.current_event.time
 
 def plot_list(it, abox):
+    #Takes the number of simulations and the Abox it's working with.
+    #Returns a list with simulation times.
     sim_time_list = []
     for i in range(it):
+        #Simulation is initialised.
         aBoxCon = initial(True)
         dm = aBoxCon.decmem
 
@@ -74,16 +82,17 @@ def plot_list(it, abox):
 
         par.AddAboxFromFile(abox,dm.add)
 
-        aBoxCon_sim = aBoxCon.simulation(realtime=False,gui=False)
-
+        #Simulation is executed and the simulation time is appended to a list.
         old_stdout = sys.stdout
         sys.stdout = open(os.devnull, "w")
-        outp = trace(aBoxCon_sim, 'PROCEDURAL')
+        outp = trace(aBoxCon, 'PROCEDURAL')
         sys.stdout = old_stdout
         sim_time_list.append(outp)
     return sim_time_list
 
 def simulation_plot(iterations, abox, desired_bin_size):
+    #Takes the number of simulations, the abox it's working with and the desired size of the bins in the plot.
+    #It returns a plot with the desired criteria using the results of the simulations.
     data = plot_list(iterations, abox)
     bins = compute_histogram_bins(data, desired_bin_size)
     min_val = bins[0]
@@ -96,6 +105,7 @@ def simulation_plot(iterations, abox, desired_bin_size):
     ax1.set(xticks=np.arange(min_val-desired_bin_size, max_val+2*desired_bin_size, desired_bin_size))
     ax1.set_title('Simulated time of inference')
     ax1.hist(data, bins=bins, color='forestgreen', linewidth=0.5, edgecolor="white")
+    ax1.yaxis.set_major_locator(MaxNLocator(integer=True))
 
     ax2.eventplot(data, orientation="horizontal", linewidth=1, color='forestgreen')
     ax2.get_yaxis().set_visible(False)
@@ -103,7 +113,8 @@ def simulation_plot(iterations, abox, desired_bin_size):
     ax2.set_xlabel('time (s)')
 
 def compute_histogram_bins(data, desired_bin_size):
-    print(data)
+    #Takes a list with the simulation times and the desired bin size.
+    #Returns the boundaries of the bins in a list.
     min_val = min(data)
     max_val = max(data)
     min_boundary = np.round(np.floor(min_val/desired_bin_size)*desired_bin_size,1)
@@ -113,7 +124,7 @@ def compute_histogram_bins(data, desired_bin_size):
     return bins
 
 
-simulation_plot(30, "abox.txt", 0.1)
+simulation_plot(10, "abox.txt", 0.1)
 
 plt.show()
 
@@ -127,8 +138,8 @@ md4.module4(aBoxCon)
 
 par.AddAboxFromFile("abox.txt",dm.add)
 print(dm)
-aBoxCon_sim = aBoxCon.simulation(realtime=False,gui=False)
-trace(aBoxCon_sim, 'PROCEDURAL',action='RULE RECREATED')
+#aBoxCon_sim = aBoxCon.simulation(realtime=False,gui=False)
+trace(aBoxCon, 'PROCEDURAL', action='RULE SELECTED')
 print(aBoxCon.goals["g"])
 print(aBoxCon.goals["imaginal"])
 print(aBoxCon.goals["imaginal_action"])

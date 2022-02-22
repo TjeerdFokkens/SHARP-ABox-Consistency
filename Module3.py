@@ -16,6 +16,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula2  =Z
         derived  yes
         relation =V
+        concept  =Y99
         =imaginal_action>
         isa      storelist
         thing    storelist
@@ -51,6 +52,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula1 none
         subformula2 none
         derived  none
+        concept  none
         +imaginal_action>
         isa      proposition
         thing    proposition
@@ -61,6 +63,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula1 none
         subformula2 none
         derived  none
+        concept  none
     """)
 
     aBoxCon.productionstring(name="Module 3, Unit 2a, Step 1: retrieve first conjunct", string="""
@@ -80,6 +83,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula1 =C
         subformula2 =D
         derived  ~yes
+        concept  =Y99
         =imaginal_action>
         isa      proposition
         thing    proposition
@@ -90,6 +94,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula1 =G
         subformula2 =H
         derived  =I
+        concept  =Y98
         ?retrieval>
         state    free
         ==>
@@ -115,6 +120,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula1 =G
         subformula2 =H
         derived  =I
+        concept  =Y98
         ~imaginal>
     """)
 
@@ -135,6 +141,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula1 =C
         subformula2 =D
         derived  =I
+        concept  =Y99
         =imaginal_action>
         isa      proposition
         thing    proposition
@@ -145,6 +152,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula1 =G
         subformula2 =H
         derived  ~yes
+        concept  =Y98
         ?retrieval>
         state    free
         ==>
@@ -170,6 +178,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula1 =C
         subformula2 =D
         derived  =I
+        concept  =Y99
         ~imaginal_action>
     """)
 
@@ -190,6 +199,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula1 =C
         subformula2 =D
         derived  =J
+        concept  =Y99
         =imaginal_action>
         isa      proposition
         thing    proposition
@@ -200,6 +210,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula1 =G
         subformula2 =H
         derived  =I
+        concept  =Y98
         ?imaginal>
         state    free
         ==>
@@ -219,6 +230,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula1 =C
         subformula2 =D
         derived  yes
+        concept  =Y99
         +imaginal_action>
         isa      proposition
         thing    proposition
@@ -229,6 +241,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula1 =G
         subformula2 =H
         derived  =I
+        concept  =Y98
         ~retrieval>
     """)
 
@@ -249,6 +262,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula2  =B
         relation   =A
         derived  =J
+        concept  =Y99
         =imaginal>
         isa      proposition
         thing    proposition
@@ -259,6 +273,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula1 =G
         subformula2 =H
         derived  =I
+        concept  =Y98
         ?imaginal_action>
         state    free
         ==>
@@ -278,6 +293,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula2  =B
         relation   =A
         derived  yes
+        concept  =Y99
         +imaginal>
         isa      proposition
         thing    proposition
@@ -288,6 +304,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula1 =G
         subformula2 =H
         derived  =I
+        concept  =Y98
         ~retrieval>
     """)
 
@@ -314,6 +331,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula2  =B
         relation   =A
         derived  yes
+        concept  =Y99
         =imaginal_action>
         isa      proposition
         thing    proposition
@@ -324,6 +342,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula2  =E
         relation   =F
         derived  yes
+        concept  =Y98
         ==>
         =g>
         isa      goal
@@ -340,6 +359,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         relation =A
         subformula1 =C
         subformula2 =B
+        concept  =Y99
         form2    none
         form3    none
         form4    none
@@ -370,6 +390,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula2  =B
         relation   =A
         derived  yes
+        concept  =Y99
         =imaginal_action>
         isa      proposition
         thing    proposition
@@ -384,6 +405,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula2  =E
         relation   =F
         derived  yes
+        concept  =Y98
         ==>
         =g>
         isa      goal
@@ -400,6 +422,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         relation =F
         subformula1 =D
         subformula2 =E
+        concept  =Y98
         form2    none
         form3    none
         form4    none
@@ -433,6 +456,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula2  =B
         relation   =A
         derived  yes
+        concept  =Y99
         =imaginal_action>
         isa      proposition
         thing    proposition
@@ -446,6 +470,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         subformula2  =E
         relation   =F
         derived  yes
+        concept  =Y98
         ==>
         =g>
         isa      goal

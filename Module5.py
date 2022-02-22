@@ -70,6 +70,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         relation =C
         subformula1 =D1
         subformula2 =D2
+        concept  =Y99
         relation1 =X1
         relation2 =X2
         relation3 =X3
@@ -125,6 +126,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         relation =C
         subformula1 =D1
         subformula2 =D2
+        concept  =Y99
         relation1 =X1
         relation2 =X2
         relation3 =X3
@@ -175,6 +177,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form    =X
         subformula1 =Y
         subformula2 =Z
+        concept  =Y99
         ?retrieval>
         state   free
         =imaginal>
@@ -200,6 +203,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         relation =C
         subformula1 =D1
         subformula2 =D2
+        concept  =Y98
         relation1 =X1
         relation2 =X2
         relation3 =X3
@@ -220,7 +224,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         isa     proposition
         thing   proposition
         element =Z
-        subformula1 =D1
+        concept =D1
         =imaginal>
         isa     universal_list
         thing   universal_list
@@ -244,6 +248,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         relation =C
         subformula1 =D1
         subformula2 =D2
+        concept  =Y98
         relation1 =X
         relation2 =X1
         relation3 =X2
@@ -254,7 +259,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         relation8 =X7
         relation9 =X8
     """)
-
+#Needs update:
     aBoxCon.productionstring(name="Module 5, Unit 2, Step 2: find universal and create list", string="""
         =g>
         isa     goal
@@ -274,6 +279,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         relation =A7
         subformula1 =A8
         subformula2 =A9
+        concept  =Y99
         ?retrieval>
         state   free
         =imaginal>
@@ -299,6 +305,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         relation =C
         subformula1 =D1
         subformula2 =D2
+        concept  =Y98
         relation1 =X1
         relation2 =X2
         relation3 =X3
@@ -327,6 +334,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         relation =A7
         subformula1 =A8
         subformula2 =A9
+        concept  =Y99
         +imaginal_action>
         isa     proposition
         thing   proposition
@@ -338,6 +346,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         relation =C
         subformula1 =D1
         subformula2 =D2
+        concept  =Y98
         relation1 =X
         relation2 =X1
         relation3 =X2
