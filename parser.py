@@ -51,6 +51,8 @@ class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to 
     def __init__(self,addtodm):
         self.derived="yes"
         self.witness=1
+        self.universals={}
+        self.constants={}
         self.addtodm=addtodm
 
     def con_ass(self,tree):
@@ -68,33 +70,36 @@ class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to 
         self.derived="no"
 
     def conj(self,tree):
-        formstr = self.el + ":" + ToString().transform(tree)
+        conceptstr = ToString().transform(tree)
+        formstr = self.el + ":" + conceptstr
         subformL = self.el + ":" + ToString().transform(tree.children[0])
         subformR = self.el + ":" + ToString().transform(tree.children[1])
         self.addtodm(actr.makechunk(typename="proposition", thing="proposition",
-            form=formstr, element=self.el, mainconnective="conjunction",
+            form=formstr, concept=conceptstr, element=self.el, mainconnective="conjunction",
             subformula1=subformL, subformula2=subformR,
             derived=self.derived))
         self.derived="no"
 
     def dis(self,tree):
-        formstr = self.el + ":" + ToString().transform(tree)
+        conceptstr = ToString().transform(tree)
+        formstr = self.el + ":" + conceptstr
         subformL = self.el + ":" + ToString().transform(tree.children[0])
         subformR = self.el + ":" + ToString().transform(tree.children[1])
         self.addtodm(actr.makechunk(typename="proposition", thing="proposition",
-            form=formstr, element=self.el, mainconnective="disjunction",
+            form=formstr, concept=conceptstr, element=self.el, mainconnective="disjunction",
             subformula1=subformL, subformula2=subformR,
             derived=self.derived))
         self.derived="no"
 
     def exists(self,tree):
+        conceptstr = ToString().transform(tree)
+        formstr = self.el + ":" + conceptstr
         witness = "X" + str(self.witness)
         self.witness=self.witness+1
-        formstr = self.el + ":" + ToString().transform(tree)
         subform = witness + ":" + ToString().transform(tree.children[1])
         role = ToString().transform(tree.children[0])
         self.addtodm(actr.makechunk(typename="proposition", thing="proposition",
-            form=formstr, element=self.el, mainconnective="existential",
+            form=formstr, concept=conceptstr, element=self.el, mainconnective="existential",
             subformula1=subform, subformula2="("+self.el +","+witness+"):"+role,
             derived=self.derived))
         self.derived="no"
@@ -105,20 +110,21 @@ class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to 
         self.el = witness
 
     def universal(self,tree): #This function needs to be updated.
-        formstr = self.el + ":" + ToString().transform(tree)
+        conceptstr = ToString().transform(tree)        
+        formstr = self.el + ":" + conceptstr
         subform = self.el + ":" + ToString().transform(tree.children[1])
         role = ToString().transform(tree.children[0])
         self.addtodm(actr.makechunk(typename="proposition", thing="proposition",
-            form=formstr, element=self.el, mainconnective="universal",
-            subformula1=subform, subformula2="("+self.el +","+witness+"):"+role,
-            derived=self.derived))
+            form=formstr, concept=conceptstr, element=self.el, mainconnective="universal",
+            subformula1=subform, derived=self.derived))
         self.derived="no"
 
     def neg(self,tree):
-        formstr = self.el + ":" + ToString().transform(tree)
+        conceptstr = ToString().transform(tree)        
+        formstr = self.el + ":" + conceptstr
         subform = ToString().transform(tree.children[0])
         self.addtodm(actr.makechunk(typename="proposition", thing="proposition",
-            form=formstr, element=self.el, mainconnective="negation",
+            form=formstr, concept=conceptstr, element=self.el, mainconnective="negation",
             subformula1=subform, derived=self.derived))
         self.derived="no"
 
@@ -148,7 +154,7 @@ def AddAboxFromFile(filename,addtodm):
 if __name__ == "__main__":
     import pyactr as actr
     aBoxCon = actr.ACTRModel()
-    actr.chunktype("proposition", "thing, form, element, mainconnective, relation, subformula1, subformula2, derived")
+    actr.chunktype("proposition", "thing, concept, form, element, mainconnective, relation, subformula1, subformula2, derived")
     dm = aBoxCon.decmem
     AddAboxFromFile("abox.txt",dm.add)
     print(dm)
