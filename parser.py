@@ -46,14 +46,30 @@ class ToString(Transformer): # Transforms a tree recursively to a string
     neg = lambda self,con : "-" + con
     universal = lambda self,role,con: "/A" + role + "." + con
 
+class SetOfElements(Visitor):
+    def __init__(self,elements):
+        self.elements=elements
+    def element(self,tree):
+        self.elements.add(str(tree.children[0])) 
+ 
+class CountNodes(Transformer):
+    def __init__(self,name):
+        self.name = name
+    def __default__(self,data,children,meta):
+        if data==self.name:
+            return(sum(children)+1)
+        else:
+            return(sum(children))
+    def __default_token__(self,data):
+        return 0
+
 class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to the DM.
 
-    def __init__(self,addtodm):
+    def __init__(self,addtodm,elements):
         self.derived="yes"
         self.witness=1
-        self.universals={}
-        self.constants={}
         self.addtodm=addtodm
+        self.elements=elements
 
     def con_ass(self,tree):
         self.el=tree.children[0].children[0]
@@ -143,12 +159,18 @@ def AddAboxFromFile(filename,addtodm):
     with open(filename, 'r') as file:
         data = file.read().replace('\n', ' ')
     abox = parser(data)
+    witnesses = max(CountNodes("role_ass").transform(abox),1)* CountNodes("exists").transform(abox) # check that this is enough!
+    elements=set()
+    SetOfElements(elements).visit(abox)
+    for i in range(1,witnesses+1):
+        elements.add("x"+str(i))
+    print(elements)
     if abox.data in ["con_ass","role_ass"]:
         aboxlst = [abox]
     else:
         aboxlst=abox.children
     for form in aboxlst:
-        addform = AddFormToAbox(addtodm)
+        addform = AddFormToAbox(addtodm,elements)
         addform.visit_topdown(form) # Need to visit the tree top down to get the element first.
 
 if __name__ == "__main__":
@@ -157,4 +179,4 @@ if __name__ == "__main__":
     actr.chunktype("proposition", "thing, concept, form, element, mainconnective, relation, subformula1, subformula2, derived")
     dm = aBoxCon.decmem
     AddAboxFromFile("abox.txt",dm.add)
-    print(dm)
+    #print(dm)
