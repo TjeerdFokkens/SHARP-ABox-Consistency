@@ -16,6 +16,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         subformula2  =Z
         derived  yes
         relation =V
+        concept  =Y99
         =imaginal_action>
         isa      storelist
         thing    storelist
@@ -51,6 +52,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         subformula1  none
         subformula2  none
         derived  none
+        concept  none
         +imaginal_action>
         isa      proposition
         thing    proposition
@@ -61,6 +63,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         subformula1  none
         subformula2  none
         derived  none
+        concept  none
     """)
 
     aBoxCon.productionstring(name="Module 4, Unit 2a, Step 1: retrieve existential relation", string="""
@@ -80,6 +83,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         subformula1  =Y4
         subformula2  =Y5
         derived  =Y6
+        concept  =Y99
         =imaginal_action>
         isa      proposition
         thing    proposition
@@ -90,6 +94,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         subformula1  =Z4
         subformula2  =Z5
         derived  ~yes
+        concept  =Y98
         ?retrieval>
         state    free
         ==>
@@ -114,6 +119,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         subformula1  =Y4
         subformula2  =Y5
         derived  =Y6
+        concept  =Y99
         +imaginal_action>
         isa      proposition
         thing    proposition
@@ -124,6 +130,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         subformula1  =Z4
         subformula2  =Z5
         derived  none
+        concept  =Y98
     """)
 
     aBoxCon.productionstring(name="Module 4, Unit 2b, Step 1: retrieve existential concept", string="""
@@ -143,6 +150,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         subformula1  =Y4
         subformula2  =Y5
         derived  ~yes
+        concept  =Y99
         =imaginal_action>
         isa      proposition
         thing    proposition
@@ -153,6 +161,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         subformula1  =Z4
         subformula2  =Z5
         derived  =Z6
+        concept  =Y98
         ?retrieval>
         state    free
         ==>
@@ -177,6 +186,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         subformula1  =Y4
         subformula2  =Y5
         derived  none
+        concept  =Y99
         +imaginal_action>
         isa      proposition
         thing    proposition
@@ -187,6 +197,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         subformula1  =Z4
         subformula2  =Z5
         derived  =Z6
+        concept  =Y98
     """)
 
     aBoxCon.productionstring(name="Module 4, Unit 2a, Step 2: put existential relation in imaginal_action buffer", string="""
@@ -205,6 +216,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         subformula1  =Z4
         subformula2  =Z5
         derived  =Z6
+        concept  =Y99
         =imaginal>
         isa      proposition
         thing    proposition
@@ -215,6 +227,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         subformula1  =Y4
         subformula2  =Y5
         derived  =Y6
+        concept  =Y98
         =imaginal_action>
         isa      proposition
         thing    proposition
@@ -225,6 +238,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         subformula1  =X4
         subformula2  =X5
         derived  ~yes
+        concept  =Y97
         ==>
         =g>
         isa      goal
@@ -243,6 +257,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         subformula1  =Y4
         subformula2  =Y5
         derived  =Y6
+        concept  =Y98
         +imaginal_action>
         isa      proposition
         thing    proposition
@@ -253,6 +268,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         subformula1  =Z4
         subformula2  =Z5
         derived  yes
+        concept  =Y97
     """)
 
     aBoxCon.productionstring(name="Module 4, Unit 2b, Step 2: put existential concept in imaginal buffer", string="""
@@ -272,6 +288,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         subformula1  =Z4
         subformula2  =Z5
         derived  =Z6
+        concept  =Y99
         ?retrieval>
         state    free
         =imaginal>
@@ -284,6 +301,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         subformula1  =X4
         subformula2  =X5
         derived  ~yes
+        concept  =Y98
         =imaginal_action>
         isa      proposition
         thing    proposition
@@ -294,6 +312,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         subformula1  =Y4
         subformula2  =Y5
         derived  =Y6
+        concept  =Y97
         ==>
         =g>
         isa      goal
@@ -312,6 +331,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         subformula1  =Z4
         subformula2  =Z5
         derived  yes
+        concept  =Y99
         +imaginal_action>
         isa      proposition
         thing    proposition
@@ -322,6 +342,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         subformula1  =Y4
         subformula2  =Y5
         derived  =Y6
+        concept  =Y97
     """)
 
     aBoxCon.productionstring(name="Module 4, Unit 3: move on to derive new formula", string="""
@@ -344,6 +365,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         subformula2  =E
         relation   =F
         derived  yes
+        concept  =Y99
         =imaginal_action>
         isa      proposition
         thing    proposition
@@ -354,6 +376,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         subformula2  =V5
         relation   =V6
         derived  yes
+        concept  =Y98
         ==>
         =g>
         isa      goal

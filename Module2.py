@@ -189,6 +189,7 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         subformula1  =X4
         subformula2  =X5
         derived  yes
+        concept  =Y
         =imaginal>
         isa      storelist
         thing    storelist
@@ -226,6 +227,7 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         subformula1  =X4
         subformula2  =X5
         derived  yes
+        concept  =Y
         +imaginal_action>
         isa      storelist
         thing    storelist
@@ -252,7 +254,7 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         isa      goal
         state    update_storelist
         form     =P
-        count   =Q
+        count    =Q
         mainconnective none
         ?retrieval>
         state    error
