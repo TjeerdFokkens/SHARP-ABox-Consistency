@@ -128,19 +128,19 @@ class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to 
                 form="(" + e1 +","+e2+"):"+role, relation=role,
                 mainconnective="relation", subformula1=e1, subformula2=e2,
                 derived="no"))
-        def addex(el):
+        def addex(el,w):
             self.addtodm(actr.makechunk(typename="proposition", thing="proposition",
                     form=el + ":" + constr, concept=constr, element=el, mainconnective="existential",
-                    subformula1=el + ":" + subcon, derived=self.derived))
+                    subformula1=w + ":" + subcon, subformula2="("+el+","+w+"):"+role, derived=self.derived))
         if self.insideuniversal:
             for el in self.elements:
-                addex(el)
                 for w in self.elements:
+                    addex(el,w)
                     addrole(el,w)
         else:
             witness = "X" + str(self.witness)
             self.witness=self.witness+1
-            addex(self.el)
+            addex(self.el,witness)
             addrole(self.el,witness)
             self.el = witness
         self.derived="no"
@@ -189,13 +189,6 @@ class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to 
             addatom(self.el)
         self.derived="no"
 
-        formstr = self.el + ":" + ToString().transform(tree)
-        subform = ToString().transform(tree)
-        self.addtodm(actr.makechunk(typename="proposition", thing="proposition",
-            form=formstr, element=self.el, mainconnective="concept",
-            subformula1=subform, derived=self.derived))
-        self.derived="no"
-
 form_parser = Lark(form_grammar, parser='lalr')
 parser = form_parser.parse
 
@@ -208,7 +201,6 @@ def AddAboxFromFile(filename,addtodm):
     SetOfElements(elements).visit(abox)
     for i in range(1,witnesses+1):
         elements.add("x"+str(i))
-    print(elements)
     if abox.data in ["con_ass","role_ass"]:
         aboxlst = [abox]
     else:

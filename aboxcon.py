@@ -3,6 +3,7 @@ import Module1 as md1
 import Module2 as md2
 import Module3 as md3
 import Module4 as md4
+import Module5 as md5
 import simpy
 import re
 import parser
@@ -47,6 +48,7 @@ md1.module1(aBoxCon)
 md2.module2(aBoxCon)
 md3.module3(aBoxCon)
 md4.module4(aBoxCon)
+#md5.module5(aBoxCon)
 
 parser.AddAboxFromFile("abox.txt",dm.add)
 

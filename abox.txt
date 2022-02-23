@@ -1,1 +1,3 @@
-a:/Er.(-A&B), b:/As./Es.(-C&D)
+a:/Er.(-A&B), 
+b:/Ar./Er.(-C&D),
+a:/Ar./Er.(A&B)
