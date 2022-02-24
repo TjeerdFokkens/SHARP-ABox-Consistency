@@ -66,12 +66,13 @@ class CountNodes(Transformer):
 
 class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to the DM.
 
-    def __init__(self,addtodm,elements):
+    def __init__(self,addtodm,elements, witnesses):
         self.derived="yes"
-        self.insideuniversal=False
-        self.witness=1
+     #   self.insideuniversal=False
+        #self.witness=1
         self.addtodm=addtodm
         self.elements=elements
+        self.witnesses=witnesses
 
     def con_ass(self,tree):
         self.el=tree.children[0].children[0]
@@ -82,7 +83,7 @@ class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to 
         role = ToString().transform(tree.children[2])
         formstr = ToString().transform(tree)
         self.addtodm(actr.makechunk(typename="proposition", thing="proposition",
-            form=formstr, element=elL, mainconnective="relation",
+            form=formstr, concept="none", element=elL, mainconnective="relation",
             subformula1=elL, subformula2=elR, relation=role,
             derived=self.derived))
         self.derived="no"
@@ -96,28 +97,28 @@ class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to 
                     form=el + ":" + constr, concept=constr, element=el, mainconnective="conjunction",
                     subformula1=el + ":" + subconL, subformula2=el + ":" + subconR,
                     derived=self.derived))
-        if self.insideuniversal:
-            for el in self.elements:
+        if self.derived=="no":
+            for el in self.elements.union(self.witnesses):
                 addconj(el)
         else:
             addconj(self.el)
         self.derived="no"
 
-    def dis(self,tree):
-        constr = ToString().transform(tree)
-        subconL = ToString().transform(tree.children[0])
-        subconR = ToString().transform(tree.children[1])
-        def adddisj(el):
-            self.addtodm(actr.makechunk(typename="proposition", thing="proposition",
-                    form=el + ":" + constr, concept=constr, element=el, mainconnective="disjunction",
-                    subformula1=el + ":" + subconL, subformula2=el + ":" + subconR,
-                    derived=self.derived))
-        if self.insideuniversal:
-            for el in self.elements:
-                adddisj(el)
-        else:
-            adddisj(self.el)
-        self.derived="no"
+    # def dis(self,tree):
+    #     constr = ToString().transform(tree)
+    #     subconL = ToString().transform(tree.children[0])
+    #     subconR = ToString().transform(tree.children[1])
+    #     def adddisj(el):
+    #         self.addtodm(actr.makechunk(typename="proposition", thing="proposition",
+    #                 form=el + ":" + constr, concept=constr, element=el, mainconnective="disjunction",
+    #                 subformula1=el + ":" + subconL, subformula2=el + ":" + subconR,
+    #                 derived=self.derived))
+    #     if self.insideuniversal:
+    #         for el in self.elements:
+    #             adddisj(el)
+    #     else:
+    #         adddisj(self.el)
+    #     self.derived="no"
 
     def exists(self,tree):
         constr = ToString().transform(tree)
@@ -125,26 +126,23 @@ class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to 
         subcon = ToString().transform(tree.children[1])
         def addrole(e1,e2):
             self.addtodm(actr.makechunk(typename="proposition", thing="proposition",
-                form="(" + e1 +","+e2+"):"+role, relation=role,
+                form="(" + e1 +","+e2+"):"+role, concept="none", relation=role,
                 mainconnective="relation", subformula1=e1, subformula2=e2,
                 derived="no"))
         def addex(el,w):
             self.addtodm(actr.makechunk(typename="proposition", thing="proposition",
                     form=el + ":" + constr, concept=constr, element=el, mainconnective="existential",
                     subformula1=w + ":" + subcon, subformula2="("+el+","+w+"):"+role, derived=self.derived))
-        if self.insideuniversal:
-            for el in self.elements:
-                for w in self.elements:
+        if self.derived=="no":
+            for el in self.elements.union(self.witnesses):
+                for w in self.witnesses:
                     addex(el,w)
                     addrole(el,w)
         else:
-            witness = "X" + str(self.witness)
-            self.witness=self.witness+1
-            addex(self.el,witness)
-            addrole(self.el,witness)
-            self.el = witness
+            for w in self.witnesses:
+                addex(self.el,w)
+                addrole(self.el,w)
         self.derived="no"
-        
 
     def universal(self,tree):
         constr = ToString().transform(tree)
@@ -154,13 +152,12 @@ class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to 
             self.addtodm(actr.makechunk(typename="proposition", thing="proposition",
                     form=el + ":" + constr, concept=constr, element=el, mainconnective="universal",
                     subformula1=el + ":" + subcon, derived=self.derived))
-        if self.insideuniversal:
-            for el in self.elements:
+        if self.derived=="no":
+            for el in self.elements.union(self.witnesses):
                 addun(el)
         else:
             addun(self.el)
         self.derived="no"
-        self.insideuniversal = True
 
     def neg(self,tree):
         constr = ToString().transform(tree)
@@ -169,7 +166,7 @@ class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to 
             self.addtodm(actr.makechunk(typename="proposition", thing="proposition",
                     form=el + ":" + constr, concept=constr, element=el, mainconnective="negation",
                     subformula1=subcon, derived=self.derived))
-        if self.insideuniversal:
+        if self.derived=="no":
             for el in self.elements:
                 addneg(el)
         else:
@@ -182,7 +179,7 @@ class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to 
             self.addtodm(actr.makechunk(typename="proposition", thing="proposition",
                     form=el + ":" + constr, concept=constr, element=el, mainconnective="concept",
                     subformula1=constr, derived=self.derived))
-        if self.insideuniversal:
+        if self.derived=="no":
             for el in self.elements:
                 addatom(el)
         else:
@@ -196,17 +193,19 @@ def AddAboxFromFile(filename,addtodm):
     with open(filename, 'r') as file:
         data = file.read().replace('\n', ' ')
     abox = parser(data)
-    witnesses = max(CountNodes("role_ass").transform(abox),1)* CountNodes("exists").transform(abox) # check that this is enough!
+    witnesses=set()
+    for i in range(1,1+max(CountNodes("role_ass").transform(abox),1)* CountNodes("exists").transform(abox)):
+        witnesses.add("x"+str(i))
     elements=set()
     SetOfElements(elements).visit(abox)
-    for i in range(1,witnesses+1):
-        elements.add("x"+str(i))
+    print(elements)
+    print(witnesses)
     if abox.data in ["con_ass","role_ass"]:
         aboxlst = [abox]
     else:
         aboxlst=abox.children
     for form in aboxlst:
-        addform = AddFormToAbox(addtodm,elements)
+        addform = AddFormToAbox(addtodm,elements,witnesses)
         addform.visit_topdown(form) # Need to visit the tree top down to get the element first.
 
 if __name__ == "__main__":

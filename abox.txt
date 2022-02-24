@@ -1,3 +1,4 @@
-a:/Er.(-A&B), 
-b:/Ar./Er.(-C&D),
-a:/Ar./Er.(A&B)
+a:(-A&/Er.B),
+(a,b):r,
+(a,a):r
+
