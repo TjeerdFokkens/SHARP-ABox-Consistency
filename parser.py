@@ -167,7 +167,7 @@ class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to 
                     form=el + ":" + constr, concept=constr, element=el, mainconnective="negation",
                     subformula1=subcon, derived=self.derived))
         if self.derived=="no":
-            for el in self.elements:
+            for el in self.elements.union(self.witnesses):
                 addneg(el)
         else:
             addneg(self.el)
@@ -180,7 +180,7 @@ class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to 
                     form=el + ":" + constr, concept=constr, element=el, mainconnective="concept",
                     subformula1=constr, derived=self.derived))
         if self.derived=="no":
-            for el in self.elements:
+            for el in self.elements.union(self.witnesses):
                 addatom(el)
         else:
             addatom(self.el)
