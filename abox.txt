@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 a:(-A&/Er.B),
 (a,b):r,
 (a,a):r
 
+=======
+b:A, b:(A&(B&-C)), c:(A&/Er.C)
+>>>>>>> Stashed changes
