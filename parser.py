@@ -51,8 +51,8 @@ class SetOfElements(Visitor):
     def __init__(self,elements):
         self.elements=elements
     def element(self,tree):
-        self.elements.add(str(tree.children[0])) 
- 
+        self.elements.add(str(tree.children[0]))
+
 class CountNodes(Transformer):
     def __init__(self,name):
         self.name = name
@@ -132,15 +132,16 @@ class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to 
         def addex(el,w):
             self.addtodm(actr.makechunk(typename="proposition", thing="proposition",
                     form=el + ":" + constr, concept=constr, element=el, mainconnective="existential",
-                    subformula1=w + ":" + subcon, subformula2="("+el+","+w+"):"+role, derived=self.derived))
+                    subformula1=w + ":" + subcon, subformula2="("+el+","+w+"):"+role,
+                    derived=self.derived, relation=role))
         if self.derived=="no":
             for el in self.elements.union(self.witnesses):
                 for w in self.witnesses:
-                    addex(el,w)
+                    addex(el,'foo')
                     addrole(el,w)
         else:
             for w in self.witnesses:
-                addex(self.el,w)
+                addex(self.el,'foo')
                 addrole(self.el,w)
         self.derived="no"
 
@@ -151,7 +152,7 @@ class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to 
         def addun(el):
             self.addtodm(actr.makechunk(typename="proposition", thing="proposition",
                     form=el + ":" + constr, concept=constr, element=el, mainconnective="universal",
-                    subformula1=el + ":" + subcon, derived=self.derived))
+                    subformula1=el + ":" + subcon, derived=self.derived, relation=role))
         if self.derived=="no":
             for el in self.elements.union(self.witnesses):
                 addun(el)
@@ -213,8 +214,6 @@ if __name__ == "__main__":
     aBoxCon = actr.ACTRModel()
     actr.chunktype("proposition", "thing, concept, form, element, mainconnective, relation, subformula1, subformula2, derived")
     dm = aBoxCon.decmem
-    AddAboxFromFile("abox.txt",dm.add)
+    AddAboxFromFile("abox2.txt",dm.add)
     for a in dm:
         print (str(a[3][1]) + " :: " + str(a))
-    
-
