@@ -1,1 +1,1 @@
-a:(A&/Es.F), a:/Es.(-F%-B), b:B, (a,b):S, (a,c):R, c:(C&/Es.D)
+a:(A&/Es.F),  b:B, (a,b):s, (a,c):r, c:(C&/Es.D)

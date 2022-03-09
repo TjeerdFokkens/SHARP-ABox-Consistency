@@ -13,6 +13,7 @@ from matplotlib import colors
 from matplotlib.ticker import PercentFormatter
 import re
 from matplotlib.ticker import MaxNLocator
+from collections import Counter
 
 def initial(learning=False):
     aBoxCon = actr.ACTRModel(
@@ -94,6 +95,7 @@ def simulation_plot(iterations, abox, desired_bin_size):
     #Takes the number of simulations, the abox it's working with and the desired size of the bins in the plot.
     #It returns a plot with the desired criteria using the results of the simulations.
     data = plot_list(iterations, abox)
+    print(data)
     bins = compute_histogram_bins(data, desired_bin_size)
     min_val = bins[0]
     max_val = bins[-1]
@@ -107,10 +109,28 @@ def simulation_plot(iterations, abox, desired_bin_size):
     ax1.hist(data, bins=bins, color='forestgreen', linewidth=0.5, edgecolor="white")
     ax1.yaxis.set_major_locator(MaxNLocator(integer=True))
 
-    ax2.eventplot(data, orientation="horizontal", linewidth=1, color='forestgreen')
+    timeintervals, linelengths, offsets = compute_line_lengths(data)
+
+    ax2.eventplot(timeintervals, orientation="horizontal", linewidth=1, color='forestgreen', linelengths = linelengths, lineoffsets = offsets)
     ax2.get_yaxis().set_visible(False)
     ax2.grid(linestyle=':', axis='x')
     ax2.set_xlabel('time (s)')
+
+def compute_line_lengths(data):
+    #The different data points prepared in an array for the plot.
+    total = len(data)
+    di = dict((i, data.count(i)) for i in data)
+    di2 = list(di.keys())
+    timeintervals = np.array([[el] for el in di])
+    #The corresponding length of the lines.
+    l = []
+    for i in di2:
+        num = di[i]
+        l.append(num)
+    linelengths = [element/total*len(timeintervals) for element in l]
+    #The offsets such that the eventlines are aligned.
+    offsets = [ 0 for el in linelengths]
+    return timeintervals, linelengths, offsets
 
 def compute_histogram_bins(data, desired_bin_size):
     #Takes a list with the simulation times and the desired bin size.
@@ -124,7 +144,7 @@ def compute_histogram_bins(data, desired_bin_size):
     return bins
 
 
-simulation_plot(10, "abox.txt", 0.1)
+simulation_plot(8, "abox2.txt", 0.2)
 
 plt.show()
 
