@@ -143,7 +143,7 @@ def compute_histogram_bins(data, desired_bin_size):
     bins = np.linspace(min_boundary, max_boundary, n_bins+1)
     return bins
 
-
+'''
 simulation_plot(8, "abox2.txt", 0.2)
 
 plt.show()
@@ -156,7 +156,7 @@ md2.module2(aBoxCon)
 md3.module3(aBoxCon)
 md4.module4(aBoxCon)
 
-par.AddAboxFromFile("abox.txt",dm.add)
+par.AddAboxFromFile("abox2.txt",dm.add)
 print(dm)
 #aBoxCon_sim = aBoxCon.simulation(realtime=False,gui=False)
 trace(aBoxCon, 'PROCEDURAL', action='RULE SELECTED')
@@ -165,4 +165,3 @@ print(aBoxCon.goals["imaginal"])
 print(aBoxCon.goals["imaginal_action"])
 print(aBoxCon.retrieval)
 print(dm)
-'''
