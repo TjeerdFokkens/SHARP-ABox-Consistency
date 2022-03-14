@@ -39,7 +39,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         ==>
         =g>
         isa      goal
-        state    label_formulas
+        state    get_role_list
         form     =P
         count    =Q
         mainconnective none
@@ -82,7 +82,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
     aBoxCon.productionstring(name="Module 4, Unit 2a: no role list found, make one", string="""
         =g>
         isa      goal
-        state    inference_step
+        state    get_role_list
         form     =P
         count    =Q
         mainconnective none
@@ -121,7 +121,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         ==>
         =g>
         isa      goal
-        state    label_formulas
+        state    label_role
         form     =P
         count    =Q
         mainconnective none
@@ -161,7 +161,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
     aBoxCon.productionstring(name="Module 4, Unit 2b: role list found, select role not in list", string="""
         =g>
         isa      goal
-        state    inference_step
+        state    get_role_list
         form     =P
         count    =Q
         mainconnective none
@@ -211,7 +211,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         ==>
         =g>
         isa      goal
-        state    label_formulas
+        state    label_role
         form     =P
         count    =Q
         mainconnective none
@@ -256,4 +256,84 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         form     ~=B8
         form     ~=B9
         form     ~=B10
+    """)
+
+    aBoxCon.productionstring(name="Module 4, Unit 2b: role list found, select role not in list", string="""
+        =g>
+        isa      goal
+        state    label_role
+        form     =P
+        count    =Q
+        mainconnective none
+        role     =R
+        +imaginal>
+        isa      proposition
+        thing    proposition
+        form     =X
+        element  =U
+        mainconnective existential
+        subformula1  =Y
+        subformula2  =Z
+        derived  yes
+        relation =V
+        concept  =Y99
+        +imaginal_action>
+        isa      role_list
+        thing    role_list
+        role1    =B1
+        role2    =B2
+        role3    =B3
+        role4    =B4
+        role5    =B5
+        role6    =B6
+        role7    =B7
+        role8    =B8
+        role9    =B9
+        role10   =B10
+        +retrieval>
+        isa      proposition
+        thing    proposition
+        mainconnective  relation
+        subformula1  =U
+        subformula2  =W1
+        form     =W2
+        concept  none
+        relation =W3
+        derived  no
+        ==>
+        =g>
+        isa      goal
+        state    label_concept
+        form     =P
+        count    =Q
+        mainconnective none
+        role     =W2
+        +imaginal>
+        isa      proposition
+        thing    proposition
+        mainconnective  relation
+        subformula1  =U
+        subformula2  =W1
+        form     =W2
+        concept  none
+        relation =W3
+        derived  yes
+        +imaginal_action>
+        isa      role_list
+        thing    role_list
+        role1    =W2
+        role2    =B1
+        role3    =B2
+        role4    =B3
+        role5    =B4
+        role6    =B5
+        role7    =B6
+        role8    =B7
+        role9    =B8
+        role10   =B9
+        +retrieval>
+        isa      proposition
+        thing    proposition
+        element  =W1
+        concept  =Y99
     """)

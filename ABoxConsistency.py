@@ -95,10 +95,13 @@ def simulation_plot(iterations, abox, desired_bin_size):
     #Takes the number of simulations, the abox it's working with and the desired size of the bins in the plot.
     #It returns a plot with the desired criteria using the results of the simulations.
     data = plot_list(iterations, abox)
-    print(data)
+    #print(data)
     bins = compute_histogram_bins(data, desired_bin_size)
     min_val = bins[0]
     max_val = bins[-1]
+    length = len(data)
+    norm_fac = 1/(length)
+    weights = np.ones(shape = length)*norm_fac
 
     fig, (ax1, ax2) = plt.subplots(2, 1, gridspec_kw={'height_ratios': [3, 1]}, tight_layout=True, sharex=True)
 
@@ -106,8 +109,9 @@ def simulation_plot(iterations, abox, desired_bin_size):
     ax1.grid(linestyle=':', axis='y')
     ax1.set(xticks=np.arange(min_val-desired_bin_size, max_val+2*desired_bin_size, desired_bin_size))
     ax1.set_title('Simulated time of inference')
-    ax1.hist(data, bins=bins, color='forestgreen', linewidth=0.5, edgecolor="white")
-    ax1.yaxis.set_major_locator(MaxNLocator(integer=True))
+    ax1.hist(data, bins=bins, color='forestgreen', weights=weights, linewidth=0.5, edgecolor="white")
+    ax1.yaxis.set_major_locator(MaxNLocator(steps=[1, 2, 4, 5, 10]))
+    ax1.set_ylabel('relative frequency')
 
     timeintervals, linelengths, offsets = compute_line_lengths(data)
 
@@ -143,8 +147,8 @@ def compute_histogram_bins(data, desired_bin_size):
     bins = np.linspace(min_boundary, max_boundary, n_bins+1)
     return bins
 
-'''
-simulation_plot(8, "abox2.txt", 0.2)
+
+simulation_plot(10, "abox2.txt", 0.2)
 
 plt.show()
 
@@ -165,3 +169,4 @@ print(aBoxCon.goals["imaginal"])
 print(aBoxCon.goals["imaginal_action"])
 print(aBoxCon.retrieval)
 print(dm)
+'''

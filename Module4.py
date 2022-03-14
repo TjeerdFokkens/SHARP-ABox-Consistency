@@ -4,7 +4,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         isa      goal
         state    inference_step
         form     =P
-        count   =Q
+        count    =Q
         mainconnective none
         =imaginal>
         isa      proposition

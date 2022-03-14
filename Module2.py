@@ -59,7 +59,7 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         isa      goal
         state    derive_next_formulas
         form     =P
-        count   =Q
+        count    =Q
         mainconnective none
         ?retrieval>
         state    error
@@ -70,7 +70,7 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         isa      goal
         state    find_formula_not_in_list
         form     =P
-        count   =Q
+        count    =Q
         mainconnective none
         +imaginal>
         isa      storelist
