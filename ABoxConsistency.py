@@ -7,7 +7,7 @@ import numpy as np
 import Module1 as md1
 import Module2 as md2
 import Module3 as md3
-import Module4 as md4
+import Module4_alt as md4
 import parser as par
 from matplotlib import colors
 from matplotlib.ticker import PercentFormatter
@@ -50,12 +50,20 @@ def initial(learning=False):
 def trace(mod, buffer, action=''):
     #Takes a simulation, a buffer and possibly an action.
     #Returns the latest event time, i.e. the simulation time.
+    prove_tracks = []
     sim = mod.simulation(realtime=False,gui=False)
     sim.step()
     while True:
         if sim.current_event.proc==buffer and sim.current_event.action.startswith(action):
             print(sim.current_event)
             #mod.decmem.add(actr.makechunk(typename="test", thing="test")) Here some arbitrary chunks can be added to the dm.
+            if sim.current_event.action.startswith('RULE SELECTED: Module 2, Unit 4a'):
+                print('')
+                print('Active formula:')
+                a = str(mod.retrieval).split('form= ',1)[1].split(',',1)[0]
+                print(a)
+                print('')
+                prove_tracks.append(a)
         try:
             old_stdout = sys.stdout
             sys.stdout = open(os.devnull, "w")
@@ -63,9 +71,11 @@ def trace(mod, buffer, action=''):
             sys.stdout = old_stdout
         except:
             sys.stdout = old_stdout
-            print('End of simulation,', sim.current_event.time)
+            time = sim.current_event.time
+            print('End of simulation,', time)
             break
-    return sim.current_event.time
+    prove_tracks.append(time)
+    return prove_tracks
 
 def plot_list(it, abox):
     #Takes the number of simulations and the Abox it's working with.
@@ -86,7 +96,7 @@ def plot_list(it, abox):
         #Simulation is executed and the simulation time is appended to a list.
         old_stdout = sys.stdout
         sys.stdout = open(os.devnull, "w")
-        outp = trace(aBoxCon, 'PROCEDURAL')
+        outp = trace(aBoxCon, 'PROCEDURAL')[-1]
         sys.stdout = old_stdout
         sim_time_list.append(outp)
     return sim_time_list
@@ -158,15 +168,12 @@ dm = aBoxCon.decmem
 md1.module1(aBoxCon)
 md2.module2(aBoxCon)
 md3.module3(aBoxCon)
-md4.module4(aBoxCon)
+#md4.module4(aBoxCon)
 
 par.AddAboxFromFile("abox2.txt",dm.add)
 print(dm)
 #aBoxCon_sim = aBoxCon.simulation(realtime=False,gui=False)
-trace(aBoxCon, 'PROCEDURAL', action='RULE SELECTED')
-print(aBoxCon.goals["g"])
-print(aBoxCon.goals["imaginal"])
-print(aBoxCon.goals["imaginal_action"])
-print(aBoxCon.retrieval)
+vec = trace(aBoxCon, 'PROCEDURAL', action='RULE SELECTED')
+print(vec)
 print(dm)
 '''
