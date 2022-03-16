@@ -6,6 +6,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form    =P
         count   =Q
         mainconnective none
+        role    =L
         ?retrieval>
         state   free
         ==>
@@ -15,6 +16,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form    =P
         count   =Q
         mainconnective none
+        role    =L
         +retrieval>
         isa     count_order
         thing   count_order
@@ -28,6 +30,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form    =P
         count   =Q
         mainconnective none
+        role    =L
         =retrieval>
         isa     count_order
         thing   count_order
@@ -42,6 +45,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form    =P
         count   =R
         mainconnective none
+        role    =L
         +retrieval>
         isa     proposition
         thing   proposition
@@ -69,6 +73,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form    =P
         count   =R
         mainconnective none
+        role    =L
         ?retrieval>
         state   free
         =retrieval>
@@ -111,6 +116,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form    =P
         count   =R
         mainconnective none
+        role    =L
         +retrieval>
         isa     proposition
         thing   proposition
@@ -169,6 +175,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form    =P
         count   =R
         mainconnective none
+        role    =L
         ?retrieval>
         state   error
         ?manual>
@@ -180,6 +187,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form    =P
         count   =R
         mainconnective none
+        role    =L
         +manual>
         isa     _manual
         cmd     press_key
@@ -193,6 +201,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form    =P
         count   =Q
         mainconnective =R
+        role    =L
         =retrieval>
         isa     proposition
         thing   proposition
@@ -244,6 +253,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form    =P
         count   =B
         mainconnective =R
+        role    =L
         +retrieval>
         isa     proposition
         thing   proposition
@@ -292,6 +302,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form    =P
         count   =Q
         mainconnective =R
+        role    =L
         =retrieval>
         isa     proposition
         thing   proposition
@@ -347,6 +358,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form    =P
         count   =B
         mainconnective =A1
+        role    =L
         +retrieval>
         isa     universal_list
         thing   universal_list
@@ -402,6 +414,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form    =P
         count   =B
         mainconnective =Y
+        role    =L
         =retrieval>
         isa     universal_list
         thing   universal_list
@@ -455,6 +468,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form    =P
         count   =R
         mainconnective =Y
+        role    =L
         +retrieval>
         isa     proposition
         thing   proposition
@@ -513,6 +527,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form    =P
         count   =R
         mainconnective =Y
+        role    =L
         ?retrieval>
         state   error
         =imaginal>
@@ -555,6 +570,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form    =P
         count   =R
         mainconnective =Y
+        role    =L
         +retrieval>
         isa     proposition
         thing   proposition
@@ -595,6 +611,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         mainconnective ~conjunction
         mainconnective ~existential
         mainconnective ~universal
+        role    =L
         ?retrieval>
         state   error
         =imaginal>
@@ -620,6 +637,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form    =P
         count   =R
         mainconnective none
+        role    =L
         +manual>
         isa     _manual
         cmd     press_key
@@ -636,6 +654,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         mainconnective ~conjunction
         mainconnective ~universal
         mainconnective ~existential
+        role    =L
         ?retrieval>
         state   error
         =imaginal>
@@ -659,6 +678,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form    =P
         count   =Q
         mainconnective none
+        role    =L
         +imaginal>
         isa     checklist
         thing   checklist
@@ -687,6 +707,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         mainconnective ~none
         mainconnective ~concept
         mainconnective ~negation
+        role    =L
         ?retrieval>
         state   error
         =imaginal>
@@ -710,6 +731,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form    =P
         count   =Q
         mainconnective none
+        role    =L
         +retrieval>
         isa     storelist
         thing   storelist

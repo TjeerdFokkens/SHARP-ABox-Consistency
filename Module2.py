@@ -6,6 +6,7 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         form    =P
         count   =Q
         mainconnective none
+        role    =L
         =retrieval>
         isa     storelist
         thing   storelist
@@ -33,6 +34,7 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         form     =P
         count   =Q
         mainconnective none
+        role    =L
         +imaginal>
         isa     storelist
         thing   storelist
@@ -61,6 +63,7 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         form     =P
         count    =Q
         mainconnective none
+        role    =L
         ?retrieval>
         state    error
         ?imaginal>
@@ -72,6 +75,7 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         form     =P
         count    =Q
         mainconnective none
+        role    =L
         +imaginal>
         isa      storelist
         thing    storelist
@@ -100,6 +104,7 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         form    =P
         count   =Q
         mainconnective none
+        role    =L
         =imaginal>
         isa      storelist
         thing    storelist
@@ -127,6 +132,7 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         form     =P
         count   =Q
         mainconnective none
+        role    =L
         +retrieval>
         isa      proposition
         thing    proposition
@@ -179,6 +185,7 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         form     =P
         count   =Q
         mainconnective none
+        role    =L
         =retrieval>
         isa      proposition
         thing    proposition
@@ -217,6 +224,7 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         form     =X
         count   =Q
         mainconnective none
+        role    =L
         +imaginal>
         isa      proposition
         thing    proposition
@@ -256,6 +264,7 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         form     =P
         count    =Q
         mainconnective none
+        role    =L
         ?retrieval>
         state    error
         ?manual>
@@ -265,6 +274,7 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         isa      goal
         state    stop
         form     =P
+        role    =L
         +manual>
         isa     _manual
         cmd     press_key

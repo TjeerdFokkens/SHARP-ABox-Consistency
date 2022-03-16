@@ -6,6 +6,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count   =Q
         mainconnective none
+        role    =L
         =imaginal>
         isa      proposition
         thing    proposition
@@ -42,6 +43,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count   =Q
         mainconnective none
+        role    =L
         +imaginal>
         isa      proposition
         thing    proposition
@@ -73,6 +75,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count   =Q
         mainconnective none
+        role    =L
         =imaginal>
         isa      proposition
         thing    proposition
@@ -104,6 +107,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count   =Q
         mainconnective none
+        role    =L
         +retrieval>
         isa      proposition
         thing    proposition
@@ -131,6 +135,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count   =Q
         mainconnective none
+        role    =L
         =imaginal>
         isa      proposition
         thing    proposition
@@ -162,6 +167,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count   =Q
         mainconnective none
+        role    =L
         +retrieval>
         isa      proposition
         thing    proposition
@@ -189,6 +195,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count   =Q
         mainconnective none
+        role    =L
         =retrieval>
         isa      proposition
         thing    proposition
@@ -220,6 +227,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count   =Q
         mainconnective none
+        role    =L
         +imaginal>
         isa      proposition
         thing    proposition
@@ -252,6 +260,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count   =Q
         mainconnective none
+        role    =L
         =retrieval>
         isa      proposition
         thing    proposition
@@ -283,6 +292,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count   =Q
         mainconnective none
+        role    =L
         +imaginal_action>
         isa      proposition
         thing    proposition
@@ -315,6 +325,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count   =Q
         mainconnective none
+        role    =L
         ?retrieval>
         state    free
         =imaginal>
@@ -350,6 +361,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count   =Q
         mainconnective none
+        role    =L
         +imaginal>
         isa     checklist
         thing   checklist
@@ -378,6 +390,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count   =Q
         mainconnective none
+        role    =L
         ?retrieval>
         state    free
         =imaginal>
@@ -413,6 +426,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count   =Q
         mainconnective none
+        role    =L
         +imaginal>
         isa     checklist
         thing   checklist
@@ -441,6 +455,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count   =Q
         mainconnective none
+        role    =L
         ?retrieval>
         state    free
         =imaginal>
@@ -478,6 +493,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count   =Q
         mainconnective none
+        role    =L
         +retrieval>
         isa      storelist
         thing    storelist

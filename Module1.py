@@ -6,6 +6,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form    =P
         count   =Q
         mainconnective none
+        role    =L
         =imaginal>
         isa     checklist
         thing   checklist
@@ -32,6 +33,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form    =P
         count   =Q
         mainconnective none
+        role    =L
         +imaginal>
         isa     checklist
         thing   checklist
@@ -79,6 +81,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form    =P
         count   =Q
         mainconnective none
+        role    =L
         =imaginal>
         isa     checklist
         thing   checklist
@@ -105,6 +108,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form     =P
         count   =Q
         mainconnective none
+        role    =L
         +imaginal>
         isa     checklist
         thing   checklist
@@ -149,6 +153,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form    =P
         count   =Q
         mainconnective none
+        role    =L
         =imaginal>
         isa     checklist
         thing   checklist
@@ -188,6 +193,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form    =P
         count   =Q
         mainconnective none
+        role    =L
         +manual>
         isa     _manual
         cmd     press_key
@@ -201,6 +207,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form    =P
         count   =Q
         mainconnective none
+        role    =L
         =imaginal>
         isa     checklist
         thing   checklist
@@ -227,6 +234,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form     =P
         count   =Q
         mainconnective none
+        role    =L
         +retrieval>
         isa     storelist
         thing   storelist
@@ -241,6 +249,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form    =P
         count   =Q
         mainconnective none
+        role    =L
         =imaginal>
         isa     checklist
         thing   checklist
@@ -276,6 +285,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form     =P
         count   =Q
         mainconnective none
+        role    =L
         +imaginal>
         isa     checklist
         thing   checklist
