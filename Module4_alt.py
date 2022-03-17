@@ -36,6 +36,8 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         form13   =A19
         form14   =A20
         form15   =A21
+        ?retrieval>
+        state   free
         ==>
         =g>
         isa      goal
@@ -208,6 +210,8 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         role8    =B8
         role9    =B9
         role10   =B10
+        ?retrieval>
+        state   free
         ==>
         =g>
         isa      goal
@@ -300,6 +304,8 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         concept  none
         relation =W3
         derived  no
+        ?retrieval>
+        state    free
         ==>
         =g>
         isa      goal
@@ -338,7 +344,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         concept  =Y99
     """)
 
-    aBoxCon.productionstring(name="Module 4, Unit 4: label concept", string="""
+    aBoxCon.productionstring(name="Module 4, Unit 4a: label concept, atom found", string="""
         =g>
         isa      goal
         state    label_concept
@@ -385,6 +391,8 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         subformula1  =A4
         subformula2  =A5
         derived  =A6
+        ?retrieval>
+        state   free
         ==>
         =g>
         isa      goal
@@ -423,7 +431,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         form     =P
     """)
 
-    aBoxCon.productionstring(name="Module 4, Unit 4: label concept", string="""
+    aBoxCon.productionstring(name="Module 4, Unit 4b: label concept, complex formula found", string="""
         =g>
         isa      goal
         state    label_concept
@@ -468,6 +476,8 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         subformula1  =A4
         subformula2  =A5
         derived  =A6
+        ?retrieval>
+        state   free
         ==>
         =g>
         isa      goal

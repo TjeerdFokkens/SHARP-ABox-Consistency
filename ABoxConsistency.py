@@ -39,7 +39,7 @@ def initial(learning=False):
     actr.chunktype("storelist", "thing, form, form2, form3, form4, form5, form6, form7, form8, form9, form10, form11, form12, form13, form14, form15")
     actr.chunktype("universal_list", "thing, form, form2, form3, form4, form5, form6, form7, form8, form9")
     actr.chunktype("count_order","number, successor, thing")
-    actr.chunktype("role_list", "role1, role2, role3, role4, role5, role6, role7, role8, role9, role10")
+    actr.chunktype("role_list", "thing, role1, role2, role3, role4, role5, role6, role7, role8, role9, role10")
 
     aBoxCon.goals["g"].add(actr.makechunk(typename="goal", state="find_clash_to_head", form='none', count='0', mainconnective='none', role='none'))
     aBoxCon.goals["imaginal"].add(actr.makechunk(typename="checklist", thing="checklist", form="none", element="none", mainconnective="none", relation="none", subformula1="none", subformula2="none", form2="none", form3="none", form4="none", form5="none", form6="none", form7="none", form8="none"))
@@ -72,8 +72,15 @@ def trace(mod, buffer, action=''):
             sys.stdout = old_stdout
         except:
             sys.stdout = old_stdout
-            time = sim.current_event.time
-            print('End of simulation,', time)
+            goalstate = str(aBoxCon.goals['g']).split('state= ')[1].split(')')[0]
+            if goalstate=='stop':
+                time = sim.current_event.time
+                print('End of simulation,', time)
+            else:
+                time = 0
+                print('Simulation stopped prematurely. Some rule does not fire')
+                a = str(mod.retrieval)
+                print(a)
             break
     prove_tracks.append(time)
     return prove_tracks
@@ -162,14 +169,14 @@ def compute_histogram_bins(data, desired_bin_size):
 simulation_plot(10, "abox2.txt", 0.2)
 
 plt.show()
-
 '''
+
 aBoxCon = initial(learning=True)
 dm = aBoxCon.decmem
 md1.module1(aBoxCon)
 md2.module2(aBoxCon)
 md3.module3(aBoxCon)
-#md4.module4(aBoxCon)
+md4.module4(aBoxCon)
 
 par.AddAboxFromFile("abox2.txt",dm.add)
 print(dm)
