@@ -1,5 +1,5 @@
 def module4(aBoxCon): #This module applies when an existential restriction is found. It derives the relation and concept assignment.
-    aBoxCon.productionstring(name="Module 4, Unit 1: existential found, derive relation and concept", string="""
+    aBoxCon.productionstring(name="Module 4, Unit 1: existential found, get role list", string="""
         =g>
         isa      goal
         state    inference_step
@@ -342,6 +342,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         thing    proposition
         element  =W1
         concept  =Y99
+        mainconnective ~relation
     """)
 
     aBoxCon.productionstring(name="Module 4, Unit 4a: label concept, atom found", string="""
@@ -375,6 +376,8 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         role8    =B7
         role9    =B8
         role10   =B9
+        ?retrieval>
+        state   free
         =retrieval>
         isa      proposition
         thing    proposition
@@ -391,8 +394,6 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         subformula1  =A4
         subformula2  =A5
         derived  =A6
-        ?retrieval>
-        state   free
         ==>
         =g>
         isa      goal
@@ -402,16 +403,22 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         mainconnective none
         role     =W2
         +imaginal>
-        isa      proposition
-        thing    proposition
-        element  =W1
+        isa     checklist
+        thing   checklist
+        form    =A1
+        element =W1
         concept  =Y99
-        form     =A1
-        mainconnective  =A2
+        mainconnective =A2
         relation =A3
-        subformula1  =A4
-        subformula2  =A5
-        derived  yes
+        subformula1 =A4
+        subformula2 =A5
+        form2    none
+        form3    none
+        form4    none
+        form5    none
+        form6    none
+        form7    none
+        form8    none
         +imaginal_action>
         isa      role_list
         thing    role_list

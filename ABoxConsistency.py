@@ -72,7 +72,7 @@ def trace(mod, buffer, action=''):
             sys.stdout = old_stdout
         except:
             sys.stdout = old_stdout
-            goalstate = str(aBoxCon.goals['g']).split('state= ')[1].split(')')[0]
+            goalstate = str(mod.goals['g']).split('state= ')[1].split(')')[0]
             if goalstate=='stop':
                 time = sim.current_event.time
                 print('End of simulation,', time)
@@ -80,7 +80,9 @@ def trace(mod, buffer, action=''):
                 time = 0
                 print('Simulation stopped prematurely. Some rule does not fire')
                 a = str(mod.retrieval)
+                b = str(mod.goals['imaginal'])
                 print(a)
+                print(b)
             break
     prove_tracks.append(time)
     return prove_tracks
@@ -165,10 +167,12 @@ def compute_histogram_bins(data, desired_bin_size):
     bins = np.linspace(min_boundary, max_boundary, n_bins+1)
     return bins
 
-'''
-simulation_plot(10, "abox2.txt", 0.2)
 
+simulation_plot(50, "abox2.txt", 0.5)
+
+plt.savefig('ABoxSimulationPlot.png', transparent=True, dpi=1200)
 plt.show()
+
 '''
 
 aBoxCon = initial(learning=True)
@@ -183,4 +187,4 @@ print(dm)
 #aBoxCon_sim = aBoxCon.simulation(realtime=False,gui=False)
 vec = trace(aBoxCon, 'PROCEDURAL', action='RULE SELECTED')
 print(vec)
-print(dm)
+'''

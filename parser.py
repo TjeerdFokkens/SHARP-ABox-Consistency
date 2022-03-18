@@ -96,7 +96,7 @@ class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to 
             self.addtodm(actr.makechunk(typename="proposition", thing="proposition",
                     form=el + ":" + constr, concept=constr, element=el, mainconnective="conjunction",
                     subformula1=el + ":" + subconL, subformula2=el + ":" + subconR,
-                    derived=self.derived))
+                    derived=self.derived, relation='none'))
         if self.derived=="no":
             for el in self.elements.union(self.witnesses):
                 addconj(el)
@@ -127,11 +127,11 @@ class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to 
         def addrole(e1,e2):
             self.addtodm(actr.makechunk(typename="proposition", thing="proposition",
                 form="(" + e1 +","+e2+"):"+role, concept="none", relation=role,
-                mainconnective="relation", subformula1=e1, subformula2=e2,
+                mainconnective="relation", element=e1, subformula1=e1, subformula2=e2,
                 derived="no"))
         def addex(el,w):
             self.addtodm(actr.makechunk(typename="proposition", thing="proposition",
-                    form=el + ":" + constr, concept=constr, element=el, mainconnective="existential",
+                    form=el + ":" + constr, concept=subcon, element=el, mainconnective="existential",
                     subformula1=w + ":" + subcon, subformula2="("+el+","+w+"):"+role,
                     derived=self.derived, relation=role))
         if self.derived=="no":
@@ -166,7 +166,7 @@ class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to 
         def addneg(el):
             self.addtodm(actr.makechunk(typename="proposition", thing="proposition",
                     form=el + ":" + constr, concept=constr, element=el, mainconnective="negation",
-                    subformula1=subcon, derived=self.derived))
+                    subformula1=subcon, subformula2='none', derived=self.derived, relation='none'))
         if self.derived=="no":
             for el in self.elements.union(self.witnesses):
                 addneg(el)
@@ -179,7 +179,7 @@ class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to 
         def addatom(el):
             self.addtodm(actr.makechunk(typename="proposition", thing="proposition",
                     form=el + ":" + constr, concept=constr, element=el, mainconnective="concept",
-                    subformula1=constr, derived=self.derived))
+                    subformula1=constr, subformula2='none', derived=self.derived, relation='none'))
         if self.derived=="no":
             for el in self.elements.union(self.witnesses):
                 addatom(el)
