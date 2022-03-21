@@ -106,16 +106,21 @@ def plot_list(it, abox):
         #Simulation is executed and the simulation time is appended to a list.
         old_stdout = sys.stdout
         sys.stdout = open(os.devnull, "w")
-        outp = trace(aBoxCon, 'PROCEDURAL')[-1]
+        outp = trace(aBoxCon, 'PROCEDURAL')
         sys.stdout = old_stdout
+        print(outp)
         sim_time_list.append(outp)
-    return sim_time_list
+
+    sim_list = []
+    for i in sim_time_list:
+        sim_list.append(i[-1])
+
+    return sim_list
 
 def simulation_plot(iterations, abox, desired_bin_size):
     #Takes the number of simulations, the abox it's working with and the desired size of the bins in the plot.
     #It returns a plot with the desired criteria using the results of the simulations.
     data = plot_list(iterations, abox)
-    #print(data)
     bins = compute_histogram_bins(data, desired_bin_size)
     min_val = bins[0]
     max_val = bins[-1]
@@ -129,16 +134,22 @@ def simulation_plot(iterations, abox, desired_bin_size):
     ax1.grid(linestyle=':', axis='y')
     ax1.set(xticks=np.arange(min_val-desired_bin_size, max_val+2*desired_bin_size, desired_bin_size))
     ax1.set_title('Simulated time of inference')
-    ax1.hist(data, bins=bins, color='forestgreen', weights=weights, linewidth=0.5, edgecolor="white")
+    ax1.hist(data, bins=bins, color='forestgreen', weights=weights*100, linewidth=0.5, edgecolor="white")
     ax1.yaxis.set_major_locator(MaxNLocator(steps=[1, 2, 4, 5, 10]))
-    ax1.set_ylabel('relative frequency')
+    ax1.set_ylabel('relative frequency %')
+    ax1.spines["right"].set_visible(False)
+    ax1.spines["top"].set_visible(False)
 
     timeintervals, linelengths, offsets = compute_line_lengths(data)
 
     ax2.eventplot(timeintervals, orientation="horizontal", linewidth=1, color='forestgreen', linelengths = linelengths, lineoffsets = offsets)
     ax2.get_yaxis().set_visible(False)
+    ax2.yaxis.set_major_locator(MaxNLocator(steps=[1, 2, 4, 5, 10]))
     ax2.grid(linestyle=':', axis='x')
     ax2.set_xlabel('time (s)')
+    ax2.spines["right"].set_visible(False)
+    ax2.spines["top"].set_visible(False)
+    ax2.spines["left"].set_visible(False)
 
 def compute_line_lengths(data):
     #The different data points prepared in an array for the plot.
@@ -168,8 +179,7 @@ def compute_histogram_bins(data, desired_bin_size):
     return bins
 
 
-simulation_plot(50, "abox2.txt", 0.5)
-
+simulation_plot(10, "abox2.txt", 0.5)
 plt.savefig('ABoxSimulationPlot.png', transparent=True, dpi=1200)
 plt.show()
 

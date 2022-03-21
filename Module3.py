@@ -337,6 +337,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         mainconnective  ~disjunction
         mainconnective  ~existential
         mainconnective  ~universal
+        mainconnective  ~none
         mainconnective  =V
         subformula1  =C
         subformula2  =B
@@ -413,6 +414,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         mainconnective  ~disjunction
         mainconnective  ~existential
         mainconnective  ~universal
+        mainconnective  ~none
         mainconnective  =Z
         subformula1  =D
         subformula2  =E
