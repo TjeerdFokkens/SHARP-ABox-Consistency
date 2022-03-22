@@ -7,7 +7,7 @@ import numpy as np
 import Module1 as md1
 import Module2 as md2
 import Module3 as md3
-import Module4_alt as md4
+import Module4 as md4
 import parser as par
 from matplotlib import colors
 from matplotlib.ticker import PercentFormatter
@@ -25,8 +25,9 @@ def initial(learning=False):
         utility_learning=learning,
         production_compilation=learning,
         activation_trace=True,
-        retrieval_threshold=0,
-        decay=0)
+        retrieval_threshold=-0.05,
+        decay=0.005,
+        instantaneous_noise=0.005)
 
     aBoxCon.goals = {}
     aBoxCon.set_goal("g")
@@ -139,6 +140,9 @@ def simulation_plot(iterations, abox, desired_bin_size):
     ax1.set_ylabel('relative frequency %')
     ax1.spines["right"].set_visible(False)
     ax1.spines["top"].set_visible(False)
+    ax1.spines["left"].set_visible(False)
+    ax1.yaxis.set_ticks_position('none')
+    ax1.xaxis.set_ticks_position('none')
 
     timeintervals, linelengths, offsets = compute_line_lengths(data)
 
@@ -150,6 +154,7 @@ def simulation_plot(iterations, abox, desired_bin_size):
     ax2.spines["right"].set_visible(False)
     ax2.spines["top"].set_visible(False)
     ax2.spines["left"].set_visible(False)
+    ax2.xaxis.set_ticks_position('none')
 
 def compute_line_lengths(data):
     #The different data points prepared in an array for the plot.
@@ -179,7 +184,7 @@ def compute_histogram_bins(data, desired_bin_size):
     return bins
 
 
-simulation_plot(10, "abox2.txt", 0.5)
+simulation_plot(70, "abox2.txt", 0.5)
 plt.savefig('ABoxSimulationPlot.png', transparent=True, dpi=1200)
 plt.show()
 
