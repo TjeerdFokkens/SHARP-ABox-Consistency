@@ -150,9 +150,11 @@ class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to 
         role = ToString().transform(tree.children[0])
         subcon = ToString().transform(tree.children[1])
         def addun(el):
-            self.addtodm(actr.makechunk(typename="proposition", thing="proposition",
+            self.addtodm(actr.makechunk(typename="uproposition", thing="uproposition",
                     form=el + ":" + constr, concept=constr, element=el, mainconnective="universal",
-                    subformula1=el + ":" + subcon, derived=self.derived, relation=role))
+                    subformula1=el + ":" + subcon, subformula2=subcon, derived=self.derived, relation=role,
+                    count=0, relation1='none', relation2='none', relation3='none', relation4='none',
+                    relation5='none', relation6='none', relation7='none', relation8='none', relation9='none'))
         if self.derived=="no":
             for el in self.elements.union(self.witnesses):
                 addun(el)

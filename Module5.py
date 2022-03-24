@@ -47,8 +47,8 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         mainconnective none
         role    =L
         +retrieval>
-        isa     proposition
-        thing   proposition
+        isa     uproposition
+        thing   uproposition
         mainconnective  universal
         derived yes
         count   =Q
@@ -77,8 +77,8 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         ?retrieval>
         state   free
         =retrieval>
-        isa     proposition
-        thing   proposition
+        isa     uproposition
+        thing   uproposition
         mainconnective  universal
         derived yes
         count   =Q
@@ -146,8 +146,8 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form8   =A7
         form9   =A8
         +imaginal_action>
-        isa     proposition
-        thing   proposition
+        isa     uproposition
+        thing   uproposition
         mainconnective  universal
         derived yes
         count   =Q
@@ -226,8 +226,8 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form8   =Z8
         form9   =Z9
         =imaginal_action>
-        isa     proposition
-        thing   proposition
+        isa     uproposition
+        thing   uproposition
         mainconnective  universal
         derived yes
         count   =Q
@@ -256,7 +256,13 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         role    =L
         +retrieval>
         isa     proposition
-        thing   proposition
+        thing   ~none
+        thing   ~checklist
+        thing   ~storelist
+        thing   ~universal_list
+        thing   ~count_order
+        thing   ~role_list
+        thing   ~goal
         element =Z
         concept =D1
         derived no
@@ -273,8 +279,8 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form8   =Z8
         form9   =Z9
         +imaginal_action>
-        isa     proposition
-        thing   proposition
+        isa     uproposition
+        thing   uproposition
         mainconnective  universal
         derived yes
         count   =Q
@@ -295,7 +301,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         relation9 =X8
     """)
 
-    aBoxCon.productionstring(name="Module 5, Unit 2, Step 3: derive formula from universal", string="""
+    aBoxCon.productionstring(name="Module 5, Unit 2, Step 3a: derive non-universal formula from universal", string="""
         =g>
         isa     goal
         state   deduce_from_universal
@@ -331,8 +337,8 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form8   =Z8
         form9   =Z9
         =imaginal_action>
-        isa     proposition
-        thing   proposition
+        isa     uproposition
+        thing   uproposition
         mainconnective  universal
         derived yes
         count   =Q
@@ -385,8 +391,8 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         subformula2 =A9
         concept  =Y99
         +imaginal_action>
-        isa     proposition
-        thing   proposition
+        isa     uproposition
+        thing   uproposition
         mainconnective  universal
         derived yes
         count   =Q
@@ -407,7 +413,139 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         relation9 =X8
     """)
 
-    aBoxCon.productionstring(name="Module 5, Unit 2, Step 4: find next relation to universal", string="""
+    aBoxCon.productionstring(name="Module 5, Unit 2, Step 3b: derive universal formula from universal", string="""
+        =g>
+        isa     goal
+        state   deduce_from_universal
+        form    =P
+        count   =Q
+        mainconnective =R
+        role    =L
+        =retrieval>
+        isa     uproposition
+        thing   uproposition
+        mainconnective  =A1
+        derived =A2
+        form    =A3
+        subformula1 =A4
+        subformula2 =A5
+        element =A6
+        relation =A7
+        subformula1 =A8
+        subformula2 =A9
+        concept  =Y99
+        count    =A10
+        relation1  =A11
+        relation2  =A12
+        relation3  =A13
+        relation4  =A14
+        relation5  =A15
+        relation6  =A16
+        relation7  =A17
+        relation8  =A18
+        relation9  =A19
+        ?retrieval>
+        state   free
+        =imaginal>
+        isa     universal_list
+        thing   universal_list
+        form    =Z1
+        form2   =Z2
+        form3   =Z3
+        form4   =Z4
+        form5   =Z5
+        form6   =Z6
+        form7   =Z7
+        form8   =Z8
+        form9   =Z9
+        =imaginal_action>
+        isa     uproposition
+        thing   uproposition
+        mainconnective  universal
+        derived yes
+        count   =Q
+        form    =A
+        element =B
+        relation =C
+        subformula1 =D1
+        subformula2 =D2
+        concept  =Y98
+        relation1 =X1
+        relation2 =X2
+        relation3 =X3
+        relation4 =X4
+        relation5 =X5
+        relation6 =X6
+        relation7 =X7
+        relation8 =X8
+        relation9 =X9
+        ==>
+        =g>
+        isa     goal
+        state   find_relation_2
+        form    =P
+        count   =B
+        mainconnective =A1
+        role    =L
+        +retrieval>
+        isa     universal_list
+        thing   universal_list
+        form    =Z1
+        form2   =Z2
+        form3   =Z3
+        form4   =Z4
+        form5   =Z5
+        form6   =Z6
+        form7   =Z7
+        form8   =Z8
+        form9   =Z9
+        +imaginal>
+        isa     uproposition
+        thing   uproposition
+        mainconnective  =A1
+        derived yes
+        form    =A3
+        subformula1 =A4
+        subformula2 =A5
+        element =A6
+        relation =A7
+        subformula1 =A8
+        subformula2 =A9
+        concept  =Y99
+        count    =A10
+        relation1  =A11
+        relation2  =A12
+        relation3  =A13
+        relation4  =A14
+        relation5  =A15
+        relation6  =A16
+        relation7  =A17
+        relation8  =A18
+        relation9  =A19
+        +imaginal_action>
+        isa     uproposition
+        thing   uproposition
+        mainconnective  universal
+        derived yes
+        count   =Q
+        form    =A
+        element =B
+        relation =C
+        subformula1 =D1
+        subformula2 =D2
+        concept  =Y98
+        relation1 =X
+        relation2 =X1
+        relation3 =X2
+        relation4 =X3
+        relation5 =X4
+        relation6 =X5
+        relation7 =X6
+        relation8 =X7
+        relation9 =X8
+    """)
+
+    aBoxCon.productionstring(name="Module 5, Unit 2, Step 4a: find next relation to universal", string="""
         =g>
         isa     goal
         state   find_relation_2
@@ -441,8 +579,8 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         subformula2 =A9
         concept  =Y99
         =imaginal_action>
-        isa     proposition
-        thing   proposition
+        isa     uproposition
+        thing   uproposition
         mainconnective  universal
         derived yes
         count   =Q
@@ -498,8 +636,8 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form8   =Z8
         form9   =Z9
         +imaginal_action>
-        isa     proposition
-        thing   proposition
+        isa     uproposition
+        thing   uproposition
         mainconnective  universal
         derived yes
         count   =Q
@@ -520,7 +658,130 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         relation9 =X9
     """)
 
-    aBoxCon.productionstring(name="Module 5, Unit 2, Step 4: find next relation to universal", string="""
+    aBoxCon.productionstring(name="Module 5, Unit 2, Step 4b: find next relation to universal", string="""
+        =g>
+        isa     goal
+        state   find_relation_2
+        form    =P
+        count   =B
+        mainconnective =Y
+        role    =L
+        =retrieval>
+        isa     universal_list
+        thing   universal_list
+        form    =Z1
+        form2   =Z2
+        form3   =Z3
+        form4   =Z4
+        form5   =Z5
+        form6   =Z6
+        form7   =Z7
+        form8   =Z8
+        form9   =Z9
+        =imaginal>
+        isa     uproposition
+        thing   uproposition
+        mainconnective  =A1
+        derived yes
+        form    =A3
+        subformula1 =A4
+        subformula2 =A5
+        element =A6
+        relation =A7
+        subformula1 =A8
+        subformula2 =A9
+        concept  =Y99
+        count    =A10
+        relation1  =A11
+        relation2  =A12
+        relation3  =A13
+        relation4  =A14
+        relation5  =A15
+        relation6  =A16
+        relation7  =A17
+        relation8  =A18
+        relation9  =A19
+        =imaginal_action>
+        isa     uproposition
+        thing   uproposition
+        mainconnective  universal
+        derived yes
+        count   =Q
+        form    =A
+        element =B
+        relation =C
+        subformula1 =D1
+        subformula2 =D2
+        concept  =Y98
+        relation1 =X1
+        relation2 =X2
+        relation3 =X3
+        relation4 =X4
+        relation5 =X5
+        relation6 =X6
+        relation7 =X7
+        relation8 =X8
+        relation9 =X9
+        ==>
+        =g>
+        isa     goal
+        state   find_relation
+        form    =P
+        count   =R
+        mainconnective =Y
+        role    =L
+        +retrieval>
+        isa     proposition
+        thing   proposition
+        mainconnective  relation
+        relation =C
+        derived yes
+        subformula1 =B
+        form    ~=X1
+        form    ~=X2
+        form    ~=X3
+        form    ~=X4
+        form    ~=X5
+        form    ~=X6
+        form    ~=X7
+        form    ~=X8
+        form    ~=X9
+        +imaginal>
+        isa     universal_list
+        thing   universal_list
+        form    =Z1
+        form2   =Z2
+        form3   =Z3
+        form4   =Z4
+        form5   =Z5
+        form6   =Z6
+        form7   =Z7
+        form8   =Z8
+        form9   =Z9
+        +imaginal_action>
+        isa     uproposition
+        thing   uproposition
+        mainconnective  universal
+        derived yes
+        count   =Q
+        form    =A
+        element =B
+        relation =C
+        subformula1 =D1
+        subformula2 =D2
+        concept  =Y98
+        relation1 =X1
+        relation2 =X2
+        relation3 =X3
+        relation4 =X4
+        relation5 =X5
+        relation6 =X6
+        relation7 =X7
+        relation8 =X8
+        relation9 =X9
+    """)
+
+    aBoxCon.productionstring(name="Module 5, Unit 3, Step 1: find next relation to universal", string="""
         =g>
         isa     goal
         state   find_relation
@@ -543,8 +804,8 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form8   =Z8
         form9   =Z9
         =imaginal_action>
-        isa     proposition
-        thing   proposition
+        isa     uproposition
+        thing   uproposition
         mainconnective  universal
         derived yes
         count   =Q
@@ -572,8 +833,8 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         mainconnective =Y
         role    =L
         +retrieval>
-        isa     proposition
-        thing   proposition
+        isa     uproposition
+        thing   uproposition
         mainconnective  universal
         derived yes
         form    ~=Z1
@@ -600,7 +861,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         ~imaginal_action>
     """)
 
-    aBoxCon.productionstring(name="Module 5, Unit 2, Step 4: find next relation to universal", string="""
+    aBoxCon.productionstring(name="Module 5, Unit 3, Step 2: find next relation to universal", string="""
         =g>
         isa     goal
         state   find_universal
@@ -644,7 +905,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         key     N
     """)
 
-    aBoxCon.productionstring(name="Module 5, Unit 3, Step 1: go to module 1", string="""
+    aBoxCon.productionstring(name="Module 5, Unit 4, Step 1: go to module 1", string="""
         =g>
         isa     goal
         state   find_universal
@@ -698,7 +959,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form8    none
     """)
 
-    aBoxCon.productionstring(name="Module 5, Unit 3, Step 2: go to module 2", string="""
+    aBoxCon.productionstring(name="Module 5, Unit 4, Step 2: go to module 2", string="""
         =g>
         isa     goal
         state   find_universal

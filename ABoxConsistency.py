@@ -8,6 +8,7 @@ import Module1 as md1
 import Module2 as md2
 import Module3 as md3
 import Module4 as md4
+import Module5 as md5
 import parser as par
 from matplotlib import colors
 from matplotlib.ticker import PercentFormatter
@@ -36,6 +37,7 @@ def initial(learning=False):
 
     actr.chunktype("goal", "state, form, count, mainconnective, role")
     actr.chunktype("proposition", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, derived")
+    actr.chunktype("uproposition", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, derived, count, relation1, relation2, relation3, relation4, relation5, relation6, relation7, relation8, relation9")
     actr.chunktype("checklist", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, form2, form3, form4, form5, form6, form7, form8")
     actr.chunktype("storelist", "thing, form, form2, form3, form4, form5, form6, form7, form8, form9, form10, form11, form12, form13, form14, form15")
     actr.chunktype("universal_list", "thing, form, form2, form3, form4, form5, form6, form7, form8, form9")
@@ -101,6 +103,7 @@ def plot_list(it, abox):
         md2.module2(aBoxCon)
         md3.module3(aBoxCon)
         md4.module4(aBoxCon)
+        md5.module5(aBoxCon)
 
         par.AddAboxFromFile(abox,dm.add)
 
@@ -183,7 +186,7 @@ def compute_histogram_bins(data, desired_bin_size):
     bins = np.linspace(min_boundary, max_boundary, n_bins+1)
     return bins
 
-
+'''
 simulation_plot(70, "abox2.txt", 0.5)
 plt.savefig('ABoxSimulationPlot.png', transparent=True, dpi=1200)
 plt.show()
@@ -196,10 +199,10 @@ md1.module1(aBoxCon)
 md2.module2(aBoxCon)
 md3.module3(aBoxCon)
 md4.module4(aBoxCon)
+md5.module5(aBoxCon)
 
 par.AddAboxFromFile("abox2.txt",dm.add)
 print(dm)
 #aBoxCon_sim = aBoxCon.simulation(realtime=False,gui=False)
 vec = trace(aBoxCon, 'PROCEDURAL', action='RULE SELECTED')
 print(vec)
-'''
