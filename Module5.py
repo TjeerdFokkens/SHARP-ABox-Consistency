@@ -1,5 +1,5 @@
 def module5(aBoxCon): #This module looks for universal restrictions and the corresponding relations. It makes the appropriate deductions and does so exhaustively.
-    aBoxCon.productionstring(name="Module 5, Unit 1, Step 1: update count", string="""
+    aBoxCon.productionstring(name="Module 5, Unit 1: update count, retrieve count order", string="""
         =g>
         isa     goal
         state   module5
@@ -23,7 +23,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         number  =Q
     """)
 
-    aBoxCon.productionstring(name="Module 5, Unit 1, Step 2: update count", string="""
+    aBoxCon.productionstring(name="Module 5, Unit 1: update count, retrieve universal", string="""
         =g>
         isa     goal
         state   count_up
@@ -66,7 +66,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form9   none
     """)
 
-    aBoxCon.productionstring(name="Module 5, Unit 2, Step 1: find universal and create list", string="""
+    aBoxCon.productionstring(name="Module 5, Unit 2: universal found, find relation", string="""
         =g>
         isa     goal
         state   find_universal
@@ -168,7 +168,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         relation9 =X9
     """)
 
-    aBoxCon.productionstring(name="Module 5, Unit 2, Step 2: no universal found", string="""
+    aBoxCon.productionstring(name="Module 5, Unit 2: no universal found, confirm consistency", string="""
         =g>
         isa     goal
         state   find_universal
@@ -194,7 +194,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         key     N
     """)
 
-    aBoxCon.productionstring(name="Module 5, Unit 2, Step 2: find universal and create list", string="""
+    aBoxCon.productionstring(name="Module 5, Unit 3: infer the concept of the related element", string="""
         =g>
         isa     goal
         state   find_relation
@@ -301,7 +301,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         relation9 =X8
     """)
 
-    aBoxCon.productionstring(name="Module 5, Unit 2, Step 3a: derive non-universal formula from universal", string="""
+    aBoxCon.productionstring(name="Module 5, Unit 3a: non-universal formula found, mark as derived", string="""
         =g>
         isa     goal
         state   deduce_from_universal
@@ -413,7 +413,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         relation9 =X8
     """)
 
-    aBoxCon.productionstring(name="Module 5, Unit 2, Step 3b: derive universal formula from universal", string="""
+    aBoxCon.productionstring(name="Module 5, Unit 3b: universal formula found, mark as derived", string="""
         =g>
         isa     goal
         state   deduce_from_universal
@@ -545,7 +545,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         relation9 =X8
     """)
 
-    aBoxCon.productionstring(name="Module 5, Unit 2, Step 4a: find next relation to universal", string="""
+    aBoxCon.productionstring(name="Module 5, Unit 4a: find next relation to universal", string="""
         =g>
         isa     goal
         state   find_relation_2
@@ -658,7 +658,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         relation9 =X9
     """)
 
-    aBoxCon.productionstring(name="Module 5, Unit 2, Step 4b: find next relation to universal", string="""
+    aBoxCon.productionstring(name="Module 5, Unit 4b: find next relation to universal", string="""
         =g>
         isa     goal
         state   find_relation_2
@@ -781,7 +781,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         relation9 =X9
     """)
 
-    aBoxCon.productionstring(name="Module 5, Unit 3, Step 1: find next relation to universal", string="""
+    aBoxCon.productionstring(name="Module 5, Unit 5: no relation found, find next universal", string="""
         =g>
         isa     goal
         state   find_relation
@@ -861,51 +861,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         ~imaginal_action>
     """)
 
-    aBoxCon.productionstring(name="Module 5, Unit 3, Step 2: find next relation to universal", string="""
-        =g>
-        isa     goal
-        state   find_universal
-        form    =P
-        count   =R
-        mainconnective ~concept
-        mainconnective ~negation
-        mainconnective ~conjunction
-        mainconnective ~existential
-        mainconnective ~universal
-        role    =L
-        ?retrieval>
-        state   error
-        =imaginal>
-        isa     universal_list
-        thing   universal_list
-        form    =Z1
-        form2   =Z2
-        form3   =Z3
-        form4   =Z4
-        form5   =Z5
-        form6   =Z6
-        form7   =Z7
-        form8   =Z8
-        form9   =Z9
-        ?imaginal_action>
-        state   empty
-        ?manual>
-        state   free
-        ==>
-        =g>
-        isa     goal
-        state   stop
-        form    =P
-        count   =R
-        mainconnective none
-        role    =L
-        +manual>
-        isa     _manual
-        cmd     press_key
-        key     N
-    """)
-
-    aBoxCon.productionstring(name="Module 5, Unit 4, Step 1: go to module 1", string="""
+    aBoxCon.productionstring(name="Module 5, Unit 6: go to module 1", string="""
         =g>
         isa     goal
         state   find_universal
@@ -959,7 +915,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form8    none
     """)
 
-    aBoxCon.productionstring(name="Module 5, Unit 4, Step 2: go to module 2", string="""
+    aBoxCon.productionstring(name="Module 5, Unit 6: go to module 2", string="""
         =g>
         isa     goal
         state   find_universal
