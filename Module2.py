@@ -257,7 +257,7 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         ~retrieval>
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 4b: no formula found, signal consistency", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 4b: no formula found, find universal", string="""
         =g>
         isa      goal
         state    update_storelist
@@ -272,11 +272,8 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         ==>
         =g>
         isa      goal
-        state    stop
+        state    module5
         form     =P
-        role    =L
-        +manual>
-        isa     _manual
-        cmd     press_key
-        key     N
+        role     =L
+        ~retrieval>
     """)

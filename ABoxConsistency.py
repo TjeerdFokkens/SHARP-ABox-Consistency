@@ -84,8 +84,12 @@ def trace(mod, buffer, action=''):
                 print('Simulation stopped prematurely. Some rule does not fire')
                 a = str(mod.retrieval)
                 b = str(mod.goals['imaginal'])
+                c = str(mod.goals['imaginal_action'])
+                d = str(mod.goals['g'])
+                print(d)
                 print(a)
                 print(b)
+                print(c)
             break
     prove_tracks.append(time)
     return prove_tracks
@@ -124,6 +128,7 @@ def plot_list(it, abox):
 def simulation_plot(iterations, abox, desired_bin_size):
     #Takes the number of simulations, the abox it's working with and the desired size of the bins in the plot.
     #It returns a plot with the desired criteria using the results of the simulations.
+    colour = 'darkseagreen'
     data = plot_list(iterations, abox)
     bins = compute_histogram_bins(data, desired_bin_size)
     min_val = bins[0]
@@ -138,7 +143,7 @@ def simulation_plot(iterations, abox, desired_bin_size):
     ax1.grid(linestyle=':', axis='y')
     ax1.set(xticks=np.arange(min_val-desired_bin_size, max_val+2*desired_bin_size, desired_bin_size))
     ax1.set_title('Simulated time of inference')
-    ax1.hist(data, bins=bins, color='forestgreen', weights=weights*100, linewidth=0.5, edgecolor="white")
+    ax1.hist(data, bins=bins, color=colour, weights=weights*100, linewidth=0.5, edgecolor="white")
     ax1.yaxis.set_major_locator(MaxNLocator(steps=[1, 2, 4, 5, 10]))
     ax1.set_ylabel('relative frequency %')
     ax1.spines["right"].set_visible(False)
@@ -149,7 +154,7 @@ def simulation_plot(iterations, abox, desired_bin_size):
 
     timeintervals, linelengths, offsets = compute_line_lengths(data)
 
-    ax2.eventplot(timeintervals, orientation="horizontal", linewidth=1, color='forestgreen', linelengths = linelengths, lineoffsets = offsets)
+    ax2.eventplot(timeintervals, orientation="horizontal", linewidth=1, color=colour, linelengths = linelengths, lineoffsets = offsets)
     ax2.get_yaxis().set_visible(False)
     ax2.yaxis.set_major_locator(MaxNLocator(steps=[1, 2, 4, 5, 10]))
     ax2.grid(linestyle=':', axis='x')
@@ -186,9 +191,10 @@ def compute_histogram_bins(data, desired_bin_size):
     bins = np.linspace(min_boundary, max_boundary, n_bins+1)
     return bins
 
+
 '''
-simulation_plot(70, "abox2.txt", 0.5)
-plt.savefig('ABoxSimulationPlot.png', transparent=True, dpi=1200)
+simulation_plot(40, "abox2.txt", 0.5)
+#plt.savefig('ABoxSimulationPlot.png', transparent=True, dpi=1200)
 plt.show()
 
 '''
@@ -202,7 +208,9 @@ md4.module4(aBoxCon)
 md5.module5(aBoxCon)
 
 par.AddAboxFromFile("abox2.txt",dm.add)
-print(dm)
+
 #aBoxCon_sim = aBoxCon.simulation(realtime=False,gui=False)
+#aBoxCon_sim.run(10)
 vec = trace(aBoxCon, 'PROCEDURAL', action='RULE SELECTED')
 print(vec)
+print(dm)

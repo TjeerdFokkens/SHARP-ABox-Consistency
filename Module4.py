@@ -303,7 +303,6 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         form     =W2
         concept  none
         relation =W3
-        derived  no
         ?retrieval>
         state    free
         ==>
