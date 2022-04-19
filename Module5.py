@@ -878,7 +878,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form8   =Z8
         form9   =Z9
         ?imaginal_action>
-        state   empty
+        buffer  empty
         ==>
         =g>
         isa     goal
@@ -887,6 +887,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         count   =R
         mainconnective none
         role    =L
+        ~retrieval>
         +imaginal>
         isa     checklist
         thing   checklist
@@ -931,7 +932,7 @@ def module5(aBoxCon): #This module looks for universal restrictions and the corr
         form8   =Z8
         form9   =Z9
         ?imaginal_action>
-        state   empty
+        buffer  empty
         ==>
         =g>
         isa     goal

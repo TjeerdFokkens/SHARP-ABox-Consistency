@@ -1,1 +1,1 @@
-a:A, a:(B&(C&A)), b:(D&A), c:/Ar.C, (c,a):r
+a:A, a:(B&(-C&A)), b:(D&A), c:/Ar.C, (c,a):r
