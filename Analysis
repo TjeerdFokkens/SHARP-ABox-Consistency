@@ -1,0 +1,187 @@
+import ABoxConsistency as ABC
+from scipy import stats
+import matplotlib.pyplot as plt
+import numpy as np
+from statsmodels.distributions.empirical_distribution import ECDF
+
+
+simulations = ABC.plot_list(200, "abox2.txt")
+
+
+#Making a nice workable data structure: a dictionary
+
+sim = []
+for i in simulations:
+    j = i[:-1]
+    s = i[0]
+    for k in j[1:]:
+        s=s+', '+k
+    m = [s,i[-1]]
+    sim.append(m)
+
+#making the dictionary entries
+
+dictionary = {}
+for i in sim:
+    run = i[0]
+    dictionary[run] = []
+
+#associating the data to the dictionary entries
+
+for i in sim:
+    run = i[0]
+    time = i[1]
+    dictionary[run].append(time)
+
+print('These are the different runs:')
+for k,v in dictionary.items():
+    print(k)
+
+data = str(dictionary)
+f = open("dict.txt", "w")
+f.write(data)
+f.close()
+
+
+s = open("dict.txt", "r")
+dictionary = eval(s.read())
+
+
+
+sample_1 = dictionary[list(dictionary.items())[0][0]]
+sample_2 = dictionary[list(dictionary.items())[1][0]]
+sample_3 = dictionary[list(dictionary.items())[2][0]]
+
+print('Sample 1 order: ',list(dictionary.items())[0][0])
+print('Sample 2 order: ',list(dictionary.items())[1][0])
+print('Sample 3 order: ',list(dictionary.items())[2][0])
+
+print('K-S test on samples 1 and 2: ', stats.kstest(sample_1, sample_2))
+print('K-S test on samples 1 and 3: ', stats.kstest(sample_1, sample_3))
+print('K-S test on samples 2 and 3: ', stats.kstest(sample_2, sample_3))
+
+print('t test on samples 1 and 2: ', stats.ttest_ind(sample_1, sample_2, equal_var=False))
+print('t test on samples 1 and 3: ', stats.ttest_ind(sample_1, sample_3, equal_var=False))
+print('t test on samples 2 and 3: ', stats.ttest_ind(sample_2, sample_3, equal_var=False))
+
+print('Sample 1 size: ',len(sample_1))
+print('Sample 2 size: ',len(sample_2))
+print('Sample 3 size: ',len(sample_3))
+
+
+fig, ax = plt.subplots()
+x = [1, 2, 3]
+ax.eventplot((sample_1, sample_2, sample_3), orientation="horizontal", lineoffsets=x,
+linewidth=0.75, linelength=0.75, color='darkcyan')
+ax.set_xlabel('Time (s)')
+ax.axes.yaxis.set_ticks([1.0, 2.0, 3.0])
+ax.axes.yaxis.set_ticklabels(['Sample 1', 'Sample 2', 'Sample 3'])
+
+plt.savefig('AnalysisThreeSamples.png', transparent=True, dpi=800)
+#plt.show()
+
+def lower(sam1, sam2):
+    #For every value in sam1, count how many values in sam2 are strictly smaller.
+    li1=[]
+    for i in sam1:
+        v = len(list(x for x in sam2 if x < i))
+        li1.append(v)
+    return li1
+
+def same(sam1, sam2):
+    #For every value in sam1, count how many values are equally large.
+    li2=[]
+    for i in sam1:
+        v = len(list(x for x in sam2 if x == i))
+        li2.append(v)
+    return li2
+
+def A_w(sam1, sam2):
+    #Calculate the probability of superiority.
+    l = lower(sam1,sam2)
+    s = same(sam1,sam2)
+    numerator = sum(l)+0.5*sum(s)
+    denominator = len(sam1) * len(sam2)
+    fraction = numerator/denominator
+    return fraction
+
+print('Effect size 1-2', A_w(sample_1,sample_2))
+print('Effect size 1-3', A_w(sample_1,sample_3))
+print('Effect size 2-3', A_w(sample_2,sample_3))
+
+def cumulplot(sample1,sample2,save=False):
+    ecdf1 = ECDF(sample1)
+    ecdf2 = ECDF(sample2)
+    fig, ax = plt.subplots()
+    ax.set_xlabel('Time (s)')
+    plt.plot(ecdf1.x, ecdf1.y)
+    plt.plot(ecdf2.x, ecdf2.y)
+    if save ==True:
+        plt.savefig('EmpirDistrFunc.png', transparent=True, dpi=800)
+    plt.show()
+
+cumulplot(sample_2,sample_3,True)
+
+
+
+#The below is copied from the internet
+def ridgeplot():
+    countries = [x for x in np.unique(data.country)]
+colors = ['#0000ff', '#3300cc', '#660099', '#990066', '#cc0033', '#ff0000']
+
+gs = grid_spec.GridSpec(len(countries),1)
+fig = plt.figure(figsize=(16,9))
+
+i = 0
+
+ax_objs = []
+for country in countries:
+    country = countries[i]
+    x = np.array(data[data.country == country].score)
+    x_d = np.linspace(0,1, 1000)
+
+    kde = KernelDensity(bandwidth=0.03, kernel='gaussian')
+    kde.fit(x[:, None])
+
+    logprob = kde.score_samples(x_d[:, None])
+
+    # creating new axes object
+    ax_objs.append(fig.add_subplot(gs[i:i+1, 0:]))
+
+    # plotting the distribution
+    ax_objs[-1].plot(x_d, np.exp(logprob),color="#f0f0f0",lw=1)
+    ax_objs[-1].fill_between(x_d, np.exp(logprob), alpha=1,color=colors[i])
+
+
+    # setting uniform x and y lims
+    ax_objs[-1].set_xlim(0,1)
+    ax_objs[-1].set_ylim(0,2.5)
+
+    # make background transparent
+    rect = ax_objs[-1].patch
+    rect.set_alpha(0)
+
+    # remove borders, axis ticks, and labels
+    ax_objs[-1].set_yticklabels([])
+
+    if i == len(countries)-1:
+        ax_objs[-1].set_xlabel("Test Score", fontsize=16,fontweight="bold")
+    else:
+        ax_objs[-1].set_xticklabels([])
+
+    spines = ["top","right","left","bottom"]
+    for s in spines:
+        ax_objs[-1].spines[s].set_visible(False)
+
+    adj_country = country.replace(" ","\n")
+    ax_objs[-1].text(-0.02,0,adj_country,fontweight="bold",fontsize=14,ha="right")
+
+
+    i += 1
+
+gs.update(hspace=-0.7)
+
+fig.text(0.07,0.85,"Distribution of Aptitude Test Results from 18 – 24 year-olds",fontsize=20)
+
+plt.tight_layout()
+plt.show()

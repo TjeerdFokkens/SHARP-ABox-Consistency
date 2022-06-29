@@ -15,6 +15,7 @@ from matplotlib.ticker import PercentFormatter
 import re
 from matplotlib.ticker import MaxNLocator
 from collections import Counter
+from scipy import stats
 
 def initial(learning=False):
     aBoxCon = actr.ACTRModel(
@@ -35,7 +36,7 @@ def initial(learning=False):
     aBoxCon.set_goal("imaginal")
     aBoxCon.set_goal("imaginal_action")
 
-    actr.chunktype("goal", "state, form, count, mainconnective, role")
+    actr.chunktype("goal", "state, form, count1, count2, mainconnective, role")
     actr.chunktype("proposition", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, derived")
     actr.chunktype("uproposition", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, derived, count, relation1, relation2, relation3, relation4, relation5, relation6, relation7, relation8, relation9")
     actr.chunktype("checklist", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, form2, form3, form4, form5, form6, form7, form8")
@@ -44,7 +45,7 @@ def initial(learning=False):
     actr.chunktype("count_order","number, successor, thing")
     actr.chunktype("role_list", "thing, role1, role2, role3, role4, role5, role6, role7, role8, role9, role10")
 
-    aBoxCon.goals["g"].add(actr.makechunk(typename="goal", state="find_clash_to_head", form='none', count='0', mainconnective='none', role='none'))
+    aBoxCon.goals["g"].add(actr.makechunk(typename="goal", state="find_clash_to_head", form='none', count1=0, count2=1, mainconnective='none', role='none'))
     aBoxCon.goals["imaginal"].add(actr.makechunk(typename="checklist", thing="checklist", form="none", element="none", mainconnective="none", relation="none", subformula1="none", subformula2="none", form2="none", form3="none", form4="none", form5="none", form6="none", form7="none", form8="none"))
 
     for i in range(10):
@@ -61,7 +62,7 @@ def trace(mod, buffer, action=''):
         if sim.current_event.proc==buffer and sim.current_event.action.startswith(action):
             print(sim.current_event)
             #mod.decmem.add(actr.makechunk(typename="test", thing="test")) Here some arbitrary chunks can be added to the dm.
-            if sim.current_event.action.startswith('RULE SELECTED: Module 2, Unit 4a'):
+            if sim.current_event.action.startswith('RULE SELECTED: Module 2, Unit 4a') or sim.current_event.action.startswith('RULE SELECTED: Module 5, Unit 2a'):
                 print('')
                 print('Active formula:')
                 a = str(mod.retrieval).split('form= ',1)[1].split(',',1)[0]
@@ -119,17 +120,16 @@ def plot_list(it, abox):
         print(outp)
         sim_time_list.append(outp)
 
-    sim_list = []
-    for i in sim_time_list:
-        sim_list.append(i[-1])
-
-    return sim_list
+    return sim_time_list
 
 def simulation_plot(iterations, abox, desired_bin_size):
     #Takes the number of simulations, the abox it's working with and the desired size of the bins in the plot.
     #It returns a plot with the desired criteria using the results of the simulations.
     colour = 'darkseagreen'
-    data = plot_list(iterations, abox)
+    sim_list = []
+    for i in plot_list(iterations, abox):
+        sim_list.append(i[-1])
+    data = sim_list
     bins = compute_histogram_bins(data, desired_bin_size)
     min_val = bins[0]
     max_val = bins[-1]
@@ -191,13 +191,12 @@ def compute_histogram_bins(data, desired_bin_size):
     bins = np.linspace(min_boundary, max_boundary, n_bins+1)
     return bins
 
-
 '''
-simulation_plot(40, "abox2.txt", 0.5)
-#plt.savefig('ABoxSimulationPlot.png', transparent=True, dpi=1200)
+simulation_plot(70, "abox2.txt", 0.2)
+plt.savefig('ABoxSimulationPlot2.png', transparent=True, dpi=1200)
 plt.show()
 
-'''
+
 
 aBoxCon = initial(learning=True)
 dm = aBoxCon.decmem
@@ -214,3 +213,4 @@ par.AddAboxFromFile("abox2.txt",dm.add)
 vec = trace(aBoxCon, 'PROCEDURAL', action='RULE SELECTED')
 print(vec)
 print(dm)
+'''

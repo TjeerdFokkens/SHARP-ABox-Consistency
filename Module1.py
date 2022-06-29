@@ -4,7 +4,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa     goal
         state   find_clash_to_head
         form    =P
-        count   =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role    =L
         =imaginal>
@@ -31,7 +32,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa     goal
         state   find_formula_not_in_list
         form    =P
-        count   =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role    =L
         +imaginal>
@@ -79,7 +81,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa     goal
         state   find_formula_not_in_list
         form    =P
-        count   =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role    =L
         =imaginal>
@@ -106,7 +109,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa      goal
         state    add_formula_to_list
         form     =P
-        count   =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role    =L
         +imaginal>
@@ -151,7 +155,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa     goal
         state   find_formula_not_in_list
         form    =P
-        count   =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role    =L
         =imaginal>
@@ -191,7 +196,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa     goal
         state   stop
         form    =P
-        count   =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role    =L
         +manual>
@@ -205,7 +211,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa     goal
         state   add_formula_to_list
         form    =P
-        count   =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role    =L
         =imaginal>
@@ -232,7 +239,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa      goal
         state    derive_next_formulas
         form     =P
-        count   =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role    =L
         +retrieval>
@@ -247,7 +255,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa     goal
         state   add_formula_to_list
         form    =P
-        count   =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role    =L
         =imaginal>
@@ -283,7 +292,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         isa      goal
         state    find_clash_to_head
         form     =P
-        count   =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role    =L
         +imaginal>

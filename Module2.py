@@ -4,7 +4,8 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         isa     goal
         state   derive_next_formulas
         form    =P
-        count   =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role    =L
         =retrieval>
@@ -32,7 +33,8 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         isa      goal
         state    find_formula_not_in_list
         form     =P
-        count   =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role    =L
         +imaginal>
@@ -61,7 +63,8 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         isa      goal
         state    derive_next_formulas
         form     =P
-        count    =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role    =L
         ?retrieval>
@@ -73,7 +76,8 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         isa      goal
         state    find_formula_not_in_list
         form     =P
-        count    =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role    =L
         +imaginal>
@@ -102,7 +106,8 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         isa     goal
         state   find_formula_not_in_list
         form    =P
-        count   =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role    =L
         =imaginal>
@@ -130,7 +135,8 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         isa      goal
         state    update_storelist
         form     =P
-        count   =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role    =L
         +retrieval>
@@ -183,7 +189,8 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         isa      goal
         state    update_storelist
         form     =P
-        count   =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role    =L
         =retrieval>
@@ -222,7 +229,8 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         isa      goal
         state    inference_step
         form     =X
-        count   =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role    =L
         +imaginal>
@@ -262,7 +270,8 @@ def module2(aBoxCon): #This module retrieves the list of used formulas and finds
         isa      goal
         state    update_storelist
         form     =P
-        count    =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role    =L
         ?retrieval>

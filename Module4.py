@@ -4,7 +4,8 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         isa      goal
         state    inference_step
         form     =P
-        count    =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role     =R
         =imaginal>
@@ -37,13 +38,14 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         form14   =A20
         form15   =A21
         ?retrieval>
-        state   free
+        state    free
         ==>
         =g>
         isa      goal
         state    get_role_list
         form     =P
-        count    =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role     =R
         +imaginal>
@@ -86,7 +88,8 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         isa      goal
         state    get_role_list
         form     =P
-        count    =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role     =R
         =imaginal>
@@ -125,7 +128,8 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         isa      goal
         state    label_role
         form     =P
-        count    =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role     =R
         +imaginal>
@@ -165,7 +169,8 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         isa      goal
         state    get_role_list
         form     =P
-        count    =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role     =R
         =imaginal>
@@ -217,7 +222,8 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         isa      goal
         state    label_role
         form     =P
-        count    =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role     =R
         +imaginal>
@@ -267,7 +273,8 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         isa      goal
         state    label_role
         form     =P
-        count    =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role     =R
         =imaginal>
@@ -310,7 +317,8 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         isa      goal
         state    label_concept
         form     =P
-        count    =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role     =W2
         +imaginal>
@@ -349,7 +357,8 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         isa      goal
         state    label_concept
         form     =P
-        count    =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role     =W2
         =imaginal>
@@ -398,7 +407,8 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         isa      goal
         state    find_clash_to_head
         form     =P
-        count    =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role     =W2
         +imaginal>
@@ -442,7 +452,8 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         isa      goal
         state    label_concept
         form     =P
-        count    =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role     =W2
         =imaginal>
@@ -489,7 +500,8 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         isa      goal
         state    derive_next_formulas
         form     =P
-        count    =Q
+        count1   =Q1
+        count2   =Q2
         mainconnective none
         role     =W2
         +imaginal>
