@@ -6,7 +6,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role    =L
         =imaginal>
         isa      proposition
@@ -46,7 +46,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role     =L
         +imaginal>
         isa      proposition
@@ -80,7 +80,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role    =L
         =imaginal>
         isa      proposition
@@ -113,7 +113,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role    =L
         +retrieval>
         isa      proposition
@@ -142,7 +142,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role    =L
         =imaginal>
         isa      proposition
@@ -175,7 +175,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role    =L
         +retrieval>
         isa      proposition
@@ -204,7 +204,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role    =L
         =retrieval>
         isa      proposition
@@ -237,7 +237,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role    =L
         +imaginal>
         isa      proposition
@@ -271,7 +271,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role    =L
         =retrieval>
         isa      proposition
@@ -304,7 +304,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role    =L
         +imaginal_action>
         isa      proposition
@@ -338,7 +338,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role    =L
         ?retrieval>
         state    free
@@ -376,7 +376,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role    =L
         +imaginal>
         isa     checklist
@@ -406,7 +406,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role    =L
         ?retrieval>
         state    free
@@ -444,7 +444,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role    =L
         +imaginal>
         isa     checklist
@@ -474,7 +474,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role    =L
         ?retrieval>
         state    free
@@ -513,7 +513,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role    =L
         +retrieval>
         isa      storelist

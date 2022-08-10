@@ -196,7 +196,7 @@ simulation_plot(70, "abox2.txt", 0.2)
 plt.savefig('ABoxSimulationPlot2.png', transparent=True, dpi=1200)
 plt.show()
 
-
+'''
 
 aBoxCon = initial(learning=True)
 dm = aBoxCon.decmem
@@ -205,12 +205,25 @@ md2.module2(aBoxCon)
 md3.module3(aBoxCon)
 md4.module4(aBoxCon)
 md5.module5(aBoxCon)
+i = 'a:A, (b,a):r, b:/Ar.-A'
+par.AddAboxFromFile(i,dm.add)
+vec = trace(aBoxCon, 'PROCEDURAL', action='RULE SELECTED')
 
-par.AddAboxFromFile("abox2.txt",dm.add)
+#f = open("abox2.txt", 'r')
+#abox = f.read().replace('\n', ' ')
+'''
+from Aboxes_incon import aboxes_inconsistent
 
+for i in aboxes_inconsistent:
+    aBoxCon = initial(learning=True)
+    dm = aBoxCon.decmem
+    md1.module1(aBoxCon)
+    md2.module2(aBoxCon)
+    md3.module3(aBoxCon)
+    md4.module4(aBoxCon)
+    md5.module5(aBoxCon)
+    par.AddAboxFromFile(i,dm.add)
+    vec = trace(aBoxCon, 'manual', action='KEY')
 #aBoxCon_sim = aBoxCon.simulation(realtime=False,gui=False)
 #aBoxCon_sim.run(10)
-vec = trace(aBoxCon, 'PROCEDURAL', action='RULE SELECTED')
-print(vec)
-print(dm)
 '''

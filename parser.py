@@ -192,17 +192,15 @@ class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to 
 form_parser = Lark(form_grammar, parser='lalr')
 parser = form_parser.parse
 
-def AddAboxFromFile(filename,addtodm):
-    with open(filename, 'r') as file:
-        data = file.read().replace('\n', ' ')
+def AddAboxFromFile(data,addtodm):
     abox = parser(data)
     witnesses=set()
     for i in range(1,1+max(CountNodes("role_ass").transform(abox),1)* CountNodes("exists").transform(abox)):
         witnesses.add("x"+str(i))
     elements=set()
     SetOfElements(elements).visit(abox)
-    print(elements)
-    print(witnesses)
+    #print(elements)
+    #print(witnesses)
     if abox.data in ["con_ass","role_ass"]:
         aboxlst = [abox]
     else:

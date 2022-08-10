@@ -6,7 +6,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form    =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role    =L
         =imaginal>
         isa     checklist
@@ -34,7 +34,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form    =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role    =L
         +imaginal>
         isa     checklist
@@ -83,7 +83,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form    =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role    =L
         =imaginal>
         isa     checklist
@@ -111,7 +111,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role    =L
         +imaginal>
         isa     checklist
@@ -157,7 +157,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form    =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role    =L
         =imaginal>
         isa     checklist
@@ -198,7 +198,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form    =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role    =L
         +manual>
         isa     _manual
@@ -213,7 +213,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form    =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role    =L
         =imaginal>
         isa     checklist
@@ -241,7 +241,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role    =L
         +retrieval>
         isa     storelist
@@ -257,7 +257,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form    =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role    =L
         =imaginal>
         isa     checklist
@@ -294,7 +294,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role    =L
         +imaginal>
         isa     checklist

@@ -6,7 +6,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role     =R
         =imaginal>
         isa      proposition
@@ -46,7 +46,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role     =R
         +imaginal>
         isa      proposition
@@ -90,7 +90,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role     =R
         =imaginal>
         isa      proposition
@@ -130,7 +130,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role     =R
         +imaginal>
         isa      proposition
@@ -171,7 +171,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role     =R
         =imaginal>
         isa      proposition
@@ -224,7 +224,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role     =R
         +imaginal>
         isa      proposition
@@ -275,7 +275,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role     =R
         =imaginal>
         isa      proposition
@@ -319,7 +319,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role     =W2
         +imaginal>
         isa      proposition
@@ -359,7 +359,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role     =W2
         =imaginal>
         isa      proposition
@@ -409,7 +409,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role     =W2
         +imaginal>
         isa     checklist
@@ -454,7 +454,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role     =W2
         =imaginal>
         isa      proposition
@@ -502,7 +502,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         form     =P
         count1   =Q1
         count2   =Q2
-        mainconnective none
+        mainconnective =R
         role     =W2
         +imaginal>
         isa      proposition
