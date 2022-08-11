@@ -137,11 +137,11 @@ class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to 
         if self.derived=="no":
             for el in self.elements.union(self.witnesses):
                 for w in self.witnesses:
-                    addex(el,'foo')
+                    addex(el,w)
                     addrole(el,w)
         else:
             for w in self.witnesses:
-                addex(self.el,'foo')
+                addex(self.el,w)
                 addrole(self.el,w)
         self.derived="no"
 

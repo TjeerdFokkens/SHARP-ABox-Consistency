@@ -8,6 +8,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role    =L
+        checkclash =M
         =retrieval>
         isa     storelist
         thing   storelist
@@ -37,6 +38,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
+        checkclash =M
         +imaginal>
         isa     storelist
         thing   storelist
@@ -67,6 +69,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role    =L
+        checkclash =M
         ?retrieval>
         state    error
         ?imaginal>
@@ -80,6 +83,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role    =L
+        checkclash =M
         +imaginal>
         isa      storelist
         thing    storelist
@@ -109,6 +113,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role    =L
+        checkclash =M
         =imaginal>
         isa      storelist
         thing    storelist
@@ -138,6 +143,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
+        checkclash =M
         +retrieval>
         isa      proposition
         thing    proposition
@@ -191,6 +197,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role    =L
+        checkclash =M
         =imaginal>
         isa      storelist
         thing    storelist
@@ -218,12 +225,12 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
+        checkclash =M
         +retrieval>
         isa      uproposition
         thing    uproposition
         mainconnective universal
         derived  yes
-        count    =Q1
         +imaginal>
         isa      storelist
         thing    storelist
@@ -244,7 +251,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         form15   =A21
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 4a: non-universal found, update list of used formulas and count", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 4a: non-universal found, update list of used formulas", string="""
         =g>
         isa      goal
         state    update_storelist_1
@@ -253,6 +260,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
+        checkclash =M
         =retrieval>
         isa      proposition
         thing    proposition
@@ -293,6 +301,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
+        checkclash =M
         +imaginal>
         isa      proposition
         thing    proposition
@@ -333,6 +342,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
+        checkclash =M
         =retrieval>
         isa      uproposition
         thing    uproposition
@@ -344,7 +354,6 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         subformula2  =X5
         derived  yes
         concept  =Y
-        count    =Q1
         relation1  =Y2
         relation2  =Y3
         relation3  =Y4
@@ -367,6 +376,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
+        checkclash =M
         +imaginal_action>
         isa      uproposition
         thing    uproposition
@@ -427,6 +437,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
+        checkclash =M
         =imaginal>
         isa      storelist
         thing    storelist
@@ -458,6 +469,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
+        checkclash =M
         +retrieval>
         isa      proposition
         thing    proposition
@@ -511,6 +523,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
+        checkclash =M
         ?retrieval>
         state    error
         =imaginal>
@@ -542,12 +555,12 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
+        checkclash =M
         +retrieval>
         isa      uproposition
         thing    uproposition
         mainconnective universal
         derived  yes
-        count    =Q1
         ~imaginal>
     """)
 
@@ -560,6 +573,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
+        checkclash =M
         =retrieval>
         isa      uproposition
         thing    uproposition
@@ -594,6 +608,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
+        checkclash =M
         +imaginal_action>
         isa      uproposition
         thing    uproposition
@@ -654,6 +669,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
+        checkclash =M
         =retrieval>
         isa      proposition
         thing    proposition
@@ -694,6 +710,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
+        checkclash =M
         +imaginal>
         isa      proposition
         thing    proposition
@@ -725,7 +742,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         form15   =A20
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 7a: no formula found, signal consistency", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 7a: no formula found, last check for clash", string="""
         =g>
         isa      goal
         state    prepare_module_5_2
@@ -734,6 +751,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
+        checkclash =M
         ?retrieval>
         state    error
         ?manual>
@@ -741,14 +759,11 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         ==>
         =g>
         isa      goal
-        state    stop
-        +manual>
-        isa     _manual
-        cmd     press_key
-        key     N
+        state    last_clash
+        checkclash =M
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 7b: no formula found, signal consistency", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 7b: no formula found, last check for clash", string="""
         =g>
         isa      goal
         state    update_storelist_2
@@ -757,6 +772,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
+        checkclash =M
         ?retrieval>
         state    error
         ?manual>
@@ -764,9 +780,50 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         ==>
         =g>
         isa      goal
-        state    stop
-        +manual>
-        isa     _manual
-        cmd     press_key
-        key     N
+        state    last_clash
+        checkclash =M
+    """)
+
+    aBoxCon.productionstring(name="Module 2, Unit 8: prepare for last check for a clash", string="""
+        =g>
+        isa      goal
+        state    last_clash
+        form     =P
+        count1   =Q1
+        count2   =Q2
+        mainconnective =R
+        role     =L
+        checkclash =M
+        ?retrieval>
+        state    error
+        ?manual>
+        state    free
+        ==>
+        =g>
+        isa      goal
+        state    find_clash_to_head
+        form     =P
+        count1   =Q1
+        count2   =Q2
+        mainconnective =R
+        role     =L
+        checkclash yes
+        +imaginal>
+        isa     checklist
+        thing   checklist
+        form    none
+        element none
+        concept  none
+        mainconnective none
+        relation none
+        subformula1 none
+        subformula2 none
+        form2    none
+        form3    none
+        form4    none
+        form5    none
+        form6    none
+        form7    none
+        form8    none
+        ~retrieval>
     """)

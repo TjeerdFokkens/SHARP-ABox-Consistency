@@ -36,7 +36,7 @@ def initial(learning=False):
     aBoxCon.set_goal("imaginal")
     aBoxCon.set_goal("imaginal_action")
 
-    actr.chunktype("goal", "state, form, count1, count2, mainconnective, role")
+    actr.chunktype("goal", "state, form, count1, count2, mainconnective, role, checkclash")
     actr.chunktype("proposition", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, derived")
     actr.chunktype("uproposition", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, derived, count, relation1, relation2, relation3, relation4, relation5, relation6, relation7, relation8, relation9")
     actr.chunktype("checklist", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, form2, form3, form4, form5, form6, form7, form8")
@@ -45,7 +45,7 @@ def initial(learning=False):
     actr.chunktype("count_order","number, successor, thing")
     actr.chunktype("role_list", "thing, role1, role2, role3, role4, role5, role6, role7, role8, role9, role10")
 
-    aBoxCon.goals["g"].add(actr.makechunk(typename="goal", state="find_clash_to_head", form='none', count1=0, count2=1, mainconnective='none', role='none'))
+    aBoxCon.goals["g"].add(actr.makechunk(typename="goal", state="find_clash_to_head", form='none', count1=0, count2=1, mainconnective='none', role='none', checkclash='no'))
     aBoxCon.goals["imaginal"].add(actr.makechunk(typename="checklist", thing="checklist", form="none", element="none", mainconnective="none", relation="none", subformula1="none", subformula2="none", form2="none", form3="none", form4="none", form5="none", form6="none", form7="none", form8="none"))
 
     for i in range(10):
@@ -205,10 +205,10 @@ md2.module2(aBoxCon)
 md3.module3(aBoxCon)
 md4.module4(aBoxCon)
 md5.module5(aBoxCon)
-i = 'a:A, (b,a):r, b:/Ar.-A'
+i = 'a:A, (b,a):r, b:(B&/Ar.-A)'
 par.AddAboxFromFile(i,dm.add)
 vec = trace(aBoxCon, 'PROCEDURAL', action='RULE SELECTED')
-
+print(dm)
 #f = open("abox2.txt", 'r')
 #abox = f.read().replace('\n', ' ')
 '''

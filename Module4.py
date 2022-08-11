@@ -8,6 +8,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count2   =Q2
         mainconnective =R
         role     =R
+        checkclash =M
         =imaginal>
         isa      proposition
         thing    proposition
@@ -48,6 +49,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count2   =Q2
         mainconnective =R
         role     =R
+        checkclash =M
         +imaginal>
         isa      proposition
         thing    proposition
@@ -92,6 +94,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count2   =Q2
         mainconnective =R
         role     =R
+        checkclash =M
         =imaginal>
         isa      proposition
         thing    proposition
@@ -132,6 +135,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count2   =Q2
         mainconnective =R
         role     =R
+        checkclash =M
         +imaginal>
         isa      proposition
         thing    proposition
@@ -173,6 +177,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count2   =Q2
         mainconnective =R
         role     =R
+        checkclash =M
         =imaginal>
         isa      proposition
         thing    proposition
@@ -226,6 +231,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count2   =Q2
         mainconnective =R
         role     =R
+        checkclash =M
         +imaginal>
         isa      proposition
         thing    proposition
@@ -277,6 +283,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count2   =Q2
         mainconnective =R
         role     =R
+        checkclash =M
         =imaginal>
         isa      proposition
         thing    proposition
@@ -321,6 +328,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count2   =Q2
         mainconnective =R
         role     =W2
+        checkclash =M
         +imaginal>
         isa      proposition
         thing    proposition
@@ -361,6 +369,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count2   =Q2
         mainconnective =R
         role     =W2
+        checkclash =M
         =imaginal>
         isa      proposition
         thing    proposition
@@ -405,12 +414,90 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         ==>
         =g>
         isa      goal
+        state    label_concept_2
+        form     =P
+        count1   =Q1
+        count2   =Q2
+        mainconnective =R
+        role     =W2
+        checkclash =M
+        +imaginal>
+        isa      proposition
+        thing    proposition
+        element  =W1
+        concept  =Y99
+        form     =A1
+        mainconnective  =A2
+        relation =A3
+        subformula1  =A4
+        subformula2  =A5
+        derived  yes
+        +imaginal_action>
+        isa      role_list
+        thing    role_list
+        role1    =W2
+        role2    =B1
+        role3    =B2
+        role4    =B3
+        role5    =B4
+        role6    =B5
+        role7    =B6
+        role8    =B7
+        role9    =B8
+        role10   =B9
+    """)
+
+    aBoxCon.productionstring(name="Module 4, Unit 4a: atom found, prepare to look for clash", string="""
+        =g>
+        isa      goal
+        state    label_concept_2
+        form     =P
+        count1   =Q1
+        count2   =Q2
+        mainconnective =R
+        role     =W2
+        checkclash =M
+        =imaginal>
+        isa      proposition
+        thing    proposition
+        element  =W1
+        concept  =Y99
+        form     =A1
+        mainconnective  =A2
+        mainconnective  ~conjunction
+        mainconnective  ~existential
+        mainconnective  ~universal
+        mainconnective  ~disjunction
+        mainconnective  ~none
+        relation =A3
+        subformula1  =A4
+        subformula2  =A5
+        derived  yes
+        =imaginal_action>
+        isa      role_list
+        thing    role_list
+        role1    =W2
+        role2    =B1
+        role3    =B2
+        role4    =B3
+        role5    =B4
+        role6    =B5
+        role7    =B6
+        role8    =B7
+        role9    =B8
+        role10   =B9
+        ?retrieval>
+        state    free
+        ==>
+        =g>
+        isa      goal
         state    find_clash_to_head
         form     =P
         count1   =Q1
         count2   =Q2
         mainconnective =R
         role     =W2
+        checkclash =M
         +imaginal>
         isa     checklist
         thing   checklist
@@ -456,6 +543,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count2   =Q2
         mainconnective =R
         role     =W2
+        checkclash =M
         =imaginal>
         isa      proposition
         thing    proposition
@@ -504,6 +592,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count2   =Q2
         mainconnective =R
         role     =W2
+        checkclash =M
         +imaginal>
         isa      proposition
         thing    proposition

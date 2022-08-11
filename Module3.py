@@ -8,6 +8,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
+        checkclash =M
         =imaginal>
         isa      proposition
         thing    proposition
@@ -48,6 +49,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role     =L
+        checkclash =M
         +imaginal>
         isa      proposition
         thing    proposition
@@ -82,9 +84,16 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
+        checkclash =M
         =imaginal>
         isa      proposition
-        thing    proposition
+        thing    ~checklist
+        thing    ~storelist
+        thing    ~universal_list
+        thing    ~goal
+        thing    ~count_order
+        thing    ~role_list
+        thing    =K1
         form     =X
         element  =U
         mainconnective =A
@@ -95,7 +104,13 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         concept  =Y99
         =imaginal_action>
         isa      proposition
-        thing    proposition
+        thing    ~checklist
+        thing    ~storelist
+        thing    ~universal_list
+        thing    ~goal
+        thing    ~count_order
+        thing    ~role_list
+        thing    =K2
         form     =Z
         element  =U
         mainconnective =E
@@ -115,15 +130,21 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
+        checkclash =M
         +retrieval>
         isa      proposition
-        thing    proposition
+        thing    ~checklist
+        thing    ~storelist
+        thing    ~universal_list
+        thing    ~goal
+        thing    ~count_order
+        thing    ~role_list
         form     =X
         element  =U
         mainconnective ~none
         +imaginal_action>
         isa      proposition
-        thing    proposition
+        thing    =K2
         form     =Z
         element  =U
         mainconnective =E
@@ -144,9 +165,16 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
+        checkclash =M
         =imaginal>
         isa      proposition
-        thing    proposition
+        thing    ~checklist
+        thing    ~storelist
+        thing    ~universal_list
+        thing    ~goal
+        thing    ~count_order
+        thing    ~role_list
+        thing    =K1
         form     =X
         element  =U
         mainconnective =A
@@ -157,7 +185,13 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         concept  =Y99
         =imaginal_action>
         isa      proposition
-        thing    proposition
+        thing    ~checklist
+        thing    ~storelist
+        thing    ~universal_list
+        thing    ~goal
+        thing    ~count_order
+        thing    ~role_list
+        thing    =K2
         form     =Z
         element  =U
         mainconnective =E
@@ -177,15 +211,21 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
+        checkclash =M
         +retrieval>
         isa      proposition
-        thing    proposition
+        thing    ~checklist
+        thing    ~storelist
+        thing    ~universal_list
+        thing    ~goal
+        thing    ~count_order
+        thing    ~role_list
         form     =Z
         element  =U
         mainconnective ~none
         +imaginal>
         isa      proposition
-        thing    proposition
+        thing    =K1
         form     =X
         element  =U
         mainconnective =A
@@ -197,7 +237,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         ~imaginal_action>
     """)
 
-    aBoxCon.productionstring(name="Module 3, Unit 2a, Step 2: label first conjunct", string="""
+    aBoxCon.productionstring(name="Module 3, Unit 2a, Step 2: label first conjunct, non-universal found", string="""
         =g>
         isa      goal
         state    label_conjuncts2
@@ -206,6 +246,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
+        checkclash =M
         =retrieval>
         isa      proposition
         thing    proposition
@@ -219,7 +260,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         concept  =Y99
         =imaginal_action>
         isa      proposition
-        thing    proposition
+        thing    =K2
         form     =Z
         element  =U
         mainconnective =E
@@ -239,6 +280,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
+        checkclash =M
         +imaginal>
         isa      proposition
         thing    proposition
@@ -252,7 +294,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         concept  =Y99
         +imaginal_action>
         isa      proposition
-        thing    proposition
+        thing    =K2
         form     =Z
         element  =U
         mainconnective =E
@@ -264,7 +306,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         ~retrieval>
     """)
 
-    aBoxCon.productionstring(name="Module 3, Unit 2b, Step 2: label second conjunct", string="""
+    aBoxCon.productionstring(name="Module 3, Unit 2a, Step 2: label first conjunct, universal found", string="""
         =g>
         isa      goal
         state    label_conjuncts2
@@ -273,6 +315,86 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
+        checkclash =M
+        =retrieval>
+        isa      proposition
+        thing    uproposition
+        form     =X
+        element  =U
+        mainconnective =A
+        relation =B
+        subformula1 =C
+        subformula2 =D
+        derived  =J
+        concept  =Y99
+        =imaginal_action>
+        isa      proposition
+        thing    =K2
+        form     =Z
+        element  =U
+        mainconnective =E
+        relation =F
+        subformula1 =G
+        subformula2 =H
+        derived  =I
+        concept  =Y98
+        ?imaginal>
+        state    free
+        ==>
+        =g>
+        isa      goal
+        state    label_conjuncts
+        form     =P
+        count1   =Q1
+        count2   =Q2
+        mainconnective =R
+        role    =L
+        checkclash =M
+        +imaginal>
+        isa      uproposition
+        thing    uproposition
+        form     =X
+        element  =U
+        mainconnective =A
+        relation =B
+        subformula1 =C
+        subformula2 =D
+        derived  yes
+        concept  =Y99
+        count     0
+        relation1 none
+        relation2 none
+        relation3 none
+        relation4 none
+        relation5 none
+        relation6 none
+        relation7 none
+        relation8 none
+        relation9 none
+        +imaginal_action>
+        isa      proposition
+        thing    =K2
+        form     =Z
+        element  =U
+        mainconnective =E
+        relation =F
+        subformula1 =G
+        subformula2 =H
+        derived  =I
+        concept  =Y98
+        ~retrieval>
+    """)
+
+    aBoxCon.productionstring(name="Module 3, Unit 2b, Step 2: label second conjunct, non-universal found", string="""
+        =g>
+        isa      goal
+        state    label_conjuncts2
+        form     =P
+        count1   =Q1
+        count2   =Q2
+        mainconnective =R
+        role    =L
+        checkclash =M
         =retrieval>
         isa      proposition
         thing    proposition
@@ -286,7 +408,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         concept  =Y99
         =imaginal>
         isa      proposition
-        thing    proposition
+        thing    =K2
         form     =Z
         element  =U
         mainconnective =E
@@ -306,6 +428,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
+        checkclash =M
         +imaginal_action>
         isa      proposition
         thing    proposition
@@ -319,7 +442,86 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         concept  =Y99
         +imaginal>
         isa      proposition
-        thing    proposition
+        thing    =K2
+        form     =Z
+        element  =U
+        mainconnective =E
+        relation =F
+        subformula1 =G
+        subformula2 =H
+        derived  =I
+        concept  =Y98
+        ~retrieval>
+    """)
+
+    aBoxCon.productionstring(name="Module 3, Unit 2b, Step 2: label second conjunct, universal found", string="""
+        =g>
+        isa      goal
+        state    label_conjuncts2
+        form     =P
+        count1   =Q1
+        count2   =Q2
+        mainconnective =R
+        role    =L
+        checkclash =M
+        =retrieval>
+        isa      proposition
+        thing    uproposition
+        form     =X
+        element  =U
+        mainconnective =A
+        relation =B
+        subformula1 =C
+        subformula2 =D
+        derived  =J
+        concept  =Y99
+        =imaginal>
+        isa      proposition
+        thing    =K2
+        form     =Z
+        element  =U
+        mainconnective =E
+        relation =F
+        subformula1 =G
+        subformula2 =H
+        derived  =I
+        concept  =Y98
+        ?imaginal_action>
+        state    free
+        ==>
+        =g>
+        isa      goal
+        state    label_conjuncts
+        form     =P
+        count1   =Q1
+        count2   =Q2
+        mainconnective =R
+        role    =L
+        checkclash =M
+        +imaginal_action>
+        isa      uproposition
+        thing    uproposition
+        form     =X
+        element  =U
+        mainconnective =A
+        relation =B
+        subformula1 =C
+        subformula2 =D
+        derived  yes
+        concept  =Y99
+        count     0
+        relation1 none
+        relation2 none
+        relation3 none
+        relation4 none
+        relation5 none
+        relation6 none
+        relation7 none
+        relation8 none
+        relation9 none
+        +imaginal>
+        isa      proposition
+        thing    =K2
         form     =Z
         element  =U
         mainconnective =E
@@ -340,11 +542,12 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
+        checkclash =M
         ?retrieval>
         state    free
         =imaginal>
         isa      proposition
-        thing    proposition
+        thing    =K1
         form     =X
         element  =U
         mainconnective  ~conjunction
@@ -360,7 +563,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         concept  =Y99
         =imaginal_action>
         isa      proposition
-        thing    proposition
+        thing    =K2
         form     =Y
         element  =U
         mainconnective =Z
@@ -378,6 +581,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
+        checkclash =M
         +imaginal>
         isa     checklist
         thing   checklist
@@ -408,11 +612,12 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
+        checkclash =M
         ?retrieval>
         state    free
         =imaginal>
         isa      proposition
-        thing    proposition
+        thing    =K1
         form     =X
         element  =U
         mainconnective =V
@@ -423,7 +628,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         concept  =Y99
         =imaginal_action>
         isa      proposition
-        thing    proposition
+        thing    =K2
         form     =Y
         element  =U
         mainconnective  ~conjunction
@@ -446,6 +651,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
+        checkclash =M
         +imaginal>
         isa     checklist
         thing   checklist
@@ -476,11 +682,12 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
+        checkclash =M
         ?retrieval>
         state    free
         =imaginal>
         isa      proposition
-        thing    proposition
+        thing    =K1
         form     =X
         element  =U
         mainconnective  ~concept
@@ -494,7 +701,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         concept  =Y99
         =imaginal_action>
         isa      proposition
-        thing    proposition
+        thing    =K2
         form     =Y
         element  =U
         mainconnective  ~concept
@@ -515,6 +722,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
+        checkclash =M
         +retrieval>
         isa      storelist
         thing    storelist
