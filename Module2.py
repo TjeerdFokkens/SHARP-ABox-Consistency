@@ -231,6 +231,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         thing    uproposition
         mainconnective universal
         derived  yes
+        count    ~=Q2
         +imaginal>
         isa      storelist
         thing    storelist
@@ -270,6 +271,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         relation  =X3
         subformula1  =X4
         subformula2  =X5
+        subformula3  =X6
         derived  yes
         concept  =Y
         =imaginal>
@@ -311,6 +313,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         relation  =X3
         subformula1  =X4
         subformula2  =X5
+        subformula3  =X6
         derived  yes
         concept  =Y
         +imaginal_action>
@@ -354,6 +357,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         subformula2  =X5
         derived  yes
         concept  =Y
+        count    ~=Q2
         relation1  =Y2
         relation2  =Y3
         relation3  =Y4
@@ -561,6 +565,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         thing    uproposition
         mainconnective universal
         derived  yes
+        count    ~=Q2
         ~imaginal>
     """)
 
@@ -585,7 +590,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         subformula2  =X5
         derived  yes
         concept  =Y
-        count    =Q1
+        count    ~=Q2
         relation1  =Y2
         relation2  =Y3
         relation3  =Y4
@@ -679,6 +684,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         relation  =X3
         subformula1  =X4
         subformula2  =X5
+        subformula3  =X6
         derived  yes
         concept  =Y
         =imaginal>
@@ -720,6 +726,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         relation  =X3
         subformula1  =X4
         subformula2  =X5
+        subformula3  =X6
         derived  yes
         concept  =Y
         +imaginal_action>

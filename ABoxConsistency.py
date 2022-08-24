@@ -37,7 +37,7 @@ def initial(learning=False):
     aBoxCon.set_goal("imaginal_action")
 
     actr.chunktype("goal", "state, form, count1, count2, mainconnective, role, checkclash")
-    actr.chunktype("proposition", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, derived")
+    actr.chunktype("proposition", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, subformula3, derived")
     actr.chunktype("uproposition", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, derived, count, relation1, relation2, relation3, relation4, relation5, relation6, relation7, relation8, relation9")
     actr.chunktype("checklist", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, form2, form3, form4, form5, form6, form7, form8")
     actr.chunktype("storelist", "thing, form, form2, form3, form4, form5, form6, form7, form8, form9, form10, form11, form12, form13, form14, form15")
@@ -62,7 +62,7 @@ def trace(mod, buffer, action=''):
         if sim.current_event.proc==buffer and sim.current_event.action.startswith(action):
             print(sim.current_event)
             #mod.decmem.add(actr.makechunk(typename="test", thing="test")) Here some arbitrary chunks can be added to the dm.
-            if sim.current_event.action.startswith('RULE SELECTED: Module 2, Unit 4a') or sim.current_event.action.startswith('RULE SELECTED: Module 5, Unit 2a'):
+            if sim.current_event.action.startswith('RULE SELECTED: Module 2, Unit 4a') or sim.current_event.action.startswith('RULE SELECTED: Module 5, Unit 2a') or sim.current_event.action.startswith('RULE SELECTED: Module 4, Unit 4b') or sim.current_event.action.startswith('RULE SELECTED: Module 2, Unit 4b'):
                 print('')
                 print('Active formula:')
                 a = str(mod.retrieval).split('form= ',1)[1].split(',',1)[0]
@@ -196,7 +196,7 @@ simulation_plot(70, "abox2.txt", 0.2)
 plt.savefig('ABoxSimulationPlot2.png', transparent=True, dpi=1200)
 plt.show()
 
-'''
+
 
 aBoxCon = initial(learning=True)
 dm = aBoxCon.decmem
@@ -205,16 +205,18 @@ md2.module2(aBoxCon)
 md3.module3(aBoxCon)
 md4.module4(aBoxCon)
 md5.module5(aBoxCon)
-i = 'a:A, (b,a):r, b:(B&/Ar.-A)'
+i = 'a:A, (c,b):r, (b,a):s, c:/Ar.(B&/As.-A)'
 par.AddAboxFromFile(i,dm.add)
 vec = trace(aBoxCon, 'PROCEDURAL', action='RULE SELECTED')
 print(dm)
 #f = open("abox2.txt", 'r')
 #abox = f.read().replace('\n', ' ')
 '''
-from Aboxes_incon import aboxes_inconsistent
-
-for i in aboxes_inconsistent:
+from AboxesSnomed import aboxes_from_snomed
+j = 0
+for i in aboxes_from_snomed:
+    j+=1
+    print(j)
     aBoxCon = initial(learning=True)
     dm = aBoxCon.decmem
     md1.module1(aBoxCon)
@@ -226,4 +228,3 @@ for i in aboxes_inconsistent:
     vec = trace(aBoxCon, 'manual', action='KEY')
 #aBoxCon_sim = aBoxCon.simulation(realtime=False,gui=False)
 #aBoxCon_sim.run(10)
-'''

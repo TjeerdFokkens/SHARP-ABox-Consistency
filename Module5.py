@@ -291,6 +291,7 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         mainconnective  relation
         relation =X3
         derived yes
+        subformula1 =X1
         form    ~=Y10
         form    ~=Y2
         form    ~=Y3
@@ -595,6 +596,7 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         form    =X
         subformula1 =Y
         subformula2 =Z
+        subformula3 =Y8
         concept  =Y99
         ?retrieval>
         state   free
@@ -650,6 +652,7 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         thing   ~count_order
         thing   ~role_list
         thing   ~goal
+        mainconnective ~relation
         element =Z
         concept =D2
         +imaginal>
@@ -705,6 +708,7 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         form    =A3
         subformula1 =A4
         subformula2 =A5
+        subformula3 =A8
         element =A6
         relation =A7
         concept  =Y99
@@ -773,6 +777,7 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         form    =A3
         subformula1 =A4
         subformula2 =A5
+        subformula3 =A8
         element =A6
         relation =A7
         concept  =Y99
@@ -963,6 +968,7 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         form    =A3
         subformula1 =A4
         subformula2 =A5
+        subformula3 =A8
         element =A6
         relation =A7
         concept  =Y99

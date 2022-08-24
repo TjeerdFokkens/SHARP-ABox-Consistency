@@ -17,6 +17,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         mainconnective conjunction
         subformula1  =Y
         subformula2  =Z
+        subformula3  =X8
         derived  yes
         relation =V
         concept  =Y99
@@ -59,6 +60,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         relation none
         subformula1 none
         subformula2 none
+        subformula3 none
         derived  none
         concept  none
         +imaginal_action>
@@ -70,6 +72,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         relation none
         subformula1 none
         subformula2 none
+        subformula3 none
         derived  none
         concept  none
         ~retrieval>
@@ -100,6 +103,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         relation =B
         subformula1 =C
         subformula2 =D
+        subformula3 =X8
         derived  ~yes
         concept  =Y99
         =imaginal_action>
@@ -117,6 +121,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         relation =F
         subformula1 =G
         subformula2 =H
+        subformula3 =X9
         derived  =I
         concept  =Y98
         ?retrieval>
@@ -151,6 +156,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         relation =F
         subformula1 =G
         subformula2 =H
+        subformula3 =X9
         derived  =I
         concept  =Y98
         ~imaginal>
@@ -181,6 +187,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         relation =B
         subformula1 =C
         subformula2 =D
+        subformula3 =X8
         derived  =I
         concept  =Y99
         =imaginal_action>
@@ -198,6 +205,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         relation =F
         subformula1 =G
         subformula2 =H
+        subformula3 =X9
         derived  ~yes
         concept  =Y98
         ?retrieval>
@@ -232,6 +240,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         relation =B
         subformula1 =C
         subformula2 =D
+        subformula3 =X8
         derived  =I
         concept  =Y99
         ~imaginal_action>
@@ -256,6 +265,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         relation =B
         subformula1 =C
         subformula2 =D
+        subformula3 =X8
         derived  =J
         concept  =Y99
         =imaginal_action>
@@ -267,6 +277,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         relation =F
         subformula1 =G
         subformula2 =H
+        subformula3 =X9
         derived  =I
         concept  =Y98
         ?imaginal>
@@ -290,6 +301,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         relation =B
         subformula1 =C
         subformula2 =D
+        subformula3 =X8
         derived  yes
         concept  =Y99
         +imaginal_action>
@@ -301,6 +313,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         relation =F
         subformula1 =G
         subformula2 =H
+        subformula3 =X9
         derived  =I
         concept  =Y98
         ~retrieval>
@@ -317,11 +330,11 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         role    =L
         checkclash =M
         =retrieval>
-        isa      proposition
+        isa      uproposition
         thing    uproposition
         form     =X
         element  =U
-        mainconnective =A
+        mainconnective universal
         relation =B
         subformula1 =C
         subformula2 =D
@@ -336,6 +349,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         relation =F
         subformula1 =G
         subformula2 =H
+        subformula3 =X9
         derived  =I
         concept  =Y98
         ?imaginal>
@@ -355,13 +369,13 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         thing    uproposition
         form     =X
         element  =U
-        mainconnective =A
+        mainconnective universal
         relation =B
         subformula1 =C
         subformula2 =D
         derived  yes
         concept  =Y99
-        count     0
+        count     =Q1
         relation1 none
         relation2 none
         relation3 none
@@ -380,6 +394,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         relation =F
         subformula1 =G
         subformula2 =H
+        subformula3 =X9
         derived  =I
         concept  =Y98
         ~retrieval>
@@ -403,6 +418,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         mainconnective =V
         subformula1  =C
         subformula2  =B
+        subformula3 =X8
         relation   =A
         derived  =J
         concept  =Y99
@@ -415,6 +431,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         relation =F
         subformula1 =G
         subformula2 =H
+        subformula3 =X9
         derived  =I
         concept  =Y98
         ?imaginal_action>
@@ -437,6 +454,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         mainconnective =V
         subformula1  =C
         subformula2  =B
+        subformula3 =X8
         relation   =A
         derived  yes
         concept  =Y99
@@ -449,6 +467,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         relation =F
         subformula1 =G
         subformula2 =H
+        subformula3 =X9
         derived  =I
         concept  =Y98
         ~retrieval>
@@ -465,11 +484,11 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         role    =L
         checkclash =M
         =retrieval>
-        isa      proposition
+        isa      uproposition
         thing    uproposition
         form     =X
         element  =U
-        mainconnective =A
+        mainconnective universal
         relation =B
         subformula1 =C
         subformula2 =D
@@ -484,6 +503,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         relation =F
         subformula1 =G
         subformula2 =H
+        subformula3 =X9
         derived  =I
         concept  =Y98
         ?imaginal_action>
@@ -503,13 +523,13 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         thing    uproposition
         form     =X
         element  =U
-        mainconnective =A
+        mainconnective universal
         relation =B
         subformula1 =C
         subformula2 =D
         derived  yes
         concept  =Y99
-        count     0
+        count     =Q1
         relation1 none
         relation2 none
         relation3 none
@@ -528,6 +548,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         relation =F
         subformula1 =G
         subformula2 =H
+        subformula3 =X9
         derived  =I
         concept  =Y98
         ~retrieval>
@@ -558,6 +579,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         mainconnective  =V
         subformula1  =C
         subformula2  =B
+        subformula3 =X8
         relation   =A
         derived  yes
         concept  =Y99
@@ -569,6 +591,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         mainconnective =Z
         subformula1  =D
         subformula2  =E
+        subformula3 =X9
         relation   =F
         derived  yes
         concept  =Y98
@@ -623,6 +646,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         mainconnective =V
         subformula1  =C
         subformula2  =B
+        subformula3 =X8
         relation   =A
         derived  yes
         concept  =Y99
@@ -639,6 +663,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         mainconnective  =Z
         subformula1  =D
         subformula2  =E
+        subformula3 =X9
         relation   =F
         derived  yes
         concept  =Y98
@@ -696,6 +721,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         mainconnective =V
         subformula1  =C
         subformula2  =B
+        subformula3 =X8
         relation   =A
         derived  yes
         concept  =Y99
@@ -710,6 +736,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         mainconnective =Z
         subformula1  =D
         subformula2  =E
+        subformula3 =X9
         relation   =F
         derived  yes
         concept  =Y98

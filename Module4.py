@@ -7,7 +7,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count1   =Q1
         count2   =Q2
         mainconnective =R
-        role     =R
+        role     =S
         checkclash =M
         =imaginal>
         isa      proposition
@@ -17,6 +17,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         mainconnective existential
         subformula1  =Y
         subformula2  =Z
+        subformula3 =X8
         derived  yes
         relation =V
         concept  =Y99
@@ -48,7 +49,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count1   =Q1
         count2   =Q2
         mainconnective =R
-        role     =R
+        role     =S
         checkclash =M
         +imaginal>
         isa      proposition
@@ -58,6 +59,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         mainconnective existential
         subformula1  =Y
         subformula2  =Z
+        subformula3 =X8
         derived  yes
         relation =V
         concept  =Y99
@@ -82,7 +84,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         +retrieval>
         isa      role_list
         thing    role_list
-        role1    =R
+        role1    =S
     """)
 
     aBoxCon.productionstring(name="Module 4, Unit 2a: no role list found, make one", string="""
@@ -93,7 +95,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count1   =Q1
         count2   =Q2
         mainconnective =R
-        role     =R
+        role     =S
         checkclash =M
         =imaginal>
         isa      proposition
@@ -103,6 +105,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         mainconnective existential
         subformula1  =Y
         subformula2  =Z
+        subformula3 =X8
         derived  yes
         relation =V
         concept  =Y99
@@ -134,7 +137,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count1   =Q1
         count2   =Q2
         mainconnective =R
-        role     =R
+        role     =S
         checkclash =M
         +imaginal>
         isa      proposition
@@ -144,6 +147,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         mainconnective existential
         subformula1  =Y
         subformula2  =Z
+        subformula3 =X8
         derived  yes
         relation =V
         concept  =Y99
@@ -176,7 +180,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count1   =Q1
         count2   =Q2
         mainconnective =R
-        role     =R
+        role     =S
         checkclash =M
         =imaginal>
         isa      proposition
@@ -186,6 +190,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         mainconnective existential
         subformula1  =Y
         subformula2  =Z
+        subformula3 =X8
         derived  yes
         relation =V
         concept  =Y99
@@ -210,7 +215,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         =retrieval>
         isa      role_list
         thing    role_list
-        role1    =R
+        role1    =S
         role2    =B2
         role3    =B3
         role4    =B4
@@ -230,7 +235,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count1   =Q1
         count2   =Q2
         mainconnective =R
-        role     =R
+        role     =S
         checkclash =M
         +imaginal>
         isa      proposition
@@ -240,6 +245,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         mainconnective existential
         subformula1  =Y
         subformula2  =Z
+        subformula3 =X8
         derived  yes
         relation =V
         concept  =Y99
@@ -282,7 +288,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count1   =Q1
         count2   =Q2
         mainconnective =R
-        role     =R
+        role     =S
         checkclash =M
         =imaginal>
         isa      proposition
@@ -292,6 +298,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         mainconnective existential
         subformula1  =Y
         subformula2  =Z
+        subformula3 =X8
         derived  yes
         relation =V
         concept  =Y99
@@ -314,9 +321,11 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         mainconnective  relation
         subformula1  =U
         subformula2  =W1
+        subformula3  =X9
         form     =W2
         concept  none
         relation =W3
+        element  =V1
         ?retrieval>
         state    free
         ==>
@@ -335,10 +344,12 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         mainconnective  relation
         subformula1  =U
         subformula2  =W1
+        subformula3  =X9
         form     =W2
         concept  none
         relation =W3
         derived  yes
+        element  =V1
         +imaginal_action>
         isa      role_list
         thing    role_list
@@ -356,7 +367,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         isa      proposition
         thing    proposition
         element  =W1
-        concept  =Y99
+        concept  =X8
         mainconnective ~relation
     """)
 
@@ -376,10 +387,12 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         mainconnective  relation
         subformula1  =U
         subformula2  =W1
+        subformula3 =X8
         form     =W2
         concept  none
         relation =W3
         derived  yes
+        element  =V1
         =imaginal_action>
         isa      role_list
         thing    role_list
@@ -410,6 +423,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         relation =A3
         subformula1  =A4
         subformula2  =A5
+        subformula3 =X9
         derived  =A6
         ==>
         =g>
@@ -431,6 +445,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         relation =A3
         subformula1  =A4
         subformula2  =A5
+        subformula3 =X9
         derived  yes
         +imaginal_action>
         isa      role_list
@@ -472,6 +487,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         relation =A3
         subformula1  =A4
         subformula2  =A5
+        subformula3 =X8
         derived  yes
         =imaginal_action>
         isa      role_list
@@ -550,10 +566,12 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         mainconnective  relation
         subformula1  =U
         subformula2  =W1
+        subformula3 =X8
         form     =W2
         concept  none
         relation =W3
         derived  yes
+        element  =V1
         =imaginal_action>
         isa      role_list
         thing    role_list
@@ -580,6 +598,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         relation =A3
         subformula1  =A4
         subformula2  =A5
+        subformula3 =X9
         derived  =A6
         ?retrieval>
         state   free
@@ -603,6 +622,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         relation =A3
         subformula1  =A4
         subformula2  =A5
+        subformula3 =X9
         derived  yes
         +imaginal_action>
         isa      role_list
