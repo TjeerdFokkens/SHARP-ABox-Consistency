@@ -405,6 +405,11 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         form13   =A19
         form14   =A20
         form15   =A21
+        form16   =A22
+        form17   =A23
+        form18   =A24
+        form19   =A25
+        form20   =A26
         ?imaginal>
         state    free
         ==>
@@ -435,6 +440,11 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         form13   =A19
         form14   =A20
         form15   =A21
+        form16   =A22
+        form17   =A23
+        form18   =A24
+        form19   =A25
+        form20   =A26
         +retrieval>
         isa      count_order
         thing    count_order
@@ -469,6 +479,11 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         form13   =A19
         form14   =A20
         form15   =A21
+        form16   =A22
+        form17   =A23
+        form18   =A24
+        form19   =A25
+        form20   =A26
         =retrieval>
         isa      count_order
         thing    count_order
@@ -504,6 +519,11 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         form13   =A19
         form14   =A20
         form15   =A21
+        form16   =A22
+        form17   =A23
+        form18   =A24
+        form19   =A25
+        form20   =A26
         +retrieval>
         isa      proposition
         thing    proposition
@@ -572,6 +592,11 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         form13   none
         form14   none
         form15   none
+        form16   none
+        form17   none
+        form18   none
+        form19   none
+        form20   none
         +retrieval>
         isa      count_order
         thing    count_order

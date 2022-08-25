@@ -27,6 +27,11 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         form13   =A19
         form14   =A20
         form15   =A21
+        form16   =A22
+        form17   =A23
+        form18   =A24
+        form19   =A25
+        form20   =A26
         ?imaginal>
         state    free
         ==>
@@ -57,6 +62,11 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         form13   =A19
         form14   =A20
         form15   =A21
+        form16   =A22
+        form17   =A23
+        form18   =A24
+        form19   =A25
+        form20   =A26
         ~retrieval>
     """)
 
@@ -102,6 +112,11 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         form13   none
         form14   none
         form15   none
+        form16   none
+        form17   none
+        form18   none
+        form19   none
+        form20   none
     """)
 
     aBoxCon.productionstring(name="Module 2, Unit 3a: retrieve non-universal formula", string="""
@@ -132,6 +147,11 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         form13   =A19
         form14   =A20
         form15   =A21
+        form16   =A22
+        form17   =A23
+        form18   =A24
+        form19   =A25
+        form20   =A26
         ?retrieval>
         state    free
         ==>
@@ -162,11 +182,17 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         form     ~=A19
         form     ~=A20
         form     ~=A21
+        form     ~=A22
+        form     ~=A23
+        form     ~=A24
+        form     ~=A25
+        form     ~=A26
         mainconnective ~negation
         mainconnective ~concept
         mainconnective ~disjunction
         mainconnective ~relation
         mainconnective ~none
+        mainconnective ~universal
         derived  yes
         +imaginal>
         isa      storelist
@@ -186,6 +212,11 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         form13   =A19
         form14   =A20
         form15   =A21
+        form16   =A22
+        form17   =A23
+        form18   =A24
+        form19   =A25
+        form20   =A26
     """)
 
     aBoxCon.productionstring(name="Module 2, Unit 3b: retrieve universal formula", string="""
@@ -216,6 +247,11 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         form13   =A19
         form14   =A20
         form15   =A21
+        form16   =A22
+        form17   =A23
+        form18   =A24
+        form19   =A25
+        form20   =A26
         ==>
         =g>
         isa      goal
@@ -231,7 +267,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         thing    uproposition
         mainconnective universal
         derived  yes
-        count    ~=Q2
+        count    =Q1
         +imaginal>
         isa      storelist
         thing    storelist
@@ -250,6 +286,11 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         form13   =A19
         form14   =A20
         form15   =A21
+        form16   =A22
+        form17   =A23
+        form18   =A24
+        form19   =A25
+        form20   =A26
     """)
 
     aBoxCon.productionstring(name="Module 2, Unit 4a: non-universal found, update list of used formulas", string="""
@@ -292,6 +333,11 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         form13   =A19
         form14   =A20
         form15   =A21
+        form16   =A22
+        form17   =A23
+        form18   =A24
+        form19   =A25
+        form20   =A26
         ?imaginal_action>
         state    free
         ==>
@@ -334,6 +380,11 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         form13   =A18
         form14   =A19
         form15   =A20
+        form16   =A21
+        form17   =A22
+        form18   =A23
+        form19   =A24
+        form20   =A25
     """)
 
     aBoxCon.productionstring(name="Module 2, Unit 4b: universal found, prepare for module 5", string="""
@@ -460,6 +511,11 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         form13   =A19
         form14   =A20
         form15   =A21
+        form16   =A22
+        form17   =A23
+        form18   =A24
+        form19   =A25
+        form20   =A26
         ?imaginal_action>
         state    free
         ?retrieval>
@@ -492,6 +548,11 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         form     ~=A19
         form     ~=A20
         form     ~=A21
+        form     ~=A22
+        form     ~=A23
+        form     ~=A24
+        form     ~=A25
+        form     ~=A26
         mainconnective ~negation
         mainconnective ~concept
         mainconnective ~disjunction
@@ -516,6 +577,11 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         form13   =A19
         form14   =A20
         form15   =A21
+        form16   =A22
+        form17   =A23
+        form18   =A24
+        form19   =A25
+        form20   =A26
     """)
 
     aBoxCon.productionstring(name="Module 2, Unit 5b: retrieve universal after non-universal", string="""
@@ -548,6 +614,11 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         form13   =A19
         form14   =A20
         form15   =A21
+        form16   =A22
+        form17   =A23
+        form18   =A24
+        form19   =A25
+        form20   =A26
         ?imaginal_action>
         state    free
         ==>
@@ -705,6 +776,11 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         form13   =A19
         form14   =A20
         form15   =A21
+        form16   =A22
+        form17   =A23
+        form18   =A24
+        form19   =A25
+        form20   =A26
         ?imaginal_action>
         state    free
         ==>
@@ -747,6 +823,11 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         form13   =A18
         form14   =A19
         form15   =A20
+        form16   =A21
+        form17   =A22
+        form18   =A23
+        form19   =A24
+        form20   =A25
     """)
 
     aBoxCon.productionstring(name="Module 2, Unit 7a: no formula found, last check for clash", string="""
@@ -832,5 +913,13 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         form6    none
         form7    none
         form8    none
+        form9    none
+        form10   none
+        form11   none
+        form12   none
+        form13   none
+        form14   none
+        form15   none
+        form16   none
         ~retrieval>
     """)

@@ -39,6 +39,11 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form13   =A19
         form14   =A20
         form15   =A21
+        form16   =A22
+        form17   =A23
+        form18   =A24
+        form19   =A25
+        form20   =A26
         ?retrieval>
         state    free
         ==>
@@ -622,6 +627,14 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form6    none
         form7    none
         form8    none
+        form9    none
+        form10   none
+        form11   none
+        form12   none
+        form13   none
+        form14   none
+        form15   none
+        form16   none
         ~retrieval>
         ~imaginal_action>
     """)
@@ -694,6 +707,14 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form6    none
         form7    none
         form8    none
+        form9    none
+        form10   none
+        form11   none
+        form12   none
+        form13   none
+        form14   none
+        form15   none
+        form16   none
         ~retrieval>
         ~imaginal_action>
     """)

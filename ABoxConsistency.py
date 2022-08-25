@@ -39,14 +39,14 @@ def initial(learning=False):
     actr.chunktype("goal", "state, form, count1, count2, mainconnective, role, checkclash")
     actr.chunktype("proposition", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, subformula3, derived")
     actr.chunktype("uproposition", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, derived, count, relation1, relation2, relation3, relation4, relation5, relation6, relation7, relation8, relation9")
-    actr.chunktype("checklist", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, form2, form3, form4, form5, form6, form7, form8")
-    actr.chunktype("storelist", "thing, form, form2, form3, form4, form5, form6, form7, form8, form9, form10, form11, form12, form13, form14, form15")
+    actr.chunktype("checklist", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, form2, form3, form4, form5, form6, form7, form8, form9, form10, form11, form12, form13, form14, form15, form16")
+    actr.chunktype("storelist", "thing, form, form2, form3, form4, form5, form6, form7, form8, form9, form10, form11, form12, form13, form14, form15, form16, form17, form18 form19, form20")
     actr.chunktype("universal_list", "thing, form, form2, form3, form4, form5, form6, form7, form8, form9")
     actr.chunktype("count_order","number, successor, thing")
     actr.chunktype("role_list", "thing, role1, role2, role3, role4, role5, role6, role7, role8, role9, role10")
 
     aBoxCon.goals["g"].add(actr.makechunk(typename="goal", state="find_clash_to_head", form='none', count1=0, count2=1, mainconnective='none', role='none', checkclash='no'))
-    aBoxCon.goals["imaginal"].add(actr.makechunk(typename="checklist", thing="checklist", form="none", element="none", mainconnective="none", relation="none", subformula1="none", subformula2="none", form2="none", form3="none", form4="none", form5="none", form6="none", form7="none", form8="none"))
+    aBoxCon.goals["imaginal"].add(actr.makechunk(typename="checklist", thing="checklist", form="none", element="none", mainconnective="none", relation="none", subformula1="none", subformula2="none", form2="none", form3="none", form4="none", form5="none", form6="none", form7="none", form8="none", form9="none", form10="none", form11="none", form12="none", form13="none", form14="none", form15="none", form16="none"))
 
     for i in range(10):
         aBoxCon.decmem.add(actr.makechunk(typename="count_order", thing="count_order",number=str(i), successor=str(i+1)))
@@ -62,13 +62,19 @@ def trace(mod, buffer, action=''):
         if sim.current_event.proc==buffer and sim.current_event.action.startswith(action):
             print(sim.current_event)
             #mod.decmem.add(actr.makechunk(typename="test", thing="test")) Here some arbitrary chunks can be added to the dm.
-            if sim.current_event.action.startswith('RULE SELECTED: Module 2, Unit 4a') or sim.current_event.action.startswith('RULE SELECTED: Module 5, Unit 2a') or sim.current_event.action.startswith('RULE SELECTED: Module 4, Unit 4b') or sim.current_event.action.startswith('RULE SELECTED: Module 2, Unit 4b'):
+            if sim.current_event.action.startswith('RULE SELECTED: Module 2, Unit 4a') or sim.current_event.action.startswith('RULE SELECTED: Module 5, Unit 2a') or sim.current_event.action.startswith('RULE SELECTED: Module 4, Unit 4b') or sim.current_event.action.startswith('RULE SELECTED: Module 2, Unit 4b') or sim.current_event.action.startswith('RULE SELECTED: Module 4, Unit 1') or sim.current_event.action.startswith('RULE SELECTED: Module 3, Unit 1') or sim.current_event.action.startswith('RULE SELECTED: Module 4, Unit 3'):
                 print('')
                 print('Active formula:')
-                a = str(mod.retrieval).split('form= ',1)[1].split(',',1)[0]
+                a = str(mod.retrieval).split('form= ',1)[1].split(', ',1)[0]
                 print(a)
                 print('')
                 prove_tracks.append(a)
+            #if sim.current_event.action.startswith('RULE SELECTED: Module 1, Unit 1:'):
+            #    print('')
+            #    print('Declarative Memory:')
+            #    a = str(mod.decmem)
+            #    print(a)
+            #    print('')
         try:
             old_stdout = sys.stdout
             sys.stdout = open(os.devnull, "w")
@@ -205,7 +211,7 @@ md2.module2(aBoxCon)
 md3.module3(aBoxCon)
 md4.module4(aBoxCon)
 md5.module5(aBoxCon)
-i = 'a:A, (c,b):r, (b,a):s, c:/Ar.(B&/As.-A)'
+i = 'a:(A&(B&(C&(D&(J&(K&(/Er.E&(/Es.F&(/Et.G&(/Eu.H&(/Ev.I&/Ew.L)))))))))))'
 par.AddAboxFromFile(i,dm.add)
 vec = trace(aBoxCon, 'PROCEDURAL', action='RULE SELECTED')
 print(dm)
