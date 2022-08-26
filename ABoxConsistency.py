@@ -46,10 +46,6 @@ def initial(learning=False):
     actr.chunktype("role_list", "thing, role1, role2, role3, role4, role5, role6, role7, role8, role9, role10")
 
     aBoxCon.goals["g"].add(actr.makechunk(typename="goal", state="find_clash_to_head", form='none', count1=0, count2=1, mainconnective='none', role='none', checkclash='no'))
-    aBoxCon.goals["imaginal"].add(actr.makechunk(typename="checklist", thing="checklist", form="none", element="none", mainconnective="none", relation="none", subformula1="none", subformula2="none", form2="none", form3="none", form4="none", form5="none", form6="none", form7="none", form8="none", form9="none", form10="none", form11="none", form12="none", form13="none", form14="none", form15="none", form16="none"))
-
-    for i in range(10):
-        aBoxCon.decmem.add(actr.makechunk(typename="count_order", thing="count_order",number=str(i), successor=str(i+1)))
     return aBoxCon
 
 def trace(mod, buffer, action=''):
@@ -205,32 +201,29 @@ plt.show()
 
 
 aBoxCon = initial(learning=True)
-dm = aBoxCon.decmem
 md1.module1(aBoxCon)
 md2.module2(aBoxCon)
 md3.module3(aBoxCon)
 md4.module4(aBoxCon)
 md5.module5(aBoxCon)
-i = 'a:(A&(B&(C&(D&(J&(K&(/Er.E&(/Es.F&(/Et.G&(/Eu.H&(/Ev.I&/Ew.L)))))))))))'
-par.AddAboxFromFile(i,dm.add)
+i = 'a:A, a:/Er./Es.-A, a:/Er.A'
+par.AddAboxFromFile(i,aBoxCon)
 vec = trace(aBoxCon, 'PROCEDURAL', action='RULE SELECTED')
-print(dm)
 #f = open("abox2.txt", 'r')
 #abox = f.read().replace('\n', ' ')
 '''
-from AboxesSnomed import aboxes_from_snomed
+from Aboxes_incon import aboxes_inconsistent
 j = 0
-for i in aboxes_from_snomed:
+for i in aboxes_inconsistent:
     j+=1
     print(j)
     aBoxCon = initial(learning=True)
-    dm = aBoxCon.decmem
     md1.module1(aBoxCon)
     md2.module2(aBoxCon)
     md3.module3(aBoxCon)
     md4.module4(aBoxCon)
     md5.module5(aBoxCon)
-    par.AddAboxFromFile(i,dm.add)
+    par.AddAboxFromFile(i,aBoxCon)
     vec = trace(aBoxCon, 'manual', action='KEY')
 #aBoxCon_sim = aBoxCon.simulation(realtime=False,gui=False)
 #aBoxCon_sim.run(10)

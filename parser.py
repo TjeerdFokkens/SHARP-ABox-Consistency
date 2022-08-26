@@ -192,13 +192,34 @@ class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to 
 form_parser = Lark(form_grammar, parser='lalr')
 parser = form_parser.parse
 
-def AddAboxFromFile(data,addtodm):
+def AddAboxFromFile(data,model_init):
+    addtodm = model_init.decmem.add
+    addtogoal = model_init.goals["g"].add
+    addtoimaginal = model_init.goals["imaginal"].add
+
+    addtoimaginal(actr.makechunk(typename="checklist", thing="checklist", form="none", element="none", mainconnective="none", relation="none", subformula1="none", subformula2="none", form2="none", form3="none", form4="none", form5="none", form6="none", form7="none", form8="none", form9="none", form10="none", form11="none", form12="none", form13="none", form14="none", form15="none", form16="none"))
+
+    for i in range(10):
+        addtodm(actr.makechunk(typename="count_order", thing="count_order",number=str(i), successor=str(i+1)))
+
     abox = parser(data)
     witnesses=set()
     for i in range(1,1+max(CountNodes("role_ass").transform(abox),1)* CountNodes("exists").transform(abox)):
         witnesses.add("x"+str(i))
     elements=set()
     SetOfElements(elements).visit(abox)
+
+    els = list(elements)
+    def pick(li,ind):
+        l = len(li)
+        if ind<l:
+            return li[ind]
+        else:
+            return 'none'
+
+    addtodm(actr.makechunk(typename="role_list", thing="role_list", role1=pick(els,0), role2=pick(els,1), role3=pick(els,2), role4=pick(els,3), role5=pick(els,4), role6=pick(els,5), role7=pick(els,6), role8=pick(els,7), role9=pick(els,8), role10=pick(els,9)))
+    addtogoal(actr.makechunk(typename="goal", state="find_clash_to_head", form='none', count1=0, count2=1, mainconnective='none', role=pick(els,0), checkclash='no'))
+
     #print(elements)
     #print(witnesses)
     if abox.data in ["con_ass","role_ass"]:
