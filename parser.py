@@ -199,7 +199,7 @@ def AddAboxFromFile(data,model_init):
 
     addtoimaginal(actr.makechunk(typename="checklist", thing="checklist", form="none", element="none", mainconnective="none", relation="none", subformula1="none", subformula2="none", form2="none", form3="none", form4="none", form5="none", form6="none", form7="none", form8="none", form9="none", form10="none", form11="none", form12="none", form13="none", form14="none", form15="none", form16="none"))
 
-    for i in range(10):
+    for i in range(20):
         addtodm(actr.makechunk(typename="count_order", thing="count_order",number=str(i), successor=str(i+1)))
 
     abox = parser(data)

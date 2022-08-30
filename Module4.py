@@ -295,7 +295,6 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         role10   =B9
         +retrieval>
         isa      proposition
-        thing    proposition
         element  =W1
         concept  =X8
         mainconnective ~relation
@@ -488,7 +487,101 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         form     =P
     """)
 
-    aBoxCon.productionstring(name="Module 4, Unit 4b: label concept, complex formula found", string="""
+    aBoxCon.productionstring(name="Module 4, Unit 4b: label concept, non-universal complex formula found", string="""
+        =g>
+        isa      goal
+        state    label_concept
+        form     =P
+        count1   =Q1
+        count2   =Q2
+        mainconnective =R
+        role     =W1
+        checkclash =M
+        =imaginal>
+        isa      proposition
+        thing    proposition
+        mainconnective  relation
+        subformula1  =U
+        subformula2  =W1
+        subformula3  =X8
+        form     =W2
+        concept  none
+        relation =W3
+        derived  yes
+        element  =V1
+        =imaginal_action>
+        isa      role_list
+        thing    role_list
+        role1    =W1
+        role2    =B1
+        role3    =B2
+        role4    =B3
+        role5    =B4
+        role6    =B5
+        role7    =B6
+        role8    =B7
+        role9    =B8
+        role10   =B9
+        =retrieval>
+        isa      proposition
+        thing    proposition
+        element  =W1
+        concept  =Y99
+        form     =A1
+        mainconnective  ~concept
+        mainconnective  ~negation
+        mainconnective  ~universal
+        mainconnective  ~none
+        mainconnective  =A2
+        relation =A3
+        subformula1  =A4
+        subformula2  =A5
+        subformula3 =X9
+        derived  =A6
+        ?retrieval>
+        state   free
+        ==>
+        =g>
+        isa      goal
+        state    derive_next_formulas
+        form     =P
+        count1   =Q1
+        count2   =Q2
+        mainconnective =R
+        role     =W1
+        checkclash =M
+        +imaginal>
+        isa      proposition
+        thing    proposition
+        element  =W1
+        concept  =Y99
+        form     =A1
+        mainconnective  =A2
+        relation =A3
+        subformula1  =A4
+        subformula2  =A5
+        subformula3 =X9
+        derived  yes
+        +imaginal_action>
+        isa      role_list
+        thing    role_list
+        role1    =W1
+        role2    =B1
+        role3    =B2
+        role4    =B3
+        role5    =B4
+        role6    =B5
+        role7    =B6
+        role8    =B7
+        role9    =B8
+        role10   =B9
+        +retrieval>
+        isa      storelist
+        thing    storelist
+        form     =P
+    """)
+
+    aBoxCon.productionstring(name="Module 4, Unit 4c: label concept, universal formula found", string="""
         =g>
         isa      goal
         state    label_concept
@@ -524,20 +617,26 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         role9    =B8
         role10   =B9
         =retrieval>
-        isa      proposition
-        thing    proposition
+        isa      uproposition
+        thing    uproposition
         element  =W1
         concept  =Y99
         form     =A1
-        mainconnective  ~concept
-        mainconnective  ~negation
-        mainconnective  ~none
-        mainconnective  =A2
+        mainconnective  universal
         relation =A3
         subformula1  =A4
         subformula2  =A5
-        subformula3 =X9
-        derived  =A6
+        derived   =A6
+        count     =C1
+        relation1 =C2
+        relation2 =C3
+        relation3 =C4
+        relation4 =C5
+        relation5 =C6
+        relation6 =C7
+        relation7 =C8
+        relation8 =C9
+        relation9 =C10
         ?retrieval>
         state   free
         ==>
@@ -551,17 +650,26 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         role     =W1
         checkclash =M
         +imaginal>
-        isa      proposition
-        thing    proposition
+        isa      uproposition
+        thing    uproposition
         element  =W1
         concept  =Y99
         form     =A1
-        mainconnective  =A2
+        mainconnective  universal
         relation =A3
         subformula1  =A4
         subformula2  =A5
-        subformula3 =X9
         derived  yes
+        count     =Q1
+        relation1 =C2
+        relation2 =C3
+        relation3 =C4
+        relation4 =C5
+        relation5 =C6
+        relation6 =C7
+        relation7 =C8
+        relation8 =C9
+        relation9 =C10
         +imaginal_action>
         isa      role_list
         thing    role_list
