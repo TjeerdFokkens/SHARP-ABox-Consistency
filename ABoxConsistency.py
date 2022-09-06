@@ -197,7 +197,7 @@ simulation_plot(70, "abox2.txt", 0.2)
 plt.savefig('ABoxSimulationPlot2.png', transparent=True, dpi=1200)
 plt.show()
 
-'''
+
 
 aBoxCon = initial(learning=True)
 md1.module1(aBoxCon)
@@ -212,9 +212,9 @@ print(aBoxCon.decmem)
 #f = open("abox2.txt", 'r')
 #abox = f.read().replace('\n', ' ')
 '''
-from AboxesComplex import aboxes_complex
+from Aboxes_incon import aboxes_inconsistent
 j = 0
-for i in aboxes_complex:
+for i in aboxes_inconsistent:
     j+=1
     print(j)
     aBoxCon = initial(learning=True)
@@ -227,4 +227,3 @@ for i in aboxes_complex:
     vec = trace(aBoxCon, 'manual', action='KEY')
 #aBoxCon_sim = aBoxCon.simulation(realtime=False,gui=False)
 #aBoxCon_sim.run(10)
-'''

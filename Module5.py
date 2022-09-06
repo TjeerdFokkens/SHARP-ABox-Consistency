@@ -542,6 +542,11 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         form     ~=A19
         form     ~=A20
         form     ~=A21
+        form     ~=A22
+        form     ~=A23
+        form     ~=A24
+        form     ~=A25
+        form     ~=A26
         mainconnective ~negation
         mainconnective ~concept
         mainconnective ~disjunction

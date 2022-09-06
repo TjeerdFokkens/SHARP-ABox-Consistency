@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from statsmodels.distributions.empirical_distribution import ECDF
 
-
-simulations = ABC.plot_list(200, "abox2.txt")
+'''
+simulations = ABC.plot_list(50, "abox2.txt")
 
 
 #Making a nice workable data structure: a dictionary
@@ -41,17 +41,18 @@ data = str(dictionary)
 f = open("dict.txt", "w")
 f.write(data)
 f.close()
-
+'''
 
 s = open("dict.txt", "r")
 dictionary = eval(s.read())
 
 
+for i in ran(len(dictionary.items())):
+    st = "sample_" + i + " = dictionary[list(dictionary.items())[" + i + "][0]]"
+    print(st)
+    exec(st)
 
-sample_1 = dictionary[list(dictionary.items())[0][0]]
-sample_2 = dictionary[list(dictionary.items())[1][0]]
-sample_3 = dictionary[list(dictionary.items())[2][0]]
-
+'''
 print('Sample 1 order: ',list(dictionary.items())[0][0])
 print('Sample 2 order: ',list(dictionary.items())[1][0])
 print('Sample 3 order: ',list(dictionary.items())[2][0])
@@ -79,7 +80,7 @@ ax.axes.yaxis.set_ticklabels(['Sample 1', 'Sample 2', 'Sample 3'])
 
 plt.savefig('AnalysisThreeSamples.png', transparent=True, dpi=800)
 #plt.show()
-
+'''
 def lower(sam1, sam2):
     #For every value in sam1, count how many values in sam2 are strictly smaller.
     li1=[]
@@ -104,7 +105,7 @@ def A_w(sam1, sam2):
     denominator = len(sam1) * len(sam2)
     fraction = numerator/denominator
     return fraction
-
+'''
 print('Effect size 1-2', A_w(sample_1,sample_2))
 print('Effect size 1-3', A_w(sample_1,sample_3))
 print('Effect size 2-3', A_w(sample_2,sample_3))
@@ -125,19 +126,18 @@ cumulplot(sample_2,sample_3,True)
 
 
 #The below is copied from the internet
-def ridgeplot():
-    countries = [x for x in np.unique(data.country)]
-colors = ['#0000ff', '#3300cc', '#660099', '#990066', '#cc0033', '#ff0000']
+def ridgeplot(runs,data):
+    get_colors = lambda n: list(map(lambda i: "#" + "%06x" % random.randint(0, 0xFFFFFF),range(n)))
 
-gs = grid_spec.GridSpec(len(countries),1)
+gs = grid_spec.GridSpec(len(runs),1)
 fig = plt.figure(figsize=(16,9))
 
 i = 0
 
 ax_objs = []
-for country in countries:
-    country = countries[i]
-    x = np.array(data[data.country == country].score)
+for run in runs:
+    run = runs[i]
+    x = np.array(data[data.run == run].score)
     x_d = np.linspace(0,1, 1000)
 
     kde = KernelDensity(bandwidth=0.03, kernel='gaussian')
@@ -164,7 +164,7 @@ for country in countries:
     # remove borders, axis ticks, and labels
     ax_objs[-1].set_yticklabels([])
 
-    if i == len(countries)-1:
+    if i == len(runs)-1:
         ax_objs[-1].set_xlabel("Test Score", fontsize=16,fontweight="bold")
     else:
         ax_objs[-1].set_xticklabels([])
@@ -173,8 +173,8 @@ for country in countries:
     for s in spines:
         ax_objs[-1].spines[s].set_visible(False)
 
-    adj_country = country.replace(" ","\n")
-    ax_objs[-1].text(-0.02,0,adj_country,fontweight="bold",fontsize=14,ha="right")
+    adj_run = run.replace(" ","\n")
+    ax_objs[-1].text(-0.02,0,adj_run,fontweight="bold",fontsize=14,ha="right")
 
 
     i += 1
@@ -185,3 +185,4 @@ fig.text(0.07,0.85,"Distribution of Aptitude Test Results from 18 – 24 year-ol
 
 plt.tight_layout()
 plt.show()
+'''

@@ -265,7 +265,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         +manual>
         isa     _manual
         cmd     press_key
-        key     C
+        key     I
     """)
 
     aBoxCon.productionstring(name="Module 1, Unit 3a: no formula found, need to derive new ones", string="""
@@ -452,5 +452,5 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         +manual>
         isa     _manual
         cmd     press_key
-        key     N
+        key     C
     """)
