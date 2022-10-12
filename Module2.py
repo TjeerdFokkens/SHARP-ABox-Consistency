@@ -1,18 +1,18 @@
 def module2(aBoxCon): #This module either retrieves the list of used formulas and finds one not in the list, or it finds a universal restriction.
     aBoxCon.productionstring(name="Module 2, Unit 1: put storelist of used formulas in imaginal buffer", string="""
         =g>
-        isa     goal
-        state   derive_next_formulas
-        form    =P
+        isa      goal
+        state    derive_next_formulas
+        form     =P
         count1   =Q1
         count2   =Q2
         mainconnective =R
-        role    =L
-        checkclash =M
+        role     =L
+        derivenew =M
         =retrieval>
-        isa     storelist
-        thing   storelist
-        form    =P
+        isa      storelist
+        thing    storelist
+        form     =P
         form2    =A8
         form3    =A9
         form4    =A10
@@ -43,7 +43,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
-        checkclash =M
+        derivenew =M
         +imaginal>
         isa     storelist
         thing   storelist
@@ -70,7 +70,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         ~retrieval>
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 2: create storelist in imaginal buffer and put first used formula in it", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 1: create storelist in imaginal buffer and put first used formula in it", string="""
         =g>
         isa      goal
         state    derive_next_formulas
@@ -79,7 +79,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         ?retrieval>
         state    error
         ?imaginal>
@@ -93,7 +93,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         +imaginal>
         isa      storelist
         thing    storelist
@@ -119,7 +119,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         form20   none
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 3a: retrieve non-universal formula", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 2a: retrieve non-universal formula", string="""
         =g>
         isa     goal
         state   find_formula_not_in_list
@@ -128,7 +128,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         =imaginal>
         isa      storelist
         thing    storelist
@@ -163,7 +163,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
-        checkclash =M
+        derivenew =M
         +retrieval>
         isa      proposition
         thing    proposition
@@ -219,7 +219,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         form20   =A26
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 3b: retrieve universal formula", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 2b: retrieve universal formula", string="""
         =g>
         isa     goal
         state   find_formula_not_in_list
@@ -228,7 +228,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         =imaginal>
         isa      storelist
         thing    storelist
@@ -261,7 +261,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
-        checkclash =M
+        derivenew =M
         +retrieval>
         isa      uproposition
         thing    uproposition
@@ -293,7 +293,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         form20   =A26
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 4a: non-universal found, update list of used formulas", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 3a: non-universal found, update list of used formulas", string="""
         =g>
         isa      goal
         state    update_storelist_1
@@ -302,7 +302,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
-        checkclash =M
+        derivenew =M
         =retrieval>
         isa      proposition
         thing    proposition
@@ -349,7 +349,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
-        checkclash =M
+        derivenew =M
         +imaginal>
         isa      proposition
         thing    proposition
@@ -387,7 +387,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         form20   =A25
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 4b: universal found, prepare for module 5", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 3b: universal found, prepare for module 5", string="""
         =g>
         isa      goal
         state    prepare_module_5_1
@@ -396,7 +396,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
-        checkclash =M
+        derivenew =M
         =retrieval>
         isa      uproposition
         thing    uproposition
@@ -431,7 +431,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
-        checkclash =M
+        derivenew =M
         +imaginal_action>
         isa      uproposition
         thing    uproposition
@@ -483,7 +483,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         form    ~=Y9
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 5a: retrieve non-universal after universal", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 4a: retrieve non-universal after universal", string="""
         =g>
         isa      goal
         state    prepare_module_5_1
@@ -492,7 +492,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
-        checkclash =M
+        derivenew =M
         =imaginal>
         isa      storelist
         thing    storelist
@@ -529,7 +529,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
-        checkclash =M
+        derivenew =M
         +retrieval>
         isa      proposition
         thing    proposition
@@ -584,7 +584,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         form20   =A26
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 5b: retrieve universal after non-universal", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 4b: retrieve universal after non-universal", string="""
         =g>
         isa      goal
         state    update_storelist_1
@@ -593,7 +593,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
-        checkclash =M
+        derivenew =M
         ?retrieval>
         state    error
         =imaginal>
@@ -630,7 +630,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
-        checkclash =M
+        derivenew =M
         +retrieval>
         isa      uproposition
         thing    uproposition
@@ -640,7 +640,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         ~imaginal>
     """)
 
-    aBoxCon.productionstring(name="Module 2, Unit 4b: universal found after non-universal, go to module 5", string="""
+    aBoxCon.productionstring(name="Module 2, Unit 5a: universal found after non-universal, go to module 5", string="""
         =g>
         isa      goal
         state    prepare_module_5_2
@@ -649,7 +649,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
-        checkclash =M
+        derivenew =M
         =retrieval>
         isa      uproposition
         thing    uproposition
@@ -684,7 +684,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
-        checkclash =M
+        derivenew =M
         +imaginal_action>
         isa      uproposition
         thing    uproposition
@@ -745,7 +745,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
-        checkclash =M
+        derivenew =M
         =retrieval>
         isa      proposition
         thing    proposition
@@ -792,7 +792,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
-        checkclash =M
+        derivenew =M
         +imaginal>
         isa      proposition
         thing    proposition
@@ -839,7 +839,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
-        checkclash =M
+        derivenew =M
         ?retrieval>
         state    error
         ?manual>
@@ -848,7 +848,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         =g>
         isa      goal
         state    last_clash
-        checkclash =M
+        derivenew =M
     """)
 
     aBoxCon.productionstring(name="Module 2, Unit 7b: no formula found, last check for clash", string="""
@@ -860,7 +860,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
-        checkclash =M
+        derivenew =M
         ?retrieval>
         state    error
         ?manual>
@@ -869,7 +869,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         =g>
         isa      goal
         state    last_clash
-        checkclash =M
+        derivenew =M
     """)
 
     aBoxCon.productionstring(name="Module 2, Unit 8: prepare for last check for a clash", string="""
@@ -881,7 +881,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
-        checkclash =M
+        derivenew =M
         ?retrieval>
         state    error
         ?manual>
@@ -895,7 +895,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         count2   =Q2
         mainconnective =R
         role     =L
-        checkclash yes
+        derivenew no
         +imaginal>
         isa     checklist
         thing   checklist

@@ -8,7 +8,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         =imaginal>
         isa      proposition
         thing    proposition
@@ -55,7 +55,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role     =L
-        checkclash =M
+        derivenew =M
         +imaginal>
         isa      proposition
         thing    proposition
@@ -92,7 +92,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         =imaginal>
         isa      proposition
         thing    ~checklist
@@ -140,7 +140,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         +retrieval>
         isa      proposition
         thing    ~checklist
@@ -176,7 +176,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         =imaginal>
         isa      proposition
         thing    ~checklist
@@ -224,7 +224,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         +retrieval>
         isa      proposition
         thing    ~checklist
@@ -260,7 +260,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         =retrieval>
         isa      proposition
         thing    proposition
@@ -296,7 +296,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         +imaginal>
         isa      proposition
         thing    proposition
@@ -333,7 +333,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         =retrieval>
         isa      uproposition
         thing    uproposition
@@ -368,7 +368,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         +imaginal>
         isa      uproposition
         thing    uproposition
@@ -414,7 +414,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         =retrieval>
         isa      proposition
         thing    proposition
@@ -450,7 +450,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         +imaginal_action>
         isa      proposition
         thing    proposition
@@ -487,7 +487,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         =retrieval>
         isa      uproposition
         thing    uproposition
@@ -522,7 +522,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         +imaginal_action>
         isa      uproposition
         thing    uproposition
@@ -568,7 +568,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         ?retrieval>
         state    free
         =imaginal>
@@ -609,7 +609,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         +imaginal>
         isa     checklist
         thing   checklist
@@ -648,7 +648,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         ?retrieval>
         state    free
         =imaginal>
@@ -689,7 +689,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         +imaginal>
         isa     checklist
         thing   checklist
@@ -728,7 +728,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         ?retrieval>
         state    free
         =imaginal>
@@ -770,7 +770,7 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         +retrieval>
         isa      storelist
         thing    storelist

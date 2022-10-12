@@ -8,7 +8,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count2   =Q2
         mainconnective =R
         role     =S
-        checkclash =M
+        derivenew =M
         =imaginal>
         isa      proposition
         thing    proposition
@@ -55,7 +55,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count2   =Q2
         mainconnective =R
         role     =S
-        checkclash =M
+        derivenew =M
         +imaginal>
         isa      proposition
         thing    proposition
@@ -97,7 +97,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         role1    =S
     """)
 
-    aBoxCon.productionstring(name="Module 4, Unit 2b: role list found, select role not in list", string="""
+    aBoxCon.productionstring(name="Module 4, Unit 2: role list found, select role not in list", string="""
         =g>
         isa      goal
         state    get_role_list
@@ -106,7 +106,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count2   =Q2
         mainconnective =R
         role     =S
-        checkclash =M
+        derivenew =M
         =imaginal>
         isa      proposition
         thing    proposition
@@ -166,7 +166,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count2   =Q2
         mainconnective =R
         role     =S
-        checkclash =M
+        derivenew =M
         +imaginal>
         isa      proposition
         thing    proposition
@@ -219,7 +219,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count2   =Q2
         mainconnective =R
         role     =S
-        checkclash =M
+        derivenew =M
         =imaginal>
         isa      proposition
         thing    proposition
@@ -267,7 +267,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count2   =Q2
         mainconnective =R
         role     =W1
-        checkclash =M
+        derivenew =M
         +imaginal>
         isa      proposition
         thing    proposition
@@ -309,7 +309,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count2   =Q2
         mainconnective =R
         role     =W1
-        checkclash =M
+        derivenew =M
         =imaginal>
         isa      proposition
         thing    proposition
@@ -363,7 +363,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count2   =Q2
         mainconnective =R
         role     =W1
-        checkclash =M
+        derivenew =M
         +imaginal>
         isa      proposition
         thing    proposition
@@ -400,7 +400,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count2   =Q2
         mainconnective =R
         role     =W1
-        checkclash =M
+        derivenew =M
         =imaginal>
         isa      proposition
         thing    proposition
@@ -442,7 +442,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count2   =Q2
         mainconnective =R
         role     =W1
-        checkclash =M
+        derivenew =M
         +imaginal>
         isa     checklist
         thing   checklist
@@ -496,7 +496,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count2   =Q2
         mainconnective =R
         role     =W1
-        checkclash =M
+        derivenew =M
         =imaginal>
         isa      proposition
         thing    proposition
@@ -549,7 +549,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count2   =Q2
         mainconnective =R
         role     =W1
-        checkclash =M
+        derivenew =M
         +imaginal>
         isa      proposition
         thing    proposition
@@ -590,7 +590,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count2   =Q2
         mainconnective =R
         role     =W1
-        checkclash =M
+        derivenew =M
         =imaginal>
         isa      proposition
         thing    proposition
@@ -648,7 +648,7 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         count2   =Q2
         mainconnective =R
         role     =W1
-        checkclash =M
+        derivenew =M
         +imaginal>
         isa      uproposition
         thing    uproposition

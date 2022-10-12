@@ -1,56 +1,131 @@
+import pyactr as actr
 import pandas as pd
+import sys
+import os
+import matplotlib.pyplot as plt
 import numpy as np
+import Module1 as md1
+import Module2 as md2
+import Module3 as md3
+import Module4 as md4
+import Module5 as md5
+import parser as par
+import PrepareData as pred
+from matplotlib import colors
+from matplotlib.ticker import PercentFormatter
+import re
+from matplotlib.ticker import MaxNLocator
+from collections import Counter
+from scipy import stats
+import matplotlib as mpl
+import matplotlib.gridspec as grid_spec
 from sklearn.neighbors import KernelDensity
 
-import matplotlib as mpl
-import matplotlib.pyplot as plt
-import matplotlib.gridspec as grid_spec
+aboxes = ['a:(/Er.A&/Er.B)']
+dat = pred.result_aboxes(10, aboxes)
+column_numbers = len(dat.columns)
 
-s = open("dict.txt", "r")
-dictionary = eval(s.read())
+def lowerr(sam1, sam2):
+    #For every value in sam1, count how many values in sam2 are strictly smaller.
+    li1=[]
+    for i in sam1:
+        v = len(list(x for x in sam2 if x < i))
+        li1.append(v)
+    return li1
 
-vars = []
+def samee(sam1, sam2):
+    #For every value in sam1, count how many values are equally large.
+    li2=[]
+    for i in sam1:
+        v = len(list(x for x in sam2 if x == i))
+        li2.append(v)
+    return li2
+
+def A_w(sam1, sam2):
+    #Calculate the probability of superiority.
+    l = lowerr(sam1,sam2)
+    s = samee(sam1,sam2)
+    numerator = sum(l)+0.5*sum(s)
+    denominator = len(sam1) * len(sam2)
+    fraction = numerator/denominator
+    return fraction
+
+#The primary statistics:
+times_total = pd.Series([], dtype='float')
+for run in dat.columns:
+    times = pd.Series([], dtype='float')
+    print(run)
+    time_efficient = 100
+    time_leastefficient = 0
+    for tuple in dat[run]:
+        times = times.append(pd.Series(tuple[0]))
+        times_total = times_total.append(pd.Series(tuple[0]))
+    time_min = times.min()
+    print('The minimum time:',time_min)
+    time_avg = times.mean()
+    print('The average time:',time_avg)
+    time_max = times.max()
+    print('The maximum time:',time_max)
+    if time_min < time_efficient:
+        run_efficient = run
+    if time_min > time_leastefficient:
+        run_leastefficient = run
+    print('The most efficient run:',run_efficient)
+    print('The least efficient run:',run_leastefficient)
+print('The grand average time:',times_total.mean())
+print('The probability of superiority between most and least efficient:',A_w(dat[run_efficient],dat[run_leastefficient]))
+
+
+
+'''
+#Determining the minimum and maximum x values of the graph.
 min_value = 100
 max_value = 0
-for i in range(len(dictionary.items())):
-    st1 = "Sample_" + str(i) + " = dictionary[list(dictionary.items())[" + str(i) + "][0]]"
-    exec(st1)
-    st2 = "Sample_" + str(i)
-    exec("min_value = min(min_value,min(" + st2 + "))")
-    exec("max_value = max(max_value,max(" + st2 + "))")
-    vars.append(st2)
+for (columnName, columnData) in dat.iteritems():
+    times = [x[0] for x in columnData]
+    min_value = min(min(times), min_value)
+    max_value = max(max_value,max(times))
+lx=min_value * 0.9 #the left x limit
+rx=max_value * 1.1 #the right x limit
 
-colors = ['#0000ff', '#3300cc', '#660099']
 
-gs = grid_spec.GridSpec(len(vars),1)
+#Defining the colours
+color_map = mpl.cm.viridis
+pick = list(np.linspace(0,1,column_numbers))
+colors = []
+for i in pick:
+    colors.append(color_map(i))
+
+gs = grid_spec.GridSpec(column_numbers,1)
 fig = plt.figure(figsize=(10,6))
 
-lx=min_value * 0.95 #the left x limit
-rx=max_value * 1.04 #the right x limit
+y_max=0
+x_d = np.linspace(lx,rx, 1000)
+logprob = []
 
-i = 0
+for (columnName, columnData) in dat.iteritems():
+    times = [x[0] for x in columnData]
+    kde = KernelDensity(bandwidth=0.09, kernel='gaussian')
+    kde.fit(times[:,None])
+    plot_log_data = kde.score_samples(x_d[:, None])
+    plot_data = np.exp(plot_log_data)
+    logprob.append(plot_data)
+    y_max = max(y_max,max(plot_data))
+
+y_max = y_max * 1.05
 
 ax_objs = []
-for var in vars:
-    exec("x = np.array(" + var + ")")
-    x_d = np.linspace(lx,rx, 1000)
+i = 0
+for (columnName, columnData) in dat.iteritems():
 
-    kde = KernelDensity(bandwidth=0.1, kernel='gaussian')
-    kde.fit(x[:,None])
-
-    logprob = kde.score_samples(x_d[:, None])
-
-    # creating new axes object
     ax_objs.append(fig.add_subplot(gs[i:i+1, 0:]))
-
     # plotting the distribution
-    ax_objs[-1].plot(x_d, np.exp(logprob),color="#f0f0f0",lw=0.5)
-    ax_objs[-1].fill_between(x_d, np.exp(logprob), alpha=1,color=colors[i])
-
+    ax_objs[-1].plot(x_d, np.array(logprob[i]),color="#f0f0f0",lw=0.5)
+    ax_objs[-1].fill_between(x_d, logprob[i], alpha=1,color=colors[i])
 
     # setting uniform x and y lims
     ax_objs[-1].set_xlim(lx,rx)
-    ax_objs[-1].set_ylim(0,3)
+    ax_objs[-1].set_ylim(0,y_max)
 
     # make background transparent
     rect = ax_objs[-1].patch
@@ -81,3 +156,4 @@ fig.text(0.07,0.85,"Distribution inference times for three different runs",fonts
 
 plt.tight_layout()
 plt.show()
+'''

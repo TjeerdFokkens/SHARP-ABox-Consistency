@@ -9,7 +9,7 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         ?retrieval>
         state   error
         =imaginal_action>
@@ -54,7 +54,7 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         count2   =Q2
         mainconnective =R
         role     =L
-        checkclash =M
+        derivenew =M
         ~retrieval>
         +imaginal>
         isa     universal_list
@@ -100,7 +100,7 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         ?retrieval>
         state    free
         =imaginal_action>
@@ -145,7 +145,7 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         count2   =Q2
         mainconnective =R
         role     =L
-        checkclash =M
+        derivenew =M
         +retrieval>
         isa      uproposition
         thing    uproposition
@@ -206,7 +206,7 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         count2   =Q2
         mainconnective =R
         role     =L
-        checkclash =M
+        derivenew =M
         =retrieval>
         isa      uproposition
         thing    uproposition
@@ -251,7 +251,7 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         count2   =Q2
         mainconnective =R
         role     =L
-        checkclash =M
+        derivenew =M
         +imaginal_action>
         isa      uproposition
         thing    uproposition
@@ -312,7 +312,7 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         count2   =Q2
         mainconnective =R
         role     =L
-        checkclash =M
+        derivenew =M
         ?retrieval>
         state    error
         =imaginal>
@@ -357,20 +357,20 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         count2   =Q2
         mainconnective =R
         role     =L
-        checkclash =M
+        derivenew =M
         ~imaginal_action>
         +imaginal>
         isa     universal_list
         thing   universal_list
-        form    =X
-        form2   =A
-        form3   =A1
-        form4   =A2
-        form5   =A3
-        form6   =A4
-        form7   =A5
-        form8   =A6
-        form9   =A7
+        form    =A
+        form2   =A1
+        form3   =A2
+        form4   =A3
+        form5   =A4
+        form6   =A5
+        form7   =A6
+        form8   =A7
+        form9   =A8
         +retrieval>
         isa      storelist
         thing    storelist
@@ -386,7 +386,7 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         =retrieval>
         isa     storelist
         thing   storelist
@@ -421,7 +421,7 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         count2   =Q2
         mainconnective =R
         role     =L
-        checkclash =M
+        derivenew =M
         +imaginal>
         isa     storelist
         thing   storelist
@@ -460,7 +460,7 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         =imaginal>
         isa     storelist
         thing   storelist
@@ -500,7 +500,7 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         count2   =Q3
         mainconnective =R
         role     =L
-        checkclash =M
+        derivenew =M
         +imaginal>
         isa     storelist
         thing   storelist
@@ -564,7 +564,7 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         ?retrieval>
         state    error
         ?imaginal>
@@ -578,7 +578,7 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         +imaginal>
         isa      storelist
         thing    storelist
@@ -617,7 +617,7 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         =retrieval>
         isa     proposition
         thing   proposition
@@ -672,7 +672,7 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         +retrieval>
         isa     proposition
         thing   ~none
@@ -729,7 +729,7 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         =retrieval>
         isa     proposition
         thing   proposition
@@ -786,7 +786,7 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         count2   =Q2
         mainconnective =A1
         role    =L
-        checkclash =M
+        derivenew =M
         +retrieval>
         isa     universal_list
         thing   universal_list
@@ -843,7 +843,7 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         =retrieval>
         isa     uproposition
         thing   uproposition
@@ -909,7 +909,7 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         count2   =Q2
         mainconnective =A1
         role    =L
-        checkclash =M
+        derivenew =M
         +retrieval>
         isa     universal_list
         thing   universal_list
@@ -975,7 +975,7 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         count2   =Q2
         mainconnective =Y
         role    =L
-        checkclash =M
+        derivenew =M
         =retrieval>
         isa     universal_list
         thing   universal_list
@@ -1032,7 +1032,7 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         count2   =Q2
         mainconnective =Y
         role    =L
-        checkclash =M
+        derivenew =M
         +retrieval>
         isa     proposition
         thing   proposition
@@ -1093,7 +1093,7 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         count2   =Q2
         mainconnective =Y
         role    =L
-        checkclash =M
+        derivenew =M
         =retrieval>
         isa     universal_list
         thing   universal_list
@@ -1159,7 +1159,7 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         count2   =Q2
         mainconnective =Y
         role    =L
-        checkclash =M
+        derivenew =M
         +retrieval>
         isa     proposition
         thing   proposition

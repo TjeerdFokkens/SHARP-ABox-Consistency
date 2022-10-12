@@ -8,7 +8,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         =imaginal>
         isa     checklist
         thing   checklist
@@ -45,7 +45,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         +imaginal>
         isa     checklist
         thing   checklist
@@ -111,7 +111,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         =imaginal>
         isa     checklist
         thing   checklist
@@ -148,7 +148,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         +imaginal>
         isa     checklist
         thing   checklist
@@ -211,7 +211,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         =imaginal>
         isa     checklist
         thing   checklist
@@ -261,7 +261,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         +manual>
         isa     _manual
         cmd     press_key
@@ -277,7 +277,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash no
+        derivenew yes
         =imaginal>
         isa     checklist
         thing   checklist
@@ -314,7 +314,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash no
+        derivenew yes
         +retrieval>
         isa     storelist
         thing   storelist
@@ -322,7 +322,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         ~imaginal>
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 3b: add formula to list and find a clash", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 3c: add formula to list and find a clash", string="""
         =g>
         isa     goal
         state   add_formula_to_list
@@ -331,7 +331,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         =imaginal>
         isa     checklist
         thing   checklist
@@ -377,7 +377,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash =M
+        derivenew =M
         +imaginal>
         isa     checklist
         thing   checklist
@@ -406,7 +406,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         ~retrieval>
     """)
 
-    aBoxCon.productionstring(name="Module 1, Unit 4: no formula found, signal consistency", string="""
+    aBoxCon.productionstring(name="Module 1, Unit 3b: no formula found, signal consistency", string="""
         =g>
         isa     goal
         state   add_formula_to_list
@@ -415,7 +415,7 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         count2   =Q2
         mainconnective =R
         role    =L
-        checkclash yes
+        derivenew no
         =imaginal>
         isa     checklist
         thing   checklist

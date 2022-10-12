@@ -36,7 +36,7 @@ def initial(learning=False):
     aBoxCon.set_goal("imaginal")
     aBoxCon.set_goal("imaginal_action")
 
-    actr.chunktype("goal", "state, form, count1, count2, mainconnective, role, checkclash")
+    actr.chunktype("goal", "state, form, count1, count2, mainconnective, role, derivenew")
     actr.chunktype("proposition", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, subformula3, derived")
     actr.chunktype("uproposition", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, derived, count, relation1, relation2, relation3, relation4, relation5, relation6, relation7, relation8, relation9")
     actr.chunktype("checklist", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, form2, form3, form4, form5, form6, form7, form8, form9, form10, form11, form12, form13, form14, form15, form16")
@@ -45,7 +45,7 @@ def initial(learning=False):
     actr.chunktype("count_order","number, successor, thing")
     actr.chunktype("role_list", "thing, role1, role2, role3, role4, role5, role6, role7, role8, role9, role10")
 
-    aBoxCon.goals["g"].add(actr.makechunk(typename="goal", state="find_clash_to_head", form='none', count1=0, count2=1, mainconnective='none', role='none', checkclash='no'))
+    aBoxCon.goals["g"].add(actr.makechunk(typename="goal", state="find_clash_to_head", form='none', count1=0, count2=1, mainconnective='none', role='none', derivenew='yes'))
     return aBoxCon
 
 def trace(mod, buffer, action=''):
@@ -61,15 +61,10 @@ def trace(mod, buffer, action=''):
             if sim.current_event.action.startswith('RULE SELECTED: Module 2, Unit 4a') or sim.current_event.action.startswith('RULE SELECTED: Module 5, Unit 2a') or sim.current_event.action.startswith('RULE SELECTED: Module 4, Unit 4b') or sim.current_event.action.startswith('RULE SELECTED: Module 2, Unit 4b') or sim.current_event.action.startswith('RULE SELECTED: Module 4, Unit 1') or sim.current_event.action.startswith('RULE SELECTED: Module 3, Unit 1') or sim.current_event.action.startswith('RULE SELECTED: Module 4, Unit 3') or sim.current_event.action.startswith('RULE SELECTED: Module 4, Unit 4c'):
                 print('')
                 print('Active formula:')
+                print(str(mod.retrieval))
                 a = str(mod.retrieval).split('form= ',1)[1].split(', ',1)[0]
                 print(a)
                 prove_tracks.append(a)
-            #if sim.current_event.action.startswith('RULE SELECTED: Module 1, Unit 1:'):
-            #    print('')
-            #    print('Declarative Memory:')
-            #    a = str(mod.decmem)
-            #    print(a)
-            #    print('')
         try:
             old_stdout = sys.stdout
             sys.stdout = open(os.devnull, "w")
@@ -111,7 +106,7 @@ def plot_list(it, abox):
         md4.module4(aBoxCon)
         md5.module5(aBoxCon)
 
-        par.AddAboxFromFile(abox,dm.add)
+        par.AddAboxFromFile(abox,aBoxCon)
 
         #Simulation is executed and the simulation time is appended to a list.
         old_stdout = sys.stdout
@@ -196,34 +191,41 @@ def compute_histogram_bins(data, desired_bin_size):
 simulation_plot(70, "abox2.txt", 0.2)
 plt.savefig('ABoxSimulationPlot2.png', transparent=True, dpi=1200)
 plt.show()
-
-
-
-aBoxCon = initial(learning=True)
-md1.module1(aBoxCon)
-md2.module2(aBoxCon)
-md3.module3(aBoxCon)
-md4.module4(aBoxCon)
-md5.module5(aBoxCon)
-i = 'a:/Er./Ar./Ar./Er./Ar./Ar.T, a:/Ar./Er./Ar./Ar./Er./Ar.T, a:/Er./Ar./Ar./Er./Ar./Ar.T, a:/Ar./Er./Er./Ar./Er./Er.T, a:/Er./Ar./Er./Er./Ar./Er.T, a:/Ar./Ar./Ar./Ar./Ar./Ar.-T'
-par.AddAboxFromFile(i,aBoxCon)
-vec = trace(aBoxCon, 'PROCEDURAL', action='RULE SELECTED')
-print(aBoxCon.decmem)
-#f = open("abox2.txt", 'r')
-#abox = f.read().replace('\n', ' ')
 '''
-from Aboxes_incon import aboxes_inconsistent
-j = 0
-for i in aboxes_inconsistent:
-    j+=1
-    print(j)
+
+def from_abox_to_data(abox, iterations):
     aBoxCon = initial(learning=True)
     md1.module1(aBoxCon)
     md2.module2(aBoxCon)
     md3.module3(aBoxCon)
     md4.module4(aBoxCon)
     md5.module5(aBoxCon)
-    par.AddAboxFromFile(i,aBoxCon)
-    vec = trace(aBoxCon, 'manual', action='KEY')
+    par.AddAboxFromFile(abox,aBoxCon)
+    #vec = trace(aBoxCon, 'PROCEDURAL', action='RULE SELECTED')
+    data = plot_list(iterations, abox)
+    data_points = []
+    for i in range(0,iterations):
+        data_point = data[i][-1]
+        data_points.append(data_point)
+    return data_points
+#print(from_abox_to_data('a:A, a:(E&(B&C))',100))
+
+#f = open("abox2.txt", 'r')
+#abox = f.read().replace('\n', ' ')
+
+from AboxesComplex import aboxes_branch
+i = 0
+print(from_abox_to_data(aboxes_branch[i],10))
+
+'''
+aBoxCon = initial(learning=True)
+md1.module1(aBoxCon)
+md2.module2(aBoxCon)
+md3.module3(aBoxCon)
+md4.module4(aBoxCon)
+md5.module5(aBoxCon)
+par.AddAboxFromFile(aboxes_branch[i],aBoxCon)
+vec = trace(aBoxCon, 'manual', action='KEY')
 #aBoxCon_sim = aBoxCon.simulation(realtime=False,gui=False)
 #aBoxCon_sim.run(10)
+'''
