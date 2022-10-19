@@ -129,4 +129,4 @@ def result_aboxes(iterations, aboxes):
 aboxes_branch = ['a:(/Er.A&/Er.B)','b:((/Er.A&/Er.B)&/Ar.(/Er.A&/Er.B))','c:((/Er.A&/Er.B)&/Ar.((/Er.A&/Er.B)&/Ar.(/Er.A&/Er.B)))','d:((/Er.A&/Er.B)&/Ar.((/Er.A&/Er.B)&/Ar.((/Er.A&/Er.B)&/Ar.(/Er.A&/Er.B))))','e:((/Er.A&/Er.B)&/Ar.((/Er.A&/Er.B)&/Ar.((/Er.A&/Er.B)&/Ar.((/Er.A&/Er.B)&/Ar.(/Er.A&/Er.B)))))']
 
 
-#print(result_aboxes(10, ['a:(/Er.A&/Er.B)']))
+print(result_aboxes(10, ['b:((/Er.A&/Er.B)&/Ar.(/Er.A&/Er.B))']))
