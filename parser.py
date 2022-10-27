@@ -1,6 +1,7 @@
 from lark import Lark, Transformer, Visitor, v_args
 import pyactr as actr
 import pprint
+import numpy as np
 #import pprint
 
 form_grammar = """
@@ -152,7 +153,7 @@ class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to 
         def addun(el):
             self.addtodm(actr.makechunk(typename="uproposition", thing="uproposition",
                     form=el + ":" + constr, concept=constr, element=el, mainconnective="universal",
-                    subformula1=el + ":" + subcon, subformula2=subcon, derived=self.derived, relation=role,
+                    subformula1='none', subformula2=subcon, derived=self.derived, relation=role,
                     count=0, relation1='none', relation2='none', relation3='none', relation4='none',
                     relation5='none', relation6='none', relation7='none', relation8='none', relation9='none'))
         if self.derived=="no":
@@ -205,8 +206,11 @@ def AddAboxFromFile(data,model_init):
     abox = parser(data)
     witnesses=set()
     n = CountNodes("role_ass").transform(abox) + CountNodes("exists").transform(abox); # Number or role assertions + existential quantifiers
-    m = CountNodes("universal").transform(abox);
-    for i in range(1,n^(m+1)):
+    m = CountNodes("universal").transform(abox)
+    f = np.ceil(n/(m+1))
+    b = int(f**(m+2)-1)
+    print(b)
+    for i in range(1,b):
         witnesses.add("x"+str(i))
     elements=set()
     SetOfElements(elements).visit(abox)
@@ -218,8 +222,8 @@ def AddAboxFromFile(data,model_init):
             return li[ind]
         else:
             return 'none'
-
-    addtodm(actr.makechunk(typename="role_list", thing="role_list", role1=pick(els,0), role2=pick(els,1), role3=pick(els,2), role4=pick(els,3), role5=pick(els,4), role6=pick(els,5), role7=pick(els,6), role8=pick(els,7), role9=pick(els,8), role10=pick(els,9)))
+            #Fill the role_list chunk with all elements in the ABox and fill the rest of the role slots with 'none'-values.
+    addtodm(actr.makechunk(typename="role_list", thing="role_list", role1=pick(els,0), role2=pick(els,1), role3=pick(els,2), role4=pick(els,3), role5=pick(els,4), role6=pick(els,5), role7=pick(els,6), role8=pick(els,7), role9=pick(els,8), role10=pick(els,9), role11=pick(els,10), role12=pick(els,11), role13=pick(els,12), role14=pick(els,13), role15=pick(els,14), role16=pick(els,15)))
     addtogoal(actr.makechunk(typename="goal", state="find_clash_to_head", form='none', count1=0, count2=1, mainconnective='none', role=pick(els,0), derivenew='yes'))
 
     #print(elements)

@@ -10,7 +10,6 @@ import Module3 as md3
 import Module4 as md4
 import Module5 as md5
 import parser as par
-import PrepareData as pred
 from matplotlib import colors
 from matplotlib.ticker import PercentFormatter
 import re
@@ -21,8 +20,7 @@ import matplotlib as mpl
 import matplotlib.gridspec as grid_spec
 from sklearn.neighbors import KernelDensity
 
-aboxes = ['a:(/Er.A&/Er.B)']
-dat = pred.result_aboxes(10, aboxes)
+dat = pd.read_csv('data1.csv')
 column_numbers = len(dat.columns)
 
 def lowerr(sam1, sam2):
@@ -51,35 +49,29 @@ def A_w(sam1, sam2):
     return fraction
 
 #The primary statistics:
-times_total = pd.Series([], dtype='float')
-for run in dat.columns:
-    times = pd.Series([], dtype='float')
-    print(run)
-    time_efficient = 100
-    time_leastefficient = 0
-    for tuple in dat[run]:
-        times = times.append(pd.Series(tuple[0]))
-        times_total = times_total.append(pd.Series(tuple[0]))
-    time_min = times.min()
+def stat_primary(df,abox):
+    dat = df.loc[lambda df1: df1['ABox']==abox, :]
+    time_min = dat['Time'].min()
     print('The minimum time:',time_min)
-    time_avg = times.mean()
+    time_avg = dat['Time'].mean()
     print('The average time:',time_avg)
-    time_max = times.max()
+    time_max = dat['Time'].max()
     print('The maximum time:',time_max)
-    if time_min < time_efficient:
-        run_efficient = run
-    if time_min > time_leastefficient:
-        run_leastefficient = run
+    run_efficient = dat[dat['Time']==time_min]['Run'].values[0]
     print('The most efficient run:',run_efficient)
+    time_average_efficient = dat[dat['Run']==run_efficient]['Time'].mean()
+    print('Average time of the most efficient run:',time_average_efficient)
+    run_leastefficient = dat[dat['Time']==time_max]['Run'].values[0]
     print('The least efficient run:',run_leastefficient)
-print('The grand average time:',times_total.mean())
-print('The probability of superiority between most and least efficient:',A_w(dat[run_efficient],dat[run_leastefficient]))
+    print('The probability of superiority between most and least efficient:',A_w(dat[dat['Run']==run_efficient]['Time'], dat[dat['Run']==run_leastefficient]['Time']))
 
+stat_primary(dat,'a:A, (b,a):r, b:/Ar.E')
+stat_primary(dat,'a:A, (b,a):r, b:/Ar.-A')
 
 
 '''
 #Determining the minimum and maximum x values of the graph.
-min_value = 100
+min_value = 0.9 *
 max_value = 0
 for (columnName, columnData) in dat.iteritems():
     times = [x[0] for x in columnData]

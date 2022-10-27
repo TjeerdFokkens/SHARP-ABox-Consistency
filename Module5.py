@@ -410,6 +410,26 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         form18   =A24
         form19   =A25
         form20   =A26
+        form21   =A27
+        form22   =A28
+        form23   =A29
+        form24   =A30
+        form25   =A31
+        form26   =A32
+        form27   =A33
+        form28   =A34
+        form29   =A35
+        form30   =A36
+        form31   =A37
+        form32   =A38
+        form33   =A39
+        form34   =A40
+        form35   =A41
+        form36   =A42
+        form37   =A43
+        form38   =A44
+        form39   =A45
+        form40   =A46
         ?imaginal>
         state    free
         ==>
@@ -445,6 +465,26 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         form18   =A24
         form19   =A25
         form20   =A26
+        form21   =A27
+        form22   =A28
+        form23   =A29
+        form24   =A30
+        form25   =A31
+        form26   =A32
+        form27   =A33
+        form28   =A34
+        form29   =A35
+        form30   =A36
+        form31   =A37
+        form32   =A38
+        form33   =A39
+        form34   =A40
+        form35   =A41
+        form36   =A42
+        form37   =A43
+        form38   =A44
+        form39   =A45
+        form40   =A46
         +retrieval>
         isa      count_order
         thing    count_order
@@ -484,6 +524,26 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         form18   =A24
         form19   =A25
         form20   =A26
+        form21   =A27
+        form22   =A28
+        form23   =A29
+        form24   =A30
+        form25   =A31
+        form26   =A32
+        form27   =A33
+        form28   =A34
+        form29   =A35
+        form30   =A36
+        form31   =A37
+        form32   =A38
+        form33   =A39
+        form34   =A40
+        form35   =A41
+        form36   =A42
+        form37   =A43
+        form38   =A44
+        form39   =A45
+        form40   =A46
         =retrieval>
         isa      count_order
         thing    count_order
@@ -524,6 +584,26 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         form18   =A24
         form19   =A25
         form20   =A26
+        form21   =A27
+        form22   =A28
+        form23   =A29
+        form24   =A30
+        form25   =A31
+        form26   =A32
+        form27   =A33
+        form28   =A34
+        form29   =A35
+        form30   =A36
+        form31   =A37
+        form32   =A38
+        form33   =A39
+        form34   =A40
+        form35   =A41
+        form36   =A42
+        form37   =A43
+        form38   =A44
+        form39   =A45
+        form40   =A46
         +retrieval>
         isa      proposition
         thing    proposition
@@ -547,6 +627,26 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         form     ~=A24
         form     ~=A25
         form     ~=A26
+        form     ~=A27
+        form     ~=A28
+        form     ~=A29
+        form     ~=A30
+        form     ~=A31
+        form     ~=A32
+        form     ~=A33
+        form     ~=A34
+        form     ~=A35
+        form     ~=A36
+        form     ~=A37
+        form     ~=A38
+        form     ~=A39
+        form     ~=A40
+        form     ~=A41
+        form     ~=A42
+        form     ~=A43
+        form     ~=A44
+        form     ~=A45
+        form     ~=A46
         mainconnective ~negation
         mainconnective ~concept
         mainconnective ~disjunction
@@ -602,6 +702,26 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         form18   none
         form19   none
         form20   none
+        form21   none
+        form22   none
+        form23   none
+        form24   none
+        form25   none
+        form26   none
+        form27   none
+        form28   none
+        form29   none
+        form30   none
+        form31   none
+        form32   none
+        form33   none
+        form34   none
+        form35   none
+        form36   none
+        form37   none
+        form38   none
+        form39   none
+        form40   none
         +retrieval>
         isa      count_order
         thing    count_order

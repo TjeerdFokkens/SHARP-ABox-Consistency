@@ -44,6 +44,26 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         form18   =A24
         form19   =A25
         form20   =A26
+        form21   =A27
+        form22   =A28
+        form23   =A29
+        form24   =A30
+        form25   =A31
+        form26   =A32
+        form27   =A33
+        form28   =A34
+        form29   =A35
+        form30   =A36
+        form31   =A37
+        form32   =A38
+        form33   =A39
+        form34   =A40
+        form35   =A41
+        form36   =A42
+        form37   =A43
+        form38   =A44
+        form39   =A45
+        form40   =A46
         ?retrieval>
         state    free
         ==>
@@ -91,6 +111,26 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         form18   =A24
         form19   =A25
         form20   =A26
+        form21   =A27
+        form22   =A28
+        form23   =A29
+        form24   =A30
+        form25   =A31
+        form26   =A32
+        form27   =A33
+        form28   =A34
+        form29   =A35
+        form30   =A36
+        form31   =A37
+        form32   =A38
+        form33   =A39
+        form34   =A40
+        form35   =A41
+        form36   =A42
+        form37   =A43
+        form38   =A44
+        form39   =A45
+        form40   =A46
         +retrieval>
         isa      role_list
         thing    role_list
@@ -142,6 +182,26 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         form18   =A24
         form19   =A25
         form20   =A26
+        form21   =A27
+        form22   =A28
+        form23   =A29
+        form24   =A30
+        form25   =A31
+        form26   =A32
+        form27   =A33
+        form28   =A34
+        form29   =A35
+        form30   =A36
+        form31   =A37
+        form32   =A38
+        form33   =A39
+        form34   =A40
+        form35   =A41
+        form36   =A42
+        form37   =A43
+        form38   =A44
+        form39   =A45
+        form40   =A46
         =retrieval>
         isa      role_list
         thing    role_list
@@ -155,6 +215,12 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         role8    =B8
         role9    =B9
         role10   =B10
+        role11   =B11
+        role12   =B12
+        role13   =B13
+        role14   =B14
+        role15   =B15
+        role16   =B16
         ?retrieval>
         state   free
         ==>
@@ -192,6 +258,12 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         role8    =B8
         role9    =B9
         role10   =B10
+        role11   =B11
+        role12   =B12
+        role13   =B13
+        role14   =B14
+        role15   =B15
+        role16   =B16
         +retrieval>
         isa      proposition
         thing    proposition
@@ -208,6 +280,12 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         subformula2  ~=B8
         subformula2  ~=B9
         subformula2  ~=B10
+        subformula2  ~=B11
+        subformula2  ~=B12
+        subformula2  ~=B13
+        subformula2  ~=B14
+        subformula2  ~=B15
+        subformula2  ~=B16
     """)
 
     aBoxCon.productionstring(name="Module 4, Unit 3: label role, find concept", string="""
@@ -245,6 +323,12 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         role8    =B8
         role9    =B9
         role10   =B10
+        role11   =B11
+        role12   =B12
+        role13   =B13
+        role14   =B14
+        role15   =B15
+        role16   =B16
         =retrieval>
         isa      proposition
         thing    proposition
@@ -293,6 +377,12 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         role8    =B7
         role9    =B8
         role10   =B9
+        role11   =B10
+        role12   =B11
+        role13   =B12
+        role14   =B13
+        role15   =B14
+        role16   =B15
         +retrieval>
         isa      proposition
         element  =W1
@@ -335,6 +425,12 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         role8    =B7
         role9    =B8
         role10   =B9
+        role11   =B10
+        role12   =B11
+        role13   =B12
+        role14   =B13
+        role15   =B14
+        role16   =B15
         ?retrieval>
         state   free
         =retrieval>
@@ -389,6 +485,12 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         role8    =B7
         role9    =B8
         role10   =B9
+        role11   =B10
+        role12   =B11
+        role13   =B12
+        role14   =B13
+        role15   =B14
+        role16   =B15
     """)
 
     aBoxCon.productionstring(name="Module 4, Unit 4a: atom found, prepare to look for clash", string="""
@@ -431,6 +533,12 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         role8    =B7
         role9    =B8
         role10   =B9
+        role11   =B10
+        role12   =B11
+        role13   =B12
+        role14   =B13
+        role15   =B14
+        role16   =B15
         ?retrieval>
         state    free
         ==>
@@ -481,6 +589,12 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         role8    =B7
         role9    =B8
         role10   =B9
+        role11   =B10
+        role12   =B11
+        role13   =B12
+        role14   =B13
+        role15   =B14
+        role16   =B15
         +retrieval>
         isa      storelist
         thing    storelist
@@ -522,6 +636,12 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         role8    =B7
         role9    =B8
         role10   =B9
+        role11   =B10
+        role12   =B11
+        role13   =B12
+        role14   =B13
+        role15   =B14
+        role16   =B15
         =retrieval>
         isa      proposition
         thing    proposition
@@ -575,6 +695,12 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         role8    =B7
         role9    =B8
         role10   =B9
+        role11   =B10
+        role12   =B11
+        role13   =B12
+        role14   =B13
+        role15   =B14
+        role16   =B15
         +retrieval>
         isa      storelist
         thing    storelist
@@ -616,6 +742,12 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         role8    =B7
         role9    =B8
         role10   =B9
+        role11   =B10
+        role12   =B11
+        role13   =B12
+        role14   =B13
+        role15   =B14
+        role16   =B15
         =retrieval>
         isa      uproposition
         thing    uproposition
@@ -683,6 +815,12 @@ def module4(aBoxCon): #This module applies when an existential restriction is fo
         role8    =B7
         role9    =B8
         role10   =B9
+        role11   =B10
+        role12   =B11
+        role13   =B12
+        role14   =B13
+        role15   =B14
+        role16   =B15
         +retrieval>
         isa      storelist
         thing    storelist

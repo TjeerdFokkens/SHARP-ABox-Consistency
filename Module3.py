@@ -44,6 +44,26 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form18   =A24
         form19   =A25
         form20   =A26
+        form21   =A27
+        form22   =A28
+        form23   =A29
+        form24   =A30
+        form25   =A31
+        form26   =A32
+        form27   =A33
+        form28   =A34
+        form29   =A35
+        form30   =A36
+        form31   =A37
+        form32   =A38
+        form33   =A39
+        form34   =A40
+        form35   =A41
+        form36   =A42
+        form37   =A43
+        form38   =A44
+        form39   =A45
+        form40   =A46
         ?retrieval>
         state    free
         ==>
