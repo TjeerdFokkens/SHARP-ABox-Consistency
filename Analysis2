@@ -48,6 +48,15 @@ def A_w(sam1, sam2):
     fraction = numerator/denominator
     return fraction
 
+def cohens_d(sample1,sample2):
+    s1 = sample1.std()
+    s2 = sample2.std()
+    s = np.sqrt((s1**2 + s2**2)/2)
+    m1 = sample1.mean()
+    m2 = sample2.mean()
+    d = (m1-m2)/s
+    return d
+
 #The primary statistics:
 def stat_primary(df,abox):
     dat = df.loc[lambda df1: df1['ABox']==abox, :]
@@ -68,52 +77,50 @@ def stat_primary(df,abox):
 stat_primary(dat,'a:A, (b,a):r, b:/Ar.E')
 stat_primary(dat,'a:A, (b,a):r, b:/Ar.-A')
 
+Aw = A_w(dat[dat['ABox']=='a:A, (b,a):r, b:/Ar.E']['Time'], dat[dat['ABox']=='a:A, (b,a):r, b:/Ar.-A']['Time'])
+print('The probability of superiority between the different ABoxes is:',Aw)
 
-'''
+sam1 = dat[dat['ABox']=='a:A, (b,a):r, b:/Ar.E']['Time']
+sam2 = dat[dat['ABox']=='a:A, (b,a):r, b:/Ar.-A']['Time']
+d = cohens_d(sam1,sam2)
+print('The effect size in terms of Cohens d:', d)
+
+sample_number = 2
+
 #Determining the minimum and maximum x values of the graph.
-min_value = 0.9 *
-max_value = 0
-for (columnName, columnData) in dat.iteritems():
-    times = [x[0] for x in columnData]
-    min_value = min(min(times), min_value)
-    max_value = max(max_value,max(times))
-lx=min_value * 0.9 #the left x limit
-rx=max_value * 1.1 #the right x limit
-
+lx=dat['Time'].min() * 0.8 #the left x limit
+rx=dat['Time'].max() * 1.1 #the right x limit
 
 #Defining the colours
-color_map = mpl.cm.viridis
-pick = list(np.linspace(0,1,column_numbers))
-colors = []
-for i in pick:
-    colors.append(color_map(i))
+colors = [mpl.cm.viridis(i) for i in np.linspace(0,1,10)]
 
-gs = grid_spec.GridSpec(column_numbers,1)
+gs = grid_spec.GridSpec(sample_number,1)
 fig = plt.figure(figsize=(10,6))
 
 y_max=0
 x_d = np.linspace(lx,rx, 1000)
 logprob = []
 
-for (columnName, columnData) in dat.iteritems():
-    times = [x[0] for x in columnData]
-    kde = KernelDensity(bandwidth=0.09, kernel='gaussian')
-    kde.fit(times[:,None])
+bandwidth = 0.05
+
+for sam in dat['ABox'].unique():
+    kde = KernelDensity(bandwidth=bandwidth, kernel='gaussian')
+    kde.fit(np.array(dat[dat['ABox']==sam]['Time'])[:,None])
     plot_log_data = kde.score_samples(x_d[:, None])
     plot_data = np.exp(plot_log_data)
     logprob.append(plot_data)
     y_max = max(y_max,max(plot_data))
 
-y_max = y_max * 1.05
-
+y_max = y_max * 1.10
 ax_objs = []
 i = 0
-for (columnName, columnData) in dat.iteritems():
+dict = {}
+for sam in dat['ABox'].unique():
 
     ax_objs.append(fig.add_subplot(gs[i:i+1, 0:]))
     # plotting the distribution
     ax_objs[-1].plot(x_d, np.array(logprob[i]),color="#f0f0f0",lw=0.5)
-    ax_objs[-1].fill_between(x_d, logprob[i], alpha=1,color=colors[i])
+    ax_objs[-1].fill_between(x_d, logprob[i], alpha=1,color=colors[i+2])
 
     # setting uniform x and y lims
     ax_objs[-1].set_xlim(lx,rx)
@@ -127,7 +134,7 @@ for (columnName, columnData) in dat.iteritems():
     ax_objs[-1].set_yticklabels([])
     ax_objs[-1].yaxis.set_visible(False)
 
-    if i == len(vars)-1:
+    if i == sample_number-1:
         ax_objs[-1].set_xlabel("Inference time (s)", fontsize=14,fontweight="bold")
     else:
         ax_objs[-1].set_xticklabels([])
@@ -136,16 +143,19 @@ for (columnName, columnData) in dat.iteritems():
     for s in spines:
         ax_objs[-1].spines[s].set_visible(False)
 
-    adj_var = var.replace("_"," ")
-    ax_objs[-1].text(lx-0.02,0,adj_var,fontweight="bold",fontsize=10,ha="right")
-
+    st = 'ABox {}'.format(i)
+    ax_objs[-1].text(lx-0.02,0,st,fontweight="bold",fontsize=10,ha="right")
+    dict[st] = sam
 
     i += 1
 
 gs.update(hspace=-0.6)
+fig.text(0.07,0.85,"Distribution of inference times",fontsize=18)
+j = 0
+for i in dict.keys():
+    st = i + ': ' + dict[i]
+    fig.text(0.07,0.78-0.05*j,st,fontsize=12)
+    j += 1
 
-fig.text(0.07,0.85,"Distribution inference times for three different runs",fontsize=18)
-
-plt.tight_layout()
+#plt.tight_layout()
 plt.show()
-'''
