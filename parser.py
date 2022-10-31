@@ -2,7 +2,6 @@ from lark import Lark, Transformer, Visitor, v_args
 import pyactr as actr
 import pprint
 import numpy as np
-#import pprint
 
 form_grammar = """
 
@@ -208,8 +207,8 @@ def AddAboxFromFile(data,model_init):
     n = CountNodes("role_ass").transform(abox) + CountNodes("exists").transform(abox); # Number or role assertions + existential quantifiers
     m = CountNodes("universal").transform(abox)
     f = np.ceil(n/(m+1))
-    b = int(f**(m+2)-1)
-    print(b)
+    b = max(int(f**(m+2)-1),0)
+    print('Number of witnesses: ',b)
     for i in range(1,b):
         witnesses.add("x"+str(i))
     elements=set()

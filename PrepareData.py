@@ -63,7 +63,6 @@ def model(abox, learning=False):
 def result(abox):
     #Takes an abox.
     #Returns a list with the formulas inspected and the simulation time.
-    i=0
     prove_tracks = []
     mod = model(abox, learning=True)
     sim = mod.simulation(realtime=False,gui=False)
@@ -72,10 +71,9 @@ def result(abox):
         if sim.current_event.proc=='manual' and sim.current_event.action.startswith('KEY'):
             judgement = str(sim.current_event).split('KEY PRESSED: ')[1][0]
         if sim.current_event.action.startswith('RULE SELECTED: Module 2, Unit 3') or sim.current_event.action.startswith('RULE SELECTED: Module 2, Unit 5a') or sim.current_event.action.startswith('RULE SELECTED: Module 2, Unit 6a'):
-            print(i)
-            i+=1
             a = str(mod.retrieval)
             b = a.split('form= ',1)[1].split(', ',1)[0]
+            print(b)
             prove_tracks.append(b)
         try:
             old_stdout = sys.stdout
@@ -98,6 +96,10 @@ def result(abox):
                 print('Simulation stopped prematurely. Some rule does not fire')
                 print(mod.decmem)
                 print(mod.goals['g'])
+                judgement = 'Fail'
+                run = ''
+                for j in prove_tracks:
+                    run = run + ' -> ' + j
             break
     return run, time, judgement
 
@@ -120,6 +122,9 @@ def result_aboxes(iterations, aboxes):
     return dat
 
 
-aboxes_branch = ['a:A, (b,a):r, b:/Ar.E','a:A, (b,a):r, b:/Ar.-A']
+aboxes_branch = ['a:(A&B),a:(-A&C),a:(D&-E),a:(-F&-G)',
+    'a:(A&B),a:(-A&C),a:(D&-B),a:(-E&-F)',
+    'a:(A&B),a:(-A&C),a:(D&-B),a:(-C&-E)',
+    'a:(A&B),a:(-A&C),a:(D&-B),a:(-C&-D)']
 a = result_aboxes(300, aboxes_branch)
-a.to_csv('data1.csv')
+a.to_csv('data4.csv')
