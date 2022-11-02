@@ -1,0 +1,6 @@
+data1 - a:A, (b,a):r, b:/Ar.E etc. consistent vs inconsistent.
+data2 - a:(A&(-A&(B&C))) etc. test nesting effect
+data3 - a:(-A&(B&(C&D))) etc. tests position of negation
+data4 - a:(A&B),a:(-A&C),a:(D&-E),a:(-F&-G) etc. , spread effect
+data5 - a:A,b:-A,a:B etc. tests dependence on element name
+data6 - a:(A&B),a:C etc. tests dependence on order of formulas

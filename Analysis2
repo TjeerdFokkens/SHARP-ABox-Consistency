@@ -21,7 +21,7 @@ import matplotlib.gridspec as grid_spec
 from sklearn.neighbors import KernelDensity
 import matplotlib.patches as patches
 
-dat = pd.read_csv('data4.csv')
+dat = pd.read_csv('/Users/xfoktj/Documents/GitHub/ABox-Consistency/data/data12.csv')
 sam_num = dat['ABox'].nunique()
 
 def lowerr(sam1, sam2):
@@ -45,7 +45,7 @@ def A_w(sam1, sam2):
     l = lowerr(sam1,sam2)
     s = samee(sam1,sam2)
     numerator = sum(l)+0.5*sum(s)
-    denominator = len(sam1) * len(sam2)
+    denominator = sam1.nunique() * sam2.nunique()
     fraction = numerator/denominator
     return round(fraction,3)
 
@@ -95,8 +95,8 @@ compare(dat['ABox'].unique()[0],dat['ABox'].unique()[1], dat)
 
 
 #Determining the minimum and maximum x values of the graph.
-lx=dat['Time'].min() * 0.8 #the left x limit
-rx=dat['Time'].max() * 1.1 #the right x limit
+lx=dat['Time'].min() * 0.7 #the left x limit
+rx=dat['Time'].max() * 1.15 #the right x limit
 
 #Defining the colours
 colors = [mpl.cm.viridis(i) for i in np.linspace(0,1,10)]
@@ -169,5 +169,5 @@ fig.patches.extend([plt.Rectangle((0.78,0.81-(sam_num + 1)*0.03),0.25,0.5,fill=T
 
 plt.show()
 
-title = 'Title'
+title = 'RoleNameIndependence'
 #plt.savefig(title, transparent=True, dpi=1200)

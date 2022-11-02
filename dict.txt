@@ -1,9 +1,0 @@
-import matplotlib.pyplot as plt
-import pandas as pd
-
-X = [3,8,13,18,23]
-Y = [38.2,,,,]
-Y = Y/10
-
-plt.scatter(X,Y)
-plt.show()

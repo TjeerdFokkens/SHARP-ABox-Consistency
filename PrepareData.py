@@ -68,6 +68,7 @@ def result(abox):
     sim = mod.simulation(realtime=False,gui=False)
     sim.step()
     while True:
+        #print(sim.current_event)
         if sim.current_event.proc=='manual' and sim.current_event.action.startswith('KEY'):
             judgement = str(sim.current_event).split('KEY PRESSED: ')[1][0]
         if sim.current_event.action.startswith('RULE SELECTED: Module 2, Unit 3') or sim.current_event.action.startswith('RULE SELECTED: Module 2, Unit 5a') or sim.current_event.action.startswith('RULE SELECTED: Module 2, Unit 6a'):
@@ -86,18 +87,16 @@ def result(abox):
             if goalstate=='stop':
                 time = sim.current_event.time
                 print('End of simulation,', time)
-                run = ''
+                run = '|'
                 for j in prove_tracks:
                     run = run + ' -> ' + j
-                #judgement = mod.utilities
-                #print(judgement)
             else:
-                time = 0
+                time = sim.current_event.time
                 print('Simulation stopped prematurely. Some rule does not fire')
                 print(mod.decmem)
                 print(mod.goals['g'])
                 judgement = 'Fail'
-                run = ''
+                run = '|'
                 for j in prove_tracks:
                     run = run + ' -> ' + j
             break
@@ -122,9 +121,22 @@ def result_aboxes(iterations, aboxes):
     return dat
 
 
-aboxes_branch = ['a:(A&B),a:(-A&C),a:(D&-E),a:(-F&-G)',
-    'a:(A&B),a:(-A&C),a:(D&-B),a:(-E&-F)',
-    'a:(A&B),a:(-A&C),a:(D&-B),a:(-C&-E)',
-    'a:(A&B),a:(-A&C),a:(D&-B),a:(-C&-D)']
-a = result_aboxes(300, aboxes_branch)
-a.to_csv('data4.csv')
+aboxes1 = ['a:A,b:-A,a:B', 'a:A,a:-A,a:B', 'a:A,b:-A,b:B', 'a:A,a:-A,b:B'] #tests dependence on element name
+
+aboxes2 = ['a:/Er.A,a:/Ar.-A,a:/Er.B', 'a:/Er.A,a:/Ar.-A,a:/Es.B', 'a:/Er.A,a:/Ar.-A,a:/Ar.B', 'a:/Er.A,a:/Ar.-A,a:/As.B',
+        'a:/Er.A,a:/As.-A,a:/Er.B', 'a:/Er.A,a:/As.-A,a:/Es.B', 'a:/Er.A,a:/As.-A,a:/Ar.B', 'a:/Er.A,a:/As.-A,a:/As.B'] #tests dependence on role name
+
+aboxes3 = ['a:A,b:A,a:-A', 'a:A,b:B,a:-A', 'a:A,b:A,a:-B', 'a:A,b:B,a:-B'] #tests dependence on concept name
+
+aboxes4 = ['a:(A&B),a:C','a:C,a:(A&B)','a:(A&B),a:-A','a:-A,a:(A&B)'] #tests dependence on order of formulas
+
+aboxes5 = ['a:(A&B),a:B','a:(B&A),a:B','a:(A&B),a:-B','a:(B&A),a:-B'] #tests dependence on order of conjuncts
+
+aboxes6 = ['a:((A&-A)&(B&C))','a:((A&B)&(-A&C))','a:(A&(-A&(B&C)))','a:(A&(B&(-A&C)))','a:(B&(A&(-A&C)))','a:(B&(C&(-A&A)))'] #tests the dependence of nesting
+
+aboxes7 = ['a:(/Er.A&/Er.B)','a:((/Er.A&/Er.B)&/Ar.(/Er.A&/Er.B))','a:((/Er.A&/Er.B)&/Ar.((/Er.A&/Er.B)&/Ar.(/Er.A&/Er.B)))'] #tests the performance with AND-branching
+
+aboxes8 = ['a:(A&(B&(C&(D&-A))))','a:(A&B),a:(B&C),a:(C&D),a:(D&-A)'] #tests the spreading effect
+
+a = result_aboxes(300, aboxes6)
+a.to_csv('/Users/xfoktj/Documents/GitHub/ABox-Consistency/data/data12.csv')

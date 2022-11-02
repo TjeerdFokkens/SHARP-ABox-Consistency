@@ -205,11 +205,11 @@ def AddAboxFromFile(data,model_init):
     abox = parser(data)
     witnesses=set()
     n = CountNodes("role_ass").transform(abox) + CountNodes("exists").transform(abox); # Number or role assertions + existential quantifiers
-    m = CountNodes("universal").transform(abox)
+    m = CountNodes("universal").transform(abox) # Number of universal quantifiers
     f = np.ceil(n/(m+1))
-    b = max(int(f**(m+2)-1),0)
+    b = max(int(f**(m+2)-1),0,n)
     print('Number of witnesses: ',b)
-    for i in range(1,b):
+    for i in range(1,b+1):
         witnesses.add("x"+str(i))
     elements=set()
     SetOfElements(elements).visit(abox)
