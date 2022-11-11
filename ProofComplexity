@@ -1,0 +1,218 @@
+from lark import Lark, Transformer, Visitor, v_args
+import pyactr as actr
+import pprint
+import numpy as np
+
+form_grammar = """
+
+    ?start: assertion (","+ assertion)*
+
+    ?assertion: element ":" out_concept             -> con_ass
+        | "(" element "," element ")" ":" role      -> role_ass
+
+    ?out_concept: atom
+        | "-" atom                          -> neg
+        | ["("] concept "&" concept [")"]   -> conj
+        | ["("] concept "%" concept [")"]   -> dis
+        | "/E" role "." concept             -> exists
+        | "/A" role "." concept             -> universal
+
+    ?concept: atom
+        | "-" atom                      -> neg
+        | "(" concept "&" concept ")"   -> conj
+        | "(" concept "%" concept ")"   -> dis
+        | "/E" role "." concept         -> exists
+        | "/A" role "." concept         -> universal
+
+    ?role: NAME                         -> role
+    ?element : NAME                     -> element
+    ?atom : NAME                        -> atom
+
+    %import common.CNAME -> NAME
+    %import common.WS_INLINE
+
+    %ignore WS_INLINE
+"""
+
+@v_args(inline=True)    # Affects the signatures of the methods
+class ToString(Transformer): # Transforms a tree recursively to a string
+    role = str
+    element = str
+    atom = str
+    conj = lambda self,ch1,ch2: "(" + ch1 + "&" + ch2 + ")"
+    exists = lambda self,role,con: "/E" + role + "." + con
+    con_ass = lambda self,el,con: el + ":" + con
+    role_ass = lambda self,elL,elR,role: "(" + elL + "," + elR + "):" + role
+    neg = lambda self,con : "-" + con
+    universal = lambda self,role,con: "/A" + role + "." + con
+
+class SetOfElements(Visitor):
+    def __init__(self,elements):
+        self.elements=elements
+    def element(self,tree):
+        self.elements.add(str(tree.children[0]))
+
+class CountNodes(Transformer):
+    def __init__(self,name):
+        self.name = name
+    def __default__(self,data,children,meta):
+        if data==self.name:
+            return(sum(children)+1)
+        else:
+            return(sum(children))
+    def __default_token__(self,data):
+        return 0
+
+class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to the DM.
+
+    def __init__(self,elements, witnesses):
+        self.derived="yes"
+        self.elements=elements
+        self.witnesses=witnesses
+
+    def con_ass(self,tree):
+        self.el=tree.children[0].children[0]
+
+    def role_ass(self,tree):
+        elL = tree.children[0].children[0]
+        elR = tree.children[1].children[0]
+        role = ToString().transform(tree.children[2])
+        formstr = ToString().transform(tree)
+
+    def conj(self,tree):
+        constr = ToString().transform(tree)
+        subconL = ToString().transform(tree.children[0])
+        subconR = ToString().transform(tree.children[1])
+
+    def exists(self,tree):
+        constr = ToString().transform(tree)
+        role = ToString().transform(tree.children[0])
+        subcon = ToString().transform(tree.children[1])
+
+    def universal(self,tree):
+        constr = ToString().transform(tree)
+        role = ToString().transform(tree.children[0])
+        subcon = ToString().transform(tree.children[1])
+
+    def neg(self,tree):
+        constr = ToString().transform(tree)
+        subcon = ToString().transform(tree.children[0])
+
+    def atom(self,tree):
+        constr = ToString().transform(tree)
+
+
+form_parser = Lark(form_grammar, parser='lalr')
+parser = form_parser.parse
+
+def AddAboxFromFile(data):
+    abox = parser(data)
+    witnesses=set()
+    for i in range(1,15):
+        witnesses.add("x"+str(i))
+    elements=set()
+    SetOfElements(elements).visit(abox)
+
+    if abox.data in ["con_ass","role_ass"]:
+        aboxlst = [abox]
+    else:
+        aboxlst=abox.children
+    for form in aboxlst:
+        addform = AddFormToAbox(elements,witnesses)
+        addform.visit_topdown(form) # Need to visit the tree top down to get the element first.
+
+
+abox = 'a:A, (b,a):r, b:/Ar.-B, (b,d):r, a:(C&(D&E)), c:/Es.F'
+
+def completing(abox,i,j):
+    tree = parser(abox)
+    formulas = abox.split(', ')
+    for a in tree.children:
+        if a.data == 'con_ass' and a.children[1].data == 'conj':
+            element = a.children[0].children[0]
+            concept1 = ToString().transform(a.children[1].children[0])
+            concept2 = ToString().transform(a.children[1].children[1])
+            whole = ToString().transform(a)
+            str1 = element + ':' + concept1
+            str2 = element + ':' + concept2
+            formulas.append(str1)
+            formulas.append(str2)
+            formulas.remove(whole)
+            j+=1
+        if a.data == 'con_ass' and a.children[1].data == 'exists':
+            x = 'x{}'.format(i)
+            i += 1
+            element = a.children[0].children[0]
+            role = a.children[1].children[0].children[0]
+            concept = ToString().transform(a.children[1].children[1])
+            whole = ToString().transform(a)
+            str1 = '(' + element + ',' + x + '):' + role
+            str2 = x + ':' + concept
+            formulas.append(str1)
+            formulas.append(str2)
+            formulas.remove(whole)
+            j+=1
+        if a.data == 'con_ass' and a.children[1].data == 'universal':
+            element = a.children[0].children[0]
+            role = a.children[1].children[0].children[0]
+            concept = ToString().transform(a.children[1].children[1])
+            for a in tree.children:
+                if a.data =='role_ass' and a.children[0].children[0] == element and a.children[2].children[0] == role:
+                    str1 = a.children[1].children[0] + ':' + concept
+                    formulas.append(str1)
+                    j+=1
+    formulas = list(dict.fromkeys(formulas)) #Removing duplicates from list
+    #Turning list to a string again
+    f = ''
+    for k in formulas:
+        f = f + k + ', '
+    f = f[:-2]
+    return f, i, j
+
+def elements(abox):
+    elements = []
+    roles = []
+    l = 0
+    tree = parser(abox)
+    for a in tree.children:
+        if a.data == 'con_ass':
+            element = ToString().transform(a.children[0])
+            elements.append(element)
+        if a.data == 'role_ass':
+            element1 = ToString().transform(a.children[0])
+            element2 = ToString().transform(a.children[1])
+            role = ToString().transform(a)
+            elements.append(element1)
+            elements.append(element2)
+            roles.append(role)
+    for a in tree.children:
+        if a.data == 'con_ass' and a.children[1].data == 'universal':
+            element = a.children[0].children[0]
+            role = a.children[1].children[0].children[0]
+            for a in tree.children:
+                if a.data =='role_ass' and a.children[0].children[0] == element and a.children[2].children[0] == role:
+                    l += 1
+    elements = list(dict.fromkeys(elements))
+    return elements, roles, l
+
+def complexity(abox):
+    E = abox.count('/E')
+    A = abox.count('/A')
+    Q = E + A
+    N = abox.count('-')
+    L = CountNodes("con_ass").transform(parser(abox)) + CountNodes("role_ass").transform(parser(abox)) + CountNodes("atom").transform(parser(abox)) + CountNodes("neg").transform(parser(abox))
+    i = 0
+    j = 0
+    while True:
+        abox,i,j = completing(abox,i,j)
+        if abox == completing(abox,i,j)[0]:
+            break
+    lmnts,roles,superf = elements(abox)
+    print('The number of elements: ', len(lmnts))
+    print('The number of edges in the graph: ', len(roles))
+    print('The number of witnesses: ', i)
+    print('The length of the proof: ', j-superf)
+    print('The size of the proof: ', L)
+    return abox, i, lmnts, roles, Q, N, L
+
+complexity(abox)

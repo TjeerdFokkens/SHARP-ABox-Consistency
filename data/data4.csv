@@ -1,4 +1,4 @@
-,ABox,Run,Time,Judgement
+Index,ABox,Run,Time,Judgement
 0,"a:(A&B),a:(-A&C),a:(D&-E),a:(-F&-G)", -> a:(A&B) -> a:(D&-E) -> a:(-F&-G) -> a:(-A&C),8.5083,I
 1,"a:(A&B),a:(-A&C),a:(D&-E),a:(-F&-G)", -> a:(-A&C) -> a:(-F&-G) -> a:(A&B),5.9826,I
 2,"a:(A&B),a:(-A&C),a:(D&-E),a:(-F&-G)", -> a:(D&-E) -> a:(-A&C) -> a:(-F&-G) -> a:(A&B),8.5033,I

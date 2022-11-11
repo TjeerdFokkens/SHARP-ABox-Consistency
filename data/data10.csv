@@ -1,4 +1,4 @@
-,ABox,Run,Time,Judgement
+Index,ABox,Run,Time,Judgement
 0,"a:/Er.A,a:/Ar.-A,a:/Er.B",| -> a:/Ar.-A -> a:/Er.B -> a:/Er.A -> a:/Ar.-A,7.2256,I
 1,"a:/Er.A,a:/Ar.-A,a:/Er.B",| -> a:/Ar.-A -> a:/Er.A -> a:/Er.B -> a:/Ar.-A,6.3537,I
 2,"a:/Er.A,a:/Ar.-A,a:/Er.B",| -> a:/Ar.-A -> a:/Er.B -> a:/Ar.-A -> a:/Er.A -> a:/Ar.-A,8.0216,I

@@ -19,10 +19,15 @@ from scipy import stats
 import matplotlib as mpl
 import matplotlib.gridspec as grid_spec
 from sklearn.neighbors import KernelDensity
+from sklearn import linear_model
 import matplotlib.patches as patches
+from scipy.optimize import curve_fit
+import statsmodels.api as sm
+from lark import Lark, Transformer, Visitor, v_args
 
-dat = pd.read_csv('/Users/xfoktj/Documents/GitHub/ABox-Consistency/data/data12.csv')
+dat = pd.read_csv('/Users/xfoktj/Documents/GitHub/ABox-Consistency/data/data5.csv',index_col='Index')
 sam_num = dat['ABox'].nunique()
+
 
 def lowerr(sam1, sam2):
     #For every value in sam1, count how many values in sam2 are strictly smaller.
@@ -91,83 +96,153 @@ def compare(abox1,abox2,dat):
     print('The absolute difference of the means: ', round(diff,3))
     print('The relative difference of the means (compared to first sample): ', round((diff/sam1.mean())*100,1),'%')
 
-compare(dat['ABox'].unique()[0],dat['ABox'].unique()[1], dat)
+#compare(dat['ABox'].unique()[1],dat['ABox'].unique()[3], dat)
+#compare(dat['ABox'].unique()[2],dat['ABox'].unique()[3], dat)
+#compare(dat['ABox'].unique()[4],dat['ABox'].unique()[5], dat)
+#compare(dat['ABox'].unique()[0],dat['ABox'].unique()[1], dat)
 
-
-#Determining the minimum and maximum x values of the graph.
-lx=dat['Time'].min() * 0.7 #the left x limit
-rx=dat['Time'].max() * 1.15 #the right x limit
-
-#Defining the colours
-colors = [mpl.cm.viridis(i) for i in np.linspace(0,1,10)]
-
-gs = grid_spec.GridSpec(sam_num,1)
-fig = plt.figure(figsize=(10,6))
-
-y_max=0
-x_d = np.linspace(lx,rx, 1000)
-logprob = []
-
-bandwidth = 0.05
 
 for sam in dat['ABox'].unique():
-    kde = KernelDensity(bandwidth=bandwidth, kernel='gaussian')
-    kde.fit(np.array(dat[dat['ABox']==sam]['Time'])[:,None])
-    plot_log_data = kde.score_samples(x_d[:, None])
-    plot_data = np.exp(plot_log_data)
-    logprob.append(plot_data)
-    y_max = max(y_max,max(plot_data))
+    sample = dat[dat['ABox']==sam]['Time']
+    dev = sample.std()
+    print('The standard deviation is:', dev)
+    n = len(sample.index)
+    b = 1.06 * dev * n**(-1/5)
+    print('The optimal bandwidth: ',b)
 
-y_max = y_max * 1.10
-ax_objs = []
-i = 0
-dict = {}
 
-for sam in dat['ABox'].unique():
+def graph(dat,bandwidth,title,save):
+    #Determining the minimum and maximum x values of the graph.
+    lx=dat['Time'].min() * 0.7 #the left x limit
+    rx=dat['Time'].max() * 1.1 #the right x limit
 
-    ax_objs.append(fig.add_subplot(gs[i:i+1, 0:]))
-    # plotting the distribution
-    ax_objs[-1].plot(x_d, np.array(logprob[i]),color="#f0f0f0",lw=0.5)
-    ax_objs[-1].fill_between(x_d, logprob[i], alpha=1,color=colors[i+2])
+    #Defining the colours
+    colors = [mpl.cm.viridis(i) for i in np.linspace(0,1,10)]
 
-    # setting uniform x and y lims
-    ax_objs[-1].set_xlim(lx,rx)
-    ax_objs[-1].set_ylim(0,y_max)
+    gs = grid_spec.GridSpec(dat['ABox'].nunique(),1)
+    fig = plt.figure(figsize=(10,6))
 
-    # make background transparent
-    rect = ax_objs[-1].patch
-    rect.set_alpha(0)
+    y_max=0
+    x_d = np.linspace(lx,rx, 1000)
+    logprob = []
 
-    # remove borders, axis ticks, and labels
-    ax_objs[-1].set_yticklabels([])
-    ax_objs[-1].yaxis.set_visible(False)
+    for sam in dat['ABox'].unique():
+        kde = KernelDensity(bandwidth=bandwidth, kernel='gaussian')
+        kde.fit(np.array(dat[dat['ABox']==sam]['Time'])[:,None])
+        plot_log_data = kde.score_samples(x_d[:, None])
+        plot_data = np.exp(plot_log_data)
+        logprob.append(plot_data)
+        y_max = max(y_max,max(plot_data))
 
-    if i == sam_num-1:
-        ax_objs[-1].set_xlabel("Inference time (s)", fontsize=14,fontweight="bold")
+    y_max = y_max * 1.10
+    ax_objs = []
+    i = 0
+    dict = {}
+
+    for sam in dat['ABox'].unique():
+
+        ax_objs.append(fig.add_subplot(gs[i:i+1, 0:]))
+        # plotting the distribution
+        ax_objs[-1].plot(x_d, np.array(logprob[i]),color="#f0f0f0",lw=0.5)
+        ax_objs[-1].fill_between(x_d, logprob[i], alpha=1,color=colors[i+2])
+
+        # setting uniform x and y lims
+        ax_objs[-1].set_xlim(lx,rx)
+        ax_objs[-1].set_ylim(0,y_max)
+
+        # make background transparent
+        rect = ax_objs[-1].patch
+        rect.set_alpha(0)
+
+        # remove borders, axis ticks, and labels
+        ax_objs[-1].set_yticklabels([])
+        ax_objs[-1].yaxis.set_visible(False)
+
+        if i == sam_num-1:
+            ax_objs[-1].set_xlabel("Inference time (s)", fontsize=14,fontweight="bold")
+        else:
+            ax_objs[-1].set_xticklabels([])
+
+        spines = ["top","right","left","bottom"]
+        for s in spines:
+            ax_objs[-1].spines[s].set_visible(False)
+
+        st = 'ABox {}'.format(i)
+        ax_objs[-1].text(lx-0.02,0,st,fontweight="bold",fontsize=10,ha="right")
+        dict[st] = sam
+
+        i += 1
+
+    gs.update(hspace=-0.6)
+    fig.text(0.07,0.85,"Distribution of inference times",fontsize=18)
+    j = 0
+    for i in dict.keys():
+        st = i + ': ' + dict[i]
+        fig.text(0.7,0.8-0.03*j, st,fontsize=9, horizontalalignment='left', verticalalignment='top')
+        j += 1
+
+    fig.patches.extend([plt.Rectangle((0.68,0.81-(sam_num + 1)*0.03),0.4,0.5,fill=True, color='grey', alpha=0.3, zorder=1000,transform=fig.transFigure, figure=fig)])
+
+    if save == True:
+        plt.savefig(title, transparent=True, dpi=1200)
     else:
-        ax_objs[-1].set_xticklabels([])
+        plt.show()
+    return
 
-    spines = ["top","right","left","bottom"]
-    for s in spines:
-        ax_objs[-1].spines[s].set_visible(False)
+#graph(dat,0.05,'ElementNameIndependence',False)
 
-    st = 'ABox {}'.format(i)
-    ax_objs[-1].text(lx-0.02,0,st,fontweight="bold",fontsize=10,ha="right")
-    dict[st] = sam
 
-    i += 1
+'''
+#Multiple linear regression
+x = np.array([[1,1,2,2,1,1,2,2,0,0,0,0,0,0,1,1],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1],[0,0,0,0,0,0,1,1,1,1,2,2,0,0,1,1],[0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1]]).transpose()
+y = dat.groupby(['ABox']).mean()['Time']
+n = len(y)
+p = 4
+print(y)
 
-gs.update(hspace=-0.6)
-fig.text(0.07,0.85,"Distribution of inference times",fontsize=18)
-j = 0
-for i in dict.keys():
-    st = i + ': ' + dict[i]
-    fig.text(0.8,0.8-0.03*j, st,fontsize=9, horizontalalignment='left', verticalalignment='top')
-    j += 1
+regr = linear_model.LinearRegression()
+regr.fit(x, y)
 
-fig.patches.extend([plt.Rectangle((0.78,0.81-(sam_num + 1)*0.03),0.25,0.5,fill=True, color='grey', alpha=0.3, zorder=1000,transform=fig.transFigure, figure=fig)])
+print('Intercept: \n', regr.intercept_)
+print('Coefficients: \n', regr.coef_)
+print(regr.score(x, y))
+print('The adjusted R2: ', 1-(1-regr.score(x, y))*(n-1)/(n-p-1))
+print('predictions: ', regr.predict(x))
+'''
 
+#--------------------------------------------------------------
+
+'''
+dat = pd.read_csv('/Users/xfoktj/Documents/GitHub/ABox-Consistency/data/data11.csv')
+dat2 = pd.read_csv('/Users/xfoktj/Documents/GitHub/ABox-Consistency/data/data13.csv')
+com_list = [5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19]
+com_list2 = [9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16]
+dat['Complexity'] = com_list
+dat2['Complexity'] = com_list2
+
+dat = dat.append(dat2)
+
+#Make the graph showing the exponential increase in run time with the input size.
+x = list(dat['Complexity'])
+y = list(dat['Time'])
+xdata = np.linspace(2,20,50)
+def func(x,a,b):
+    return a * np.exp(b * x)
+popt,pcov = curve_fit(func, x, y)
+plt.plot(xdata, func(xdata, *popt), 'r-', label='fit')
+print(popt)
+li = [func(i, *popt) for i in x]
+a = li
+for i in range(len(li)):
+    a[i] = (y[i]-li[i])**2
+y_mean = sum(y)/len(y)
+y_dif = [(i-y_mean)**2 for i in y]
+R2=1-sum(a)/sum(y_dif)
+print(R2)
+plt.scatter(x, y, s=15)
+plt.xlabel('Size of ABox')
+plt.ylabel('Inference time (s)')
+plt.title('Inference time scales exponentially with ABox size')
+#plt.savefig('ExponentialIncreaseInference.png', transparent=True, dpi=1200)
 plt.show()
-
-title = 'RoleNameIndependence'
-#plt.savefig(title, transparent=True, dpi=1200)
+'''

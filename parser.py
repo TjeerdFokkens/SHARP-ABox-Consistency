@@ -40,7 +40,6 @@ class ToString(Transformer): # Transforms a tree recursively to a string
     element = str
     atom = str
     conj = lambda self,ch1,ch2: "(" + ch1 + "&" + ch2 + ")"
-    dis = lambda self,ch1,ch2: "(" + ch1 + "%" + ch2 + ")"
     exists = lambda self,role,con: "/E" + role + "." + con
     con_ass = lambda self,el,con: el + ":" + con
     role_ass = lambda self,elL,elR,role: "(" + elL + "," + elR + "):" + role
@@ -103,22 +102,6 @@ class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to 
         else:
             addconj(self.el)
         self.derived="no"
-
-    # def dis(self,tree):
-    #     constr = ToString().transform(tree)
-    #     subconL = ToString().transform(tree.children[0])
-    #     subconR = ToString().transform(tree.children[1])
-    #     def adddisj(el):
-    #         self.addtodm(actr.makechunk(typename="proposition", thing="proposition",
-    #                 form=el + ":" + constr, concept=constr, element=el, mainconnective="disjunction",
-    #                 subformula1=el + ":" + subconL, subformula2=el + ":" + subconR,
-    #                 derived=self.derived))
-    #     if self.insideuniversal:
-    #         for el in self.elements:
-    #             adddisj(el)
-    #     else:
-    #         adddisj(self.el)
-    #     self.derived="no"
 
     def exists(self,tree):
         constr = ToString().transform(tree)

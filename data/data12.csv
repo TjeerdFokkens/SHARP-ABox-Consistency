@@ -1,4 +1,4 @@
-,ABox,Run,Time,Judgement
+Index,ABox,Run,Time,Judgement
 0,a:((A&-A)&(B&C)),| -> a:((A&-A)&(B&C)) -> a:(A&-A),2.7558,I
 1,a:((A&-A)&(B&C)),| -> a:((A&-A)&(B&C)) -> a:(A&-A),2.6028,I
 2,a:((A&-A)&(B&C)),| -> a:((A&-A)&(B&C)) -> a:(B&C) -> a:(A&-A),4.411,I

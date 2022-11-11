@@ -1,4 +1,4 @@
-,ABox,Run,Time,Judgement
+Index,ABox,Run,Time,Judgement
 0,"a:(A&B),a:C",-> -> a:(A&B),4.8492,C
 1,"a:(A&B),a:C",-> -> a:(A&B),4.8231,C
 2,"a:(A&B),a:C",-> -> a:(A&B),4.8475,C

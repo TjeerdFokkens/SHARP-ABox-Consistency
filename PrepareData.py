@@ -28,7 +28,7 @@ def model(abox, learning=False):
         subsymbolic=learning,
         utility_noise=0.2,
         partial_matching=False,
-        utility_learning=learning,
+        utility_learning=False,
         production_compilation=learning,
         activation_trace=True,
         retrieval_threshold=-0.05,
@@ -93,6 +93,8 @@ def result(abox):
             else:
                 time = sim.current_event.time
                 print('Simulation stopped prematurely. Some rule does not fire')
+                if str(mod.goals['g']).split('state= ')[1].startswith('label_role'):
+                    print('Probably not enough role witnesses.')
                 print(mod.decmem)
                 print(mod.goals['g'])
                 judgement = 'Fail'
@@ -135,8 +137,20 @@ aboxes5 = ['a:(A&B),a:B','a:(B&A),a:B','a:(A&B),a:-B','a:(B&A),a:-B'] #tests dep
 aboxes6 = ['a:((A&-A)&(B&C))','a:((A&B)&(-A&C))','a:(A&(-A&(B&C)))','a:(A&(B&(-A&C)))','a:(B&(A&(-A&C)))','a:(B&(C&(-A&A)))'] #tests the dependence of nesting
 
 aboxes7 = ['a:(/Er.A&/Er.B)','a:((/Er.A&/Er.B)&/Ar.(/Er.A&/Er.B))','a:((/Er.A&/Er.B)&/Ar.((/Er.A&/Er.B)&/Ar.(/Er.A&/Er.B)))'] #tests the performance with AND-branching
+aboxes7b = ['a:(/Er.(/Er.A&/Er.B)&/Er.B)','a:((/Er.A&/Er.B)&/Ar.(/Er.(/Er.A&/Er.B)&/Er.B))']
 
 aboxes8 = ['a:(A&(B&(C&(D&-A))))','a:(A&B),a:(B&C),a:(C&D),a:(D&-A)'] #tests the spreading effect
 
-a = result_aboxes(300, aboxes6)
-a.to_csv('/Users/xfoktj/Documents/GitHub/ABox-Consistency/data/data12.csv')
+aboxes9 = ['a:A,a:B','a:-A,a:-B','a:(A&B)','a:(-A&-B)','a:/Er.A','a:/Er.-A'] #tests negation indifference
+
+aboxes10 = ['a:(A&B),a:(B&C),a:(C&F),a:(F&-A)']
+
+testset = ['a:A, a:-A','a:(A&-A)','a:-A, a:(A&B)','a:A, (b,a):r, b:/Ar.-A','a:(C&A), a:(B&-A)',
+'a:A, (c,b):r, (b,a):s, c:/Ar./As.-A','a:A, (b,a):r, b:/Ar.((-A&B)&C)','b:/Er.(B&A), b:/Ar.-A',
+'a:A, a:-B','a:(A&-B)','a:-A, a:(C&B)','a:A, (b,a):r, b:/Ar.-B','a:(C&A), a:(B&-D)',
+'a:A, (c,b):r, (b,a):s, c:/Ar./As.-B','a:A, (b,a):r, b:/Ar.((-D&B)&C)','b:/Er.(B&C), b:/Ar.-A']
+
+a = result_aboxes(10, aboxes10)
+print(a)
+#a.to_csv('/Users/xfoktj/Documents/GitHub/ABox-Consistency/data/data15.csv', mode='a', index=True, header=False)
+#a.to_csv('/Users/xfoktj/Documents/GitHub/ABox-Consistency/data/data16.csv',index_label='Index')

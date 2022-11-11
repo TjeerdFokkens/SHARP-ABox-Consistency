@@ -1,4 +1,4 @@
-,ABox,Run,Time,Judgement
+Index,ABox,Run,Time,Judgement
 0,a:(A&(B&(C&(D&-A)))),| -> a:(A&(B&(C&(D&-A)))) -> a:(B&(C&(D&-A))) -> a:(C&(D&-A)) -> a:(D&-A),7.3477,I
 1,a:(A&(B&(C&(D&-A)))),| -> a:(A&(B&(C&(D&-A)))) -> a:(B&(C&(D&-A))) -> a:(C&(D&-A)) -> a:(D&-A),6.5166,I
 2,a:(A&(B&(C&(D&-A)))),| -> a:(A&(B&(C&(D&-A)))) -> a:(B&(C&(D&-A))) -> a:(C&(D&-A)) -> a:(D&-A),6.6328,I
