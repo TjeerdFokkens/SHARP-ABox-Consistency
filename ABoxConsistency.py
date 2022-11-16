@@ -213,9 +213,18 @@ def from_abox_to_data(abox, iterations):
 #f = open("abox2.txt", 'r')
 #abox = f.read().replace('\n', ' ')
 
-from AboxesComplex import aboxes_branch
-i = 0
-print(from_abox_to_data(aboxes_branch[i],10))
+aBoxCon = initial(True)
+dm = aBoxCon.decmem
+
+md1.module1(aBoxCon)
+md2.module2(aBoxCon)
+md3.module3(aBoxCon)
+md4.module4(aBoxCon)
+md5.module5(aBoxCon)
+
+par.AddAboxFromFile('a:/Ar.A,a:/Er.-A',aBoxCon)
+
+trace(aBoxCon,'PROCEDURAL')
 
 '''
 aBoxCon = initial(learning=True)

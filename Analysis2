@@ -25,10 +25,10 @@ from scipy.optimize import curve_fit
 import statsmodels.api as sm
 from lark import Lark, Transformer, Visitor, v_args
 
-dat = pd.read_csv('/Users/xfoktj/Documents/GitHub/ABox-Consistency/data/data5.csv',index_col='Index')
+dat = pd.read_csv('/Users/xfoktj/Documents/GitHub/ABox-Consistency/data/data17.csv',index_col='Index')
 sam_num = dat['ABox'].nunique()
 
-
+'''
 def lowerr(sam1, sam2):
     #For every value in sam1, count how many values in sam2 are strictly smaller.
     li1=[]
@@ -194,8 +194,8 @@ def graph(dat,bandwidth,title,save):
 
 '''
 #Multiple linear regression
-x = np.array([[1,1,2,2,1,1,2,2,0,0,0,0,0,0,1,1],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1],[0,0,0,0,0,0,1,1,1,1,2,2,0,0,1,1],[0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1]]).transpose()
-y = dat.groupby(['ABox']).mean()['Time']
+x = np.array([[0,2,2,1,1,1,1,1,2,1,0,0,2,1,1,1],[0,0,2,0,0,1,0,0,0,2,1,0,0,1,0,0],[0,0,0,2,0,1,1,1,0,0,1,2,1,1,1,3],[1,1,0,1,1,1,1,1,0,0,0,0,0,0,0,0]]).transpose()
+y = dat.groupby(['ABox']).min()['Time']
 n = len(y)
 p = 4
 print(y)
@@ -208,8 +208,10 @@ print('Coefficients: \n', regr.coef_)
 print(regr.score(x, y))
 print('The adjusted R2: ', 1-(1-regr.score(x, y))*(n-1)/(n-p-1))
 print('predictions: ', regr.predict(x))
-'''
 
+[1,1,0,1,1,1,1,1,0,0,0,0,0,0,0,0]
+
+# the presence of clashes: [1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0], [[1,1,2,2,1,1,2,2,0,0,0,0,0,0,1,1],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1],[0,0,0,0,0,0,1,1,1,1,2,2,0,0,1,1]]
 #--------------------------------------------------------------
 
 '''

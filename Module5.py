@@ -562,8 +562,8 @@ def module5(aBoxCon): #This module finds all relations/roles corresponding to un
         role     =L
         derivenew =M
         +imaginal>
-        isa     storelist
-        thing   storelist
+        isa      storelist
+        thing    storelist
         form     =P
         form2    =A8
         form3    =A9

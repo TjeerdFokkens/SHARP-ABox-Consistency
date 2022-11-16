@@ -71,7 +71,7 @@ def result(abox):
         #print(sim.current_event)
         if sim.current_event.proc=='manual' and sim.current_event.action.startswith('KEY'):
             judgement = str(sim.current_event).split('KEY PRESSED: ')[1][0]
-        if sim.current_event.action.startswith('RULE SELECTED: Module 2, Unit 3') or sim.current_event.action.startswith('RULE SELECTED: Module 2, Unit 5a') or sim.current_event.action.startswith('RULE SELECTED: Module 2, Unit 6a'):
+        if sim.current_event.action.startswith('RULE SELECTED: Module 2, Unit 3') or sim.current_event.action.startswith('RULE SELECTED: Module 2, Unit 5a') or sim.current_event.action.startswith('RULE SELECTED: Module 2, Unit 6a') or sim.current_event.action.startswith('RULE SELECTED: Module 5, Unit 2a'):
             a = str(mod.retrieval)
             b = a.split('form= ',1)[1].split(', ',1)[0]
             print(b)
@@ -145,12 +145,26 @@ aboxes9 = ['a:A,a:B','a:-A,a:-B','a:(A&B)','a:(-A&-B)','a:/Er.A','a:/Er.-A'] #te
 
 aboxes10 = ['a:(A&B),a:(B&C),a:(C&F),a:(F&-A)']
 
-testset = ['a:A, a:-A','a:(A&-A)','a:-A, a:(A&B)','a:A, (b,a):r, b:/Ar.-A','a:(C&A), a:(B&-A)',
-'a:A, (c,b):r, (b,a):s, c:/Ar./As.-A','a:A, (b,a):r, b:/Ar.((-A&B)&C)','b:/Er.(B&A), b:/Ar.-A',
-'a:A, a:-B','a:(A&-B)','a:-A, a:(C&B)','a:A, (b,a):r, b:/Ar.-B','a:(C&A), a:(B&-D)',
-'a:A, (c,b):r, (b,a):s, c:/Ar./As.-B','a:A, (b,a):r, b:/Ar.((-D&B)&C)','b:/Er.(B&C), b:/Ar.-A']
+testset = ['a:A, a:-A',
+'a:(-C&A), a:(B&-A)',
+'a:(/Er.A&/Er.-A), b:(B&C)',
+'a:-A, (c,b):r, (b,a):s, c:/Ar.(/As.A&-B)',
+'a:A, (b,a):r, b:/Ar.((-A&-B)&-C),c:(B&-B)',
+'b:/Er.(-B&A), b:/Ar.-A, a:/As.B',
+'a:-A, (b,a):r, b:(/Ar.A&B), c:/Es.(B&A)',
+'a:A, (b,a):r, b:(B&/Ar.-A), b:(/Es.B&C)',
+'a:(C&A), a:(B&D)',
+'a:(/Er.A&/Es.-A)',
+'b:/Ar./Es.-A, (b,c):r, c:/As.-E',
+'a:A, (c,b):r, (b,a):s, c:/Ar./As.-B',
+'a:A, (b,a):r, b:/Ar.((-D&B)&-C)',
+'b:/Er.(B&C), b:/Ar.A',
+'a:-A, (b,a):r, b:(/Ar.-A&B)',
+'a:A, (d,c):r, (c,b):s, (b,a):t, d:/Ar./As./At.E, b:(B&C)']
 
-a = result_aboxes(10, aboxes10)
-print(a)
+aboxesorder = ['a:/Ar.A,a:/Er.-A','a:(A&(B&C)),a:(D&(E&-A))','a:/Er.(A&B),a:(C&/Ar.-A)']
+
+a = result_aboxes(300, aboxesorder)
+
 #a.to_csv('/Users/xfoktj/Documents/GitHub/ABox-Consistency/data/data15.csv', mode='a', index=True, header=False)
-#a.to_csv('/Users/xfoktj/Documents/GitHub/ABox-Consistency/data/data16.csv',index_label='Index')
+a.to_csv('/Users/xfoktj/Documents/GitHub/ABox-Consistency/data/data18.csv',index_label='Index')

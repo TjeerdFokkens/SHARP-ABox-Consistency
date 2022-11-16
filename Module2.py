@@ -177,6 +177,7 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         form38   none
         form39   none
         form40   none
+        ~retrieval>
     """)
 
     aBoxCon.productionstring(name="Module 2, Unit 2a: retrieve non-universal formula", string="""
@@ -392,6 +393,8 @@ def module2(aBoxCon): #This module either retrieves the list of used formulas an
         form38   =A44
         form39   =A45
         form40   =A46
+        ?retrieval>
+        state    free
         ==>
         =g>
         isa      goal

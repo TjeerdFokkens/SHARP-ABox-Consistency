@@ -121,9 +121,6 @@ def AddAboxFromFile(data):
         addform = AddFormToAbox(elements,witnesses)
         addform.visit_topdown(form) # Need to visit the tree top down to get the element first.
 
-
-abox = 'a:A, (b,a):r, b:/Ar.-B, (b,d):r, a:(C&(D&E)), c:/Es.F'
-
 def completing(abox,i,j):
     tree = parser(abox)
     formulas = abox.split(', ')
@@ -137,7 +134,8 @@ def completing(abox,i,j):
             str2 = element + ':' + concept2
             formulas.append(str1)
             formulas.append(str2)
-            formulas.remove(whole)
+            if whole in formulas:
+                formulas.remove(whole)
             j+=1
         if a.data == 'con_ass' and a.children[1].data == 'exists':
             x = 'x{}'.format(i)
@@ -191,28 +189,47 @@ def elements(abox):
             role = a.children[1].children[0].children[0]
             for a in tree.children:
                 if a.data =='role_ass' and a.children[0].children[0] == element and a.children[2].children[0] == role:
-                    l += 1
+                    l += 1 #Counts the number of universal-role pairs that qualify for inference, i.e. the number of inference steps that are superfluous.
     elements = list(dict.fromkeys(elements))
     return elements, roles, l
 
 def complexity(abox):
     E = abox.count('/E')
     A = abox.count('/A')
-    Q = E + A
-    N = abox.count('-')
-    L = CountNodes("con_ass").transform(parser(abox)) + CountNodes("role_ass").transform(parser(abox)) + CountNodes("atom").transform(parser(abox)) + CountNodes("neg").transform(parser(abox))
+    Q = E + A #Number of quantifiers
+    N = abox.count('-') #Number of negations
+    L = CountNodes("con_ass").transform(parser(abox)) + CountNodes("role_ass").transform(parser(abox)) + CountNodes("atom").transform(parser(abox)) + CountNodes("neg").transform(parser(abox)) #Length of the proof
     i = 0
     j = 0
     while True:
         abox,i,j = completing(abox,i,j)
         if abox == completing(abox,i,j)[0]:
             break
+    print(abox)
     lmnts,roles,superf = elements(abox)
     print('The number of elements: ', len(lmnts))
     print('The number of edges in the graph: ', len(roles))
     print('The number of witnesses: ', i)
-    print('The length of the proof: ', j-superf)
-    print('The size of the proof: ', L)
+    print('The length of the proof: ', j-superf) #Only works for consistent ABoxes.
+    print('The size of the proof: ', L) #Only works for consistent ABoxes.
     return abox, i, lmnts, roles, Q, N, L
 
-complexity(abox)
+testset = ['a:A, a:-A',
+'a:(-C&A), a:(B&-A)',
+'a:(/Er.A&/Er.-A), b:(B&C)',
+'a:-A, (c,b):r, (b,a):s, c:/Ar.(/As.A&-B)',
+'a:A, (b,a):r, b:/Ar.((-A&-B)&-C),c:(B&-B)',
+'b:/Er.(-B&A), b:/Ar.-A, a:/As.B',
+'a:-A, (b,a):r, b:(/Ar.A&B), c:/Es.(B&A)',
+'a:A, (b,a):r, b:(B&/Ar.-A), b:(/Es.B&C)',
+'a:(C&A), a:(B&D)',
+'a:(/Er.A&/Es.-A)',
+'b:/Ar./Es.-A, (b,c):r, c:/As.-E',
+'a:A, (c,b):r, (b,a):s, c:/Ar./As.-B',
+'a:A, (b,a):r, b:/Ar.((-D&B)&-C)',
+'b:/Er.(B&C), b:/Ar.A',
+'a:-A, (b,a):r, b:(/Ar.-A&B)',
+'a:A, (d,c):r, (c,b):s, (b,a):t, d:/Ar./As./At.E, b:(B&C)']
+
+for i in range(0,9):
+    complexity(testset[i])
