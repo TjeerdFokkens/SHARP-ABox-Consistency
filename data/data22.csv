@@ -1,0 +1,51 @@
+Index,ABox,Run,Time,Judgement
+0,a:A,|,2.2464,C
+1,a:A,|,2.2452,C
+2,a:A,|,2.2445,C
+3,a:A,|,2.2451,C
+4,a:A,|,2.2459,C
+5,a:A,|,2.2443,C
+6,a:A,|,2.2441,C
+7,a:A,|,2.2454,C
+8,a:A,|,2.2438,C
+9,a:A,|,2.2449,C
+10,"a:A, (a,b):r, a:/Ar.B",| -> a:/Ar.B,3.8081,C
+11,"a:A, (a,b):r, a:/Ar.B",| -> a:/Ar.B,3.8121,C
+12,"a:A, (a,b):r, a:/Ar.B",| -> a:/Ar.B,3.811,C
+13,"a:A, (a,b):r, a:/Ar.B",| -> a:/Ar.B,3.6565,C
+14,"a:A, (a,b):r, a:/Ar.B",| -> a:/Ar.B,3.6551,C
+15,"a:A, (a,b):r, a:/Ar.B",| -> a:/Ar.B,3.6548,C
+16,"a:A, (a,b):r, a:/Ar.B",| -> a:/Ar.B,3.7568,C
+17,"a:A, (a,b):r, a:/Ar.B",| -> a:/Ar.B,3.6623,C
+18,"a:A, (a,b):r, a:/Ar.B",| -> a:/Ar.B,3.6541,C
+19,"a:A, (a,b):r, a:/Ar.B",| -> a:/Ar.B,3.8124,C
+20,"a:A, (a,b):r, (a,c):r, a:/Ar.B, a:/Ar.C",| -> a:/Ar.B -> a:/Ar.C,6.2767,C
+21,"a:A, (a,b):r, (a,c):r, a:/Ar.B, a:/Ar.C",| -> a:/Ar.B -> a:/Ar.C,6.067,C
+22,"a:A, (a,b):r, (a,c):r, a:/Ar.B, a:/Ar.C",| -> a:/Ar.B -> a:/Ar.C,6.2716,C
+23,"a:A, (a,b):r, (a,c):r, a:/Ar.B, a:/Ar.C",| -> a:/Ar.C -> a:/Ar.B,6.2818,C
+24,"a:A, (a,b):r, (a,c):r, a:/Ar.B, a:/Ar.C",| -> a:/Ar.C -> a:/Ar.B,6.1216,C
+25,"a:A, (a,b):r, (a,c):r, a:/Ar.B, a:/Ar.C",| -> a:/Ar.C -> a:/Ar.B,6.121,C
+26,"a:A, (a,b):r, (a,c):r, a:/Ar.B, a:/Ar.C",| -> a:/Ar.B -> a:/Ar.C,6.2748,C
+27,"a:A, (a,b):r, (a,c):r, a:/Ar.B, a:/Ar.C",| -> a:/Ar.B -> a:/Ar.C,6.267,C
+28,"a:A, (a,b):r, (a,c):r, a:/Ar.B, a:/Ar.C",| -> a:/Ar.B -> a:/Ar.C,6.2743,C
+29,"a:A, (a,b):r, (a,c):r, a:/Ar.B, a:/Ar.C",| -> a:/Ar.B -> a:/Ar.C,6.0691,C
+30,"a:A, (a,b):r, (a,c):r, (a,d):r, a:/Ar.B, a:/Ar.C, a:/Ar.D",| -> a:/Ar.D -> a:/Ar.B -> a:/Ar.C,10.017,C
+31,"a:A, (a,b):r, (a,c):r, (a,d):r, a:/Ar.B, a:/Ar.C, a:/Ar.D",| -> a:/Ar.D -> a:/Ar.B -> a:/Ar.C,10.0131,C
+32,"a:A, (a,b):r, (a,c):r, (a,d):r, a:/Ar.B, a:/Ar.C, a:/Ar.D",| -> a:/Ar.B -> a:/Ar.D -> a:/Ar.C,9.9714,C
+33,"a:A, (a,b):r, (a,c):r, (a,d):r, a:/Ar.B, a:/Ar.C, a:/Ar.D",| -> a:/Ar.C -> a:/Ar.B -> a:/Ar.D,9.8609,C
+34,"a:A, (a,b):r, (a,c):r, (a,d):r, a:/Ar.B, a:/Ar.C, a:/Ar.D",| -> a:/Ar.B -> a:/Ar.D -> a:/Ar.C,10.0208,C
+35,"a:A, (a,b):r, (a,c):r, (a,d):r, a:/Ar.B, a:/Ar.C, a:/Ar.D",| -> a:/Ar.B -> a:/Ar.C -> a:/Ar.D,9.8595,C
+36,"a:A, (a,b):r, (a,c):r, (a,d):r, a:/Ar.B, a:/Ar.C, a:/Ar.D",| -> a:/Ar.C -> a:/Ar.D -> a:/Ar.B,10.0104,C
+37,"a:A, (a,b):r, (a,c):r, (a,d):r, a:/Ar.B, a:/Ar.C, a:/Ar.D",| -> a:/Ar.C -> a:/Ar.B -> a:/Ar.D,10.0113,C
+38,"a:A, (a,b):r, (a,c):r, (a,d):r, a:/Ar.B, a:/Ar.C, a:/Ar.D",| -> a:/Ar.B -> a:/Ar.C -> a:/Ar.D,9.8591,C
+39,"a:A, (a,b):r, (a,c):r, (a,d):r, a:/Ar.B, a:/Ar.C, a:/Ar.D",| -> a:/Ar.C -> a:/Ar.B -> a:/Ar.D,9.8613,C
+40,"a:A, (a,b):r, (a,c):r, (a,d):r, (a,e):r, a:/Ar.B, a:/Ar.C, a:/Ar.D, a:/Ar.E",| -> a:/Ar.C -> a:/Ar.B -> a:/Ar.D -> a:/Ar.E,14.8619,C
+41,"a:A, (a,b):r, (a,c):r, (a,d):r, (a,e):r, a:/Ar.B, a:/Ar.C, a:/Ar.D, a:/Ar.E",| -> a:/Ar.D -> a:/Ar.B -> a:/Ar.E -> a:/Ar.C,14.501,C
+42,"a:A, (a,b):r, (a,c):r, (a,d):r, (a,e):r, a:/Ar.B, a:/Ar.C, a:/Ar.D, a:/Ar.E",| -> a:/Ar.B -> a:/Ar.D -> a:/Ar.E -> a:/Ar.C,15.0102,C
+43,"a:A, (a,b):r, (a,c):r, (a,d):r, (a,e):r, a:/Ar.B, a:/Ar.C, a:/Ar.D, a:/Ar.E",| -> a:/Ar.C -> a:/Ar.B -> a:/Ar.D -> a:/Ar.E,14.9522,C
+44,"a:A, (a,b):r, (a,c):r, (a,d):r, (a,e):r, a:/Ar.B, a:/Ar.C, a:/Ar.D, a:/Ar.E",| -> a:/Ar.B -> a:/Ar.E -> a:/Ar.D -> a:/Ar.C,15.0109,C
+45,"a:A, (a,b):r, (a,c):r, (a,d):r, (a,e):r, a:/Ar.B, a:/Ar.C, a:/Ar.D, a:/Ar.E",| -> a:/Ar.C -> a:/Ar.D -> a:/Ar.B -> a:/Ar.E,14.8578,C
+46,"a:A, (a,b):r, (a,c):r, (a,d):r, (a,e):r, a:/Ar.B, a:/Ar.C, a:/Ar.D, a:/Ar.E",| -> a:/Ar.D -> a:/Ar.E -> a:/Ar.C -> a:/Ar.B,15.006,C
+47,"a:A, (a,b):r, (a,c):r, (a,d):r, (a,e):r, a:/Ar.B, a:/Ar.C, a:/Ar.D, a:/Ar.E",| -> a:/Ar.E -> a:/Ar.D -> a:/Ar.C -> a:/Ar.B,14.8657,C
+48,"a:A, (a,b):r, (a,c):r, (a,d):r, (a,e):r, a:/Ar.B, a:/Ar.C, a:/Ar.D, a:/Ar.E",| -> a:/Ar.D -> a:/Ar.E -> a:/Ar.C -> a:/Ar.B,14.8018,C
+49,"a:A, (a,b):r, (a,c):r, (a,d):r, (a,e):r, a:/Ar.B, a:/Ar.C, a:/Ar.D, a:/Ar.E",| -> a:/Ar.E -> a:/Ar.B -> a:/Ar.D -> a:/Ar.C,15.0036,C

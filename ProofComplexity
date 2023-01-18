@@ -2,6 +2,8 @@ from lark import Lark, Transformer, Visitor, v_args
 import pyactr as actr
 import pprint
 import numpy as np
+import pandas as pd
+from sklearn import linear_model
 
 form_grammar = """
 
@@ -121,51 +123,57 @@ def AddAboxFromFile(data):
         addform = AddFormToAbox(elements,witnesses)
         addform.visit_topdown(form) # Need to visit the tree top down to get the element first.
 
-def completing(abox,i,j):
+def completing(abox,i,j,memory,discard):
     tree = parser(abox)
     formulas = abox.split(', ')
     for a in tree.children:
         if a.data == 'con_ass' and a.children[1].data == 'conj':
-            element = a.children[0].children[0]
-            concept1 = ToString().transform(a.children[1].children[0])
-            concept2 = ToString().transform(a.children[1].children[1])
-            whole = ToString().transform(a)
-            str1 = element + ':' + concept1
-            str2 = element + ':' + concept2
-            formulas.append(str1)
-            formulas.append(str2)
-            if whole in formulas:
-                formulas.remove(whole)
-            j+=1
+            c = ToString().transform(a)
+            if c not in discard:
+                element = a.children[0].children[0]
+                concept1 = ToString().transform(a.children[1].children[0])
+                concept2 = ToString().transform(a.children[1].children[1])
+                whole = ToString().transform(a)
+                str1 = element + ':' + concept1
+                str2 = element + ':' + concept2
+                formulas.append(str1)
+                formulas.append(str2)
+                j+=1
+                discard += [c] #Such that the derivation step is not made again.
         if a.data == 'con_ass' and a.children[1].data == 'exists':
-            x = 'x{}'.format(i)
-            i += 1
-            element = a.children[0].children[0]
-            role = a.children[1].children[0].children[0]
-            concept = ToString().transform(a.children[1].children[1])
-            whole = ToString().transform(a)
-            str1 = '(' + element + ',' + x + '):' + role
-            str2 = x + ':' + concept
-            formulas.append(str1)
-            formulas.append(str2)
-            formulas.remove(whole)
-            j+=1
+            c = ToString().transform(a)
+            if c not in discard:
+                x = 'x{}'.format(i)
+                i += 1
+                element = a.children[0].children[0]
+                role = a.children[1].children[0].children[0]
+                concept = ToString().transform(a.children[1].children[1])
+                whole = ToString().transform(a)
+                str1 = '(' + element + ',' + x + '):' + role
+                str2 = x + ':' + concept
+                formulas.append(str1)
+                formulas.append(str2)
+                j+=1
+                discard += [c] #Such that the derivation step is not made again.
         if a.data == 'con_ass' and a.children[1].data == 'universal':
             element = a.children[0].children[0]
             role = a.children[1].children[0].children[0]
             concept = ToString().transform(a.children[1].children[1])
-            for a in tree.children:
-                if a.data =='role_ass' and a.children[0].children[0] == element and a.children[2].children[0] == role:
-                    str1 = a.children[1].children[0] + ':' + concept
-                    formulas.append(str1)
-                    j+=1
+            for b in tree.children:
+                if b.data =='role_ass' and b.children[0].children[0] == element and b.children[2].children[0] == role:
+                    c = ToString().transform(a) + ', ' + ToString().transform(b)
+                    if c not in memory:
+                        str1 = b.children[1].children[0] + ':' + concept
+                        formulas.append(str1)
+                        j+=1
+                        memory += [c] #Such that the derivation step is not made again.
     formulas = list(dict.fromkeys(formulas)) #Removing duplicates from list
     #Turning list to a string again
     f = ''
     for k in formulas:
         f = f + k + ', '
     f = f[:-2]
-    return f, i, j
+    return f, i, j, memory, discard
 
 def elements(abox):
     elements = []
@@ -173,6 +181,9 @@ def elements(abox):
     l = 0
     tree = parser(abox)
     for a in tree.children:
+        if a.data == 'element':
+            element = ToString().transform(a)
+            elements.append(element)
         if a.data == 'con_ass':
             element = ToString().transform(a.children[0])
             elements.append(element)
@@ -194,42 +205,137 @@ def elements(abox):
     return elements, roles, l
 
 def complexity(abox):
+    print(abox)
     E = abox.count('/E')
     A = abox.count('/A')
     Q = E + A #Number of quantifiers
     N = abox.count('-') #Number of negations
-    L = CountNodes("con_ass").transform(parser(abox)) + CountNodes("role_ass").transform(parser(abox)) + CountNodes("atom").transform(parser(abox)) + CountNodes("neg").transform(parser(abox)) #Length of the proof
+    S = abox.count('A') + abox.count('B') + abox.count('C') + abox.count('D') + abox.count('E') + abox.count('F') + abox.count('G') + abox.count('H') + abox.count('&') + abox.count(':r') + abox.count(':s') + abox.count(':t') + abox.count('-')
     i = 0
     j = 0
-    while True:
-        abox,i,j = completing(abox,i,j)
-        if abox == completing(abox,i,j)[0]:
-            break
-    print(abox)
+    memory = []
+    discard = []
+    a = 'g'
+    while a != abox:
+        a = abox
+        abox,i,j,memory,discard = completing(abox,i,j,memory,discard)
     lmnts,roles,superf = elements(abox)
+    print('The size of the ABox: ', S)
+    print('The number of quantifiers: ', Q)
+    print('The number of negations: ', N)
     print('The number of elements: ', len(lmnts))
     print('The number of edges in the graph: ', len(roles))
     print('The number of witnesses: ', i)
-    print('The length of the proof: ', j-superf) #Only works for consistent ABoxes.
-    print('The size of the proof: ', L) #Only works for consistent ABoxes.
-    return abox, i, lmnts, roles, Q, N, L
+    return abox, i, lmnts, roles, Q, N, S
 
-testset = ['a:A, a:-A',
-'a:(-C&A), a:(B&-A)',
-'a:(/Er.A&/Er.-A), b:(B&C)',
-'a:-A, (c,b):r, (b,a):s, c:/Ar.(/As.A&-B)',
-'a:A, (b,a):r, b:/Ar.((-A&-B)&-C),c:(B&-B)',
-'b:/Er.(-B&A), b:/Ar.-A, a:/As.B',
-'a:-A, (b,a):r, b:(/Ar.A&B), c:/Es.(B&A)',
-'a:A, (b,a):r, b:(B&/Ar.-A), b:(/Es.B&C)',
-'a:(C&A), a:(B&D)',
-'a:(/Er.A&/Es.-A)',
-'b:/Ar./Es.-A, (b,c):r, c:/As.-E',
-'a:A, (c,b):r, (b,a):s, c:/Ar./As.-B',
-'a:A, (b,a):r, b:/Ar.((-D&B)&-C)',
-'b:/Er.(B&C), b:/Ar.A',
-'a:-A, (b,a):r, b:(/Ar.-A&B)',
-'a:A, (d,c):r, (c,b):s, (b,a):t, d:/Ar./As./At.E, b:(B&C)']
 
-for i in range(0,9):
-    complexity(testset[i])
+testset2 = [
+'a:A, b:-A, a:-B',
+'a:/Er./As./Er./At.-A',
+'a:A, a:-A, b:/Ar.A',
+'a:(A&(-B&(C&D))), a:D',
+'a:/Ar./Es./Er.-A, b:/As.-B',
+'a:(A&-B), b:(-C&-D), a:-C',
+'a:/Ar./Es.(-A&-B), b:-A, c:-B',
+'a:/Er.A, a:/Ar.-A, b:/As.(B&A)',
+'a:/Er./Es.-A, a:/Ar./As.A, b:/Es.-B',
+'a:-A, a:-B, b:-C, b:-A, c:-A, c:B',
+'a:/Ar./As./Es.-A, (a,b):r, b:/Es./As.A',
+'a:/Er.(A&(B&-A)), b:/Ar./Es./Et.(B&-C)',
+'b:-D, (a,b):r, a:/Es.(-A&(-B&(-C&D)))',
+'a:/Ar./Es.-B, b:/As.(-A&(-C&B)), (a,b):r',
+'a:/Ar./Es.-B, (a,b):r, b:/As.B, a:-A, b:B',
+'a:/Er.A, a:/Ar.-A, b:/Es.B, b:/As.A, (b,a):s',
+'a:/Er.-A, a:/Ar.(A&-B), b:/Er.-B, a:-C, a:-B',
+'a:(-A&(B&-C)), b:(-B&(C&A)), b:(A&C), a:B',
+'a:/Ar./As.(A&-B), (a,b):r, (b,c):s, c:A, b:B',
+'a:/Ar./Es./At.-B, b:(-C&/Er.(-B&A)), c:/Es./Et.B',
+'a:/Ar./Es./Et.(-A&B), (a,b):r, b:/As./At.(-B&-C)',
+'a:(A&-B), b:(C&-A), a:(-B&(C&-A)), b:(C&(D&B))',
+'a:/Ar./Er./As.-A, (a,b):r, b:/Ar./Es.(-B&(-D&(-C&A)))',
+'a:/Ar./Er./Es./Et.(-A&(-C&(-B&(-D&(-E&A))))), (a,b):r',
+'a:/Ar.(A&(B&-C)), (a,c):r, c:(-B&-C), b:-A, b:/Er.A',
+'a:/Ar.(A&-B), b:/Er.(A&(B&C)), c:(A&B), (b,c):s, (c,d):r',
+'a:/Er.(A&-B), b:/As./Et.-C, c:/Ar.(B&-A), b:(C&-D), (a,b):s',
+'a:/Ar.(/As.-A&B), (a,b):r, b:/Es.(A&B), b:/Ar.(-A&(B&/As.A))',
+'a:/Ar./As.(A&-B), (a,b):r, (b,c):s, c:B, b:/Er./Er.(A&B), b:/As.B',
+'a:/As.(-A&B), (b,a):r, b:/Ar./Es.(A&B), c:(-B&C), a:(B&-C), (b,c):s']
+
+siz = []
+nel = []
+pro = []
+rol = []
+qua = []
+neg = []
+for i in testset2:
+    abox, i, lmnts, roles, Q, N, S = complexity(i)
+    nel.append(len(lmnts))
+    siz.append(S)
+    pro.append(S*len(lmnts))
+    rol.append(len(roles))
+    qua.append(Q)
+    neg.append(N)
+
+data_syn = np.array([siz,nel,pro,rol,qua,neg]).transpose()
+
+
+df = pd.read_csv('/Users/xfoktj/Documents/GitHub/ABox-Consistency/data/data19.csv',index_col='Index')
+x = []
+for abox in df['ABox'].unique():
+    print('ABox: ', abox)
+    vec_list = []
+    for run in df[df['ABox']==abox]['Run'].unique():
+        if run == '|':
+            print(0)
+            vec_list = [0,0,0]
+        else:
+            formulalist = run.split(' -> ')
+            formulalist.remove('|')
+            runlist = []
+            for formula in formulalist:
+                mainconnective = parser(formula).children[1].data
+                runlist.append(mainconnective)
+            num_con = runlist.count('conj')
+            num_exi = runlist.count('exists')
+            num_uni = runlist.count('universal')
+            vec = [num_con,num_exi,num_uni]
+            vec_list.append(vec)
+    mat = np.matrix(vec_list)
+    data = mat.mean(0)
+    x.append(data)
+    print('---')
+syn = x[0]
+for i in range(1,len(x)): #Making a nice matrix of it.
+    syn = np.concatenate((syn,x[i]), axis=0)
+
+
+clash = np.matrix([0,0,0,1,1,1,1,0,1,1,1,1,1,0,0,1,1,0,0,0,0,1,1,0,1,0,0,1,1,1])
+data_syn = np.mat(data_syn)
+x = np.concatenate((syn.transpose(),clash),axis=0).transpose()
+x = np.concatenate((x,data_syn),axis=1)
+prooflengths = np.mat([0,1,0,3,0,2,0,2,4,0,5,3,4,5,4,2,3,5,3,5,7,3,8,9,4,4,3,5,3,5]).transpose()
+x = np.concatenate((x,prooflengths),axis=1)
+y = [3.563363999999999, 3.076122, 0.8534420000000003, 8.654753999999997, 2.6228000000000002, 7.832234000000002, 3.5937299999999994, 4.914596000000001, 7.796582, 5.541514000000001, 8.196904, 4.878156000000001, 10.177546000000001, 8.036234000000002, 7.7772559999999995, 8.011824, 8.304667346938775, 14.723073999999999, 7.818073999999998, 11.425308, 9.11221, 10.014562000000002, 12.525772000000002, 14.217982000000006, 9.709258, 11.138954000000002, 9.889266, 9.183320000000002, 6.55539, 11.127577999999996]
+
+def fit(x,y,param):
+    n = len(y)
+
+    regr = linear_model.LinearRegression()
+    regr.fit(x, y)
+
+    print('Intercept: \n', regr.intercept_)
+    print('Coefficients: \n', regr.coef_)
+    print(regr.score(x, y))
+    print('The adjusted R2: ', 1-(1-regr.score(x, y))*(n-1)/(n-param-1))
+    print('predictions: ', regr.predict(x))
+
+x = np.delete(x, [1,2,3,4,6,7,9], axis=1)
+fit(x,y,x.shape[1])
+'''
+for i in range(0,x.shape[1]):
+    x_del = np.delete(x, i, axis=1)
+    fit(x_del,y,x_del.shape[1])
+
+x_del = np.delete(x, [1,3,4,6], axis=1)
+fit(x_del,y,x_del.shape[1])
+'''

@@ -34,6 +34,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form14   =A19
         form15   =A20
         form16   =A21
+        form17   =A22
+        form18   =A23
         ?retrieval>
         state   free
         ==>
@@ -71,6 +73,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form14   =A19
         form15   =A20
         form16   =A21
+        form17   =A22
+        form18   =A23
         +retrieval>
         isa     proposition
         thing   proposition
@@ -99,6 +103,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form    ~=A19
         form    ~=A20
         form    ~=A21
+        form    ~=A22
+        form    ~=A23
         subformula1 =A5
     """)
 
@@ -137,6 +143,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form14   =A19
         form15   =A20
         form16   =A21
+        form17   =A22
+        form18   =A23
         ?retrieval>
         state   error
         ==>
@@ -174,6 +182,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form14   =A19
         form15   =A20
         form16   =A21
+        form17   =A22
+        form18   =A23
         +retrieval>
         isa     proposition
         thing   proposition
@@ -200,6 +210,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form    ~=A19
         form    ~=A20
         form    ~=A21
+        form    ~=A22
+        form    ~=A23
     """)
 
     aBoxCon.productionstring(name="Module 1, Unit 2b: signal a clash", string="""
@@ -237,6 +249,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form14   =A19
         form15   =A20
         form16   =A21
+        form17   =A22
+        form18   =A23
         =retrieval>
         isa     proposition
         thing   proposition
@@ -303,6 +317,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form14   =A19
         form15   =A20
         form16   =A21
+        form17   =A22
+        form18   =A23
         ?retrieval>
         state   error
         ==>
@@ -357,6 +373,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form14   =A19
         form15   =A20
         form16   =A21
+        form17   =A22
+        form18   =A23
         =retrieval>
         isa      proposition
         thing    proposition
@@ -403,6 +421,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form14   =A18
         form15   =A19
         form16   =A20
+        form17   =A21
+        form18   =A22
         ~retrieval>
     """)
 
@@ -441,6 +461,8 @@ def module1(aBoxCon): #This module looks for concept assignments and negated con
         form14   =A19
         form15   =A20
         form16   =A21
+        form17   =A22
+        form18   =A23
         ?retrieval>
         state    error
         ?manual>

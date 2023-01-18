@@ -655,6 +655,8 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form14   none
         form15   none
         form16   none
+        form17   none
+        form18   none
         ~retrieval>
         ~imaginal_action>
     """)
@@ -735,6 +737,8 @@ def module3(aBoxCon): #This module applies when a conjunction is found. It deriv
         form14   none
         form15   none
         form16   none
+        form17   none
+        form18   none
         ~retrieval>
         ~imaginal_action>
     """)

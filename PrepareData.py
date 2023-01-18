@@ -33,7 +33,8 @@ def model(abox, learning=False):
         activation_trace=True,
         retrieval_threshold=-0.05,
         decay=0.005,
-        instantaneous_noise=0.005)
+        instantaneous_noise=0.005,
+        optimized_learning=False)
 
     aBoxCon.goals = {}
     aBoxCon.set_goal("g")
@@ -43,7 +44,7 @@ def model(abox, learning=False):
     actr.chunktype("goal", "state, form, count1, count2, mainconnective, role, derivenew")
     actr.chunktype("proposition", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, subformula3, derived")
     actr.chunktype("uproposition", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, derived, count, relation1, relation2, relation3, relation4, relation5, relation6, relation7, relation8, relation9")
-    actr.chunktype("checklist", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, form2, form3, form4, form5, form6, form7, form8, form9, form10, form11, form12, form13, form14, form15, form16")
+    actr.chunktype("checklist", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, form2, form3, form4, form5, form6, form7, form8, form9, form10, form11, form12, form13, form14, form15, form16, form17, form18")
     actr.chunktype("storelist", "thing, form, form2, form3, form4, form5, form6, form7, form8, form9, form10, form11, form12, form13, form14, form15, form16, form17, form18 form19, form20, form21, form22, form23, form24, form25, form26, form27, form28, form29, form30, form31, form32, form33, form34, form35, form36, form37, form38, form39, form40")
     actr.chunktype("universal_list", "thing, form, form2, form3, form4, form5, form6, form7, form8, form9")
     actr.chunktype("count_order","number, successor, thing")
@@ -162,9 +163,47 @@ testset = ['a:A, a:-A',
 'a:-A, (b,a):r, b:(/Ar.-A&B)',
 'a:A, (d,c):r, (c,b):s, (b,a):t, d:/Ar./As./At.E, b:(B&C)']
 
-aboxesorder = ['a:/Ar.A,a:/Er.-A','a:(A&(B&C)),a:(D&(E&-A))','a:/Er.(A&B),a:(C&/Ar.-A)']
 
-a = result_aboxes(300, aboxesorder)
+testset2 = [
+'a:A, b:-A, a:-B',
+'a:/Er./As./Er./At.-A',
+'a:A, a:-A, b:/Ar.A',
+'a:(A&(-B&(C&D))), a:D',
+'a:/Ar./Es./Er.-A, b:/As.-B',
+'a:(A&-B), b:(-C&-D), a:-C',
+'a:/Ar./Es.(-A&-B), b:-A, c:-B',
+'a:/Er.A, a:/Ar.-A, b:/As.(B&A)',
+'a:/Er./Es.-A, a:/Ar./As.A, b:/Es.-B',
+'a:-A, a:-B, b:-C, b:-A, c:-A, c:B',
+'a:/Ar./As./Es.-A, (a,b):r, b:/Es./As.A',
+'a:/Er.(A&(B&-A)), b:/Ar./Es./Et.(B&-C)',
+'b:-D, (a,b):r, a:/Es.(-A&(-B&(-C&D)))',
+'a:/Ar./Es.-B, b:/As.(-A&(-C&B)), (a,b):r',
+'a:/Ar./Es.-B, (a,b):r, b:/As.B, a:-A, b:B',
+'a:/Er.A, a:/Ar.-A, b:/Es.B, b:/As.A, (b,a):s',
+'a:/Er.-A, a:/Ar.(A&-B), b:/Er.-B, a:-C, a:-B',
+'a:(-A&(B&-C)), b:(-B&(C&A)), b:(A&C), a:B',
+'a:/Ar./As.(A&-B), (a,b):r, (b,c):s, c:A, b:B',
+'a:/Ar./Es./At.-B, b:(-C&/Er.(-B&A)), c:/Es./Et.B',
+'a:/Ar./Es./Et.(-A&B), (a,b):r, b:/As./At.(-B&-C)',
+'a:(A&-B), b:(C&-A), a:(-B&(C&-A)), b:(C&(D&B))',
+'a:/Ar./Er./As.-A, (a,b):r, b:/Ar./Es.(-B&(-D&(-C&A)))',
+'a:/Ar./Er./Es./Et.(-A&(-C&(-B&(-D&(-E&A))))), (a,b):r',
+'a:/Ar.(A&(B&-C)), (a,c):r, c:(-B&-C), b:-A, b:/Er.A',
+'a:/Ar.(A&-B), b:/Er.(A&(B&C)), c:(A&B), (b,c):s, (c,d):r',
+'a:/Er.(A&-B), b:/As./Et.-C, c:/Ar.(B&-A), b:(C&-D), (a,b):s',
+'a:/Ar.(/As.-A&B), (a,b):r, b:/Es.(A&B), b:/Ar.(-A&(B&/As.A))',
+'a:/Ar./As.(A&-B), (a,b):r, (b,c):s, c:B, b:/Er./Er.(A&B), b:/As.B',
+'a:/As.(-A&B), (b,a):r, b:/Ar./Es.(A&B), c:(-B&C), a:(B&-C), (b,c):s']
 
-#a.to_csv('/Users/xfoktj/Documents/GitHub/ABox-Consistency/data/data15.csv', mode='a', index=True, header=False)
-a.to_csv('/Users/xfoktj/Documents/GitHub/ABox-Consistency/data/data18.csv',index_label='Index')
+
+
+aboxesorder = ['a:(A&(B&C)),a:(D&(E&-C))','a:/Er.(A&B),a:(C&/Ar.-A)']
+
+test_linear = ['a:A', 'a:A, b:B', 'a:A, b:B, c:C', 'a:A, b:B, c:C, d:D', 'a:A, b:B, c:C, d:D, e:E']
+test_polynomial = ['a:A', 'a:A, (a,b):r, a:/Ar.B', 'a:A, (a,b):r, (a,c):r, a:/Ar.B, a:/Ar.C', 'a:A, (a,b):r, (a,c):r, (a,d):r, a:/Ar.B, a:/Ar.C, a:/Ar.D', 'a:A, (a,b):r, (a,c):r, (a,d):r, (a,e):r, a:/Ar.B, a:/Ar.C, a:/Ar.D, a:/Ar.E']
+
+a = result_aboxes(10, [test_polynomial[4]])
+
+#a.to_csv('/Users/xfoktj/Documents/GitHub/ABox-Consistency/data/data19.csv', mode='a', index=True, header=False)
+#a.to_csv('/Users/xfoktj/Documents/GitHub/ABox-Consistency/data/data22.csv',index_label='Index')
