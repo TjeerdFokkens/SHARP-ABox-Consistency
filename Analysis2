@@ -574,7 +574,7 @@ plt.show()
 #x = [1,2,3,4,5] #The complexities of the ABoxes for linear scaling.
 #yy = [16.7,18.4,21.5,25.4,29.0] #The simulation times for linear scaling
 
-x = [1,2,7,10,13] #The complexities of the ABoxes for polynomial scaling.
+x = [1,4,7,10,13] #The complexities of the ABoxes for polynomial scaling.
 yy = [16.7,22.0,33.9,54.1,80.7] #The simulation times for polynomial scaling
 y = [i/10 for i in yy]
 print(y)
