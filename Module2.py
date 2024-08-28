@@ -418,7 +418,7 @@ def component2(aBoxCon):
         ==>
         =g>
         isa       goal
-        state     prepare_component_5_1
+        state     prepare__5_1
         form      =G1
         count1    =G2
         count2    =G3
@@ -611,7 +611,7 @@ def component2(aBoxCon):
         form40    =I39
     """)
 
-    #This rule invokes component 5, puts the newly found universal restriction formula in the imaginal_action buffer, creates a universal_list in the imaginal buffer and tries to retrieve a relation that corresponds to the universal restriction formula. 
+    #This rule invokes  5, puts the newly found universal restriction formula in the imaginal_action buffer, creates a universal_list in the imaginal buffer and tries to retrieve a relation that corresponds to the universal restriction formula. 
     aBoxCon.productionstring(name="Component 2, Rule 3b: universal found, prepare for component 5", string="""
         =g>
         isa       goal
