@@ -7,7 +7,7 @@
 
 
 
-def module1(aBoxCon):
+def component1(aBoxCon):
     #This rule tries to retrieve a derived atomic concept assignment that clashes with the first formula of the checklist in the imaginal module. 
     aBoxCon.productionstring(name="Component 1, Rule 1: find clash to concept or negation in head of list", string="""
         =g>
