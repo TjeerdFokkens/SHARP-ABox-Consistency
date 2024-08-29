@@ -8,7 +8,7 @@
 def component4(aBoxCon):
     #This rule retrieves a role list with role formulas that are already used.
     #Later, this list is used to retrieve a new role formula.
-    aBoxCon.productionstring(name="Module 4, Rule 1: existential found, get role list", string="""
+    aBoxCon.productionstring(name="Component 4, Rule 1: existential found, get role list", string="""
         =g>
         isa       goal
         state     inference_step
@@ -147,7 +147,7 @@ def component4(aBoxCon):
     """)
 
     #This rule retrieves a role formula that is not in the list, ensuring the related element is new.
-    aBoxCon.productionstring(name="Module 4, Rule 2: role list found, select role not in list", string="""
+    aBoxCon.productionstring(name="Component 4, Rule 2: role list found, select role not in list", string="""
         =g>
         isa       goal
         state     get_role_list
@@ -299,7 +299,7 @@ def component4(aBoxCon):
     """)
 
     #This rule labels the role formula as derived and retrieves the appropriate concept assignment.
-    aBoxCon.productionstring(name="Module 4, Rule 3: label role, find concept", string="""
+    aBoxCon.productionstring(name="Component 4, Rule 3: label role, find concept", string="""
         =g>
         isa       goal
         state     label_role
@@ -402,7 +402,7 @@ def component4(aBoxCon):
     """)
 
     #In case an atomic concept assignment is found, this formula is labelled and the concept assignment chunk is moved to the imaginal buffer as a preparation for component 1 (which looks for a clash among atomic concept assignments).
-    aBoxCon.productionstring(name="Module 4, Rule 4a: label concept, atom found", string="""
+    aBoxCon.productionstring(name="Component 4, Rule 4a: label concept, atom found", string="""
         =g>
         isa       goal
         state     label_concept
@@ -506,7 +506,7 @@ def component4(aBoxCon):
     """)
 
     #After an atomic formula is found, component 1 is invoked to look for a clash.
-    aBoxCon.productionstring(name="Module 4, Rule 4a: atom found, prepare to look for clash", string="""
+    aBoxCon.productionstring(name="Component 4, Rule 4a: atom found, prepare to look for clash", string="""
         =g>
         isa       goal
         state     label_concept_2
@@ -618,7 +618,7 @@ def component4(aBoxCon):
 
     #In case complex non-universal formula is found, this chunk is labelled as derived and component 2 is invoked, i.e. the next (derived) formula is selected to apply a syntax expansion rule to.
     #This rule has a similarly working counterpart for universal formulas, because of the formal difference between universal and non-universal formulas.
-    aBoxCon.productionstring(name="Module 4, Rule 4b: label concept, non-universal complex formula found", string="""
+    aBoxCon.productionstring(name="Component 4, Rule 4b: label concept, non-universal complex formula found", string="""
         =g>
         isa       goal
         state     label_concept
@@ -726,7 +726,7 @@ def component4(aBoxCon):
 
     #In case a universal formula is found, its chunk is labelled as derived and component 2 is invoked, i.e. the next formula is selected to apply a syntax expansion rule to.
     #This rule has a similarly working counterpart for non-universal formulas, because of the formal difference between universal and non-universal formulas.
-    aBoxCon.productionstring(name="Module 4, Rule 4c: label concept, universal formula found", string="""
+    aBoxCon.productionstring(name="Component 4, Rule 4c: label concept, universal formula found", string="""
         =g>
         isa       goal
         state     label_concept
