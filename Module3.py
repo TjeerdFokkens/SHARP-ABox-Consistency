@@ -264,7 +264,7 @@ def component3(aBoxCon):
         thing     ~goal
         thing     ~count_order
         thing     ~role_list
-        form      =Z
+        form      =IA2
         element   =I3
         mainconnective ~none
         +imaginal>
@@ -639,7 +639,7 @@ def component3(aBoxCon):
         subformula3  =IA6
         relation  =IA7
         derived   yes
-        concept   =IA7
+        concept   =IA8
         ==>
         =g>
         isa       goal
@@ -806,7 +806,7 @@ def component3(aBoxCon):
         subformula3  =IA6
         relation  =IA7
         derived   yes
-        concept   =IA7
+        concept   =IA8
         ==>
         =g>
         isa       goal
