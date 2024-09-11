@@ -418,7 +418,7 @@ def component2(aBoxCon):
         ==>
         =g>
         isa       goal
-        state     prepare__5_1
+        state     prepare_component_5_1
         form      =G1
         count1    =G2
         count2    =G3
