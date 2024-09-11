@@ -1,7 +1,7 @@
-# ABox-Consistency
-This model has the purpose of simulating the reasoning process that a human user might perform in deciding whether a given ABox (in the description logic 𝒜ℒℰ) is consistent.
+# SHARP: ABox-Consistency
+SHARP simulates the reasoning process that a human user might perform in deciding whether a given ABox (in the description logic 𝒜ℒℰ) is consistent.
 The simulation results can then be used to estimate the cognitively adequate complexity of this task.
-For more information, please refer to the short paper:
+Below follows a short explanation; for in-depth information, please refer to the short paper:
 
 J.T. Fokkens and F. Engström, 'Cognitively adequate complexity of reasoning in a description logic: extended abstract',
 https://ceur-ws.org/Vol-3548/paper6.pdf
@@ -11,7 +11,7 @@ J.T.Fokkens, 'Modelling the logical mind - Using the cognitive architecture ACT-
 https://gupea.ub.gu.se/handle/2077/74797
 
 Short explanation
-The model performs the ABox consistency algorithm from page 75 from the book 'An Introduction to Description Logic', by F. Baader, I. Horrocks, C. Lutz and U. Sattler, as if it were run on a human brain.
+SHARP performs the ABox consistency algorithm from page 75 from the book 'An Introduction to Description Logic', by F. Baader, I. Horrocks, C. Lutz and U. Sattler, as if it were run on a human brain.
 It does this by using the cognitive architecture ACT-R, into which the algorithm is implemented. For more info on ACT-R, please refer to: J. Whitehill, 'Understanding act-r - an outsider’s perspective'
 https://doi.org/10.48550/arXiv.1306.0125.
 
@@ -33,6 +33,6 @@ Because ACT-R does not allow for directly parsing strings, the process of 'deriv
 
 
 
-The Modules files contain the production rules of the ACT-R system.
-parser.py contains code that takes an ABox and feeds it - in the appropriate form - into the simulation model.
-PrepareData is a file that generates the simulations.
+The Components files contain the production rules of the ACT-R system.
+parser.py contains code that takes an ABox and feeds it - in the appropriate form - into SHARP.
+PrepareData is a file that runs the simulations to generate data.
