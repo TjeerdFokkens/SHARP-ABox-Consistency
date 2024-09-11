@@ -1198,7 +1198,7 @@ def component2(aBoxCon):
         =g>
         isa       goal
         state     last_clash
-        derivenew =M
+        derivenew =G6
     """)
 
     #If no universal formula and (after that) no non-universal formula can be found, move to the last_clash state.
@@ -1220,7 +1220,7 @@ def component2(aBoxCon):
         =g>
         isa       goal
         state     last_clash
-        derivenew =M
+        derivenew =G6
     """)
 
     #The last_clash state sets the 'derivenew' slot in the goal buffer to no, and moves to Component 1, which looks for a clash.
