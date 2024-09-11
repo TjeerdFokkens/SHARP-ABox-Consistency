@@ -52,18 +52,18 @@ def model(abox, learning=False):
 
     aBoxCon.goals["g"].add(actr.makechunk(typename="goal", state="find_clash_to_head", form='none', count1=0, count2=1, mainconnective='none', role='none', derivenew='yes'))
 
-    md1.module1(aBoxCon)
-    md2.module2(aBoxCon)
-    md3.module3(aBoxCon)
-    md4.module4(aBoxCon)
-    md5.module5(aBoxCon)
+    md1.component1(aBoxCon)
+    md2.component2(aBoxCon)
+    md3.component3(aBoxCon)
+    md4.component4(aBoxCon)
+    md5.component5(aBoxCon)
 
     par.AddAboxFromFile(abox,aBoxCon)
     return aBoxCon
 
 def result(abox):
     #Takes an abox.
-    #Returns a list with the formulas inspected and the simulation time.
+    #Returns both the simulation time and a list with the formulas inspected.
     prove_tracks = []
     mod = model(abox, learning=True)
     sim = mod.simulation(realtime=False,gui=False)
@@ -72,7 +72,7 @@ def result(abox):
         #print(sim.current_event)
         if sim.current_event.proc=='manual' and sim.current_event.action.startswith('KEY'):
             judgement = str(sim.current_event).split('KEY PRESSED: ')[1][0]
-        if sim.current_event.action.startswith('RULE SELECTED: Module 2, Unit 3') or sim.current_event.action.startswith('RULE SELECTED: Module 2, Unit 5a') or sim.current_event.action.startswith('RULE SELECTED: Module 2, Unit 6a') or sim.current_event.action.startswith('RULE SELECTED: Module 5, Unit 2a'):
+        if sim.current_event.action.startswith('RULE SELECTED: Component 2, Rule 3') or sim.current_event.action.startswith('RULE SELECTED: Component 2, Rule 5a') or sim.current_event.action.startswith('RULE SELECTED: Component 2, Rule 6a') or sim.current_event.action.startswith('RULE SELECTED: Component 5, Rule 2a'):
             a = str(mod.retrieval)
             b = a.split('form= ',1)[1].split(', ',1)[0]
             print(b)
@@ -111,16 +111,21 @@ def result_it(iterations, abox):
     df = pd.DataFrame(columns=['ABox', 'Run', 'Time', 'Judgement'])
     for i in range(iterations):
         run, time, judgement = result(abox)
-        df2 = pd.DataFrame([[abox,run,time,judgement]],columns=['ABox', 'Run', 'Time', 'Judgement'])
-        df = df.append(df2, ignore_index=True)
+        new_row = pd.DataFrame([[abox,run,time,judgement]],columns=['ABox', 'Run', 'Time', 'Judgement'])
+        df = pd.concat([
+            df if not df.empty else None,
+            new_row], ignore_index=True)
     return df
 
 def result_aboxes(iterations, aboxes):
     #Takes the number of iterations and a list of ABoxes.
     #Returns a DataFrame with the simulation times and judgements, categorised by ABox and run.
-    dat = pd.DataFrame(columns=['ABox', 'Run', 'Time', 'Judgement'])
+    df = pd.DataFrame(columns=['ABox', 'Run', 'Time', 'Judgement'])
     for abox in aboxes:
-        dat = dat.append(result_it(iterations, abox), ignore_index=True)
+        new_rows = result_it(iterations, abox)
+        df = pd.concat([
+            df if not df.empty else None,
+            new_rows], ignore_index=True)
     return dat
 
 
