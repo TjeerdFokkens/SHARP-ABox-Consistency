@@ -357,15 +357,15 @@ def component5(aBoxCon):
         derived   yes
         concept   =IA6
         count     =G3
-        relation1 =IA6
-        relation2 =IA7
-        relation3 =IA8
-        relation4 =IA9
-        relation5 =IA10
-        relation6 =IA11
-        relation7 =IA12
-        relation8 =IA13
-        relation9 =IA14
+        relation1 =IA7
+        relation2 =IA8
+        relation3 =IA9
+        relation4 =IA10
+        relation5 =IA11
+        relation6 =IA12
+        relation7 =IA13
+        relation8 =IA14
+        relation9 =IA15
         ==>
         =g>
         isa       goal
@@ -828,7 +828,7 @@ def component5(aBoxCon):
         thing     ~goal
         mainconnective ~relation
         element   =R3
-        concept   =IA5
+        concept   =IA3
         +imaginal>
         isa       universal_list
         thing     universal_list
@@ -853,15 +853,15 @@ def component5(aBoxCon):
         subformula1 =IA2
         subformula2 =IA3
         concept   =IA4
-        relation1 =IA5
-        relation2 =IA6
-        relation3 =IA7
-        relation4 =IA8
-        relation5 =IA9
-        relation6 =IA10
-        relation7 =IA11
-        relation8 =IA12
-        relation9 =IA13
+        relation1 =R1
+        relation2 =IA5
+        relation3 =IA6
+        relation4 =IA7
+        relation5 =IA8
+        relation6 =IA9
+        relation7 =IA10
+        relation8 =IA11
+        relation9 =IA12
     """)
 
     #In case a non-universal concept assignment is found, this rule labels the formula as derived.
