@@ -255,7 +255,7 @@ def component2(aBoxCon):
         ==>
         =g>
         isa       goal
-        state     update_storelist_1
+        state     update_storelist
         form      =G1
         count1    =G2
         count2    =G3
@@ -418,7 +418,7 @@ def component2(aBoxCon):
         ==>
         =g>
         isa       goal
-        state     prepare_component_5_1
+        state     prepare_component_5
         form      =G1
         count1    =G2
         count2    =G3
@@ -480,7 +480,7 @@ def component2(aBoxCon):
     aBoxCon.productionstring(name="Component 2, Rule 3a: non-universal found, update list of used formulas", string="""
         =g>
         isa       goal
-        state     update_storelist_1
+        state     update_storelist
         form      =G1
         count1    =G2
         count2    =G3
@@ -615,7 +615,7 @@ def component2(aBoxCon):
     aBoxCon.productionstring(name="Component 2, Rule 4a: universal found, prepare for component 5", string="""
         =g>
         isa       goal
-        state     prepare_component_5_1
+        state     prepare_component_5
         form      =G1
         count1    =G2
         count2    =G3
@@ -712,7 +712,7 @@ def component2(aBoxCon):
     aBoxCon.productionstring(name="Component 2, Rule 4b: retrieve non-universal after universal", string="""
         =g>
         isa       goal
-        state     prepare_component_5_1
+        state     prepare_component_5
         form      =G1
         count1    =G2
         count2    =G3
@@ -874,7 +874,7 @@ def component2(aBoxCon):
     aBoxCon.productionstring(name="Component 2, Rule 3b: retrieve universal after non-universal", string="""
         =g>
         isa       goal
-        state     update_storelist_1
+        state     update_storelist
         form      =G1
         count1    =G2
         count2    =G3
@@ -931,7 +931,7 @@ def component2(aBoxCon):
         ==>
         =g>
         isa       goal
-        state     prepare_component_5_2
+        state     prepare_component_5_or_last_clash
         form      =G1
         count1    =G2
         count2    =G3
@@ -951,7 +951,7 @@ def component2(aBoxCon):
     aBoxCon.productionstring(name="Component 2, Rule 5a: universal found after non-universal, go to component 5", string="""
         =g>
         isa       goal
-        state     prepare_component_5_2
+        state     prepare_component_5_or_last_clash
         form      =G1
         count1    =G2
         count2    =G3
@@ -1183,7 +1183,7 @@ def component2(aBoxCon):
     aBoxCon.productionstring(name="Component 2, Rule 5b: no formula found, last check for clash", string="""
         =g>
         isa       goal
-        state     prepare_component_5_2
+        state     prepare_component_5_or_last_clash
         form      =G1
         count1    =G2
         count2    =G3
