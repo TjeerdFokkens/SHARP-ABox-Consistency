@@ -105,7 +105,7 @@ def component5(aBoxCon):
 
     #This rules tries to retrieve a universal formula that is not in the universal_list.
     #This universal_list chunk contains the universal formulas that have been inspected in the current round of component 5.
-    aBoxCon.productionstring(name="Component 5, Rule 1a: no relation found, find next universal", string="""
+    aBoxCon.productionstring(name="Component 5, Rule 2: no relation found, find next universal", string="""
         =g>
         isa       goal
         state     prepare_find_next_universal
@@ -212,7 +212,7 @@ def component5(aBoxCon):
     """)
 
     #After the next universal restriction formula is retrieved, this rule goes back to state 'component5' to look for a corresponding role assignment.
-    aBoxCon.productionstring(name="Component 5, Rule 2a: universal found, back to start of component 5", string="""
+    aBoxCon.productionstring(name="Component 5, Rule 3a: universal found, back to start of component 5", string="""
         =g>
         isa       goal
         state     find_next_universal
@@ -321,7 +321,7 @@ def component5(aBoxCon):
     #This rule fires if no universal formula can be found.
     #This means that all universal formulas that qualify for an application of a syntax expansion rule have been visited in the current round of component 5.
     #This rule then retrieves the storelist to use it to select a new formula to apply a syntax expansion rule to.
-    aBoxCon.productionstring(name="Component 5, Rule 2b: no universal found, retrieve storelist", string="""
+    aBoxCon.productionstring(name="Component 5, Rule 3b: no universal found, retrieve storelist", string="""
         =g>
         isa       goal
         state     find_next_universal
@@ -396,7 +396,7 @@ def component5(aBoxCon):
     """)
 
     #This rule moves the storelist to the imaginal buffer and retrieves a count from the declarative memory in order to update the count in the goal buffer, which keeps track of how many times component 5 is executed.
-    aBoxCon.productionstring(name="Component 5, Rule 3a: put storelist of used formulas in imaginal buffer and update count", string="""
+    aBoxCon.productionstring(name="Component 5, Rule 4a: put storelist of used formulas in imaginal buffer and update count", string="""
         =g>
         isa       goal
         state     prepare_non_universal_retrieval
@@ -454,7 +454,7 @@ def component5(aBoxCon):
         ==>
         =g>
         isa       goal
-        state     retrieve_non_universal
+        state     update_count
         form      =G1
         count1    =G2
         count2    =G3
@@ -511,10 +511,10 @@ def component5(aBoxCon):
     """)
 
     #This rules updates the count in the goal buffer, which keeps track of how many times component 5 is executed, then it tries to retrieve a non-universal complex formula on which no syntax expansion rule has been applied yet.
-    aBoxCon.productionstring(name="Component 5, Rule 3a: retrieve non-universal proposition", string="""
+    aBoxCon.productionstring(name="Component 5, Rule 5: retrieve non-universal proposition", string="""
         =g>
         isa       goal
-        state     retrieve_non_universal
+        state     update_count
         form      =G1
         count1    =G2
         count2    =G3
@@ -574,7 +574,7 @@ def component5(aBoxCon):
         ==>
         =g>
         isa       goal
-        state     update_storelist_2
+        state     retrieve_non_universal
         form      =G1
         count1    =G3
         count2    =R1
@@ -676,7 +676,7 @@ def component5(aBoxCon):
     """)
 
     #In case no storelist has been made, this rule creates one by putting the just inspected formula in an otherwise empty list.
-    aBoxCon.productionstring(name="Component 5, Rule 3b: create storelist in imaginal buffer and put used formula in it", string="""
+    aBoxCon.productionstring(name="Component 5, Rule 4b: create storelist in imaginal buffer and put used formula in it", string="""
         =g>
         isa       goal
         state     prepare_non_universal_retrieval
@@ -693,7 +693,7 @@ def component5(aBoxCon):
         ==>
         =g>
         isa       goal
-        state     retrieve_non_universal
+        state     update_count
         form      =G1
         count1    =G2
         count2    =G3
@@ -866,7 +866,7 @@ def component5(aBoxCon):
 
     #In case a non-universal concept assignment is found, this rule labels the formula as derived.
     #It also retrieves the universal_list again, so that, if no further corresponding role assignments can be found, the next universal formula can be selected to make an inference from.
-    aBoxCon.productionstring(name="Component 5, Rule 4a: non-universal formula found, mark as derived", string="""
+    aBoxCon.productionstring(name="Component 5, Rule 6a: non-universal formula found, mark as derived", string="""
         =g>
         isa       goal
         state     deduce_from_universal
@@ -926,7 +926,7 @@ def component5(aBoxCon):
         ==>
         =g>
         isa       goal
-        state     find_relation_2
+        state     retrieve_role_list
         form      =G1
         count1    =G2
         count2    =G3
@@ -982,7 +982,7 @@ def component5(aBoxCon):
 
     #In case a universal concept assignment is found, this rule labels the formula as derived.
     #It also retrieves the universal_list again, so that, if no further corresponding role assignments can be found, the next universal formula can be selected to make an inference from.
-    aBoxCon.productionstring(name="Component 5, Rule 4b: universal formula found, mark as derived", string="""
+    aBoxCon.productionstring(name="Component 5, Rule 6b: universal formula found, mark as derived", string="""
         =g>
         isa       goal
         state     deduce_from_universal
@@ -1051,7 +1051,7 @@ def component5(aBoxCon):
         ==>
         =g>
         isa       goal
-        state     find_relation_2
+        state     retrieve_role_list
         form      =G1
         count1    =G2
         count2    =G3
@@ -1116,10 +1116,10 @@ def component5(aBoxCon):
 
     #This rule tries to find a role assignment that corresponds with the universal formula currently under inspection, so that the combination of the two has not been used yet make an inference from.
     #This rule has a counterpart that essentially performs the same action, but which is formally different due to the formal difference between universal and non-universal formula chunks.
-    aBoxCon.productionstring(name="Component 5, Rule 5a: find next relation to universal", string="""
+    aBoxCon.productionstring(name="Component 5, Rule 7a: find next relation to universal", string="""
         =g>
         isa       goal
-        state     find_relation_2
+        state     retrieve_role_list
         form      =G1
         count1    =G2
         count2    =G3
@@ -1236,10 +1236,10 @@ def component5(aBoxCon):
 
     #This rule tries to find a role assignment that corresponds with the universal formula currently under inspection, so that the combination of the two has not been used yet make an inference from.
     #This rule has a counterpart that essentially performs the same action, but which is formally different due to the formal difference between universal and non-universal formula chunks.
-    aBoxCon.productionstring(name="Component 5, Rule 5b: find next relation to universal", string="""
+    aBoxCon.productionstring(name="Component 5, Rule 7b: find next relation to universal", string="""
         =g>
         isa       goal
-        state     find_relation_2
+        state     retrieve_role_list
         form      =G1
         count1    =G2
         count2    =G3
