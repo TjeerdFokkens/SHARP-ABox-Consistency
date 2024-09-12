@@ -769,7 +769,7 @@ def component2(aBoxCon):
         ==>
         =g>
         isa       goal
-        state     update_storelist_2
+        state     retrieve_non_universal
         form      =G1
         count1    =G2
         count2    =G3
@@ -1048,7 +1048,7 @@ def component2(aBoxCon):
     aBoxCon.productionstring(name="Component 2, Rule 6a: non-universal found after universal, update list of used formulas", string="""
         =g>
         isa       goal
-        state     update_storelist_2
+        state     retrieve_non_universal
         form      =G1
         count1    =G2
         count2    =G3
@@ -1205,7 +1205,7 @@ def component2(aBoxCon):
     aBoxCon.productionstring(name="Component 2, Rule 6b: no formula found, last check for clash", string="""
         =g>
         isa       goal
-        state     update_storelist_2
+        state     retrieve_non_universal
         form      =G1
         count1    =G2
         count2    =G3
