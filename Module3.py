@@ -78,7 +78,7 @@ def component3(aBoxCon):
         ==>
         =g>
         isa       goal
-        state     label_conjuncts
+        state     retrieve_conjuncts
         form      =G1
         count1    =G2
         count2    =G3
@@ -113,10 +113,10 @@ def component3(aBoxCon):
     """)
 
     #This rule tries to retrieve the first conjunct, i.e. the one which label was stored in the imaginal buffer.
-    aBoxCon.productionstring(name="Component 3, Rule 2a, Step 1: retrieve first conjunct", string="""
+    aBoxCon.productionstring(name="Component 3, Rule 2a: retrieve first conjunct", string="""
         =g>
         isa       goal
-        state     label_conjuncts
+        state     retrieve_conjuncts
         form      =G1
         count1    =G2
         count2    =G3
@@ -164,7 +164,7 @@ def component3(aBoxCon):
         ==>
         =g>
         isa       goal
-        state     label_conjuncts2
+        state     label_conjuncts
         form      =G1
         count1    =G2
         count2    =G3
@@ -198,10 +198,10 @@ def component3(aBoxCon):
     """)
 
     #This rule tries to retrieve the second conjunct, i.e. the one which label is stored in the imaginal_action buffer.
-    aBoxCon.productionstring(name="Component 3, Rule 2b, Step 1: retrieve second conjunct", string="""
+    aBoxCon.productionstring(name="Component 3, Rule 2b: retrieve second conjunct", string="""
         =g>
         isa       goal
-        state     label_conjuncts
+        state     retrieve_conjuncts
         form      =G1
         count1    =G2
         count2    =G3
@@ -249,7 +249,7 @@ def component3(aBoxCon):
         ==>
         =g>
         isa       goal
-        state     label_conjuncts2
+        state     label_conjuncts
         form      =G1
         count1    =G2
         count2    =G3
@@ -284,10 +284,10 @@ def component3(aBoxCon):
 
     #In case the first conjunct is a formula that is non-universal, this rule labels that formula as derived.
     #Due to the formal difference between universal and non-universal formula chunks, this rule has a counterpart which does the same thing for a universal formula.
-    aBoxCon.productionstring(name="Component 3, Rule 2a, Step 2: label first conjunct, non-universal found", string="""
+    aBoxCon.productionstring(name="Component 3, Rule 3a(n): label first conjunct, non-universal found", string="""
         =g>
         isa       goal
-        state     label_conjuncts2
+        state     label_conjuncts
         form      =G1
         count1    =G2
         count2    =G3
@@ -323,7 +323,7 @@ def component3(aBoxCon):
         ==>
         =g>
         isa       goal
-        state     label_conjuncts
+        state     retrieve_conjuncts
         form      =G1
         count1    =G2
         count2    =G3
@@ -359,10 +359,10 @@ def component3(aBoxCon):
 
     #In case the first conjunct is a universal formula, this rule labels the formula as derived.
     #Due to the formal difference between universal and non-universal formula chunks, this rule has a counterpart which does the same thing for a non-universal formula.
-    aBoxCon.productionstring(name="Component 3, Rule 2a, Step 2: label first conjunct, universal found", string="""
+    aBoxCon.productionstring(name="Component 3, Rule 3a(u): label first conjunct, universal found", string="""
         =g>
         isa       goal
-        state     label_conjuncts2
+        state     label_conjuncts
         form      =G1
         count1    =G2
         count2    =G3
@@ -397,7 +397,7 @@ def component3(aBoxCon):
         ==>
         =g>
         isa       goal
-        state     label_conjuncts
+        state     retrieve_conjuncts
         form      =G1
         count1    =G2
         count2    =G3
@@ -442,10 +442,10 @@ def component3(aBoxCon):
 
     #In case the second conjunct is a non-universal formula, this rule labels that formula as derived.
     #Due to the formal difference between universal and non-universal formula chunks, this rule has a counterpart which does the same thing for a universal formula.
-    aBoxCon.productionstring(name="Component 3, Rule 2b, Step 2: label second conjunct, non-universal found", string="""
+    aBoxCon.productionstring(name="Component 3, Rule 3b(n): label second conjunct, non-universal found", string="""
         =g>
         isa       goal
-        state     label_conjuncts2
+        state     label_conjuncts
         form      =G1
         count1    =G2
         count2    =G3
@@ -481,7 +481,7 @@ def component3(aBoxCon):
         ==>
         =g>
         isa       goal
-        state     label_conjuncts
+        state     retrieve_conjuncts
         form      =G1
         count1    =G2
         count2    =G3
@@ -517,10 +517,10 @@ def component3(aBoxCon):
 
     #In case the second formula is a universal formula, this rules labels that formula as derived.
     #Due to the formal difference between universal and non-universal formula chunks, this rule has a counterpart which does the same thing for a non-universal formula.
-    aBoxCon.productionstring(name="Component 3, Rule 2b, Step 2: label second conjunct, universal found", string="""
+    aBoxCon.productionstring(name="Component 3, Rule 3b(u): label second conjunct, universal found", string="""
         =g>
         isa       goal
-        state     label_conjuncts2
+        state     label_conjuncts
         form      =G1
         count1    =G2
         count2    =G3
@@ -555,7 +555,7 @@ def component3(aBoxCon):
         ==>
         =g>
         isa       goal
-        state     label_conjuncts
+        state     retrieve_conjuncts
         form      =G1
         count1    =G2
         count2    =G3
@@ -599,10 +599,10 @@ def component3(aBoxCon):
     """)
 
     #If the first conjunct is atomic, this rule can fire to look for an atomic formula that clashes with it.
-    aBoxCon.productionstring(name="Component 3, Rule 3a: finalise inference and move on to find a clash on first conjunct", string="""
+    aBoxCon.productionstring(name="Component 3, Rule 4a: finalise inference and move on to find a clash on first conjunct", string="""
         =g>
         isa       goal
-        state     label_conjuncts
+        state     retrieve_conjuncts
         form      =G1
         count1    =G2
         count2    =G3
@@ -682,10 +682,10 @@ def component3(aBoxCon):
     """)
 
     #If the second conjunct is atomic, this rule can fire to look for an atomic formula that clashes with it.
-    aBoxCon.productionstring(name="Component 3, Rule 3b: finalise inference and move on to find a clash on second conjunct", string="""
+    aBoxCon.productionstring(name="Component 3, Rule 4b: finalise inference and move on to find a clash on second conjunct", string="""
         =g>
         isa       goal
-        state     label_conjuncts
+        state     retrieve_conjuncts
         form      =G1
         count1    =G2
         count2    =G3
@@ -765,10 +765,10 @@ def component3(aBoxCon):
     """)
 
     #If no conjunct is atomic, this rule invokes module 2 to look for a new formula to apply the syntax expansion rules to.
-    aBoxCon.productionstring(name="Component 3, Rule 3c: no concept or negation derived, so move on to derive new formula", string="""
+    aBoxCon.productionstring(name="Component 3, Rule 4c: no concept or negation derived, so move on to derive new formula", string="""
         =g>
         isa       goal
-        state     label_conjuncts
+        state     retrieve_conjuncts
         form      =G1
         count1    =G2
         count2    =G3
