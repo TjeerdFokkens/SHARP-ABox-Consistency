@@ -14,7 +14,7 @@
 
 def component2(aBoxCon):
     #This rule puts the retrieved storelist chunk in the imaginal buffer.
-    aBoxCon.productionstring(name="Component 2, Rule 1: put storelist of used formulas in imaginal buffer", string="""
+    aBoxCon.productionstring(name="Component 2, Rule 1a: put storelist of used formulas in imaginal buffer", string="""
         =g>
         isa       goal
         state     derive_next_formulas
@@ -126,7 +126,7 @@ def component2(aBoxCon):
     """)
 
     #In case there is no storelist chunk yet, this rule makes one in the imaginal buffer and puts one formula in it.
-    aBoxCon.productionstring(name="Component 2, Rule 1: create storelist in imaginal buffer and put first used formula in it", string="""
+    aBoxCon.productionstring(name="Component 2, Rule 1b: create storelist in imaginal buffer and put first used formula in it", string="""
         =g>
         isa       goal
         state     derive_next_formulas
@@ -612,7 +612,7 @@ def component2(aBoxCon):
     """)
 
     #This rule invokes  5, puts the newly found universal restriction formula in the imaginal_action buffer, creates a universal_list in the imaginal buffer and tries to retrieve a relation that corresponds to the universal restriction formula. 
-    aBoxCon.productionstring(name="Component 2, Rule 3b: universal found, prepare for component 5", string="""
+    aBoxCon.productionstring(name="Component 2, Rule 4a: universal found, prepare for component 5", string="""
         =g>
         isa       goal
         state     prepare_component_5_1
@@ -709,7 +709,7 @@ def component2(aBoxCon):
     """)
 
     #If no universal restriction formula can be found, this rules tries to retrieve a non-universal formula that is not in the storelist.
-    aBoxCon.productionstring(name="Component 2, Rule 4a: retrieve non-universal after universal", string="""
+    aBoxCon.productionstring(name="Component 2, Rule 4b: retrieve non-universal after universal", string="""
         =g>
         isa       goal
         state     prepare_component_5_1
@@ -871,7 +871,7 @@ def component2(aBoxCon):
     """)
 
     #If no non-universal formula can be found, this rule tries to retrieve a universal formula.
-    aBoxCon.productionstring(name="Component 2, Rule 4b: retrieve universal after non-universal", string="""
+    aBoxCon.productionstring(name="Component 2, Rule 3b: retrieve universal after non-universal", string="""
         =g>
         isa       goal
         state     update_storelist_1
@@ -1180,7 +1180,7 @@ def component2(aBoxCon):
     """)
 
     #If no non-universal formula and (after that) no universal formula can be found, move to the last_clash state.
-    aBoxCon.productionstring(name="Component 2, Rule 7a: no formula found, last check for clash", string="""
+    aBoxCon.productionstring(name="Component 2, Rule 5b: no formula found, last check for clash", string="""
         =g>
         isa       goal
         state     prepare_component_5_2
@@ -1202,7 +1202,7 @@ def component2(aBoxCon):
     """)
 
     #If no universal formula and (after that) no non-universal formula can be found, move to the last_clash state.
-    aBoxCon.productionstring(name="Component 2, Rule 7b: no formula found, last check for clash", string="""
+    aBoxCon.productionstring(name="Component 2, Rule 6b: no formula found, last check for clash", string="""
         =g>
         isa       goal
         state     update_storelist_2
@@ -1225,7 +1225,7 @@ def component2(aBoxCon):
 
     #The last_clash state sets the 'derivenew' slot in the goal buffer to no, and moves to Component 1, which looks for a clash.
     #The 'derivenew' slot is important, because it shows that nothing else can be derived from the syntax expansion rules, so that if no clash can be found, the ABox is in fact consistent.
-    aBoxCon.productionstring(name="Component 2, Rule 8: prepare for last check for a clash", string="""
+    aBoxCon.productionstring(name="Component 2, Rule 7: prepare for last check for a clash", string="""
         =g>
         isa       goal
         state     last_clash
