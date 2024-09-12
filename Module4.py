@@ -236,7 +236,7 @@ def component4(aBoxCon):
         ==>
         =g>
         isa       goal
-        state     label_role
+        state     retrieve_role
         form      =G1
         count1    =G2
         count2    =G3
@@ -302,7 +302,7 @@ def component4(aBoxCon):
     aBoxCon.productionstring(name="Component 4, Rule 3: label role, find concept", string="""
         =g>
         isa       goal
-        state     label_role
+        state     retrieve_role
         form      =G1
         count1    =G2
         count2    =G3
@@ -356,7 +356,7 @@ def component4(aBoxCon):
         ==>
         =g>
         isa       goal
-        state     label_concept
+        state     retrieve_concept
         form      =G1
         count1    =G2
         count2    =G3
@@ -405,7 +405,7 @@ def component4(aBoxCon):
     aBoxCon.productionstring(name="Component 4, Rule 4a: label concept, atom found", string="""
         =g>
         isa       goal
-        state     label_concept
+        state     retrieve_concept
         form      =G1
         count1    =G2
         count2    =G3
@@ -465,7 +465,7 @@ def component4(aBoxCon):
         ==>
         =g>
         isa       goal
-        state     label_concept_2
+        state     label_concept
         form      =G1
         count1    =G2
         count2    =G3
@@ -506,10 +506,10 @@ def component4(aBoxCon):
     """)
 
     #After an atomic formula is found, component 1 is invoked to look for a clash.
-    aBoxCon.productionstring(name="Component 4, Rule 4a: atom found, prepare to look for clash", string="""
+    aBoxCon.productionstring(name="Component 4, Rule 5: atom found, prepare to look for clash", string="""
         =g>
         isa       goal
-        state     label_concept_2
+        state     label_concept
         form      =G1
         count1    =G2
         count2    =G3
@@ -621,7 +621,7 @@ def component4(aBoxCon):
     aBoxCon.productionstring(name="Component 4, Rule 4b: label concept, non-universal complex formula found", string="""
         =g>
         isa       goal
-        state     label_concept
+        state     retrieve_concept
         form      =G1
         count1    =G2
         count2    =G3
@@ -729,7 +729,7 @@ def component4(aBoxCon):
     aBoxCon.productionstring(name="Component 4, Rule 4c: label concept, universal formula found", string="""
         =g>
         isa       goal
-        state     label_concept
+        state     retrieve_concept
         form      =G1
         count1    =G2
         count2    =G3
