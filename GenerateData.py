@@ -56,7 +56,7 @@ def model(abox, learning=False):
     actr.chunktype("universal_list", "thing, form, form2, form3, form4, form5, form6, form7, form8, form9")
     #The count_order type allows SHARP to keep track of how many times component 5 is visited; it contains a number and its successor.
     actr.chunktype("count_order","number, successor, thing")
-    #The role_list contains
+    #The role_list contains element names that have already been used for role/relation formulas. This is to ensure that when a new role/relation formula is derived (in component 4), an element is picked that is not used yet.
     actr.chunktype("role_list", "thing, role1, role2, role3, role4, role5, role6, role7, role8, role9, role10, role11, role12, role13, role14, role15, role16")
 
     aBoxCon.goals["g"].add(actr.makechunk(typename="goal", state="find_clash_to_head", form='none', count1=0, count2=1, mainconnective='none', role='none', derivenew='yes'))
