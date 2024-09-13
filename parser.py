@@ -1,7 +1,8 @@
 from lark import Lark, Transformer, Visitor, v_args
 import pyactr as actr
-import pprint
 import numpy as np
+
+#The grammar of ALE ABoxes
 
 form_grammar = """
 
@@ -13,14 +14,12 @@ form_grammar = """
     ?out_concept: atom
         | "-" atom                          -> neg
         | ["("] concept "&" concept [")"]   -> conj
-        | ["("] concept "%" concept [")"]   -> dis
         | "/E" role "." concept             -> exists
         | "/A" role "." concept             -> universal
 
     ?concept: atom
         | "-" atom                      -> neg
         | "(" concept "&" concept ")"   -> conj
-        | "(" concept "%" concept ")"   -> dis
         | "/E" role "." concept         -> exists
         | "/A" role "." concept         -> universal
 
@@ -63,11 +62,13 @@ class CountNodes(Transformer):
     def __default_token__(self,data):
         return 0
 
-class AddFormToAbox(Visitor): # Adds a formula together with all subformulas to the DM.
+class AddFormToAbox(Visitor):
+    #Adds a formula chunk to the declarative memory, together with all formula chunks that could possible be derived from it.
+    #The functions below add the appropriate chunk for every type of formula.
 
     def __init__(self,addtodm,elements, witnesses):
         self.derived="yes"
-     #   self.insideuniversal=False
+        #self.insideuniversal=False
         #self.witness=1
         self.addtodm=addtodm
         self.elements=elements
@@ -176,6 +177,8 @@ form_parser = Lark(form_grammar, parser='lalr')
 parser = form_parser.parse
 
 def AddAboxFromFile(data,model_init):
+    #This function takes an ABox and a model and then creates all necessary chunks from the ABox and adds them to the model.
+    
     addtodm = model_init.decmem.add
     addtogoal = model_init.goals["g"].add
     addtoimaginal = model_init.goals["imaginal"].add
@@ -185,6 +188,8 @@ def AddAboxFromFile(data,model_init):
     for i in range(20):
         addtodm(actr.makechunk(typename="count_order", thing="count_order",number=str(i), successor=str(i+1)))
 
+    #This calculates the number of witnesses necessary for expanding the ABox.
+    #These elements are used for creating all the chunks necessary for expanding the ABox.
     abox = parser(data)
     witnesses=set()
     n = CountNodes("role_ass").transform(abox) + CountNodes("exists").transform(abox); # Number or role assertions + existential quantifiers
@@ -208,12 +213,11 @@ def AddAboxFromFile(data,model_init):
     addtodm(actr.makechunk(typename="role_list", thing="role_list", role1=pick(els,0), role2=pick(els,1), role3=pick(els,2), role4=pick(els,3), role5=pick(els,4), role6=pick(els,5), role7=pick(els,6), role8=pick(els,7), role9=pick(els,8), role10=pick(els,9), role11=pick(els,10), role12=pick(els,11), role13=pick(els,12), role14=pick(els,13), role15=pick(els,14), role16=pick(els,15)))
     addtogoal(actr.makechunk(typename="goal", state="find_clash_to_head", form='none', count1=0, count2=1, mainconnective='none', role=pick(els,0), derivenew='yes'))
 
-    #print(elements)
-    #print(witnesses)
     if abox.data in ["con_ass","role_ass"]:
         aboxlst = [abox]
     else:
         aboxlst=abox.children
+    #This loops through the formulas and adds the appropriate chunks to the model.
     for form in aboxlst:
         addform = AddFormToAbox(addtodm,elements,witnesses)
         addform.visit_topdown(form) # Need to visit the tree top down to get the element first.
