@@ -565,8 +565,8 @@ def component4(aBoxCon):
         role      =G5
         derivenew =G6
         +imaginal>
-        isa       checklist
-        thing     checklist
+        isa       clash_list
+        thing     clash_list
         form      =I2
         element   =G5
         concept   =I1
