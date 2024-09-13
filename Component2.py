@@ -3,9 +3,8 @@
 #Three such concept assignments exist: conjunctions, existential restrictions and universal restrictions.
 #After finding a concept assignment, components 3, 4 and 5 are invoked respectively.
 
-
-#The storelist chunk stores all the concept assignments that do not qualify for further inferences.
-#This storelist is later used to retrieve a formula not in this list to prevent infinite looping.
+#The used_list chunk stores all the concept assignments that do not qualify for further inferences.
+#This used_list is later used to retrieve a formula not in this list to prevent infinite looping.
 
 #For implementation reasons, the formulas come in two types: universal and non-universal.
 #The latter is designated by the string 'proposition' in the 'thing' slot, while the former is designated by the string 'uproposition' in the 'thing' slot.
@@ -13,8 +12,8 @@
 
 
 def component2(aBoxCon):
-    #This rule puts the retrieved storelist chunk in the imaginal buffer.
-    aBoxCon.productionstring(name="Component 2, Rule 1a: put storelist of used formulas in imaginal buffer", string="""
+    #This rule puts the retrieved used_list chunk in the imaginal buffer.
+    aBoxCon.productionstring(name="Component 2, Rule 1a: put used_list of used formulas in imaginal buffer", string="""
         =g>
         isa       goal
         state     derive_next_formulas
@@ -25,8 +24,8 @@ def component2(aBoxCon):
         role      =G5
         derivenew =G6
         =retrieval>
-        isa       storelist
-        thing     storelist
+        isa       used_list
+        thing     used_list
         form      =G1
         form2     =R2
         form3     =R3
@@ -80,8 +79,8 @@ def component2(aBoxCon):
         role      =G5
         derivenew =G6
         +imaginal>
-        isa       storelist
-        thing     storelist
+        isa       used_list
+        thing     used_list
         form      =G1
         form2     =R2
         form3     =R3
@@ -125,8 +124,8 @@ def component2(aBoxCon):
         ~retrieval>
     """)
 
-    #In case there is no storelist chunk yet, this rule makes one in the imaginal buffer and puts one formula in it.
-    aBoxCon.productionstring(name="Component 2, Rule 1b: create storelist in imaginal buffer and put first used formula in it", string="""
+    #In case there is no used_list chunk yet, this rule makes one in the imaginal buffer and puts one formula in it.
+    aBoxCon.productionstring(name="Component 2, Rule 1b: create used_list in imaginal buffer and put first used formula in it", string="""
         =g>
         isa       goal
         state     derive_next_formulas
@@ -151,8 +150,8 @@ def component2(aBoxCon):
         role      =G5
         derivenew =G6
         +imaginal>
-        isa       storelist
-        thing     storelist
+        isa       used_list
+        thing     used_list
         form      =G1
         form2     none
         form3     none
@@ -196,7 +195,7 @@ def component2(aBoxCon):
         ~retrieval>
     """)
 
-    #This rule retrieves a non-universal formula that is not in the storelist.
+    #This rule retrieves a non-universal formula that is not in the used_list.
     aBoxCon.productionstring(name="Component 2, Rule 2a: retrieve non-universal formula", string="""
         =g>
         isa       goal
@@ -208,8 +207,8 @@ def component2(aBoxCon):
         role      =G5
         derivenew =G6
         =imaginal>
-        isa       storelist
-        thing     storelist
+        isa       used_list
+        thing     used_list
         form      =G1
         form2     =I2
         form3     =I3
@@ -255,7 +254,7 @@ def component2(aBoxCon):
         ==>
         =g>
         isa       goal
-        state     update_storelist
+        state     update_used_list
         form      =G1
         count1    =G2
         count2    =G3
@@ -313,8 +312,8 @@ def component2(aBoxCon):
         mainconnective ~universal
         derived   yes
         +imaginal>
-        isa       storelist
-        thing     storelist
+        isa       used_list
+        thing     used_list
         form      =G1
         form2     =I2
         form3     =I3
@@ -358,7 +357,7 @@ def component2(aBoxCon):
     """)
 
     #This rule retrieves a universal formula.
-    #Note that the storelist is never used for universal restrictions.
+    #Note that the used_list is never used for universal restrictions.
     #Any derived universal restriction formula with the correct count-label can, therefore, be retrieved.
     aBoxCon.productionstring(name="Component 2, Rule 2b: retrieve universal formula", string="""
         =g>
@@ -371,8 +370,8 @@ def component2(aBoxCon):
         role      =G5
         derivenew =G6
         =imaginal>
-        isa       storelist
-        thing     storelist
+        isa       used_list
+        thing     used_list
         form      =G1
         form2     =I2
         form3     =I3
@@ -432,8 +431,8 @@ def component2(aBoxCon):
         derived   yes
         count     =G2
         +imaginal>
-        isa       storelist
-        thing     storelist
+        isa       used_list
+        thing     used_list
         form      =G1
         form2     =I2
         form3     =I3
@@ -476,11 +475,11 @@ def component2(aBoxCon):
         form40    =I40
     """)
 
-    #This rule moves the storelist to the imaginal_action buffer while adding the newly found formula to it.
+    #This rule moves the used_list to the imaginal_action buffer while adding the newly found formula to it.
     aBoxCon.productionstring(name="Component 2, Rule 3a: non-universal found, update list of used formulas", string="""
         =g>
         isa       goal
-        state     update_storelist
+        state     update_used_list
         form      =G1
         count1    =G2
         count2    =G3
@@ -500,8 +499,8 @@ def component2(aBoxCon):
         derived   yes
         concept   =R8
         =imaginal>
-        isa       storelist
-        thing     storelist
+        isa       used_list
+        thing     used_list
         form      =G1
         form2     =I2
         form3     =I3
@@ -567,8 +566,8 @@ def component2(aBoxCon):
         derived   yes
         concept   =R8
         +imaginal_action>
-        isa       storelist
-        thing     storelist
+        isa       used_list
+        thing     used_list
         form      =R1
         form2     =G1
         form3     =I2
@@ -708,7 +707,7 @@ def component2(aBoxCon):
         form      ~=R15
     """)
 
-    #If no universal restriction formula can be found, this rules tries to retrieve a non-universal formula that is not in the storelist.
+    #If no universal restriction formula can be found, this rules tries to retrieve a non-universal formula that is not in the used_list.
     aBoxCon.productionstring(name="Component 2, Rule 4b: retrieve non-universal after universal", string="""
         =g>
         isa       goal
@@ -720,8 +719,8 @@ def component2(aBoxCon):
         role      =G5
         derivenew =G6
         =imaginal>
-        isa       storelist
-        thing     storelist
+        isa       used_list
+        thing     used_list
         form      =G1
         form2     =I2
         form3     =I3
@@ -826,8 +825,8 @@ def component2(aBoxCon):
         mainconnective ~none
         derived   yes
         +imaginal>
-        isa       storelist
-        thing     storelist
+        isa       used_list
+        thing     used_list
         form      =G1
         form2     =I2
         form3     =I3
@@ -874,7 +873,7 @@ def component2(aBoxCon):
     aBoxCon.productionstring(name="Component 2, Rule 3b: retrieve universal after non-universal", string="""
         =g>
         isa       goal
-        state     update_storelist
+        state     update_used_list
         form      =G1
         count1    =G2
         count2    =G3
@@ -884,8 +883,8 @@ def component2(aBoxCon):
         ?retrieval>
         state     error
         =imaginal>
-        isa       storelist
-        thing     storelist
+        isa       used_list
+        thing     used_list
         form      =G1
         form2     =I2
         form3     =I3
@@ -1044,7 +1043,7 @@ def component2(aBoxCon):
         form      ~=R15
     """)
 
-    #After a non-universal formula is found, it is moved to the imaginal buffer and it is added to the storelist, which is moved to the imaginal_action buffer.
+    #After a non-universal formula is found, it is moved to the imaginal buffer and it is added to the used_list, which is moved to the imaginal_action buffer.
     aBoxCon.productionstring(name="Component 2, Rule 6a: non-universal found after universal, update list of used formulas", string="""
         =g>
         isa       goal
@@ -1068,8 +1067,8 @@ def component2(aBoxCon):
         derived   yes
         concept   =R8
         =imaginal>
-        isa       storelist
-        thing     storelist
+        isa       used_list
+        thing     used_list
         form      =G1
         form2     =I2
         form3     =I3
@@ -1135,8 +1134,8 @@ def component2(aBoxCon):
         derived   yes
         concept   =R8
         +imaginal_action>
-        isa       storelist
-        thing     storelist
+        isa       used_list
+        thing     used_list
         form      =R1
         form2     =G1
         form3     =I2
