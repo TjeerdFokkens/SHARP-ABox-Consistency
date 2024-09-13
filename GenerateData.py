@@ -50,8 +50,8 @@ def model(abox, learning=False):
     actr.chunktype("uproposition", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, derived, count, relation1, relation2, relation3, relation4, relation5, relation6, relation7, relation8, relation9")
     #A clash_list-chunk is a list that stores the atomic concept assertions while looking for a clash. The atom in the head of the list, used to find a clashing atom, moves one place down the list after no such clashing atom can be found. A new atom then takes the place in the head of the list.
     actr.chunktype("clash_list", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, form2, form3, form4, form5, form6, form7, form8, form9, form10, form11, form12, form13, form14, form15, form16, form17, form18")
-    #A storelist-chunk 
-    actr.chunktype("storelist", "thing, form, form2, form3, form4, form5, form6, form7, form8, form9, form10, form11, form12, form13, form14, form15, form16, form17, form18 form19, form20, form21, form22, form23, form24, form25, form26, form27, form28, form29, form30, form31, form32, form33, form34, form35, form36, form37, form38, form39, form40")
+    #A used_list-chunk 
+    actr.chunktype("used_list", "thing, form, form2, form3, form4, form5, form6, form7, form8, form9, form10, form11, form12, form13, form14, form15, form16, form17, form18 form19, form20, form21, form22, form23, form24, form25, form26, form27, form28, form29, form30, form31, form32, form33, form34, form35, form36, form37, form38, form39, form40")
     #The universal_list type stores the universal restriction formulas that are inspected during one execution of component 5.
     actr.chunktype("universal_list", "thing, form, form2, form3, form4, form5, form6, form7, form8, form9")
     #The count_order type allows SHARP to keep track of how many times component 5 is visited; it contains a number and its successor.
