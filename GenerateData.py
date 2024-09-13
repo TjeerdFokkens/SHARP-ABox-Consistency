@@ -16,7 +16,7 @@ def model(abox, learning=False):
     #It initialises SHARP by:
     #    setting the sub-symbolic parameters
     #    defining the buffers
-    #    defining the chunk types
+    #    defining the chunk types (find explanations of the chunktypes below)
     #    loading the goal buffer with the starting chunk
     #    loading the production rules into the procedural memory
     #    loading all chunks relevant for processing the input ABox into the declarative memory using the AddAboxFromFile-function.
@@ -41,13 +41,22 @@ def model(abox, learning=False):
     aBoxCon.set_goal("imaginal")
     aBoxCon.set_goal("imaginal_action")
 
+    #In the following chunktypes, the 'thing' slot is used to differentiate the chunktypes in the production rules.
+    #This chunktype contains information regarding the planning of solving the ABox consistency problem.
     actr.chunktype("goal", "state, form, count1, count2, mainconnective, role, derivenew")
+    #This chunktype represents a formula in the description logic ALE which is of any type except a universal restriction.
     actr.chunktype("proposition", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, subformula3, derived")
+    #This chunktype represents a universal restriction formula; it has a list of role/relation formulas to keep track of which inferences have been made (so that the same inference step is not made twice).
     actr.chunktype("uproposition", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, derived, count, relation1, relation2, relation3, relation4, relation5, relation6, relation7, relation8, relation9")
+    #A checklist-chunk stores the 
     actr.chunktype("checklist", "thing, form, element, concept, mainconnective, relation, subformula1, subformula2, form2, form3, form4, form5, form6, form7, form8, form9, form10, form11, form12, form13, form14, form15, form16, form17, form18")
+    #A storelist-chunk 
     actr.chunktype("storelist", "thing, form, form2, form3, form4, form5, form6, form7, form8, form9, form10, form11, form12, form13, form14, form15, form16, form17, form18 form19, form20, form21, form22, form23, form24, form25, form26, form27, form28, form29, form30, form31, form32, form33, form34, form35, form36, form37, form38, form39, form40")
+    #The universal_list type stores the universal restriction formulas that are inspected during one execution of component 5.
     actr.chunktype("universal_list", "thing, form, form2, form3, form4, form5, form6, form7, form8, form9")
+    #The count_order type allows SHARP to keep track of how many times component 5 is visited; it contains a number and its successor.
     actr.chunktype("count_order","number, successor, thing")
+    #The role_list contains
     actr.chunktype("role_list", "thing, role1, role2, role3, role4, role5, role6, role7, role8, role9, role10, role11, role12, role13, role14, role15, role16")
 
     aBoxCon.goals["g"].add(actr.makechunk(typename="goal", state="find_clash_to_head", form='none', count1=0, count2=1, mainconnective='none', role='none', derivenew='yes'))
