@@ -1250,8 +1250,8 @@ def component2(aBoxCon):
         role      =G5
         derivenew no
         +imaginal>
-        isa       checklist
-        thing     checklist
+        isa       clash_list
+        thing     clash_list
         form      none
         element   none
         concept   none
