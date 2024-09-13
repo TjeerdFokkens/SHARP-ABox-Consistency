@@ -125,7 +125,7 @@ def component3(aBoxCon):
         derivenew =G6
         =imaginal>
         isa       proposition
-        thing     ~checklist
+        thing     ~clash_list
         thing     ~storelist
         thing     ~universal_list
         thing     ~goal
@@ -143,7 +143,7 @@ def component3(aBoxCon):
         concept   =I9
         =imaginal_action>
         isa       proposition
-        thing     ~checklist
+        thing     ~clash_list
         thing     ~storelist
         thing     ~universal_list
         thing     ~goal
@@ -173,7 +173,7 @@ def component3(aBoxCon):
         derivenew =G6
         +retrieval>
         isa       proposition
-        thing     ~checklist
+        thing     ~clash_list
         thing     ~storelist
         thing     ~universal_list
         thing     ~goal
@@ -210,7 +210,7 @@ def component3(aBoxCon):
         derivenew =G6
         =imaginal>
         isa       proposition
-        thing     ~checklist
+        thing     ~clash_list
         thing     ~storelist
         thing     ~universal_list
         thing     ~goal
@@ -228,7 +228,7 @@ def component3(aBoxCon):
         concept   =I10
         =imaginal_action>
         isa       proposition
-        thing     ~checklist
+        thing     ~clash_list
         thing     ~storelist
         thing     ~universal_list
         thing     ~goal
@@ -258,7 +258,7 @@ def component3(aBoxCon):
         derivenew =G6
         +retrieval>
         isa       proposition
-        thing     ~checklist
+        thing     ~clash_list
         thing     ~storelist
         thing     ~universal_list
         thing     ~goal
@@ -651,8 +651,8 @@ def component3(aBoxCon):
         role      =G5
         derivenew =G6
         +imaginal>
-        isa       checklist
-        thing     checklist
+        isa       clash_list
+        thing     clash_list
         form      =I2
         element   =I3
         mainconnective =I4
@@ -734,8 +734,8 @@ def component3(aBoxCon):
         role      =G5
         derivenew =G6
         +imaginal>
-        isa       checklist
-        thing     checklist
+        isa       clash_list
+        thing     clash_list
         form      =IA2
         element   =I3
         mainconnective =IA3
