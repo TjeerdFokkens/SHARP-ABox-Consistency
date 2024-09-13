@@ -2,26 +2,26 @@ import pyactr as actr
 import pandas as pd
 import sys
 import os
-import matplotlib.pyplot as plt
-import numpy as np
-import Module1 as md1
-import Module2 as md2
-import Module3 as md3
-import Module4 as md4
-import Module5 as md5
+import Component1 as cp1
+import Component2 as cp2
+import Component3 as cp3
+import Component4 as cp4
+import Component5 as cp5
 import parser as par
-from matplotlib import colors
-from matplotlib.ticker import PercentFormatter
-import re
-from matplotlib.ticker import MaxNLocator
-from collections import Counter
-from scipy import stats
 from lark import Lark, Transformer, Visitor, v_args
-import pprint
+
 
 def model(abox, learning=False):
     #This function takes an ABox.
-    #It initialises the model and loads the ABox to the memory.
+    #It initialises SHARP by:
+    #    setting the sub-symbolic parameters
+    #    defining the buffers
+    #    defining the chunk types
+    #    loading the goal buffer with the starting chunk
+    #    loading the production rules into the procedural memory
+    #    loading all chunks relevant for processing the input ABox into the declarative memory using the AddAboxFromFile-function.
+    #It outputs the model.
+    
     aBoxCon = actr.ACTRModel(
         automatic_visual_search=False,
         motor_prepared=True,
@@ -52,11 +52,11 @@ def model(abox, learning=False):
 
     aBoxCon.goals["g"].add(actr.makechunk(typename="goal", state="find_clash_to_head", form='none', count1=0, count2=1, mainconnective='none', role='none', derivenew='yes'))
 
-    md1.component1(aBoxCon)
-    md2.component2(aBoxCon)
-    md3.component3(aBoxCon)
-    md4.component4(aBoxCon)
-    md5.component5(aBoxCon)
+    cp1.component1(aBoxCon)
+    cp2.component2(aBoxCon)
+    cp3.component3(aBoxCon)
+    cp4.component4(aBoxCon)
+    cp5.component5(aBoxCon)
 
     par.AddAboxFromFile(abox,aBoxCon)
     return aBoxCon
@@ -64,34 +64,45 @@ def model(abox, learning=False):
 def result(abox):
     #Takes an abox.
     #Returns both the simulation time and a list with the formulas inspected.
+    
     prove_tracks = []
     mod = model(abox, learning=True)
     sim = mod.simulation(realtime=False,gui=False)
     sim.step()
     while True:
-        #print(sim.current_event)
+        #This loop executes the simulation step-by-step.
         if sim.current_event.proc=='manual' and sim.current_event.action.startswith('KEY'):
+            #The judgement that the model gives on the input ABox: 'C' for consistent and 'I' for inconsistent.
             judgement = str(sim.current_event).split('KEY PRESSED: ')[1][0]
-        if sim.current_event.action.startswith('RULE SELECTED: Component 2, Rule 3') or sim.current_event.action.startswith('RULE SELECTED: Component 2, Rule 5a') or sim.current_event.action.startswith('RULE SELECTED: Component 2, Rule 6a') or sim.current_event.action.startswith('RULE SELECTED: Component 5, Rule 2a'):
+        if sim.current_event.action.startswith('RULE SELECTED: Component 2, Rule 3a') or sim.current_event.action.startswith('RULE SELECTED: Component 2, Rule 4a') or sim.current_event.action.startswith('RULE SELECTED: Component 2, Rule 5a') or sim.current_event.action.startswith('RULE SELECTED: Component 2, Rule 6a') or sim.current_event.action.startswith('RULE SELECTED: Component 5, Rule 2a'):
+            #In this case a formula is selected to make an inference on.
+            #It is printed and added to the prove_tracks list.
             a = str(mod.retrieval)
             b = a.split('form= ',1)[1].split(', ',1)[0]
             print(b)
             prove_tracks.append(b)
         try:
+            #The next step of the simulation is tried, without printing the simulation output.
             old_stdout = sys.stdout
             sys.stdout = open(os.devnull, "w")
             sim.step()
             sys.stdout = old_stdout
         except:
+            #In case the simulation cannot perform a next step, two situations are possible:
+            #    the simulation has ended without problems
+            #    a problem occured that made the simulation stop prematurely.
             sys.stdout = old_stdout
             goalstate = str(mod.goals['g']).split('state= ')[1].split(')')[0]
             if goalstate=='stop':
+                #If the simulation has ended without problems, the time is printed and a string is made from the list of consecutively inspected formulas.
                 time = sim.current_event.time
                 print('End of simulation,', time)
                 run = '|'
                 for j in prove_tracks:
                     run = run + ' -> ' + j
             else:
+                #In case a problem occured, some indications are printed with which one can try to solve the issue.
+                #In all usual cases this should not happen.
                 time = sim.current_event.time
                 print('Simulation stopped prematurely. Some rule does not fire')
                 if str(mod.goals['g']).split('state= ')[1].startswith('label_role'):
@@ -105,11 +116,12 @@ def result(abox):
             break
     return run, time, judgement
 
-def result_it(iterations, abox):
-    #Takes the number of iteration and the Abox it's working with.
-    #Returns a Dataframe with the results.
+def result_it(n, abox):
+    #Takes a number of iterations and an ABox.
+    #Returns a Dataframe with n many simulation results (run of inspected formulas, simulated time and the judgement whether the Abox was consistent or not).
+    
     df = pd.DataFrame(columns=['ABox', 'Run', 'Time', 'Judgement'])
-    for i in range(iterations):
+    for i in range(n):
         run, time, judgement = result(abox)
         new_row = pd.DataFrame([[abox,run,time,judgement]],columns=['ABox', 'Run', 'Time', 'Judgement'])
         df = pd.concat([
@@ -117,59 +129,21 @@ def result_it(iterations, abox):
             new_row], ignore_index=True)
     return df
 
-def result_aboxes(iterations, aboxes):
-    #Takes the number of iterations and a list of ABoxes.
-    #Returns a DataFrame with the simulation times and judgements, categorised by ABox and run.
+def result_aboxes(n, aboxes):
+    #Takes a number of iterations and a list of ABoxes.
+    #Returns a DataFrame with n many simulation results (run of inspected formulas, simulated time and the judgement whether the Abox was consistent or not) for each ABox in the list.
+    
     df = pd.DataFrame(columns=['ABox', 'Run', 'Time', 'Judgement'])
     for abox in aboxes:
-        new_rows = result_it(iterations, abox)
+        new_rows = result_it(n, abox)
         df = pd.concat([
             df if not df.empty else None,
             new_rows], ignore_index=True)
     return dat
 
+#This testset might be used to try out SHARP
 
-aboxes1 = ['a:A,b:-A,a:B', 'a:A,a:-A,a:B', 'a:A,b:-A,b:B', 'a:A,a:-A,b:B'] #tests dependence on element name
-
-aboxes2 = ['a:/Er.A,a:/Ar.-A,a:/Er.B', 'a:/Er.A,a:/Ar.-A,a:/Es.B', 'a:/Er.A,a:/Ar.-A,a:/Ar.B', 'a:/Er.A,a:/Ar.-A,a:/As.B',
-        'a:/Er.A,a:/As.-A,a:/Er.B', 'a:/Er.A,a:/As.-A,a:/Es.B', 'a:/Er.A,a:/As.-A,a:/Ar.B', 'a:/Er.A,a:/As.-A,a:/As.B'] #tests dependence on role name
-
-aboxes3 = ['a:A,b:A,a:-A', 'a:A,b:B,a:-A', 'a:A,b:A,a:-B', 'a:A,b:B,a:-B'] #tests dependence on concept name
-
-aboxes4 = ['a:(A&B),a:C','a:C,a:(A&B)','a:(A&B),a:-A','a:-A,a:(A&B)'] #tests dependence on order of formulas
-
-aboxes5 = ['a:(A&B),a:B','a:(B&A),a:B','a:(A&B),a:-B','a:(B&A),a:-B'] #tests dependence on order of conjuncts
-
-aboxes6 = ['a:((A&-A)&(B&C))','a:((A&B)&(-A&C))','a:(A&(-A&(B&C)))','a:(A&(B&(-A&C)))','a:(B&(A&(-A&C)))','a:(B&(C&(-A&A)))'] #tests the dependence of nesting
-
-aboxes7 = ['a:(/Er.A&/Er.B)','a:((/Er.A&/Er.B)&/Ar.(/Er.A&/Er.B))','a:((/Er.A&/Er.B)&/Ar.((/Er.A&/Er.B)&/Ar.(/Er.A&/Er.B)))'] #tests the performance with AND-branching
-aboxes7b = ['a:(/Er.(/Er.A&/Er.B)&/Er.B)','a:((/Er.A&/Er.B)&/Ar.(/Er.(/Er.A&/Er.B)&/Er.B))']
-
-aboxes8 = ['a:(A&(B&(C&(D&-A))))','a:(A&B),a:(B&C),a:(C&D),a:(D&-A)'] #tests the spreading effect
-
-aboxes9 = ['a:A,a:B','a:-A,a:-B','a:(A&B)','a:(-A&-B)','a:/Er.A','a:/Er.-A'] #tests negation indifference
-
-aboxes10 = ['a:(A&B),a:(B&C),a:(C&F),a:(F&-A)']
-
-testset = ['a:A, a:-A',
-'a:(-C&A), a:(B&-A)',
-'a:(/Er.A&/Er.-A), b:(B&C)',
-'a:-A, (c,b):r, (b,a):s, c:/Ar.(/As.A&-B)',
-'a:A, (b,a):r, b:/Ar.((-A&-B)&-C),c:(B&-B)',
-'b:/Er.(-B&A), b:/Ar.-A, a:/As.B',
-'a:-A, (b,a):r, b:(/Ar.A&B), c:/Es.(B&A)',
-'a:A, (b,a):r, b:(B&/Ar.-A), b:(/Es.B&C)',
-'a:(C&A), a:(B&D)',
-'a:(/Er.A&/Es.-A)',
-'b:/Ar./Es.-A, (b,c):r, c:/As.-E',
-'a:A, (c,b):r, (b,a):s, c:/Ar./As.-B',
-'a:A, (b,a):r, b:/Ar.((-D&B)&-C)',
-'b:/Er.(B&C), b:/Ar.A',
-'a:-A, (b,a):r, b:(/Ar.-A&B)',
-'a:A, (d,c):r, (c,b):s, (b,a):t, d:/Ar./As./At.E, b:(B&C)']
-
-
-testset2 = [
+testset = [
 'a:A, b:-A, a:-B',
 'a:/Er./As./Er./At.-A',
 'a:A, a:-A, b:/Ar.A',
@@ -202,13 +176,11 @@ testset2 = [
 'a:/As.(-A&B), (b,a):r, b:/Ar./Es.(A&B), c:(-B&C), a:(B&-C), (b,c):s']
 
 
+n = 10 #The number of simulations one wants for each ABox
+t = testset #The set of ABoxes one wants simulations of
+a = result_aboxes(n, t)
+print(a.head())
 
-aboxesorder = ['a:(A&(B&C)),a:(D&(E&-C))','a:/Er.(A&B),a:(C&/Ar.-A)']
-
-test_linear = ['a:A', 'a:A, b:B', 'a:A, b:B, c:C', 'a:A, b:B, c:C, d:D', 'a:A, b:B, c:C, d:D, e:E']
-test_polynomial = ['a:A', 'a:A, (a,b):r, a:/Ar.B', 'a:A, (a,b):r, (a,c):r, a:/Ar.B, a:/Ar.C', 'a:A, (a,b):r, (a,c):r, (a,d):r, a:/Ar.B, a:/Ar.C, a:/Ar.D', 'a:A, (a,b):r, (a,c):r, (a,d):r, (a,e):r, a:/Ar.B, a:/Ar.C, a:/Ar.D, a:/Ar.E']
-
-a = result_aboxes(10, [test_polynomial[4]])
-
-#a.to_csv('/Users/xfoktj/Documents/GitHub/ABox-Consistency/data/data19.csv', mode='a', index=True, header=False)
-#a.to_csv('/Users/xfoktj/Documents/GitHub/ABox-Consistency/data/data22.csv',index_label='Index')
+#To save the data, use the following code
+#path = ''
+#a.to_csv(path,index_label='Index')
