@@ -5,6 +5,7 @@
 #A role_list is used to retrieve a role assignment that does not appear in the list to make sure it is new, as the application of the syntax expansion rules require the related element to be new.
 #Some rules come in two variants that function the same way in principle, but are formally different because of the formal difference between universal and non-universal formula chunks.
 
+
 def component4(aBoxCon):
     #This rule retrieves a role list with role formulas that are already used.
     #Later, this list is used to retrieve a new role formula.
@@ -31,8 +32,8 @@ def component4(aBoxCon):
         relation  =I6
         concept   =I7
         =imaginal_action>
-        isa       storelist
-        thing     storelist
+        isa       used_list
+        thing     used_list
         form      =G1
         form2     =IA1
         form3     =IA2
@@ -98,8 +99,8 @@ def component4(aBoxCon):
         relation  =I6
         concept   =I7
         +imaginal_action>
-        isa       storelist
-        thing     storelist
+        isa       used_list
+        thing     used_list
         form      =G1
         form2     =IA1
         form3     =IA2
@@ -170,8 +171,8 @@ def component4(aBoxCon):
         relation  =I6
         concept   =I7
         =imaginal_action>
-        isa       storelist
-        thing     storelist
+        isa       used_list
+        thing     used_list
         form      =G1
         form2     =IA1
         form3     =IA2
@@ -611,8 +612,8 @@ def component4(aBoxCon):
         role15    =IA14
         role16    =IA15
         +retrieval>
-        isa       storelist
-        thing     storelist
+        isa       used_list
+        thing     used_list
         form      =G1
     """)
 
@@ -719,8 +720,8 @@ def component4(aBoxCon):
         role15    =IA14
         role16    =IA15
         +retrieval>
-        isa       storelist
-        thing     storelist
+        isa       used_list
+        thing     used_list
         form      =G1
     """)
 
@@ -841,7 +842,7 @@ def component4(aBoxCon):
         role15    =IA14
         role16    =IA15
         +retrieval>
-        isa       storelist
-        thing     storelist
+        isa       used_list
+        thing     used_list
         form      =G1
     """)
