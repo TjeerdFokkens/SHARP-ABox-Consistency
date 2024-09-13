@@ -10,6 +10,7 @@
 
 #Some rules come in two variants, because of the formal difference between universal and non-universal formulas.
 
+
 def component5(aBoxCon):
     #In case no role formula can be found that corresponds to the universal formula in the imaginal_action buffer, this rule prepares to retrieve the next universal formula.
     aBoxCon.productionstring(name="Component 5, Rule 1a: no relation found, prepare to retrieve next universal", string="""
@@ -320,8 +321,8 @@ def component5(aBoxCon):
 
     #This rule fires if no universal formula can be found.
     #This means that all universal formulas that qualify for an application of a syntax expansion rule have been visited in the current round of component 5.
-    #This rule then retrieves the storelist to use it to select a new formula to apply a syntax expansion rule to.
-    aBoxCon.productionstring(name="Component 5, Rule 3b: no universal found, retrieve storelist", string="""
+    #This rule then retrieves the used_list to use it to select a new formula to apply a syntax expansion rule to.
+    aBoxCon.productionstring(name="Component 5, Rule 3b: no universal found, retrieve used_list", string="""
         =g>
         isa       goal
         state     find_next_universal
@@ -390,13 +391,13 @@ def component5(aBoxCon):
         form8     =I8
         form9     =I9
         +retrieval>
-        isa       storelist
-        thing     storelist
+        isa       used_list
+        thing     used_list
         form      =G1
     """)
 
-    #This rule moves the storelist to the imaginal buffer and retrieves a count from the declarative memory in order to update the count in the goal buffer, which keeps track of how many times component 5 is executed.
-    aBoxCon.productionstring(name="Component 5, Rule 4a: put storelist of used formulas in imaginal buffer and update count", string="""
+    #This rule moves the used_list to the imaginal buffer and retrieves a count from the declarative memory in order to update the count in the goal buffer, which keeps track of how many times component 5 is executed.
+    aBoxCon.productionstring(name="Component 5, Rule 4a: put used_list of used formulas in imaginal buffer and update count", string="""
         =g>
         isa       goal
         state     prepare_non_universal_retrieval
@@ -407,8 +408,8 @@ def component5(aBoxCon):
         role      =G5
         derivenew =G6
         =retrieval>
-        isa       storelist
-        thing     storelist
+        isa       used_list
+        thing     used_list
         form      =G1
         form2     =R1
         form3     =R2
@@ -462,8 +463,8 @@ def component5(aBoxCon):
         role      =G5
         derivenew =G6
         +imaginal>
-        isa       storelist
-        thing     storelist
+        isa       used_list
+        thing     used_list
         form      =G1
         form2     =R1
         form3     =R2
@@ -522,8 +523,8 @@ def component5(aBoxCon):
         role      =G5
         derivenew =G6
         =imaginal>
-        isa       storelist
-        thing     storelist
+        isa       used_list
+        thing     used_list
         form      =G1
         form2     =I1
         form3     =I2
@@ -582,8 +583,8 @@ def component5(aBoxCon):
         role      =G5
         derivenew =G6
         +imaginal>
-        isa       storelist
-        thing     storelist
+        isa       used_list
+        thing     used_list
         form      =G1
         form2     =I1
         form3     =I2
@@ -675,8 +676,8 @@ def component5(aBoxCon):
         derived   yes
     """)
 
-    #In case no storelist has been made, this rule creates one by putting the just inspected formula in an otherwise empty list.
-    aBoxCon.productionstring(name="Component 5, Rule 4b: create storelist in imaginal buffer and put used formula in it", string="""
+    #In case no used_list has been made, this rule creates one by putting the just inspected formula in an otherwise empty list.
+    aBoxCon.productionstring(name="Component 5, Rule 4b: create used_list in imaginal buffer and put used formula in it", string="""
         =g>
         isa       goal
         state     prepare_non_universal_retrieval
@@ -701,8 +702,8 @@ def component5(aBoxCon):
         role      =G5
         derivenew =G6
         +imaginal>
-        isa       storelist
-        thing     storelist
+        isa       used_list
+        thing     used_list
         form      =G1
         form2     none
         form3     none
@@ -821,7 +822,7 @@ def component5(aBoxCon):
         isa       proposition
         thing     ~none
         thing     ~clash_list
-        thing     ~storelist
+        thing     ~used_list
         thing     ~universal_list
         thing     ~count_order
         thing     ~role_list
