@@ -8,7 +8,7 @@
 
 
 def component1(aBoxCon):
-    #This rule tries to retrieve a derived atomic concept assignment that clashes with the first formula of the checklist in the imaginal module. 
+    #This rule tries to retrieve a derived atomic concept assignment that clashes with the first formula of the clash_list in the imaginal module. 
     aBoxCon.productionstring(name="Component 1, Rule 1: find clash to concept or negation in head of list", string="""
         =g>
         isa       goal
@@ -20,8 +20,8 @@ def component1(aBoxCon):
         role      =G5
         derivenew =G6
         =imaginal>
-        isa       checklist
-        thing     checklist
+        isa       clash_list
+        thing     clash_list
         form      =I1
         element   =I2
         concept   =I3
@@ -59,8 +59,8 @@ def component1(aBoxCon):
         role      =G5
         derivenew =G6
         +imaginal>
-        isa       checklist
-        thing     checklist
+        isa       clash_list
+        thing     clash_list
         form      =I1
         element   =I2
         concept   =I3
@@ -118,7 +118,7 @@ def component1(aBoxCon):
         subformula1 =I6
     """)
 
-    #In case no formula was found that clashes with the first formula in the checklist in the imaginal module, this rule tries to retrieve an atomic formula that is not yet in the list.
+    #In case no formula was found that clashes with the first formula in the clash_list in the imaginal module, this rule tries to retrieve an atomic formula that is not yet in the list.
     aBoxCon.productionstring(name="Component 1, Rule 2a: find concept or negation not in the list", string="""
         =g>
         isa       goal
@@ -130,8 +130,8 @@ def component1(aBoxCon):
         role      =G5
         derivenew =G6
         =imaginal>
-        isa       checklist
-        thing     checklist
+        isa       clash_list
+        thing     clash_list
         form      =I1
         element   =I2
         concept   =I3
@@ -169,8 +169,8 @@ def component1(aBoxCon):
         role      =G5
         derivenew =G6
         +imaginal>
-        isa       checklist
-        thing     checklist
+        isa       clash_list
+        thing     clash_list
         form      =I1
         element   =I2
         concept   =I3
@@ -237,8 +237,8 @@ def component1(aBoxCon):
         role      =G5
         derivenew =G6
         =imaginal>
-        isa       checklist
-        thing     checklist
+        isa       clash_list
+        thing     clash_list
         form      =I1
         element   =I2
         concept   =I3
@@ -306,8 +306,8 @@ def component1(aBoxCon):
         role      =G5
         derivenew yes
         =imaginal>
-        isa       checklist
-        thing     checklist
+        isa       clash_list
+        thing     clash_list
         form      =I1
         concept   =I3
         element   =I2
@@ -363,8 +363,8 @@ def component1(aBoxCon):
         role      =G5
         derivenew no
         =imaginal>
-        isa       checklist
-        thing     checklist
+        isa       clash_list
+        thing     clash_list
         form      =I1
         concept   =I3
         element   =I2
@@ -416,8 +416,8 @@ def component1(aBoxCon):
         role      =G5
         derivenew =G6
         =imaginal>
-        isa       checklist
-        thing     checklist
+        isa       clash_list
+        thing     clash_list
         form      =I1
         element   =I2
         concept   =I3
@@ -464,8 +464,8 @@ def component1(aBoxCon):
         role      =G5
         derivenew =G6
         +imaginal>
-        isa       checklist
-        thing     checklist
+        isa       clash_list
+        thing     clash_list
         form      =R1
         element   =R2
         mainconnective =R3
