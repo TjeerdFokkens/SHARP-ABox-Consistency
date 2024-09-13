@@ -148,7 +148,7 @@ def result_aboxes(n, aboxes):
         df = pd.concat([
             df if not df.empty else None,
             new_rows], ignore_index=True)
-    return dat
+    return df
 
 #This testset might be used to try out SHARP
 
