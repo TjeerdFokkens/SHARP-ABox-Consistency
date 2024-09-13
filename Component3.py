@@ -31,8 +31,8 @@ def component3(aBoxCon):
         relation  =I5
         concept   =I6
         =imaginal_action>
-        isa       storelist
-        thing     storelist
+        isa       used_list
+        thing     used_list
         form      =G1
         form2     =IA1
         form3     =IA2
@@ -126,7 +126,7 @@ def component3(aBoxCon):
         =imaginal>
         isa       proposition
         thing     ~clash_list
-        thing     ~storelist
+        thing     ~used_list
         thing     ~universal_list
         thing     ~goal
         thing     ~count_order
@@ -144,7 +144,7 @@ def component3(aBoxCon):
         =imaginal_action>
         isa       proposition
         thing     ~clash_list
-        thing     ~storelist
+        thing     ~used_list
         thing     ~universal_list
         thing     ~goal
         thing     ~count_order
@@ -174,7 +174,7 @@ def component3(aBoxCon):
         +retrieval>
         isa       proposition
         thing     ~clash_list
-        thing     ~storelist
+        thing     ~used_list
         thing     ~universal_list
         thing     ~goal
         thing     ~count_order
@@ -211,7 +211,7 @@ def component3(aBoxCon):
         =imaginal>
         isa       proposition
         thing     ~clash_list
-        thing     ~storelist
+        thing     ~used_list
         thing     ~universal_list
         thing     ~goal
         thing     ~count_order
@@ -229,7 +229,7 @@ def component3(aBoxCon):
         =imaginal_action>
         isa       proposition
         thing     ~clash_list
-        thing     ~storelist
+        thing     ~used_list
         thing     ~universal_list
         thing     ~goal
         thing     ~count_order
@@ -259,7 +259,7 @@ def component3(aBoxCon):
         +retrieval>
         isa       proposition
         thing     ~clash_list
-        thing     ~storelist
+        thing     ~used_list
         thing     ~universal_list
         thing     ~goal
         thing     ~count_order
@@ -818,8 +818,8 @@ def component3(aBoxCon):
         role      =G5
         derivenew =G6
         +retrieval>
-        isa       storelist
-        thing     storelist
+        isa       used_list
+        thing     used_list
         form      =G1
         ~imaginal_action>
         ~imaginal>
