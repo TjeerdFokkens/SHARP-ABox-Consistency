@@ -46,9 +46,9 @@ Alternatively, this testset can be replaced by a set of ABoxes of choice.
 
 # Dependencies
 The following packages are necessary to run this code.
-Numpy
-Pyactr
-Lark
-
+Numpy: https://numpy.org/doc/stable/index.html
+Pandas: https://pandas.pydata.org
+Pyactr: https://github.com/jakdot/pyactr
+Lark: https://lark-parser.readthedocs.io/en/stable/
 
 
