@@ -820,7 +820,7 @@ def component5(aBoxCon):
         +retrieval>
         isa       proposition
         thing     ~none
-        thing     ~checklist
+        thing     ~clash_list
         thing     ~storelist
         thing     ~universal_list
         thing     ~count_order
