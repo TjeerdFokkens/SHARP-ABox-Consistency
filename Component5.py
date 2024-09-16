@@ -1082,7 +1082,7 @@ def component5(aBoxCon):
         element   =R6
         relation  =R7
         concept   =R8
-        count     =R9
+        count     =G2
         relation1 =R10
         relation2 =R11
         relation3 =R12
