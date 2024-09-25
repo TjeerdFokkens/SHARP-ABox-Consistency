@@ -34,6 +34,14 @@ Because ACT-R does not allow for directly parsing strings, the process of 'deriv
 4. the found formula is labelled as derived, making it impossible to be derived again
 
 
+# Notation
+The model uses a notation different from the standard description logic notation.
+Negation/complement, usually written ¬A is written in SHARP as -A
+Conjunction/intersection, usually written (A⊓B) is written in SHARP as (A&B)
+Universal restriction, usually written ∀𝑟.A is written in SHARP as /Ar.A
+Existential restriction, usually written ∃𝑟.A is written in SHARP as /Er.A
+
+
 # Files
 The Component1-5.py files contain the production rules of the ACT-R system.
 
