@@ -176,6 +176,70 @@ class AddFormToAbox(Visitor):
 form_parser = Lark(form_grammar, parser='lalr')
 parser = form_parser.parse
 
+def completing(abox,witnesses,memory,discard):
+    #This function cycles through the formulas of an abox once, deriving everything it can in the process.
+    formulas = abox.split(', ')
+    l = len(formulas)
+    if l == 1:
+        abox = abox + ', ' + abox #The parser works only for ABoxes with more than 1 formula, so in case of only one formula, this formula is copied to make an ABox with two formulas.
+    tree = parser(abox)
+    for a in tree.children:
+        if a.data == 'con_ass' and a.children[1].data == 'conj':
+            c = ToString().transform(a)
+            if c not in discard:
+                element = a.children[0].children[0]
+                concept1 = ToString().transform(a.children[1].children[0])
+                concept2 = ToString().transform(a.children[1].children[1])
+                whole = ToString().transform(a)
+                str1 = element + ':' + concept1
+                str2 = element + ':' + concept2
+                formulas.append(str1)
+                formulas.append(str2)
+                discard += [c] #Such that the derivation step is not made again.
+        if a.data == 'con_ass' and a.children[1].data == 'exists':
+            c = ToString().transform(a)
+            if c not in discard:
+                x = 'x{}'.format(witnesses)
+                witnesses += 1 #For uniquely labelling elements
+                element = a.children[0].children[0]
+                role = a.children[1].children[0].children[0]
+                concept = ToString().transform(a.children[1].children[1])
+                whole = ToString().transform(a)
+                str1 = '(' + element + ',' + x + '):' + role
+                str2 = x + ':' + concept
+                formulas.append(str1)
+                formulas.append(str2)
+                discard += [c] #Such that the derivation step is not made again.
+        if (a.data == 'con_ass') and (a.children[1].data == 'universal'):
+            element = a.children[0].children[0]
+            role = a.children[1].children[0].children[0]
+            concept = ToString().transform(a.children[1].children[1])
+            for b in tree.children:
+                if (b.data =='role_ass') and (b.children[0].children[0] == element) and (b.children[2].children[0] == role):
+                    c = ToString().transform(a) + ', ' + ToString().transform(b)
+                    if c not in memory:
+                        str1 = b.children[1].children[0] + ':' + concept
+                        formulas.append(str1)
+                        memory += [c] #Such that the derivation step is not made again.
+    formulas = list(dict.fromkeys(formulas)) #Removing duplicates from list
+    #Turning list to a string again
+    abox = ''
+    for k in formulas:
+        abox = abox + k + ', '
+    abox = abox[:-2]
+    return abox, witnesses, memory, discard
+
+def completed(abox):
+    #This function determines the maximal number of witnesses necessary for completing an ABox.
+    witnesses = 0 #For uniquely naming elements
+    memory = []
+    discard = []
+    a = 'a' #A dummy string
+    while a != abox:
+        a = abox
+        abox,witnesses,memory,discard = completing(abox,witnesses,memory,discard)
+    return witnesses
+
 def AddAboxFromFile(data,model_init):
     #This function takes an ABox and a model and then creates all necessary chunks from the ABox and adds them to the model.
     
@@ -192,12 +256,9 @@ def AddAboxFromFile(data,model_init):
     #These elements are used for creating all the chunks necessary for expanding the ABox.
     abox = parser(data)
     witnesses=set()
-    n = CountNodes("role_ass").transform(abox) + CountNodes("exists").transform(abox); # Number or role assertions + existential quantifiers
-    m = CountNodes("universal").transform(abox) # Number of universal quantifiers
-    f = np.ceil(n/(m+1))
-    b = max(int(f**(m+2)-1),0,n)
-    print('Number of witnesses: ',b)
-    for i in range(1,b+1):
+    element_count = completed(data)
+    print('Number of witnesses: ',element_count)
+    for i in range(1,element_count+1):
         witnesses.add("x"+str(i))
     elements=set()
     SetOfElements(elements).visit(abox)
