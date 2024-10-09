@@ -7,8 +7,8 @@
 
 
 def component3(aBoxCon):
-    #This rule takes the conjunct labels of the conjunction chunk and stores the first of them in the imaginal and the second of them in the imaginal_action buffers, so that the respective chunks can be retrieved later.
-    aBoxCon.productionstring(name="Component 3, Rule 1: conjunction found, put conjunct labels in imaginal and imaginal_action buffers", string="""
+    #This rule takes the conjunct values of the conjunction chunk and stores the first of them in the imaginal and the second of them in the imaginal_action buffers, so that the respective chunks can be retrieved later.
+    aBoxCon.productionstring(name="Component 3, Rule 1: conjunction found, put empty conjunct chunks in imaginal and imaginal_action buffers", string="""
         =g>
         isa       goal
         state     inference_step
@@ -78,7 +78,7 @@ def component3(aBoxCon):
         ==>
         =g>
         isa       goal
-        state     retrieve_conjuncts
+        state     retrieve_conjunct1
         form      =G1
         count1    =G2
         count2    =G3
@@ -116,7 +116,7 @@ def component3(aBoxCon):
     aBoxCon.productionstring(name="Component 3, Rule 2a: retrieve first conjunct", string="""
         =g>
         isa       goal
-        state     retrieve_conjuncts
+        state     retrieve_conjunct1
         form      =G1
         count1    =G2
         count2    =G3
@@ -139,8 +139,9 @@ def component3(aBoxCon):
         subformula1 =I6
         subformula2 =I7
         subformula3 =I8
+        derived   =I9
         derived   ~yes
-        concept   =I9
+        concept   =I10
         =imaginal_action>
         isa       proposition
         thing     ~clash_list
@@ -158,13 +159,14 @@ def component3(aBoxCon):
         subformula2 =IA6
         subformula3 =IA7
         derived   =IA8
+        derived   ~yes
         concept   =IA9
         ?retrieval>
         state     free
         ==>
         =g>
         isa       goal
-        state     label_conjuncts
+        state     label_conjunct1
         form      =G1
         count1    =G2
         count2    =G3
@@ -201,7 +203,7 @@ def component3(aBoxCon):
     aBoxCon.productionstring(name="Component 3, Rule 2b: retrieve second conjunct", string="""
         =g>
         isa       goal
-        state     retrieve_conjuncts
+        state     retrieve_conjunct1
         form      =G1
         count1    =G2
         count2    =G3
@@ -225,6 +227,7 @@ def component3(aBoxCon):
         subformula2 =I7
         subformula3 =I8
         derived   =I9
+        derived   ~yes
         concept   =I10
         =imaginal_action>
         isa       proposition
@@ -242,14 +245,15 @@ def component3(aBoxCon):
         subformula1 =IA5
         subformula2 =IA6
         subformula3 =IA7
+        derived   =IA8
         derived   ~yes
-        concept   =IA8
+        concept   =IA9
         ?retrieval>
         state     free
         ==>
         =g>
         isa       goal
-        state     label_conjuncts
+        state     label_conjunct1
         form      =G1
         count1    =G2
         count2    =G3
@@ -287,7 +291,7 @@ def component3(aBoxCon):
     aBoxCon.productionstring(name="Component 3, Rule 3a(n): label first conjunct, non-universal found", string="""
         =g>
         isa       goal
-        state     label_conjuncts
+        state     label_conjunct1
         form      =G1
         count1    =G2
         count2    =G3
@@ -300,6 +304,7 @@ def component3(aBoxCon):
         form      =R1
         element   =R2
         mainconnective =R3
+        mainconnective ~universal
         relation  =R4
         subformula1 =R5
         subformula2 =R6
@@ -317,13 +322,14 @@ def component3(aBoxCon):
         subformula2 =IA6
         subformula3 =IA7
         derived   =IA8
+        derived   ~yes
         concept   =IA9
         ?imaginal>
         state     free
         ==>
         =g>
         isa       goal
-        state     retrieve_conjuncts
+        state     retrieve_conjunct2
         form      =G1
         count1    =G2
         count2    =G3
@@ -362,7 +368,7 @@ def component3(aBoxCon):
     aBoxCon.productionstring(name="Component 3, Rule 3a(u): label first conjunct, universal found", string="""
         =g>
         isa       goal
-        state     label_conjuncts
+        state     label_conjunct1
         form      =G1
         count1    =G2
         count2    =G3
@@ -374,12 +380,22 @@ def component3(aBoxCon):
         thing     uproposition
         form      =R1
         element   =R2
+        concept   =R3
         mainconnective universal
-        relation  =R3
-        subformula1 =R4
-        subformula2 =R5
-        derived   =R6
-        concept   =R7
+        relation  =R4
+        subformula1 =R5
+        subformula2 =R6
+        derived   =R7
+        count     =R8
+        relation1 =R9
+        relation2 =R10
+        relation3 =R11
+        relation4 =R12
+        relation5 =R13
+        relation6 =R14
+        relation7 =R15
+        relation8 =R16
+        relation9 =R17
         =imaginal_action>
         isa       proposition
         thing     =IA1
@@ -391,13 +407,14 @@ def component3(aBoxCon):
         subformula2 =IA6
         subformula3 =IA7
         derived   =IA8
+        derived   ~yes
         concept   =IA9
         ?imaginal>
         state     free
         ==>
         =g>
         isa       goal
-        state     retrieve_conjuncts
+        state     retrieve_conjunct2
         form      =G1
         count1    =G2
         count2    =G3
@@ -409,22 +426,22 @@ def component3(aBoxCon):
         thing     uproposition
         form      =R1
         element   =R2
+        concept   =R3
         mainconnective universal
-        relation  =R3
-        subformula1 =R4
-        subformula2 =R5
+        relation  =R4
+        subformula1 =R5
+        subformula2 =R6
         derived   yes
-        concept   =R7
-        count     =G2
-        relation1 none
-        relation2 none
-        relation3 none
-        relation4 none
-        relation5 none
-        relation6 none
-        relation7 none
-        relation8 none
-        relation9 none
+        count     =R8
+        relation1 =R9
+        relation2 =R10
+        relation3 =R11
+        relation4 =R12
+        relation5 =R13
+        relation6 =R14
+        relation7 =R15
+        relation8 =R16
+        relation9 =R17
         +imaginal_action>
         isa       proposition
         thing     =IA1
@@ -445,7 +462,7 @@ def component3(aBoxCon):
     aBoxCon.productionstring(name="Component 3, Rule 3b(n): label second conjunct, non-universal found", string="""
         =g>
         isa       goal
-        state     label_conjuncts
+        state     label_conjunct1
         form      =G1
         count1    =G2
         count2    =G3
@@ -475,13 +492,14 @@ def component3(aBoxCon):
         subformula2 =I6
         subformula3 =I7
         derived   =I8
+        derived   ~yes
         concept   =I9
         ?imaginal_action>
         state     free
         ==>
         =g>
         isa       goal
-        state     retrieve_conjuncts
+        state     retrieve_conjunct2
         form      =G1
         count1    =G2
         count2    =G3
@@ -520,7 +538,7 @@ def component3(aBoxCon):
     aBoxCon.productionstring(name="Component 3, Rule 3b(u): label second conjunct, universal found", string="""
         =g>
         isa       goal
-        state     label_conjuncts
+        state     label_conjunct1
         form      =G1
         count1    =G2
         count2    =G3
@@ -532,12 +550,22 @@ def component3(aBoxCon):
         thing     uproposition
         form      =R1
         element   =R2
+        concept   =R3
         mainconnective universal
-        relation  =R3
-        subformula1 =R4
-        subformula2 =R5
-        derived   =R6
-        concept   =R7
+        relation  =R4
+        subformula1 =R5
+        subformula2 =R6
+        derived   =R7
+        count     =R8
+        relation1 =R9
+        relation2 =R10
+        relation3 =R11
+        relation4 =R12
+        relation5 =R13
+        relation6 =R14
+        relation7 =R15
+        relation8 =R16
+        relation9 =R17
         =imaginal>
         isa       proposition
         thing     =I1
@@ -549,13 +577,14 @@ def component3(aBoxCon):
         subformula2 =I6
         subformula3 =I7
         derived   =I8
+        derived   ~yes
         concept   =I9
         ?imaginal_action>
         state     free
         ==>
         =g>
         isa       goal
-        state     retrieve_conjuncts
+        state     retrieve_conjunct2
         form      =G1
         count1    =G2
         count2    =G3
@@ -567,22 +596,22 @@ def component3(aBoxCon):
         thing     uproposition
         form      =R1
         element   =R2
+        concept   =R3
         mainconnective universal
-        relation  =R3
-        subformula1 =R4
-        subformula2 =R5
+        relation  =R4
+        subformula1 =R5
+        subformula2 =R6
         derived   yes
-        concept   =R7
-        count     =G2
-        relation1 none
-        relation2 none
-        relation3 none
-        relation4 none
-        relation5 none
-        relation6 none
-        relation7 none
-        relation8 none
-        relation9 none
+        count     =R8
+        relation1 =R9
+        relation2 =R10
+        relation3 =R11
+        relation4 =R12
+        relation5 =R13
+        relation6 =R14
+        relation7 =R15
+        relation8 =R16
+        relation9 =R17
         +imaginal>
         isa       proposition
         thing     =I1
@@ -598,11 +627,1113 @@ def component3(aBoxCon):
         ~retrieval>
     """)
 
-    #If the first conjunct is atomic, this rule can fire to look for an atomic formula that clashes with it.
-    aBoxCon.productionstring(name="Component 3, Rule 4a: finalise inference and move on to find a clash on first conjunct", string="""
+    #After the first conjunct is found to be a non-universal formula, the second conjunct is retrieved.
+    aBoxCon.productionstring(name="Component 3, Rule 4a(n): retrieve second conjunct after non-universal", string="""
         =g>
         isa       goal
-        state     retrieve_conjuncts
+        state     retrieve_conjunct2
+        form      =G1
+        count1    =G2
+        count2    =G3
+        mainconnective =G4
+        role      =G5
+        derivenew =G6
+        =imaginal>
+        isa       proposition
+        thing     proposition
+        form      =I1
+        element   =I2
+        mainconnective =I3
+        mainconnective ~universal
+        relation  =I4
+        subformula1 =I5
+        subformula2 =I6
+        subformula3 =I7
+        derived   yes
+        concept   =I9
+        =imaginal_action>
+        isa       proposition
+        thing     ~clash_list
+        thing     ~used_list
+        thing     ~universal_list
+        thing     ~goal
+        thing     ~count_order
+        thing     ~role_list
+        thing     =IA1
+        form      =IA2
+        element   =I2
+        mainconnective =IA3
+        relation  =IA4
+        subformula1 =IA5
+        subformula2 =IA6
+        subformula3 =IA7
+        derived   =IA8
+        derived   ~yes
+        concept   =IA9
+        ?retrieval>
+        state     free
+        ==>
+        =g>
+        isa       goal
+        state     label_conjunct2
+        form      =G1
+        count1    =G2
+        count2    =G3
+        mainconnective =G4
+        role      =G5
+        derivenew =G6
+        +retrieval>
+        isa       proposition
+        thing     ~clash_list
+        thing     ~used_list
+        thing     ~universal_list
+        thing     ~goal
+        thing     ~count_order
+        thing     ~role_list
+        form      =IA2
+        element   =I2
+        mainconnective ~none
+        +imaginal>
+        isa       proposition
+        thing     proposition
+        form      =I1
+        element   =I2
+        mainconnective =I3
+        relation  =I4
+        subformula1 =I5
+        subformula2 =I6
+        subformula3 =I7
+        derived   yes
+        concept   =I9
+        ~imaginal_action>
+    """)
+
+    #After the first conjunct is found to be a universal formula, the second conjunct is retrieved.
+    aBoxCon.productionstring(name="Component 3, Rule 4a(u): retrieve second conjunct after universal", string="""
+        =g>
+        isa       goal
+        state     retrieve_conjunct2
+        form      =G1
+        count1    =G2
+        count2    =G3
+        mainconnective =G4
+        role      =G5
+        derivenew =G6
+        =imaginal>
+        isa       uproposition
+        thing     uproposition
+        form      =I1
+        element   =I2
+        concept   =I3
+        mainconnective universal
+        relation  =I4
+        subformula1 =I5
+        subformula2 =I6
+        derived   yes
+        count     =I7
+        relation1 =I8
+        relation2 =I9
+        relation3 =I10
+        relation4 =I11
+        relation5 =I12
+        relation6 =I13
+        relation7 =I14
+        relation8 =I15
+        relation9 =I16
+        =imaginal_action>
+        isa       proposition
+        thing     ~clash_list
+        thing     ~used_list
+        thing     ~universal_list
+        thing     ~goal
+        thing     ~count_order
+        thing     ~role_list
+        thing     =IA1
+        form      =IA2
+        element   =I2
+        mainconnective =IA3
+        relation  =IA4
+        subformula1 =IA5
+        subformula2 =IA6
+        subformula3 =IA7
+        derived   =IA8
+        derived   ~yes
+        concept   =IA9
+        ?retrieval>
+        state     free
+        ==>
+        =g>
+        isa       goal
+        state     label_conjunct2
+        form      =G1
+        count1    =G2
+        count2    =G3
+        mainconnective =G4
+        role      =G5
+        derivenew =G6
+        +retrieval>
+        isa       proposition
+        thing     ~clash_list
+        thing     ~used_list
+        thing     ~universal_list
+        thing     ~goal
+        thing     ~count_order
+        thing     ~role_list
+        form      =IA2
+        element   =I2
+        mainconnective ~none
+        +imaginal>
+        isa       uproposition
+        thing     uproposition
+        form      =I1
+        element   =I2
+        concept   =I3
+        mainconnective universal
+        relation  =I4
+        subformula1 =I5
+        subformula2 =I6
+        derived   yes
+        count     =I7
+        relation1 =I8
+        relation2 =I9
+        relation3 =I10
+        relation4 =I11
+        relation5 =I12
+        relation6 =I13
+        relation7 =I14
+        relation8 =I15
+        relation9 =I16
+        ~imaginal_action>
+    """)
+
+    #After the second conjunct is found to be a non-universal formula, the first conjunct is retrieved.
+    aBoxCon.productionstring(name="Component 3, Rule 4b(n): retrieve first conjunct after non-universal", string="""
+        =g>
+        isa       goal
+        state     retrieve_conjunct2
+        form      =G1
+        count1    =G2
+        count2    =G3
+        mainconnective =G4
+        role      =G5
+        derivenew =G6
+        =imaginal>
+        isa       proposition
+        thing     ~clash_list
+        thing     ~used_list
+        thing     ~universal_list
+        thing     ~goal
+        thing     ~count_order
+        thing     ~role_list
+        thing     =I1
+        form      =I2
+        element   =I3
+        mainconnective =I4
+        relation  =I5
+        subformula1 =I6
+        subformula2 =I7
+        subformula3 =I8
+        derived   ~yes
+        derived   =I8
+        concept   =I9
+        =imaginal_action>
+        isa       proposition
+        thing     proposition
+        form      =IA1
+        element   =IA2
+        mainconnective =IA3
+        relation  =IA4
+        subformula1 =IA5
+        subformula2 =IA6
+        subformula3 =IA7
+        derived   yes
+        concept   =IA8
+        ?retrieval>
+        state     free
+        ==>
+        =g>
+        isa       goal
+        state     label_conjunct2
+        form      =G1
+        count1    =G2
+        count2    =G3
+        mainconnective =G4
+        role      =G5
+        derivenew =G6
+        +retrieval>
+        isa       proposition
+        thing     ~clash_list
+        thing     ~used_list
+        thing     ~universal_list
+        thing     ~goal
+        thing     ~count_order
+        thing     ~role_list
+        form      =I2
+        element   =I3
+        mainconnective ~none
+        +imaginal_action>
+        isa       proposition
+        thing     proposition
+        form      =IA1
+        element   =IA2
+        mainconnective =IA3
+        relation  =IA4
+        subformula1 =IA5
+        subformula2 =IA6
+        subformula3 =IA7
+        derived   yes
+        concept   =IA8
+        ~imaginal>
+    """)
+
+    #After the second conjunct is found to be a universal formula, the first conjunct is retrieved.
+    aBoxCon.productionstring(name="Component 3, Rule 4b(u): retrieve first conjunct after universal", string="""
+        =g>
+        isa       goal
+        state     retrieve_conjunct2
+        form      =G1
+        count1    =G2
+        count2    =G3
+        mainconnective =G4
+        role      =G5
+        derivenew =G6
+        =imaginal>
+        isa       proposition
+        thing     ~clash_list
+        thing     ~used_list
+        thing     ~universal_list
+        thing     ~goal
+        thing     ~count_order
+        thing     ~role_list
+        thing     =I1
+        form      =I2
+        element   =I3
+        mainconnective =I4
+        relation  =I5
+        subformula1 =I6
+        subformula2 =I7
+        subformula3 =I8
+        derived   ~yes
+        derived   =I8
+        concept   =I9
+        =imaginal_action>
+        isa       uproposition
+        thing     uproposition
+        form      =IA1
+        element   =IA2
+        concept   =IA3
+        mainconnective universal
+        relation  =IA4
+        subformula1 =IA5
+        subformula2 =IA6
+        derived   yes
+        count     =IA7
+        relation1 =IA8
+        relation2 =IA9
+        relation3 =IA10
+        relation4 =IA11
+        relation5 =IA12
+        relation6 =IA13
+        relation7 =IA14
+        relation8 =IA15
+        relation9 =IA16
+        ?retrieval>
+        state     free
+        ==>
+        =g>
+        isa       goal
+        state     label_conjunct2
+        form      =G1
+        count1    =G2
+        count2    =G3
+        mainconnective =G4
+        role      =G5
+        derivenew =G6
+        +retrieval>
+        isa       proposition
+        thing     ~clash_list
+        thing     ~used_list
+        thing     ~universal_list
+        thing     ~goal
+        thing     ~count_order
+        thing     ~role_list
+        form      =I2
+        element   =I3
+        mainconnective ~none
+        +imaginal_action>
+        isa       uproposition
+        thing     uproposition
+        form      =IA1
+        element   =IA2
+        concept   =IA3
+        mainconnective universal
+        relation  =IA4
+        subformula1 =IA5
+        subformula2 =IA6
+        derived   yes
+        count     =IA7
+        relation1 =IA8
+        relation2 =IA9
+        relation3 =IA10
+        relation4 =IA11
+        relation5 =IA12
+        relation6 =IA13
+        relation7 =IA14
+        relation8 =IA15
+        relation9 =IA16
+        ~imaginal>
+    """)
+
+    #After the first conjunct is found to be a non-universal formula, the second conjunct, also found to be a non-universal, is labelled as derived.
+    aBoxCon.productionstring(name="Component 3, Rule 5a(nn): label second conjunct after non-universal, non-universal found", string="""
+        =g>
+        isa       goal
+        state     label_conjunct2
+        form      =G1
+        count1    =G2
+        count2    =G3
+        mainconnective =G4
+        role      =G5
+        derivenew =G6
+        =retrieval>
+        isa       proposition
+        thing     proposition
+        form      =R1
+        element   =R2
+        mainconnective =R3
+        mainconnective ~universal
+        subformula1  =R4
+        subformula2  =R5
+        subformula3  =R6
+        relation  =R7
+        derived   =R8
+        concept   =R9
+        =imaginal>
+        isa       proposition
+        thing     proposition
+        form      =I2
+        element   =R2
+        mainconnective =I3
+        mainconnective ~universal
+        relation  =I4
+        subformula1 =I5
+        subformula2 =I6
+        subformula3 =I7
+        derived   yes
+        concept   =I8
+        ?imaginal_action>
+        state     free
+        ==>
+        =g>
+        isa       goal
+        state     conjunction_finish
+        form      =G1
+        count1    =G2
+        count2    =G3
+        mainconnective =G4
+        role      =G5
+        derivenew =G6
+        +imaginal_action>
+        isa       proposition
+        thing     proposition
+        form      =R1
+        element   =R2
+        mainconnective =R3
+        subformula1  =R4
+        subformula2  =R5
+        subformula3  =R6
+        relation  =R7
+        derived   yes
+        concept   =R9
+        +imaginal>
+        isa       proposition
+        thing     proposition
+        form      =I2
+        element   =R2
+        mainconnective =I3
+        relation  =I4
+        subformula1 =I5
+        subformula2 =I6
+        subformula3 =I7
+        derived   yes
+        concept   =I8
+        ~retrieval>
+    """)
+
+    #After the first conjunct is found to be a non-universal formula, the second conjunct, found to be a universal, is labelled as derived.
+    aBoxCon.productionstring(name="Component 3, Rule 5a(nu): label second conjunct after non-universal, universal found", string="""
+        =g>
+        isa       goal
+        state     label_conjunct2
+        form      =G1
+        count1    =G2
+        count2    =G3
+        mainconnective =G4
+        role      =G5
+        derivenew =G6
+        =retrieval>
+        isa       uproposition
+        thing     uproposition
+        form      =R1
+        element   =R2
+        concept   =R3
+        mainconnective universal
+        relation  =R4
+        subformula1 =R5
+        subformula2 =R6
+        derived   =R7
+        count     =R8
+        relation1 =R9
+        relation2 =R10
+        relation3 =R11
+        relation4 =R12
+        relation5 =R13
+        relation6 =R14
+        relation7 =R15
+        relation8 =R16
+        relation9 =R17
+        =imaginal>
+        isa       proposition
+        thing     proposition
+        form      =I2
+        element   =R2
+        mainconnective =I3
+        mainconnective ~universal
+        relation  =I4
+        subformula1 =I5
+        subformula2 =I6
+        subformula3 =I7
+        derived   yes
+        concept   =I8
+        ?imaginal_action>
+        state     free
+        ==>
+        =g>
+        isa       goal
+        state     conjunction_finish
+        form      =G1
+        count1    =G2
+        count2    =G3
+        mainconnective =G4
+        role      =G5
+        derivenew =G6
+        +imaginal_action>
+        isa       uproposition
+        thing     uproposition
+        form      =R1
+        element   =R2
+        concept   =R3
+        mainconnective universal
+        relation  =R4
+        subformula1 =R5
+        subformula2 =R6
+        derived   yes
+        count     =R8
+        relation1 =R9
+        relation2 =R10
+        relation3 =R11
+        relation4 =R12
+        relation5 =R13
+        relation6 =R14
+        relation7 =R15
+        relation8 =R16
+        relation9 =R17
+        +imaginal>
+        isa       proposition
+        thing     proposition
+        form      =I2
+        element   =R2
+        mainconnective =I3
+        relation  =I4
+        subformula1 =I5
+        subformula2 =I6
+        subformula3 =I7
+        derived   yes
+        concept   =I8
+        ~retrieval>
+    """)
+
+    #After the first conjunct is found to be a universal formula, the second conjunct, found to be a non-universal, is labelled as derived.
+    aBoxCon.productionstring(name="Component 3, Rule 5a(un): label second conjunct after universal, non-universal found", string="""
+        =g>
+        isa       goal
+        state     label_conjunct2
+        form      =G1
+        count1    =G2
+        count2    =G3
+        mainconnective =G4
+        role      =G5
+        derivenew =G6
+        =retrieval>
+        isa       proposition
+        thing     proposition
+        form      =R1
+        element   =R2
+        mainconnective =R3
+        mainconnective ~universal
+        subformula1  =R4
+        subformula2  =R5
+        subformula3  =R6
+        relation  =R7
+        derived   =R8
+        concept   =R9
+        =imaginal>
+        isa       uproposition
+        thing     uproposition
+        form      =I1
+        element   =I2
+        concept   =I3
+        mainconnective universal
+        relation  =I4
+        subformula1 =I5
+        subformula2 =I6
+        derived   =I7
+        count     =I8
+        relation1 =I9
+        relation2 =I10
+        relation3 =I11
+        relation4 =I12
+        relation5 =I13
+        relation6 =I14
+        relation7 =I15
+        relation8 =I16
+        relation9 =I17
+        ?imaginal_action>
+        state     free
+        ==>
+        =g>
+        isa       goal
+        state     conjunction_finish
+        form      =G1
+        count1    =G2
+        count2    =G3
+        mainconnective =G4
+        role      =G5
+        derivenew =G6
+        +imaginal_action>
+        isa       proposition
+        thing     proposition
+        form      =R1
+        element   =R2
+        mainconnective =R3
+        subformula1  =R4
+        subformula2  =R5
+        subformula3  =R6
+        relation  =R7
+        derived   yes
+        concept   =R9
+        +imaginal>
+        isa       uproposition
+        thing     uproposition
+        form      =I1
+        element   =I2
+        concept   =I3
+        mainconnective universal
+        relation  =I4
+        subformula1 =I5
+        subformula2 =I6
+        derived   yes
+        count     =I8
+        relation1 =I9
+        relation2 =I10
+        relation3 =I11
+        relation4 =I12
+        relation5 =I13
+        relation6 =I14
+        relation7 =I15
+        relation8 =I16
+        relation9 =I17
+        ~retrieval>
+    """)
+
+    #After the first conjunct is found to be a universal formula, the second conjunct, also found to be a universal, is labelled as derived.
+    aBoxCon.productionstring(name="Component 3, Rule 5a(uu): label second conjunct after universal, universal found", string="""
+        =g>
+        isa       goal
+        state     label_conjunct2
+        form      =G1
+        count1    =G2
+        count2    =G3
+        mainconnective =G4
+        role      =G5
+        derivenew =G6
+        =retrieval>
+        isa       uproposition
+        thing     uproposition
+        form      =R1
+        element   =R2
+        concept   =R3
+        mainconnective universal
+        relation  =R4
+        subformula1 =R5
+        subformula2 =R6
+        derived   =R7
+        count     =R8
+        relation1 =R9
+        relation2 =R10
+        relation3 =R11
+        relation4 =R12
+        relation5 =R13
+        relation6 =R14
+        relation7 =R15
+        relation8 =R16
+        relation9 =R17
+        =imaginal>
+        isa       uproposition
+        thing     uproposition
+        form      =I1
+        element   =I2
+        concept   =I3
+        mainconnective universal
+        relation  =I4
+        subformula1 =I5
+        subformula2 =I6
+        derived   yes
+        count     =I8
+        relation1 =I9
+        relation2 =I10
+        relation3 =I11
+        relation4 =I12
+        relation5 =I13
+        relation6 =I14
+        relation7 =I15
+        relation8 =I16
+        relation9 =I17
+        ?imaginal_action>
+        state     free
+        ==>
+        =g>
+        isa       goal
+        state     conjunction_finish
+        form      =G1
+        count1    =G2
+        count2    =G3
+        mainconnective =G4
+        role      =G5
+        derivenew =G6
+        +imaginal_action>
+        isa       uproposition
+        thing     uproposition
+        form      =R1
+        element   =R2
+        concept   =R3
+        mainconnective universal
+        relation  =R4
+        subformula1 =R5
+        subformula2 =R6
+        derived   yes
+        count     =R8
+        relation1 =R9
+        relation2 =R10
+        relation3 =R11
+        relation4 =R12
+        relation5 =R13
+        relation6 =R14
+        relation7 =R15
+        relation8 =R16
+        relation9 =R17
+        +imaginal>
+        isa       uproposition
+        thing     uproposition
+        form      =I1
+        element   =I2
+        concept   =I3
+        mainconnective universal
+        relation  =I4
+        subformula1 =I5
+        subformula2 =I6
+        derived   yes
+        count     =I8
+        relation1 =I9
+        relation2 =I10
+        relation3 =I11
+        relation4 =I12
+        relation5 =I13
+        relation6 =I14
+        relation7 =I15
+        relation8 =I16
+        relation9 =I17
+        ~retrieval>
+    """)
+
+    #After the second conjunct is found to be a non-universal formula, the first conjunct, also found to be a non-universal, is labelled as derived.
+    aBoxCon.productionstring(name="Component 3, Rule 5b(nn): label first conjunct after non-universal, non-universal found", string="""
+        =g>
+        isa       goal
+        state     label_conjunct2
+        form      =G1
+        count1    =G2
+        count2    =G3
+        mainconnective =G4
+        role      =G5
+        derivenew =G6
+        =retrieval>
+        isa       proposition
+        thing     proposition
+        form      =R1
+        element   =R2
+        mainconnective =R3
+        mainconnective ~universal
+        subformula1  =R4
+        subformula2  =R5
+        subformula3  =R6
+        relation  =R7
+        derived   =R8
+        concept   =R9
+        =imaginal_action>
+        isa       proposition
+        thing     proposition
+        form      =IA1
+        element   =R2
+        mainconnective =IA2
+        mainconnective ~universal
+        relation  =IA3
+        subformula1 =IA4
+        subformula2 =IA5
+        subformula3 =IA6
+        derived   yes
+        concept   =IA7
+        ?imaginal>
+        state     free
+        ==>
+        =g>
+        isa       goal
+        state     conjunction_finish
+        form      =G1
+        count1    =G2
+        count2    =G3
+        mainconnective =G4
+        role      =G5
+        derivenew =G6
+        +imaginal>
+        isa       proposition
+        thing     proposition
+        form      =R1
+        element   =R2
+        mainconnective =R3
+        subformula1  =R4
+        subformula2  =R5
+        subformula3  =R6
+        relation  =R7
+        derived   yes
+        concept   =R9
+        +imaginal_action>
+        isa       proposition
+        thing     proposition
+        form      =IA1
+        element   =R2
+        mainconnective =IA2
+        relation  =IA3
+        subformula1 =IA4
+        subformula2 =IA5
+        subformula3 =IA6
+        derived   yes
+        concept   =IA7
+        ~retrieval>
+    """)
+
+    #After the second conjunct is found to be a non-universal formula, the first conjunct, found to be a universal, is labelled as derived.
+    aBoxCon.productionstring(name="Component 3, Rule 5b(nu): label first conjunct after non-universal, universal found", string="""
+        =g>
+        isa       goal
+        state     label_conjunct2
+        form      =G1
+        count1    =G2
+        count2    =G3
+        mainconnective =G4
+        role      =G5
+        derivenew =G6
+        =retrieval>
+        isa       uproposition
+        thing     uproposition
+        form      =R1
+        element   =R2
+        concept   =R3
+        mainconnective universal
+        relation  =R4
+        subformula1 =R5
+        subformula2 =R6
+        derived   =R7
+        count     =R8
+        relation1 =R9
+        relation2 =R10
+        relation3 =R11
+        relation4 =R12
+        relation5 =R13
+        relation6 =R14
+        relation7 =R15
+        relation8 =R16
+        relation9 =R17
+        =imaginal_action>
+        isa       proposition
+        thing     =IA1
+        thing     ~uproposition
+        form      =IA2
+        element   =R2
+        mainconnective =IA3
+        mainconnective ~universal
+        relation  =IA4
+        subformula1 =IA5
+        subformula2 =IA6
+        subformula3 =IA7
+        derived   yes
+        concept   =IA8
+        ?imaginal>
+        state     free
+        ==>
+        =g>
+        isa       goal
+        state     conjunction_finish
+        form      =G1
+        count1    =G2
+        count2    =G3
+        mainconnective =G4
+        role      =G5
+        derivenew =G6
+        +imaginal>
+        isa       uproposition
+        thing     uproposition
+        form      =R1
+        element   =R2
+        concept   =R3
+        mainconnective universal
+        relation  =R4
+        subformula1 =R5
+        subformula2 =R6
+        derived   yes
+        count     =R8
+        relation1 =R9
+        relation2 =R10
+        relation3 =R11
+        relation4 =R12
+        relation5 =R13
+        relation6 =R14
+        relation7 =R15
+        relation8 =R16
+        relation9 =R17
+        +imaginal_action>
+        isa       proposition
+        thing     =IA1
+        form      =IA2
+        element   =R2
+        mainconnective =IA3
+        relation  =IA4
+        subformula1 =IA5
+        subformula2 =IA6
+        subformula3 =IA7
+        derived   yes
+        concept   =IA8
+        ~retrieval>
+    """)
+
+    #After the second conjunct is found to be a universal formula, the first conjunct, found to be a non-universal, is labelled as derived.
+    aBoxCon.productionstring(name="Component 3, Rule 5b(un): label first conjunct after universal, non-universal found", string="""
+        =g>
+        isa       goal
+        state     label_conjunct2
+        form      =G1
+        count1    =G2
+        count2    =G3
+        mainconnective =G4
+        role      =G5
+        derivenew =G6
+        =retrieval>
+        isa       proposition
+        thing     proposition
+        form      =R1
+        element   =R2
+        mainconnective =R3
+        mainconnective ~universal
+        subformula1  =R4
+        subformula2  =R5
+        subformula3  =R6
+        relation  =R7
+        derived   =R8
+        concept   =R9
+        =imaginal_action>
+        isa       uproposition
+        thing     uproposition
+        form      =IA1
+        element   =IA2
+        concept   =IA3
+        mainconnective universal
+        relation  =IA4
+        subformula1 =IA5
+        subformula2 =IA6
+        derived   =IA7
+        count     =IA8
+        relation1 =IA9
+        relation2 =IA10
+        relation3 =IA11
+        relation4 =IA12
+        relation5 =IA13
+        relation6 =IA14
+        relation7 =IA15
+        relation8 =IA16
+        relation9 =IA17
+        ?imaginal>
+        state     free
+        ==>
+        =g>
+        isa       goal
+        state     conjunction_finish
+        form      =G1
+        count1    =G2
+        count2    =G3
+        mainconnective =G4
+        role      =G5
+        derivenew =G6
+        +imaginal>
+        isa       proposition
+        thing     proposition
+        form      =R1
+        element   =R2
+        mainconnective =R3
+        subformula1  =R4
+        subformula2  =R5
+        subformula3  =R6
+        relation  =R7
+        derived   yes
+        concept   =R9
+        +imaginal_action>
+        isa       uproposition
+        thing     uproposition
+        form      =IA1
+        element   =IA2
+        concept   =IA3
+        mainconnective universal
+        relation  =IA4
+        subformula1 =IA5
+        subformula2 =IA6
+        derived   yes
+        count     =IA8
+        relation1 =IA9
+        relation2 =IA10
+        relation3 =IA11
+        relation4 =IA12
+        relation5 =IA13
+        relation6 =IA14
+        relation7 =IA15
+        relation8 =IA16
+        relation9 =IA17
+        ~retrieval>
+    """)
+
+    #After the second conjunct is found to be a universal formula, the first conjunct, also found to be a universal, is labelled as derived.
+    aBoxCon.productionstring(name="Component 3, Rule 5b(uu): label first conjunct after universal, universal found", string="""
+        =g>
+        isa       goal
+        state     label_conjunct2
+        form      =G1
+        count1    =G2
+        count2    =G3
+        mainconnective =G4
+        role      =G5
+        derivenew =G6
+        =retrieval>
+        isa       uproposition
+        thing     uproposition
+        form      =R1
+        element   =R2
+        concept   =R3
+        mainconnective universal
+        relation  =R4
+        subformula1 =R5
+        subformula2 =R6
+        derived   =R7
+        count     =R8
+        relation1 =R9
+        relation2 =R10
+        relation3 =R11
+        relation4 =R12
+        relation5 =R13
+        relation6 =R14
+        relation7 =R15
+        relation8 =R16
+        relation9 =R17
+        =imaginal_action>
+        isa       uproposition
+        thing     uproposition
+        form      =IA1
+        element   =IA2
+        concept   =IA3
+        mainconnective universal
+        relation  =IA4
+        subformula1 =IA5
+        subformula2 =IA6
+        derived   yes
+        count     =IA8
+        relation1 =IA9
+        relation2 =IA10
+        relation3 =IA11
+        relation4 =IA12
+        relation5 =IA13
+        relation6 =IA14
+        relation7 =IA15
+        relation8 =IA16
+        relation9 =IA17
+        ?imaginal>
+        state     free
+        ==>
+        =g>
+        isa       goal
+        state     conjunction_finish
+        form      =G1
+        count1    =G2
+        count2    =G3
+        mainconnective =G4
+        role      =G5
+        derivenew =G6
+        +imaginal>
+        isa       uproposition
+        thing     uproposition
+        form      =R1
+        element   =R2
+        concept   =R3
+        mainconnective universal
+        relation  =R4
+        subformula1 =R5
+        subformula2 =R6
+        derived   yes
+        count     =R8
+        relation1 =R9
+        relation2 =R10
+        relation3 =R11
+        relation4 =R12
+        relation5 =R13
+        relation6 =R14
+        relation7 =R15
+        relation8 =R16
+        relation9 =R17
+        +imaginal_action>
+        isa       uproposition
+        thing     uproposition
+        form      =IA1
+        element   =IA2
+        concept   =IA3
+        mainconnective universal
+        relation  =IA4
+        subformula1 =IA5
+        subformula2 =IA6
+        derived   yes
+        count     =IA8
+        relation1 =IA9
+        relation2 =IA10
+        relation3 =IA11
+        relation4 =IA12
+        relation5 =IA13
+        relation6 =IA14
+        relation7 =IA15
+        relation8 =IA16
+        relation9 =IA17
+        ~retrieval>
+    """)
+
+    #If the first conjunct is atomic, this rule can fire to look for an atomic formula that clashes with it.
+    aBoxCon.productionstring(name="Component 3, Rule 6a: finalise inference and move on to find a clash on first conjunct", string="""
+        =g>
+        isa       goal
+        state     conjunction_finish
         form      =G1
         count1    =G2
         count2    =G3
@@ -630,16 +1761,8 @@ def component3(aBoxCon):
         concept   =I9
         =imaginal_action>
         isa       proposition
-        thing     =IA1
-        form      =IA2
-        element   =I3
-        mainconnective =IA3
-        subformula1  =IA4
-        subformula2  =IA5
-        subformula3  =IA6
-        relation  =IA7
         derived   yes
-        concept   =IA8
+        element   =I3
         ==>
         =g>
         isa       goal
@@ -682,10 +1805,10 @@ def component3(aBoxCon):
     """)
 
     #If the second conjunct is atomic, this rule can fire to look for an atomic formula that clashes with it.
-    aBoxCon.productionstring(name="Component 3, Rule 4b: finalise inference and move on to find a clash on second conjunct", string="""
+    aBoxCon.productionstring(name="Component 3, Rule 6b: finalise inference and move on to find a clash on second conjunct", string="""
         =g>
         isa       goal
-        state     retrieve_conjuncts
+        state     conjunction_finish
         form      =G1
         count1    =G2
         count2    =G3
@@ -696,16 +1819,8 @@ def component3(aBoxCon):
         state     free
         =imaginal>
         isa       proposition
-        thing     =I1
-        form      =I2
-        element   =I3
-        mainconnective =I4
-        subformula1  =I5
-        subformula2  =I6
-        subformula3  =I7
-        relation  =I8
         derived   yes
-        concept   =I9
+        element   =I3
         =imaginal_action>
         isa       proposition
         thing     =IA1
@@ -765,10 +1880,10 @@ def component3(aBoxCon):
     """)
 
     #If no conjunct is atomic, this rule invokes module 2 to look for a new formula to apply the syntax expansion rules to.
-    aBoxCon.productionstring(name="Component 3, Rule 4c: no concept or negation derived, so move on to derive new formula", string="""
+    aBoxCon.productionstring(name="Component 3, Rule 7: no concept or negation derived, so move on to derive new formula", string="""
         =g>
         isa       goal
-        state     retrieve_conjuncts
+        state     conjunction_finish
         form      =G1
         count1    =G2
         count2    =G3
@@ -779,34 +1894,18 @@ def component3(aBoxCon):
         state     free
         =imaginal>
         isa       proposition
-        thing     =I1
-        form      =I2
         element   =I3
         mainconnective  ~concept
         mainconnective  ~negation
         mainconnective  ~none
-        mainconnective =I4
-        subformula1  =I5
-        subformula2  =I6
-        subformula3  =I7
-        relation  =I8
         derived   yes
-        concept   =I9
         =imaginal_action>
         isa       proposition
-        thing     =IA1
-        form      =IA2
         element   =I3
         mainconnective  ~concept
         mainconnective  ~negation
         mainconnective  ~none
-        mainconnective  =IA3
-        subformula1  =IA4
-        subformula2  =IA5
-        subformula3  =IA6
-        relation  =IA7
         derived   yes
-        concept   =IA8
         ==>
         =g>
         isa       goal
