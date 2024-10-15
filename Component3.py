@@ -1897,6 +1897,7 @@ def component3(aBoxCon):
         element   =I3
         mainconnective  ~concept
         mainconnective  ~negation
+        mainconnective  ~universal
         mainconnective  ~none
         derived   yes
         =imaginal_action>
@@ -1904,6 +1905,7 @@ def component3(aBoxCon):
         element   =I3
         mainconnective  ~concept
         mainconnective  ~negation
+        mainconnective  ~universal
         mainconnective  ~none
         derived   yes
         ==>
@@ -1942,6 +1944,7 @@ def component3(aBoxCon):
         element   =I3
         mainconnective  ~concept
         mainconnective  ~negation
+        mainconnective  ~universal
         mainconnective  ~none
         derived   yes
         =imaginal_action>
@@ -1990,6 +1993,7 @@ def component3(aBoxCon):
         element   =I3
         mainconnective  ~concept
         mainconnective  ~negation
+        mainconnective  ~universal
         mainconnective  ~none
         derived   yes
         ==>
