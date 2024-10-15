@@ -1879,8 +1879,8 @@ def component3(aBoxCon):
         ~imaginal_action>
     """)
 
-    #If no conjunct is atomic, this rule invokes module 2 to look for a new formula to apply the syntax expansion rules to.
-    aBoxCon.productionstring(name="Component 3, Rule 7: no concept or negation derived, so move on to derive new formula", string="""
+    #If no conjunct is atomic, but both are non-universal, this rule invokes module 2 to look for a new formula to apply the syntax expansion rules to.
+    aBoxCon.productionstring(name="Component 3, Rule 7(nn): no concept or negation derived, so move on to derive new formula", string="""
         =g>
         isa       goal
         state     conjunction_finish
@@ -1905,6 +1905,133 @@ def component3(aBoxCon):
         mainconnective  ~concept
         mainconnective  ~negation
         mainconnective  ~none
+        derived   yes
+        ==>
+        =g>
+        isa       goal
+        state     derive_next_formulas
+        form      =G1
+        count1    =G2
+        count2    =G3
+        mainconnective =G4
+        role      =G5
+        derivenew =G6
+        +retrieval>
+        isa       used_list
+        thing     used_list
+        form      =G1
+        ~imaginal_action>
+        ~imaginal>
+    """)
+
+    #If no conjunct is atomic, and the first is universal, this rule invokes module 2 to look for a new formula to apply the syntax expansion rules to.
+    aBoxCon.productionstring(name="Component 3, Rule 7(un): no concept or negation derived, so move on to derive new formula", string="""
+        =g>
+        isa       goal
+        state     conjunction_finish
+        form      =G1
+        count1    =G2
+        count2    =G3
+        mainconnective =G4
+        role      =G5
+        derivenew =G6
+        ?retrieval>
+        state     free
+        =imaginal>
+        isa       proposition
+        element   =I3
+        mainconnective  ~concept
+        mainconnective  ~negation
+        mainconnective  ~none
+        derived   yes
+        =imaginal_action>
+        isa       uproposition
+        element   =I3
+        mainconnective  universal
+        derived   yes
+        ==>
+        =g>
+        isa       goal
+        state     derive_next_formulas
+        form      =G1
+        count1    =G2
+        count2    =G3
+        mainconnective =G4
+        role      =G5
+        derivenew =G6
+        +retrieval>
+        isa       used_list
+        thing     used_list
+        form      =G1
+        ~imaginal_action>
+        ~imaginal>
+    """)
+
+    #If no conjunct is atomic, and the second is universal, this rule invokes module 2 to look for a new formula to apply the syntax expansion rules to.
+    aBoxCon.productionstring(name="Component 3, Rule 7(nu): no concept or negation derived, so move on to derive new formula", string="""
+        =g>
+        isa       goal
+        state     conjunction_finish
+        form      =G1
+        count1    =G2
+        count2    =G3
+        mainconnective =G4
+        role      =G5
+        derivenew =G6
+        ?retrieval>
+        state     free
+        =imaginal>
+        isa       uproposition
+        element   =I3
+        mainconnective  universal
+        derived   yes
+        =imaginal_action>
+        isa       proposition
+        element   =I3
+        mainconnective  ~concept
+        mainconnective  ~negation
+        mainconnective  ~none
+        derived   yes
+        ==>
+        =g>
+        isa       goal
+        state     derive_next_formulas
+        form      =G1
+        count1    =G2
+        count2    =G3
+        mainconnective =G4
+        role      =G5
+        derivenew =G6
+        +retrieval>
+        isa       used_list
+        thing     used_list
+        form      =G1
+        ~imaginal_action>
+        ~imaginal>
+    """)
+
+    #If both conjuncts are universal, this rule invokes module 2 to look for a new formula to apply the syntax expansion rules to.
+    aBoxCon.productionstring(name="Component 3, Rule 7(uu): no concept or negation derived, so move on to derive new formula", string="""
+        =g>
+        isa       goal
+        state     conjunction_finish
+        form      =G1
+        count1    =G2
+        count2    =G3
+        mainconnective =G4
+        role      =G5
+        derivenew =G6
+        ?retrieval>
+        state     free
+        =imaginal>
+        isa       uproposition
+        element   =I3
+        mainconnective  universal
+        derived   yes
+        =imaginal_action>
+        isa       uproposition
+        element   =I3
+        mainconnective  universal
         derived   yes
         ==>
         =g>
