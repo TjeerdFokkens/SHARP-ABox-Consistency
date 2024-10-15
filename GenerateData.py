@@ -83,13 +83,23 @@ def result(abox):
         if sim.current_event.proc=='manual' and sim.current_event.action.startswith('KEY'):
             #The judgement that the model gives on the input ABox: 'C' for consistent and 'I' for inconsistent.
             judgement = str(sim.current_event).split('KEY PRESSED: ')[1][0]
-        if sim.current_event.action.startswith('RULE SELECTED: Component 2, Rule 3a') or sim.current_event.action.startswith('RULE SELECTED: Component 2, Rule 4a') or sim.current_event.action.startswith('RULE SELECTED: Component 2, Rule 5a') or sim.current_event.action.startswith('RULE SELECTED: Component 2, Rule 6a') or sim.current_event.action.startswith('RULE SELECTED: Component 5, Rule 2a'):
+        if sim.current_event.action.startswith('RULE SELECTED: Component 2, Rule 3a') \
+        or sim.current_event.action.startswith('RULE SELECTED: Component 2, Rule 5a') \
+        or sim.current_event.action.startswith('RULE SELECTED: Component 2, Rule 6a'):
             #In this case a formula is selected to make an inference on.
-            #It is printed and added to the prove_tracks list.
-            a = str(mod.retrieval)
-            b = a.split('form= ',1)[1].split(', ',1)[0]
-            print(b)
-            prove_tracks.append(b)
+            #It is added to the prove_tracks list.
+            form = str(mod.retrieval)
+            form = form.split('form= ',1)[1].split(', ',1)[0]
+            prove_tracks.append(form)
+        if sim.current_event.action.startswith('RULE SELECTED: Component 5, Rule 1b'):
+            #In this case two formulas are selected to make an inference on.
+            #They are added to the prove_tracks list.
+            form1 = str(mod.goals['imaginal_action'])
+            form1 = form1.split('form= ',1)[1].split(', ',1)[0]
+            form2 = str(mod.retrieval)
+            form2 = form2.split('form= ',1)[1].split(', ',1)[0]
+            formula_combination = form1 + ' + ' + form2
+            prove_tracks.append(formula_combination)
         try:
             #The next step of the simulation is tried, without printing the simulation output.
             old_stdout = sys.stdout
