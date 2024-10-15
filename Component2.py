@@ -71,7 +71,7 @@ def component2(aBoxCon):
         ==>
         =g>
         isa       goal
-        state     find_formula_not_in_list
+        state     find_formula_not_in_used_list
         form      =G1
         count1    =G2
         count2    =G3
@@ -142,7 +142,7 @@ def component2(aBoxCon):
         ==>
         =g>
         isa       goal
-        state     find_formula_not_in_list
+        state     find_formula_not_in_used_list
         form      =G1
         count1    =G2
         count2    =G3
@@ -199,7 +199,7 @@ def component2(aBoxCon):
     aBoxCon.productionstring(name="Component 2, Rule 2a: retrieve non-universal formula", string="""
         =g>
         isa       goal
-        state     find_formula_not_in_list
+        state     find_formula_not_in_used_list
         form      =G1
         count1    =G2
         count2    =G3
@@ -362,7 +362,7 @@ def component2(aBoxCon):
     aBoxCon.productionstring(name="Component 2, Rule 2b: retrieve universal formula", string="""
         =g>
         isa       goal
-        state     find_formula_not_in_list
+        state     find_formula_not_in_used_list
         form      =G1
         count1    =G2
         count2    =G3
