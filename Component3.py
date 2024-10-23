@@ -432,7 +432,7 @@ def component3(aBoxCon):
         subformula1 =R5
         subformula2 =R6
         derived   yes
-        count     =R8
+        count     =G2
         relation1 =R9
         relation2 =R10
         relation3 =R11
@@ -602,7 +602,7 @@ def component3(aBoxCon):
         subformula1 =R5
         subformula2 =R6
         derived   yes
-        count     =R8
+        count     =G2
         relation1 =R9
         relation2 =R10
         relation3 =R11
@@ -1128,7 +1128,7 @@ def component3(aBoxCon):
         subformula1 =R5
         subformula2 =R6
         derived   yes
-        count     =R8
+        count     =G2
         relation1 =R9
         relation2 =R10
         relation3 =R11
@@ -1322,7 +1322,7 @@ def component3(aBoxCon):
         subformula1 =R5
         subformula2 =R6
         derived   yes
-        count     =R8
+        count     =G2
         relation1 =R9
         relation2 =R10
         relation3 =R11
@@ -1501,7 +1501,7 @@ def component3(aBoxCon):
         subformula1 =R5
         subformula2 =R6
         derived   yes
-        count     =R8
+        count     =G2
         relation1 =R9
         relation2 =R10
         relation3 =R11
@@ -1695,7 +1695,7 @@ def component3(aBoxCon):
         subformula1 =R5
         subformula2 =R6
         derived   yes
-        count     =R8
+        count     =G2
         relation1 =R9
         relation2 =R10
         relation3 =R11
