@@ -397,6 +397,12 @@ def component4(aBoxCon):
         role16    =IA15
         +retrieval>
         isa       proposition
+        thing     ~clash_list
+        thing     ~used_list
+        thing     ~universal_list
+        thing     ~goal
+        thing     ~count_order
+        thing     ~role_list
         element   =R1
         concept   =I5
         mainconnective ~relation
