@@ -167,32 +167,7 @@ testset = [
 'a:/Er./As./Er./At.-A',
 'a:A, a:-A, b:/Ar.A',
 'a:(A&(-B&(C&D))), a:D',
-'a:/Ar./Es./Er.-A, b:/As.-B',
-'a:(A&-B), b:(-C&-D), a:-C',
-'a:/Ar./Es.(-A&-B), b:-A, c:-B',
-'a:/Er.A, a:/Ar.-A, b:/As.(B&A)',
-'a:/Er./Es.-A, a:/Ar./As.A, b:/Es.-B',
-'a:-A, a:-B, b:-C, b:-A, c:-A, c:B',
-'a:/Ar./As./Es.-A, (a,b):r, b:/Es./As.A',
-'a:/Er.(A&(B&-A)), b:/Ar./Es./Et.(B&-C)',
-'b:-D, (a,b):r, a:/Es.(-A&(-B&(-C&D)))',
-'a:/Ar./Es.-B, b:/As.(-A&(-C&B)), (a,b):r',
-'a:/Ar./Es.-B, (a,b):r, b:/As.B, a:-A, b:B',
-'a:/Er.A, a:/Ar.-A, b:/Es.B, b:/As.A, (b,a):s',
-'a:/Er.-A, a:/Ar.(A&-B), b:/Er.-B, a:-C, a:-B',
-'a:(-A&(B&-C)), b:(-B&(C&A)), b:(A&C), a:B',
-'a:/Ar./As.(A&-B), (a,b):r, (b,c):s, c:A, b:B',
-'a:/Ar./Es./At.-B, b:(-C&/Er.(-B&A)), c:/Es./Et.B',
-'a:/Ar./Es./Et.(-A&B), (a,b):r, b:/As./At.(-B&-C)',
-'a:(A&-B), b:(C&-A), a:(-B&(C&-A)), b:(C&(D&B))',
-'a:/Ar./Er./As.-A, (a,b):r, b:/Ar./Es.(-B&(-D&(-C&A)))',
-'a:/Ar./Er./Es./Et.(-A&(-C&(-B&(-D&(-E&A))))), (a,b):r',
-'a:/Ar.(A&(B&-C)), (a,c):r, c:(-B&-C), b:-A, b:/Er.A',
-'a:/Ar.(A&-B), b:/Er.(A&(B&C)), c:(A&B), (b,c):s, (c,d):r',
-'a:/Er.(A&-B), b:/As./Et.-C, c:/Ar.(B&-A), b:(C&-D), (a,b):s',
-'a:/Ar.(/As.-A&B), (a,b):r, b:/Es.(A&B), b:/Ar.(-A&(B&/As.A))',
-'a:/Ar./As.(A&-B), (a,b):r, (b,c):s, c:B, b:/Er./Er.(A&B), b:/As.B',
-'a:/As.(-A&B), (b,a):r, b:/Ar./Es.(A&B), c:(-B&C), a:(B&-C), (b,c):s']
+'a:/Ar./Es./Er.-A, b:/As.-B']
 
 
 n = 10 #The number of simulations one wants for each ABox
